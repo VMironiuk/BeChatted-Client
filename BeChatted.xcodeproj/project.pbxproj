@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E0EA12529A00041006402BE /* NewAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EA12429A00041006402BE /* NewAccountInfo.swift */; };
 		2E64BFFA299EB047000451D9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64BFF1299EB047000451D9 /* BeChatted.framework */; };
 		2E64BFFF299EB047000451D9 /* BeChattedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E64BFFE299EB047000451D9 /* BeChattedTests.swift */; };
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E0EA12429A00041006402BE /* NewAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfo.swift; sourceTree = "<group>"; };
 		2E64BFF1299EB047000451D9 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E64BFF4299EB047000451D9 /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
 		2E64BFF9299EB047000451D9 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				2E64BFF4299EB047000451D9 /* BeChatted.h */,
+				2E0EA12429A00041006402BE /* NewAccountInfo.swift */,
 			);
 			path = BeChatted;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				TargetAttributes = {
 					2E64BFF0299EB047000451D9 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 					2E64BFF8299EB047000451D9 = {
 						CreatedOnToolsVersion = 14.2;
@@ -191,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E0EA12529A00041006402BE /* NewAccountInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +340,7 @@
 		2E64C004299EB047000451D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -356,6 +362,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -363,6 +370,7 @@
 		2E64C005299EB047000451D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -391,6 +399,7 @@
 		2E64C007299EB047000451D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8U849676MP;
@@ -406,6 +415,7 @@
 		2E64C008299EB047000451D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8U849676MP;
