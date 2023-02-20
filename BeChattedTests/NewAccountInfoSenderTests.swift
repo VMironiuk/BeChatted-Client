@@ -6,10 +6,34 @@
 //
 
 import XCTest
+import BeChatted
+
+class HTTPClient {
+    private(set) var requestedURL: URL?
+    private(set) var newAccountInfo: NewAccountInfo?
+}
+
+class NewAccountInfoSender {
+    private let url: URL
+    private let client: HTTPClient
+    
+    init(url: URL, client: HTTPClient) {
+        self.url = url
+        self.client = client
+    }
+}
 
 final class NewAccountInfoSenderTests: XCTestCase {
 
-    // 1. init() does not send a new account info by url
+    func test_init_doesNotSendNewAccountInfoByURL() {
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClient()
+        
+        _ = NewAccountInfoSender(url: url, client: client)
+        
+        XCTAssertNil(client.requestedURL)
+        XCTAssertNil(client.newAccountInfo)
+    }
     
     // 2. send() sends a new account info by url
     

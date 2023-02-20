@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewAccountInfo {
+public struct NewAccountInfo {
     let email: String
     let password: String
 }
