@@ -64,12 +64,32 @@ final class NewAccountInfoSenderTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(
-        url: URL = URL(string: "http://any-url.com")!
+        url: URL = URL(string: "http://any-url.com")!,
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) -> (sut: NewAccountInfoSender, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = NewAccountInfoSender(url: url, client: client)
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(client, file: file, line: line)
 
         return (sut, client)
+    }
+    
+    private func trackForMemoryLeaks(
+        _ object: AnyObject,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        addTeardownBlock { [weak object] in
+            XCTAssertNil(
+                object,
+                "Expected object to be nil. Potential memory leak",
+                file: file,
+                line: line
+            )
+        }
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
