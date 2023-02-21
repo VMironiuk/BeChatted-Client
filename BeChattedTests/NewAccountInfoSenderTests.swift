@@ -8,35 +8,15 @@
 import XCTest
 import BeChatted
 
-class HTTPClient {
-    private var request: URLRequest?
-    
-    var requestedURL: URL? {
-        request?.url
-    }
-    
-    var httpMethod: String? {
-        request?.httpMethod
-    }
-
-    var newAccountInfo: NewAccountInfo? {
-        guard let data = request?.httpBody else {
-            return nil
-        }
-        
-        return try? JSONDecoder().decode(NewAccountInfo.self, from: data)
-    }
-        
-    func perform(request: URLRequest) {
-        self.request = request
-    }
+protocol HTTPClientProtocol {
+    func perform(request: URLRequest)
 }
 
 class NewAccountInfoSender {
     private let url: URL
-    private let client: HTTPClient
+    private let client: HTTPClientProtocol
     
-    init(url: URL, client: HTTPClient) {
+    init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
@@ -54,7 +34,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
 
     func test_init_doesNotSendNewAccountInfoByURL() {
         let url = URL(string: "http://any-url.com")!
-        let client = HTTPClient()
+        let client = HTTPClientSpy()
         
         _ = NewAccountInfoSender(url: url, client: client)
         
@@ -64,7 +44,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_sendsNewAccountInfoByURL() {
         let url = URL(string: "http://any-url.com")!
-        let client = HTTPClient()
+        let client = HTTPClientSpy()
         let sut = NewAccountInfoSender(url: url, client: client)
         
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
@@ -84,4 +64,30 @@ final class NewAccountInfoSenderTests: XCTestCase {
     // 6. send() delivers successful result on 200 HTTP response
     
     // 7. send() does not delivers result after SUT instance has been deallocated
+    
+    // MARK: - Helpers
+    
+    private class HTTPClientSpy: HTTPClientProtocol {
+        private var request: URLRequest?
+        
+        var requestedURL: URL? {
+            request?.url
+        }
+        
+        var httpMethod: String? {
+            request?.httpMethod
+        }
+
+        var newAccountInfo: NewAccountInfo? {
+            guard let data = request?.httpBody else {
+                return nil
+            }
+            
+            return try? JSONDecoder().decode(NewAccountInfo.self, from: data)
+        }
+            
+        func perform(request: URLRequest) {
+            self.request = request
+        }
+    }
 }
