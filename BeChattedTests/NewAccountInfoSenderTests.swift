@@ -35,8 +35,9 @@ final class NewAccountInfoSenderTests: XCTestCase {
     func test_init_doesNotSendNewAccountInfoByURL() {
         let (_, client) = makeSUT()
         
-        XCTAssertNil(client.requestedURL)
-        XCTAssertNil(client.newAccountInfo)
+        XCTAssertEqual(client.requestedURLs, [])
+        XCTAssertEqual(client.newAccountInfos, [])
+        XCTAssertEqual(client.httpMethods, [])
     }
     
     func test_send_sendsNewAccountInfoByURL() {
@@ -46,12 +47,24 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         sut.send(newAccountInfo: newAccountInfo)
         
-        XCTAssertEqual(client.requestedURL, url)
-        XCTAssertEqual(client.newAccountInfo, newAccountInfo)
-        XCTAssertEqual(client.httpMethod, "POST")
+        XCTAssertEqual(client.requestedURLs, [url])
+        XCTAssertEqual(client.newAccountInfos, [newAccountInfo])
+        XCTAssertEqual(client.httpMethods, ["POST"])
     }
     
-    // 3. call send() twice sends a new account info by url twice
+    func test_send_sendsNewAccountInfoByURLTwice() {
+        let url = URL(string: "http://some-url.com")!
+        let (sut, client) = makeSUT(url: url)
+        
+        let newAccountInfo1 = NewAccountInfo(email: "my@example.com", password: "123456")
+        let newAccountInfo2 = NewAccountInfo(email: "my.other@example.com", password: "31415")
+        sut.send(newAccountInfo: newAccountInfo1)
+        sut.send(newAccountInfo: newAccountInfo2)
+        
+        XCTAssertEqual(client.requestedURLs, [url, url])
+        XCTAssertEqual(client.newAccountInfos, [newAccountInfo1, newAccountInfo2])
+        XCTAssertEqual(client.httpMethods, ["POST", "POST"])
+    }
     
     // 4. send() delivers error on client error (no connectivity error)
     
@@ -93,26 +106,32 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
-        private var request: URLRequest?
+        private var requests = [URLRequest]()
         
-        var requestedURL: URL? {
-            request?.url
+        var requestedURLs: [URL] {
+            requests.compactMap {
+                $0.url
+            }
         }
         
-        var httpMethod: String? {
-            request?.httpMethod
+        var httpMethods: [String] {
+            requests.compactMap {
+                $0.httpMethod
+            }
         }
 
-        var newAccountInfo: NewAccountInfo? {
-            guard let data = request?.httpBody else {
-                return nil
+        var newAccountInfos: [NewAccountInfo] {
+            requests.compactMap {
+                guard let data = $0.httpBody else {
+                    return nil
+                }
+                
+                return try? JSONDecoder().decode(NewAccountInfo.self, from: data)
             }
-            
-            return try? JSONDecoder().decode(NewAccountInfo.self, from: data)
         }
             
         func perform(request: URLRequest) {
-            self.request = request
+            requests.append(request)
         }
     }
 }
