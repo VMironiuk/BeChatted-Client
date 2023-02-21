@@ -9,8 +9,27 @@ import XCTest
 import BeChatted
 
 class HTTPClient {
-    private(set) var requestedURL: URL?
-    private(set) var newAccountInfo: NewAccountInfo?
+    private var request: URLRequest?
+    
+    var requestedURL: URL? {
+        request?.url
+    }
+    
+    var httpMethod: String? {
+        request?.httpMethod
+    }
+
+    var newAccountInfo: NewAccountInfo? {
+        guard let data = request?.httpBody else {
+            return nil
+        }
+        
+        return try? JSONDecoder().decode(NewAccountInfo.self, from: data)
+    }
+        
+    func perform(request: URLRequest) {
+        self.request = request
+    }
 }
 
 class NewAccountInfoSender {
@@ -20,6 +39,14 @@ class NewAccountInfoSender {
     init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
+    }
+    
+    func send(newAccountInfo: NewAccountInfo) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONEncoder().encode(newAccountInfo)
+        
+        client.perform(request: request)
     }
 }
 
@@ -35,7 +62,18 @@ final class NewAccountInfoSenderTests: XCTestCase {
         XCTAssertNil(client.newAccountInfo)
     }
     
-    // 2. send() sends a new account info by url
+    func test_send_sendsNewAccountInfoByURL() {
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClient()
+        let sut = NewAccountInfoSender(url: url, client: client)
+        
+        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        sut.send(newAccountInfo: newAccountInfo)
+        
+        XCTAssertEqual(client.requestedURL, url)
+        XCTAssertEqual(client.newAccountInfo, newAccountInfo)
+        XCTAssertEqual(client.httpMethod, "POST")
+    }
     
     // 3. call send() twice sends a new account info by url twice
     

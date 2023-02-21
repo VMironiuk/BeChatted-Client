@@ -7,7 +7,12 @@
 
 import Foundation
 
-public struct NewAccountInfo {
+public struct NewAccountInfo: Codable, Equatable {
     let email: String
     let password: String
+    
+    public init(email: String, password: String) {
+        self.email = email
+        self.password = password
+    }
 }
