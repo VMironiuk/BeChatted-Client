@@ -33,19 +33,15 @@ class NewAccountInfoSender {
 final class NewAccountInfoSenderTests: XCTestCase {
 
     func test_init_doesNotSendNewAccountInfoByURL() {
-        let url = URL(string: "http://any-url.com")!
-        let client = HTTPClientSpy()
-        
-        _ = NewAccountInfoSender(url: url, client: client)
+        let (_, client) = makeSUT()
         
         XCTAssertNil(client.requestedURL)
         XCTAssertNil(client.newAccountInfo)
     }
     
     func test_send_sendsNewAccountInfoByURL() {
-        let url = URL(string: "http://any-url.com")!
-        let client = HTTPClientSpy()
-        let sut = NewAccountInfoSender(url: url, client: client)
+        let url = URL(string: "http://some-url.com")!
+        let (sut, client) = makeSUT(url: url)
         
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         sut.send(newAccountInfo: newAccountInfo)
@@ -66,6 +62,15 @@ final class NewAccountInfoSenderTests: XCTestCase {
     // 7. send() does not delivers result after SUT instance has been deallocated
     
     // MARK: - Helpers
+    
+    private func makeSUT(
+        url: URL = URL(string: "http://any-url.com")!
+    ) -> (sut: NewAccountInfoSender, client: HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = NewAccountInfoSender(url: url, client: client)
+
+        return (sut, client)
+    }
     
     private class HTTPClientSpy: HTTPClientProtocol {
         private var request: URLRequest?
