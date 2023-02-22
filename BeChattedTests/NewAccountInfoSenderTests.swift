@@ -9,7 +9,7 @@ import XCTest
 import BeChatted
 
 protocol HTTPClientProtocol {
-    func perform(request: URLRequest)
+    func perform(request: URLRequest, completion: @escaping (Error?) -> Void)
 }
 
 class NewAccountInfoSender {
@@ -21,12 +21,14 @@ class NewAccountInfoSender {
         self.client = client
     }
     
-    func send(newAccountInfo: NewAccountInfo) {
+    func send(newAccountInfo: NewAccountInfo, completion: @escaping (Error?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(newAccountInfo)
         
-        client.perform(request: request)
+        client.perform(request: request) { error in
+            completion(error)
+        }
     }
 }
 
@@ -45,7 +47,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
-        sut.send(newAccountInfo: newAccountInfo)
+        sut.send(newAccountInfo: newAccountInfo) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
         XCTAssertEqual(client.newAccountInfos, [newAccountInfo])
@@ -58,15 +60,34 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         let newAccountInfo1 = NewAccountInfo(email: "my@example.com", password: "123456")
         let newAccountInfo2 = NewAccountInfo(email: "my.other@example.com", password: "31415")
-        sut.send(newAccountInfo: newAccountInfo1)
-        sut.send(newAccountInfo: newAccountInfo2)
+        sut.send(newAccountInfo: newAccountInfo1) { _ in }
+        sut.send(newAccountInfo: newAccountInfo2) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url, url])
         XCTAssertEqual(client.newAccountInfos, [newAccountInfo1, newAccountInfo2])
         XCTAssertEqual(client.httpMethods, ["POST", "POST"])
     }
     
-    // 4. send() delivers error on client error (no connectivity error)
+    func test_send_deliversErrorOnClientError() {
+        let expectedError = NSError(domain: "any error", code: 1)
+        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        let (sut, client) = makeSUT()
+        
+        let exp = expectation(description: "Wait for completion")
+        
+        var receivedError: NSError?
+        sut.send(newAccountInfo: newAccountInfo) { error in
+            receivedError = error as? NSError
+            
+            exp.fulfill()
+        }
+        
+        client.complete(with: expectedError)
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(expectedError, receivedError)
+    }
     
     // 5. send() delivers error on non 200 HTTP response
     
@@ -107,6 +128,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     private class HTTPClientSpy: HTTPClientProtocol {
         private var requests = [URLRequest]()
+        private var completion: ((Error?) -> Void)?
         
         var requestedURLs: [URL] {
             requests.compactMap {
@@ -130,8 +152,13 @@ final class NewAccountInfoSenderTests: XCTestCase {
             }
         }
             
-        func perform(request: URLRequest) {
+        func perform(request: URLRequest, completion: @escaping (Error?) -> Void) {
             requests.append(request)
+            self.completion = completion
+        }
+        
+        func complete(with error: Error?) {
+            completion?(error)
         }
     }
 }
