@@ -9,25 +9,34 @@ import XCTest
 import BeChatted
 
 protocol HTTPClientProtocol {
-    func perform(request: URLRequest, completion: @escaping (Error?) -> Void)
+    func perform(request: URLRequest, completion: @escaping (HTTPURLResponse?, Error?) -> Void)
 }
 
 class NewAccountInfoSender {
     private let url: URL
     private let client: HTTPClientProtocol
     
+    enum NewAccountInfoSenderError: Error {
+        case connectivity
+        case invalidResponse
+    }
+    
     init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
-    func send(newAccountInfo: NewAccountInfo, completion: @escaping (Error?) -> Void) {
+    func send(newAccountInfo: NewAccountInfo, completion: @escaping (NewAccountInfoSenderError) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(newAccountInfo)
         
-        client.perform(request: request) { error in
-            completion(error)
+        client.perform(request: request) { response, error in
+            if error != nil {
+                completion(.connectivity)
+            } else if let response = response, response.statusCode != 200 {
+                completion(.invalidResponse)
+            }
         }
     }
 }
@@ -69,27 +78,52 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     func test_send_deliversErrorOnClientError() {
-        let expectedError = NSError(domain: "any error", code: 1)
+        let clientError = NSError(domain: "any error", code: 1)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         let (sut, client) = makeSUT()
         
         let exp = expectation(description: "Wait for completion")
         
-        var receivedError: NSError?
+        var receivedError: NewAccountInfoSender.NewAccountInfoSenderError?
         sut.send(newAccountInfo: newAccountInfo) { error in
-            receivedError = error as? NSError
+            receivedError = error
             
             exp.fulfill()
         }
         
-        client.complete(with: expectedError)
+        client.complete(with: clientError)
         
         wait(for: [exp], timeout: 1.0)
         
-        XCTAssertEqual(expectedError, receivedError)
+        XCTAssertEqual(receivedError, .connectivity)
     }
     
-    // 5. send() delivers error on non 200 HTTP response
+    func test_send_deliversErrorOnNon200HTTPResponse() {
+        let clientError = NSError(domain: "any error", code: 1)
+        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        let non200HTTPResponse = HTTPURLResponse(
+            url: URL(string: "any-url.com")!,
+            statusCode: 409,
+            httpVersion: nil,
+            headerFields: nil
+        )
+        let (sut, client) = makeSUT()
+        
+        let exp = expectation(description: "Wait for completion")
+        
+        var receivedError: NewAccountInfoSender.NewAccountInfoSenderError?
+        sut.send(newAccountInfo: newAccountInfo) { error in
+            receivedError = error
+            
+            exp.fulfill()
+        }
+        
+        client.complete(withHTTPResponse: non200HTTPResponse, error: clientError )
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError, .invalidResponse)
+    }
     
     // 6. send() delivers successful result on 200 HTTP response
     
@@ -128,7 +162,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     private class HTTPClientSpy: HTTPClientProtocol {
         private var requests = [URLRequest]()
-        private var completion: ((Error?) -> Void)?
+        private var completion: ((HTTPURLResponse?, Error?) -> Void)?
         
         var requestedURLs: [URL] {
             requests.compactMap {
@@ -152,13 +186,17 @@ final class NewAccountInfoSenderTests: XCTestCase {
             }
         }
             
-        func perform(request: URLRequest, completion: @escaping (Error?) -> Void) {
+        func perform(request: URLRequest, completion: @escaping (HTTPURLResponse?, Error?) -> Void) {
             requests.append(request)
             self.completion = completion
         }
         
         func complete(with error: Error?) {
-            completion?(error)
+            completion?(nil, error)
+        }
+        
+        func complete(withHTTPResponse httpResponse: HTTPURLResponse?, error: Error?) {
+            completion?(httpResponse, nil)
         }
     }
 }
