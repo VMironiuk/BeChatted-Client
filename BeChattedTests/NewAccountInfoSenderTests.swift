@@ -26,16 +26,18 @@ class NewAccountInfoSender {
         self.client = client
     }
     
-    func send(newAccountInfo: NewAccountInfo, completion: @escaping (NewAccountInfoSenderError) -> Void) {
+    func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, NewAccountInfoSenderError>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(newAccountInfo)
         
         client.perform(request: request) { response, error in
             if error != nil {
-                completion(.connectivity)
+                completion(.failure(.connectivity))
             } else if let response = response, response.statusCode != 200 {
-                completion(.invalidResponse)
+                completion(.failure(.invalidResponse))
+            } else if let response = response, response.statusCode == 200 {
+                completion(.success(()))
             }
         }
     }
@@ -85,8 +87,13 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         
         var receivedError: NewAccountInfoSender.NewAccountInfoSenderError?
-        sut.send(newAccountInfo: newAccountInfo) { error in
-            receivedError = error
+        sut.send(newAccountInfo: newAccountInfo) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+            default:
+                XCTFail("Expected failure, got \(result) instead")
+            }
             
             exp.fulfill()
         }
@@ -112,8 +119,13 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         
         var receivedError: NewAccountInfoSender.NewAccountInfoSenderError?
-        sut.send(newAccountInfo: newAccountInfo) { error in
-            receivedError = error
+        sut.send(newAccountInfo: newAccountInfo) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+            default:
+                XCTFail("Expected failure, got \(result) instead")
+            }
             
             exp.fulfill()
         }
@@ -125,7 +137,36 @@ final class NewAccountInfoSenderTests: XCTestCase {
         XCTAssertEqual(receivedError, .invalidResponse)
     }
     
-    // 6. send() delivers successful result on 200 HTTP response
+    func test_send_deliversSuccessfulResultOn200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        let httpResponse = HTTPURLResponse(
+            url: URL(string: "http://any-url.com")!,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: nil
+        )
+        
+        let exp = expectation(description: "Wait for completion")
+        
+        var receivedResult: Result<Void, NewAccountInfoSender.NewAccountInfoSenderError>?
+        sut.send(newAccountInfo: newAccountInfo) { result in
+            switch result {
+            case .success:
+                receivedResult = result
+            default:
+                XCTFail("Expected successful result, got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        client.complete(withHTTPResponse: httpResponse, error: nil)
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertNotNil(receivedResult)
+    }
     
     // 7. send() does not delivers result after SUT instance has been deallocated
     
