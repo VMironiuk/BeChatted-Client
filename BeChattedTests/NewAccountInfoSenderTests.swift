@@ -31,7 +31,8 @@ class NewAccountInfoSender {
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(newAccountInfo)
         
-        client.perform(request: request) { response, error in
+        client.perform(request: request) { [weak self] response, error in
+            guard self != nil else { return }
             if error != nil {
                 completion(.failure(.connectivity))
             } else if let response = response, response.statusCode != 200 {
@@ -168,7 +169,24 @@ final class NewAccountInfoSenderTests: XCTestCase {
         XCTAssertNotNil(receivedResult)
     }
     
-    // 7. send() does not delivers result after SUT instance has been deallocated
+    func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
+        let anyError = NSError(domain: "any error", code: 1)
+        let anyURL = URL(string: "http://any-url.com")!
+        let client = HTTPClientSpy()
+        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
+        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        
+        var receivedResult: Result<Void, NewAccountInfoSender.NewAccountInfoSenderError>?
+        sut?.send(newAccountInfo: newAccountInfo) { result in
+            receivedResult = result
+        }
+        
+        sut = nil
+        
+        client.complete(with: anyError)
+                
+        XCTAssertNil(receivedResult)
+    }
     
     // MARK: - Helpers
     
@@ -204,7 +222,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     private class HTTPClientSpy: HTTPClientProtocol {
         private var requests = [URLRequest]()
         private var completion: ((HTTPURLResponse?, Error?) -> Void)?
-        
+                
         var requestedURLs: [URL] {
             requests.compactMap {
                 $0.url
