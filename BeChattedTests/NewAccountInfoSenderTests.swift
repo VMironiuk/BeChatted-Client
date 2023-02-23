@@ -188,6 +188,30 @@ final class NewAccountInfoSenderTests: XCTestCase {
         XCTAssertNil(receivedResult)
     }
     
+    func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
+        let anyURL = URL(string: "http://any-url.com")!
+        let non200HTTPResponse = HTTPURLResponse(
+            url: anyURL,
+            statusCode: 300,
+            httpVersion: nil,
+            headerFields: nil
+        )
+        let client = HTTPClientSpy()
+        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
+        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        
+        var receivedResult: Result<Void, NewAccountInfoSender.NewAccountInfoSenderError>?
+        sut?.send(newAccountInfo: newAccountInfo) { result in
+            receivedResult = result
+        }
+        
+        sut = nil
+        
+        client.complete(withHTTPResponse: non200HTTPResponse, error: nil)
+                
+        XCTAssertNil(receivedResult)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
