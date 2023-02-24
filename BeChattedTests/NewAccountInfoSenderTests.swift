@@ -11,40 +11,51 @@ import BeChatted
 final class NewAccountInfoSenderTests: XCTestCase {
 
     func test_init_doesNotSendNewAccountInfoByURL() {
+        // given
+        
+        // when
         let (_, client) = makeSUT()
         
+        // then
         XCTAssertEqual(client.requestedURLs, [])
         XCTAssertEqual(client.newAccountInfos, [])
         XCTAssertEqual(client.httpMethods, [])
     }
     
     func test_send_sendsNewAccountInfoByURL() {
+        // given
         let url = URL(string: "http://some-url.com")!
         let (sut, client) = makeSUT(url: url)
-        
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        
+        // when
         sut.send(newAccountInfo: newAccountInfo) { _ in }
         
+        // then
         XCTAssertEqual(client.requestedURLs, [url])
         XCTAssertEqual(client.newAccountInfos, [newAccountInfo])
         XCTAssertEqual(client.httpMethods, ["POST"])
     }
     
     func test_send_sendsNewAccountInfoByURLTwice() {
+        // given
         let url = URL(string: "http://some-url.com")!
         let (sut, client) = makeSUT(url: url)
-        
         let newAccountInfo1 = NewAccountInfo(email: "my@example.com", password: "123456")
         let newAccountInfo2 = NewAccountInfo(email: "my.other@example.com", password: "31415")
+        
+        // when
         sut.send(newAccountInfo: newAccountInfo1) { _ in }
         sut.send(newAccountInfo: newAccountInfo2) { _ in }
         
+        // then
         XCTAssertEqual(client.requestedURLs, [url, url])
         XCTAssertEqual(client.newAccountInfos, [newAccountInfo1, newAccountInfo2])
         XCTAssertEqual(client.httpMethods, ["POST", "POST"])
     }
     
     func test_send_deliversErrorOnClientError() {
+        // given
         let clientError = NSError(domain: "any error", code: 1)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         let (sut, client) = makeSUT()
@@ -52,6 +63,8 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         
         var receivedError: NewAccountInfoSender.Error?
+        
+        // when
         sut.send(newAccountInfo: newAccountInfo) { result in
             switch result {
             case let .failure(error):
@@ -67,10 +80,12 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
         
+        // then
         XCTAssertEqual(receivedError, .connectivity)
     }
     
     func test_send_deliversErrorOnNon200HTTPResponse() {
+        // given
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         let non200HTTPResponse = HTTPURLResponse(
             url: URL(string: "any-url.com")!,
@@ -83,6 +98,8 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         
         var receivedError: NewAccountInfoSender.Error?
+        
+        // when
         sut.send(newAccountInfo: newAccountInfo) { result in
             switch result {
             case let .failure(error):
@@ -98,10 +115,12 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
         
+        // then
         XCTAssertEqual(receivedError, .non200HTTPResponse)
     }
     
     func test_send_deliversSuccessfulResultOn200HTTPResponse() {
+        // given
         let (sut, client) = makeSUT()
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         let httpResponse = HTTPURLResponse(
@@ -114,6 +133,8 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         
         var receivedResult: Result<Void, NewAccountInfoSender.Error>?
+        
+        // when
         sut.send(newAccountInfo: newAccountInfo) { result in
             switch result {
             case .success:
@@ -129,10 +150,12 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
         
+        // then
         XCTAssertNotNil(receivedResult)
     }
     
     func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
+        // given
         let anyError = NSError(domain: "any error", code: 1)
         let anyURL = URL(string: "http://any-url.com")!
         let client = HTTPClientSpy()
@@ -144,14 +167,17 @@ final class NewAccountInfoSenderTests: XCTestCase {
             receivedResult = result
         }
         
+        // when
         sut = nil
         
         client.complete(with: anyError)
-                
+        
+        // then
         XCTAssertNil(receivedResult)
     }
     
     func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
+        // given
         let anyURL = URL(string: "http://any-url.com")!
         let non200HTTPResponse = HTTPURLResponse(
             url: anyURL,
@@ -168,14 +194,17 @@ final class NewAccountInfoSenderTests: XCTestCase {
             receivedResult = result
         }
         
+        // when
         sut = nil
         
         client.complete(withHTTPResponse: non200HTTPResponse)
-                
+        
+        // then
         XCTAssertNil(receivedResult)
     }
     
     func test_send_doesNotDeliverSuccessAfterSUTInstanceDeallocated() {
+        // given
         let anyURL = URL(string: "http://any-url.com")!
         let httpResponse = HTTPURLResponse(
             url: anyURL,
@@ -192,10 +221,12 @@ final class NewAccountInfoSenderTests: XCTestCase {
             receivedResult = result
         }
         
+        // when
         sut = nil
         
         client.complete(withHTTPResponse: httpResponse)
-                
+        
+        // then
         XCTAssertNil(receivedResult)
     }
 
