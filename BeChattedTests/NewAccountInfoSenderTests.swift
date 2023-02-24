@@ -147,7 +147,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
         let anyError = anyNSError()
-        let anyURL = URL(string: "http://any-url.com")!
+        let anyURL = anyURL()
         let client = HTTPClientSpy()
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
