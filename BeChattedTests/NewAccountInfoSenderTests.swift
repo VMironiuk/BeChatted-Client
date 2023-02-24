@@ -55,63 +55,19 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     func test_send_deliversErrorOnClientError() {
-        // given
-        let clientError = anyNSError()
-        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         let (sut, client) = makeSUT()
         
-        let exp = expectation(description: "Wait for completion")
-        
-        var receivedError: NewAccountInfoSender.Error?
-        
-        // when
-        sut.send(newAccountInfo: newAccountInfo) { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error
-            default:
-                XCTFail("Expected failure, got \(result) instead")
-            }
-            
-            exp.fulfill()
-        }
-        
-        client.complete(with: clientError)
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        // then
-        XCTAssertEqual(receivedError, .connectivity)
+        expect(sut, toCompleteWithError: .connectivity, when: {
+            client.complete(with: anyNSError())
+        })
     }
     
     func test_send_deliversErrorOnNon200HTTPResponse() {
-        // given
-        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
-        let non200HTTPResponse = httpResponse(withStatusCode: 409)
         let (sut, client) = makeSUT()
         
-        let exp = expectation(description: "Wait for completion")
-        
-        var receivedError: NewAccountInfoSender.Error?
-        
-        // when
-        sut.send(newAccountInfo: newAccountInfo) { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error
-            default:
-                XCTFail("Expected failure, got \(result) instead")
-            }
-            
-            exp.fulfill()
-        }
-        
-        client.complete(withHTTPResponse: non200HTTPResponse)
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        // then
-        XCTAssertEqual(receivedError, .non200HTTPResponse)
+        expect(sut, toCompleteWithError: .non200HTTPResponse, when: {
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 409))
+        })
     }
     
     func test_send_deliversSuccessfulResultOn200HTTPResponse() {
@@ -241,6 +197,36 @@ final class NewAccountInfoSenderTests: XCTestCase {
         }
     }
     
+    private func expect(
+        _ sut: NewAccountInfoSender,
+        toCompleteWithError expectedError: NewAccountInfoSender.Error,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        // given
+        let exp = expectation(description: "Wait for completion")
+        var receivedError: NewAccountInfoSender.Error?
+        sut.send(newAccountInfo: anyNewAccountInfo()) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+            default:
+                XCTFail("Expected failure, got \(result) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        // when
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+    }
+    
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
     }
@@ -251,6 +237,10 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     private func httpResponse(withStatusCode statusCode: Int) -> HTTPURLResponse {
         HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+    }
+    
+    private func anyNewAccountInfo() -> NewAccountInfo {
+        NewAccountInfo(email: "my@example.com", password: "123456")
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
