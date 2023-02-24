@@ -24,7 +24,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_sendsNewAccountInfoByURL() {
         // given
-        let url = URL(string: "http://some-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         
@@ -39,7 +39,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_sendsNewAccountInfoByURLTwice() {
         // given
-        let url = URL(string: "http://some-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         let newAccountInfo1 = NewAccountInfo(email: "my@example.com", password: "123456")
         let newAccountInfo2 = NewAccountInfo(email: "my.other@example.com", password: "31415")
@@ -178,7 +178,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
         // given
-        let anyURL = URL(string: "http://any-url.com")!
+        let anyURL = anyURL()
         let non200HTTPResponse = HTTPURLResponse(
             url: anyURL,
             statusCode: 300,
@@ -205,7 +205,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverSuccessAfterSUTInstanceDeallocated() {
         // given
-        let anyURL = URL(string: "http://any-url.com")!
+        let anyURL = anyURL()
         let httpResponse = HTTPURLResponse(
             url: anyURL,
             statusCode: 200,
@@ -259,6 +259,10 @@ final class NewAccountInfoSenderTests: XCTestCase {
                 line: line
             )
         }
+    }
+    
+    private func anyURL() -> URL {
+        URL(string: "http://any-url.com")!
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
