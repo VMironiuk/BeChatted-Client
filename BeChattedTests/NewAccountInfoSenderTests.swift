@@ -8,17 +8,22 @@
 import XCTest
 import BeChatted
 
+enum HTTPClientResult {
+    case success(Data?, HTTPURLResponse?)
+    case failure(Error?)
+}
+
 protocol HTTPClientProtocol {
-    func perform(request: URLRequest, completion: @escaping (HTTPURLResponse?, Error?) -> Void)
+    func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void)
 }
 
 class NewAccountInfoSender {
     private let url: URL
     private let client: HTTPClientProtocol
     
-    enum NewAccountInfoSenderError: Error {
+    enum Error: Swift.Error {
         case connectivity
-        case invalidResponse
+        case non200HTTPResponse
     }
     
     init(url: URL, client: HTTPClientProtocol) {
@@ -26,21 +31,29 @@ class NewAccountInfoSender {
         self.client = client
     }
     
-    func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, NewAccountInfoSenderError>) -> Void) {
+    func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, Error>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(newAccountInfo)
         
-        client.perform(request: request) { [weak self] response, error in
+        client.perform(request: request) { [weak self] result in
             guard self != nil else { return }
-            if error != nil {
+            
+            switch result {
+            case let .success(_, response):
+                completion(Self.result(for: response))
+            case .failure:
                 completion(.failure(.connectivity))
-            } else if let response = response, response.statusCode != 200 {
-                completion(.failure(.invalidResponse))
-            } else if let response = response, response.statusCode == 200 {
-                completion(.success(()))
             }
         }
+    }
+    
+    private static func result(for response: HTTPURLResponse?) -> Result<Void, Error> {
+        guard let response = response, response.statusCode == 200 else {
+            return .failure(.non200HTTPResponse)
+        }
+        
+        return .success(())
     }
 }
 
@@ -87,7 +100,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         let exp = expectation(description: "Wait for completion")
         
-        var receivedError: NewAccountInfoSender.NewAccountInfoSenderError?
+        var receivedError: NewAccountInfoSender.Error?
         sut.send(newAccountInfo: newAccountInfo) { result in
             switch result {
             case let .failure(error):
@@ -107,7 +120,6 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     func test_send_deliversErrorOnNon200HTTPResponse() {
-        let clientError = NSError(domain: "any error", code: 1)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         let non200HTTPResponse = HTTPURLResponse(
             url: URL(string: "any-url.com")!,
@@ -119,7 +131,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         let exp = expectation(description: "Wait for completion")
         
-        var receivedError: NewAccountInfoSender.NewAccountInfoSenderError?
+        var receivedError: NewAccountInfoSender.Error?
         sut.send(newAccountInfo: newAccountInfo) { result in
             switch result {
             case let .failure(error):
@@ -131,11 +143,11 @@ final class NewAccountInfoSenderTests: XCTestCase {
             exp.fulfill()
         }
         
-        client.complete(withHTTPResponse: non200HTTPResponse, error: clientError )
+        client.complete(withHTTPResponse: non200HTTPResponse)
         
         wait(for: [exp], timeout: 1.0)
         
-        XCTAssertEqual(receivedError, .invalidResponse)
+        XCTAssertEqual(receivedError, .non200HTTPResponse)
     }
     
     func test_send_deliversSuccessfulResultOn200HTTPResponse() {
@@ -150,7 +162,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         let exp = expectation(description: "Wait for completion")
         
-        var receivedResult: Result<Void, NewAccountInfoSender.NewAccountInfoSenderError>?
+        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
         sut.send(newAccountInfo: newAccountInfo) { result in
             switch result {
             case .success:
@@ -162,7 +174,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
             exp.fulfill()
         }
         
-        client.complete(withHTTPResponse: httpResponse, error: nil)
+        client.complete(withHTTPResponse: httpResponse)
         
         wait(for: [exp], timeout: 1.0)
         
@@ -176,7 +188,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         
-        var receivedResult: Result<Void, NewAccountInfoSender.NewAccountInfoSenderError>?
+        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
         sut?.send(newAccountInfo: newAccountInfo) { result in
             receivedResult = result
         }
@@ -200,14 +212,14 @@ final class NewAccountInfoSenderTests: XCTestCase {
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         
-        var receivedResult: Result<Void, NewAccountInfoSender.NewAccountInfoSenderError>?
+        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
         sut?.send(newAccountInfo: newAccountInfo) { result in
             receivedResult = result
         }
         
         sut = nil
         
-        client.complete(withHTTPResponse: non200HTTPResponse, error: nil)
+        client.complete(withHTTPResponse: non200HTTPResponse)
                 
         XCTAssertNil(receivedResult)
     }
@@ -224,14 +236,14 @@ final class NewAccountInfoSenderTests: XCTestCase {
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         
-        var receivedResult: Result<Void, NewAccountInfoSender.NewAccountInfoSenderError>?
+        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
         sut?.send(newAccountInfo: newAccountInfo) { result in
             receivedResult = result
         }
         
         sut = nil
         
-        client.complete(withHTTPResponse: httpResponse, error: nil)
+        client.complete(withHTTPResponse: httpResponse)
                 
         XCTAssertNil(receivedResult)
     }
@@ -269,7 +281,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     private class HTTPClientSpy: HTTPClientProtocol {
         private var requests = [URLRequest]()
-        private var completion: ((HTTPURLResponse?, Error?) -> Void)?
+        private var completion: ((HTTPClientResult) -> Void)?
                 
         var requestedURLs: [URL] {
             requests.compactMap {
@@ -293,17 +305,17 @@ final class NewAccountInfoSenderTests: XCTestCase {
             }
         }
             
-        func perform(request: URLRequest, completion: @escaping (HTTPURLResponse?, Error?) -> Void) {
+        func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
             requests.append(request)
             self.completion = completion
         }
         
         func complete(with error: Error?) {
-            completion?(nil, error)
+            completion?(.failure(error))
         }
         
-        func complete(withHTTPResponse httpResponse: HTTPURLResponse?, error: Error?) {
-            completion?(httpResponse, nil)
+        func complete(withHTTPResponse httpResponse: HTTPURLResponse?) {
+            completion?(.success(nil, httpResponse))
         }
     }
 }
