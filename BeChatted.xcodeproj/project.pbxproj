@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E03215629A93CB500B11ACD /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03215529A93CB500B11ACD /* HTTPClientProtocol.swift */; };
 		2E0EA12529A00041006402BE /* NewAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EA12429A00041006402BE /* NewAccountInfo.swift */; };
 		2E0EA12729A0044F006402BE /* NewAccountInfoSenderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EA12629A0044F006402BE /* NewAccountInfoSenderProtocol.swift */; };
 		2E158A6E29A0F394001B2521 /* NewAccountInfoSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E158A6D29A0F394001B2521 /* NewAccountInfoSenderTests.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E03215529A93CB500B11ACD /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
 		2E0EA12429A00041006402BE /* NewAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfo.swift; sourceTree = "<group>"; };
 		2E0EA12629A0044F006402BE /* NewAccountInfoSenderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfoSenderProtocol.swift; sourceTree = "<group>"; };
 		2E158A6D29A0F394001B2521 /* NewAccountInfoSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfoSenderTests.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				2E64BFF4299EB047000451D9 /* BeChatted.h */,
+				2E03215529A93CB500B11ACD /* HTTPClientProtocol.swift */,
 				2E0EA12829A00555006402BE /* New Account Feature */,
 			);
 			path = BeChatted;
@@ -207,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E0EA12529A00041006402BE /* NewAccountInfo.swift in Sources */,
+				2E03215629A93CB500B11ACD /* HTTPClientProtocol.swift in Sources */,
 				2E0EA12729A0044F006402BE /* NewAccountInfoSenderProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

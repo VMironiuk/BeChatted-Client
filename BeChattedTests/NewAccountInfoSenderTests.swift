@@ -8,15 +8,6 @@
 import XCTest
 import BeChatted
 
-enum HTTPClientResult {
-    case success(Data?, HTTPURLResponse?)
-    case failure(Error?)
-}
-
-protocol HTTPClientProtocol {
-    func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void)
-}
-
 class NewAccountInfoSender {
     private let url: URL
     private let client: HTTPClientProtocol
