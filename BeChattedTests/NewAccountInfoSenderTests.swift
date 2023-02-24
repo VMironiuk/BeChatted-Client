@@ -8,46 +8,6 @@
 import XCTest
 import BeChatted
 
-class NewAccountInfoSender {
-    private let url: URL
-    private let client: HTTPClientProtocol
-    
-    enum Error: Swift.Error {
-        case connectivity
-        case non200HTTPResponse
-    }
-    
-    init(url: URL, client: HTTPClientProtocol) {
-        self.url = url
-        self.client = client
-    }
-    
-    func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, Error>) -> Void) {
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try? JSONEncoder().encode(newAccountInfo)
-        
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            
-            switch result {
-            case let .success(_, response):
-                completion(Self.result(for: response))
-            case .failure:
-                completion(.failure(.connectivity))
-            }
-        }
-    }
-    
-    private static func result(for response: HTTPURLResponse?) -> Result<Void, Error> {
-        guard let response = response, response.statusCode == 200 else {
-            return .failure(.non200HTTPResponse)
-        }
-        
-        return .success(())
-    }
-}
-
 final class NewAccountInfoSenderTests: XCTestCase {
 
     func test_init_doesNotSendNewAccountInfoByURL() {
