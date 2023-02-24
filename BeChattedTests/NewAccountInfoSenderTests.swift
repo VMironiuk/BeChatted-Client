@@ -56,7 +56,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_deliversErrorOnClientError() {
         // given
-        let clientError = NSError(domain: "any error", code: 1)
+        let clientError = anyNSError()
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         let (sut, client) = makeSUT()
         
@@ -156,7 +156,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
-        let anyError = NSError(domain: "any error", code: 1)
+        let anyError = anyNSError()
         let anyURL = URL(string: "http://any-url.com")!
         let client = HTTPClientSpy()
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
@@ -263,6 +263,10 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
+    }
+    
+    private func anyNSError() -> Error {
+        NSError(domain: "any error", code: 1)
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
