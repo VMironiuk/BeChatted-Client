@@ -101,69 +101,30 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
-        // given
-        let anyError = anyNSError()
-        let anyURL = anyURL()
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
-        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
         
-        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
-        sut?.send(newAccountInfo: newAccountInfo) { result in
-            receivedResult = result
-        }
-        
-        // when
-        sut = nil
-        
-        client.complete(with: anyError)
-        
-        // then
-        XCTAssertNil(receivedResult)
+        expect(&sut, deliversNoResultWhen: {
+            client.complete(with: anyNSError())
+        })
     }
     
     func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
-        // given
-        let anyURL = anyURL()
-        let non200HTTPResponse = httpResponse(withStatusCode: 300)
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
-        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
         
-        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
-        sut?.send(newAccountInfo: newAccountInfo) { result in
-            receivedResult = result
-        }
-        
-        // when
-        sut = nil
-        
-        client.complete(withHTTPResponse: non200HTTPResponse)
-        
-        // then
-        XCTAssertNil(receivedResult)
+        expect(&sut, deliversNoResultWhen: {
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 300))
+        })
     }
     
     func test_send_doesNotDeliverSuccessAfterSUTInstanceDeallocated() {
-        // given
-        let anyURL = anyURL()
-        let httpResponseWith200StatusCode = httpResponse(withStatusCode: 200)
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
-        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
         
-        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
-        sut?.send(newAccountInfo: newAccountInfo) { result in
-            receivedResult = result
-        }
-        
-        // when
-        sut = nil
-        
-        client.complete(withHTTPResponse: httpResponseWith200StatusCode)
-        
-        // then
-        XCTAssertNil(receivedResult)
+        expect(&sut, deliversNoResultWhen: {
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 200))
+        })
     }
 
     // MARK: - Helpers
@@ -225,6 +186,24 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         // then
         XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+    }
+    
+    private func expect(_ sut: inout NewAccountInfoSender?, deliversNoResultWhen action: () -> Void) {
+        // given
+        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
+        
+        sut?.send(newAccountInfo: newAccountInfo) { result in
+            receivedResult = result
+        }
+        
+        // when
+        sut = nil
+        
+        action()
+        
+        // then
+        XCTAssertNil(receivedResult)
     }
     
     private func anyURL() -> URL {
