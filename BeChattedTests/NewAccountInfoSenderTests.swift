@@ -87,7 +87,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     func test_send_deliversErrorOnNon200HTTPResponse() {
         // given
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
-        let non200HTTPResponse = non200HTTPResponse()
+        let non200HTTPResponse = httpResponse(withStatusCode: 409)
         let (sut, client) = makeSUT()
         
         let exp = expectation(description: "Wait for completion")
@@ -118,12 +118,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         // given
         let (sut, client) = makeSUT()
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
-        let httpResponse = HTTPURLResponse(
-            url: URL(string: "http://any-url.com")!,
-            statusCode: 200,
-            httpVersion: nil,
-            headerFields: nil
-        )
+        let httpResponseWith200StatusCode = httpResponse(withStatusCode: 200)
         
         let exp = expectation(description: "Wait for completion")
         
@@ -141,7 +136,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
             exp.fulfill()
         }
         
-        client.complete(withHTTPResponse: httpResponse)
+        client.complete(withHTTPResponse: httpResponseWith200StatusCode)
         
         wait(for: [exp], timeout: 1.0)
         
@@ -174,7 +169,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
         // given
         let anyURL = anyURL()
-        let non200HTTPResponse = non200HTTPResponse()
+        let non200HTTPResponse = httpResponse(withStatusCode: 300)
         let client = HTTPClientSpy()
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
@@ -196,12 +191,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     func test_send_doesNotDeliverSuccessAfterSUTInstanceDeallocated() {
         // given
         let anyURL = anyURL()
-        let httpResponse = HTTPURLResponse(
-            url: anyURL,
-            statusCode: 200,
-            httpVersion: nil,
-            headerFields: nil
-        )
+        let httpResponseWith200StatusCode = httpResponse(withStatusCode: 200)
         let client = HTTPClientSpy()
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
@@ -214,7 +204,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         // when
         sut = nil
         
-        client.complete(withHTTPResponse: httpResponse)
+        client.complete(withHTTPResponse: httpResponseWith200StatusCode)
         
         // then
         XCTAssertNil(receivedResult)
@@ -259,8 +249,8 @@ final class NewAccountInfoSenderTests: XCTestCase {
         NSError(domain: "any error", code: 1)
     }
     
-    private func non200HTTPResponse() -> HTTPURLResponse {
-        HTTPURLResponse(url: anyURL(), statusCode: 409, httpVersion: nil, headerFields: nil)!
+    private func httpResponse(withStatusCode statusCode: Int) -> HTTPURLResponse {
+        HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
