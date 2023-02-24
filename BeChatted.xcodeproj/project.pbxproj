@@ -56,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E03215929A93DA800B11ACD /* New Account API */ = {
+			isa = PBXGroup;
+			children = (
+				2E03215529A93CB500B11ACD /* HTTPClientProtocol.swift */,
+				2E03215729A93D1700B11ACD /* NewAccountInfoSender.swift */,
+			);
+			path = "New Account API";
+			sourceTree = "<group>";
+		};
 		2E0EA12829A00555006402BE /* New Account Feature */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,9 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				2E64BFF4299EB047000451D9 /* BeChatted.h */,
-				2E03215529A93CB500B11ACD /* HTTPClientProtocol.swift */,
-				2E03215729A93D1700B11ACD /* NewAccountInfoSender.swift */,
 				2E0EA12829A00555006402BE /* New Account Feature */,
+				2E03215929A93DA800B11ACD /* New Account API */,
 			);
 			path = BeChatted;
 			sourceTree = "<group>";
