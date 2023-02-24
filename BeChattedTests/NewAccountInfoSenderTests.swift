@@ -87,12 +87,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     func test_send_deliversErrorOnNon200HTTPResponse() {
         // given
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
-        let non200HTTPResponse = HTTPURLResponse(
-            url: URL(string: "any-url.com")!,
-            statusCode: 409,
-            httpVersion: nil,
-            headerFields: nil
-        )
+        let non200HTTPResponse = non200HTTPResponse()
         let (sut, client) = makeSUT()
         
         let exp = expectation(description: "Wait for completion")
@@ -179,12 +174,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
         // given
         let anyURL = anyURL()
-        let non200HTTPResponse = HTTPURLResponse(
-            url: anyURL,
-            statusCode: 300,
-            httpVersion: nil,
-            headerFields: nil
-        )
+        let non200HTTPResponse = non200HTTPResponse()
         let client = HTTPClientSpy()
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL, client: client)
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
@@ -267,6 +257,10 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     private func anyNSError() -> Error {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private func non200HTTPResponse() -> HTTPURLResponse {
+        HTTPURLResponse(url: anyURL(), statusCode: 409, httpVersion: nil, headerFields: nil)!
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
