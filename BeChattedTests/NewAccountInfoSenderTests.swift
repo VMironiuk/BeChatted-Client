@@ -71,33 +71,11 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     func test_send_deliversSuccessfulResultOn200HTTPResponse() {
-        // given
         let (sut, client) = makeSUT()
-        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
-        let httpResponseWith200StatusCode = httpResponse(withStatusCode: 200)
         
-        let exp = expectation(description: "Wait for completion")
-        
-        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
-        
-        // when
-        sut.send(newAccountInfo: newAccountInfo) { result in
-            switch result {
-            case .success:
-                receivedResult = result
-            default:
-                XCTFail("Expected successful result, got \(result) instead")
-            }
-            
-            exp.fulfill()
-        }
-        
-        client.complete(withHTTPResponse: httpResponseWith200StatusCode)
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        // then
-        XCTAssertNotNil(receivedResult)
+        expect(sut, toCompleteWithSuccessWhen: {
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 200))
+        })
     }
     
     func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
@@ -188,7 +166,42 @@ final class NewAccountInfoSenderTests: XCTestCase {
         XCTAssertEqual(receivedError, expectedError, file: file, line: line)
     }
     
-    private func expect(_ sut: inout NewAccountInfoSender?, deliversNoResultWhen action: () -> Void) {
+    private func expect(
+        _ sut: NewAccountInfoSender,
+        toCompleteWithSuccessWhen action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        // given
+        let exp = expectation(description: "Wait for completion")
+        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
+        
+        // when
+        sut.send(newAccountInfo: anyNewAccountInfo()) { result in
+            switch result {
+            case .success:
+                receivedResult = result
+            default:
+                XCTFail("Expected successful result, got \(result) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertNotNil(receivedResult, file: file, line: line)
+    }
+    
+    private func expect(
+        _ sut: inout NewAccountInfoSender?,
+        deliversNoResultWhen action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
         // given
         let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         var receivedResult: Result<Void, NewAccountInfoSender.Error>?
@@ -203,9 +216,9 @@ final class NewAccountInfoSenderTests: XCTestCase {
         action()
         
         // then
-        XCTAssertNil(receivedResult)
+        XCTAssertNil(receivedResult, file: file, line: line)
     }
-    
+
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
     }
