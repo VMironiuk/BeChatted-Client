@@ -175,8 +175,6 @@ final class NewAccountInfoSenderTests: XCTestCase {
         // given
         let exp = expectation(description: "Wait for completion")
         var receivedResult: Result<Void, NewAccountInfoSender.Error>?
-        
-        // when
         sut.send(newAccountInfo: anyNewAccountInfo()) { result in
             switch result {
             case .success:
@@ -188,6 +186,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
             exp.fulfill()
         }
         
+        // when
         action()
         
         wait(for: [exp], timeout: 1.0)
@@ -203,10 +202,8 @@ final class NewAccountInfoSenderTests: XCTestCase {
         line: UInt = #line
     ) {
         // given
-        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
         var receivedResult: Result<Void, NewAccountInfoSender.Error>?
-        
-        sut?.send(newAccountInfo: newAccountInfo) { result in
+        sut?.send(newAccountInfo: anyNewAccountInfo()) { result in
             receivedResult = result
         }
         
