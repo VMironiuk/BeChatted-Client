@@ -13,7 +13,9 @@ public final class NewAccountInfoSender {
     
     public enum Error: Swift.Error {
         case connectivity
-        case non200HTTPResponse
+        case email
+        case server
+        case unknown
     }
     
     public init(url: URL, client: HTTPClientProtocol) {
@@ -31,18 +33,10 @@ public final class NewAccountInfoSender {
             
             switch result {
             case let .success(_, response):
-                completion(Self.result(for: response))
+                completion(HTTPResponseToResultMapper.result(for: response))
             case .failure:
                 completion(.failure(.connectivity))
             }
         }
-    }
-    
-    private static func result(for response: HTTPURLResponse?) -> Result<Void, Error> {
-        guard let response = response, response.statusCode == 200 else {
-            return .failure(.non200HTTPResponse)
-        }
-        
-        return .success(())
     }
 }

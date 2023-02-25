@@ -62,12 +62,16 @@ final class NewAccountInfoSenderTests: XCTestCase {
         })
     }
     
-    func test_send_deliversErrorOnNon200HTTPResponse() {
+    func test_send_deliversUnknownErrorOnNon200OrNon300OrNon500To599HTTPResponse() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWithError: .non200HTTPResponse, when: {
-            client.complete(with: httpResponse(withStatusCode: 409))
-        })
+        let samples = [100, 199, 201, 299, 301, 399]
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut, toCompleteWithError: .unknown, when: {
+                client.complete(with: httpResponse(withStatusCode: code), at: index)
+            })
+        }
     }
     
     func test_send_deliversSuccessfulResultOn200HTTPResponse() {
