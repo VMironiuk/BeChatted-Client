@@ -74,6 +74,18 @@ final class NewAccountInfoSenderTests: XCTestCase {
         }
     }
     
+    func test_send_deliversServerError500To599HTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        let samples = [500, 511, 599]
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut, toCompleteWithError: .server, when: {
+                client.complete(with: httpResponse(withStatusCode: code), at: index)
+            })
+        }
+    }
+    
     func test_send_deliversSuccessfulResultOn200HTTPResponse() {
         let (sut, client) = makeSUT()
         
