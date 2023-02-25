@@ -66,7 +66,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWithError: .non200HTTPResponse, when: {
-            client.complete(withHTTPResponse: httpResponse(withStatusCode: 409))
+            client.complete(with: httpResponse(withStatusCode: 409))
         })
     }
     
@@ -74,7 +74,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWithSuccessWhen: {
-            client.complete(withHTTPResponse: httpResponse(withStatusCode: 200))
+            client.complete(with: httpResponse(withStatusCode: 200))
         })
     }
     
@@ -92,7 +92,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
-            client.complete(withHTTPResponse: httpResponse(withStatusCode: 300))
+            client.complete(with: httpResponse(withStatusCode: 300))
         })
     }
     
@@ -101,7 +101,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
-            client.complete(withHTTPResponse: httpResponse(withStatusCode: 200))
+            client.complete(with: httpResponse(withStatusCode: 200))
         })
     }
 
@@ -233,42 +233,33 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
-        private var requests = [URLRequest]()
-        private var completion: ((HTTPClientResult) -> Void)?
+        private var messages = [(request: URLRequest, completion: (HTTPClientResult) -> Void)]()
                 
         var requestedURLs: [URL] {
-            requests.compactMap {
-                $0.url
-            }
+            messages.compactMap { $0.request.url }
         }
         
         var httpMethods: [String] {
-            requests.compactMap {
-                $0.httpMethod
-            }
+            messages.compactMap { $0.request.httpMethod }
         }
 
         var newAccountInfos: [NewAccountInfo] {
-            requests.compactMap {
-                guard let data = $0.httpBody else {
-                    return nil
-                }
-                
+            messages.compactMap {
+                guard let data = $0.request.httpBody else { return nil }
                 return try? JSONDecoder().decode(NewAccountInfo.self, from: data)
             }
         }
             
         func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            requests.append(request)
-            self.completion = completion
+            messages.append((request, completion))
+        }
+                
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
         
-        func complete(with error: Error?) {
-            completion?(.failure(error))
-        }
-        
-        func complete(withHTTPResponse httpResponse: HTTPURLResponse?) {
-            completion?(.success(nil, httpResponse))
+        func complete(with response: HTTPURLResponse, at index: Int = 0) {
+            messages[index].completion(.success(nil, response))
         }
     }
 }
