@@ -74,7 +74,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
         }
     }
     
-    func test_send_deliversServerError500To599HTTPResponse() {
+    func test_send_deliversServerErrorOn500To599HTTPResponse() {
         let (sut, client) = makeSUT()
         
         let samples = [500, 511, 599]
