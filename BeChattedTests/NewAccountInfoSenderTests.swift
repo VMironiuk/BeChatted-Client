@@ -86,6 +86,14 @@ final class NewAccountInfoSenderTests: XCTestCase {
         }
     }
     
+    func test_send_deliversEmailExistsErrorOn300HTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWithError: .email, when: {
+            client.complete(with: httpResponse(withStatusCode: 300))
+        })
+    }
+    
     func test_send_deliversSuccessfulResultOn200HTTPResponse() {
         let (sut, client) = makeSUT()
         
