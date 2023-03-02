@@ -78,7 +78,7 @@ Given the user has no connectivity
 ### Non 200 HTTP response - error course (sad path):
 1. System delivers a message from the server.
 
-#### No connectivity - error course ():
+#### No connectivity - error course (sad path):
 1. System delivers no connectivity error.
 2. System does not allow to send a request to the server.
 
