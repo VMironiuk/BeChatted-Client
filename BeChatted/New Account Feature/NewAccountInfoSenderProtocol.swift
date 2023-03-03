@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol NewAccountInfoSenderProtocol {
-    func send(accountInfo: NewAccountInfo, completion: @escaping (Result<Void, Error>) -> Void)
+public protocol NewAccountInfoSenderProtocol {
+    func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, Error>) -> Void)
 }
