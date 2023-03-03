@@ -11,7 +11,7 @@
 		2E03215829A93D1700B11ACD /* NewAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03215729A93D1700B11ACD /* NewAccountService.swift */; };
 		2E0EA12529A00041006402BE /* NewAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EA12429A00041006402BE /* NewAccountInfo.swift */; };
 		2E0EA12729A0044F006402BE /* NewAccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EA12629A0044F006402BE /* NewAccountServiceProtocol.swift */; };
-		2E158A6E29A0F394001B2521 /* NewAccountInfoSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E158A6D29A0F394001B2521 /* NewAccountInfoSenderTests.swift */; };
+		2E158A6E29A0F394001B2521 /* NewAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E158A6D29A0F394001B2521 /* NewAccountServiceTests.swift */; };
 		2E64BFFA299EB047000451D9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64BFF1299EB047000451D9 /* BeChatted.framework */; };
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EFF6D1C29AA188F007A46C5 /* HTTPResponseToResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF6D1B29AA188F007A46C5 /* HTTPResponseToResultMapper.swift */; };
@@ -32,7 +32,7 @@
 		2E03215729A93D1700B11ACD /* NewAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountService.swift; sourceTree = "<group>"; };
 		2E0EA12429A00041006402BE /* NewAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfo.swift; sourceTree = "<group>"; };
 		2E0EA12629A0044F006402BE /* NewAccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountServiceProtocol.swift; sourceTree = "<group>"; };
-		2E158A6D29A0F394001B2521 /* NewAccountInfoSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfoSenderTests.swift; sourceTree = "<group>"; };
+		2E158A6D29A0F394001B2521 /* NewAccountServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountServiceTests.swift; sourceTree = "<group>"; };
 		2E64BFF1299EB047000451D9 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E64BFF4299EB047000451D9 /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
 		2E64BFF9299EB047000451D9 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +108,7 @@
 		2E64BFFD299EB047000451D9 /* BeChattedTests */ = {
 			isa = PBXGroup;
 			children = (
-				2E158A6D29A0F394001B2521 /* NewAccountInfoSenderTests.swift */,
+				2E158A6D29A0F394001B2521 /* NewAccountServiceTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -235,7 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E158A6E29A0F394001B2521 /* NewAccountInfoSenderTests.swift in Sources */,
+				2E158A6E29A0F394001B2521 /* NewAccountServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

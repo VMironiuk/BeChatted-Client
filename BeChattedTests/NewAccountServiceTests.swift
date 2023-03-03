@@ -1,5 +1,5 @@
 //
-//  NewAccountInfoSenderTests.swift
+//  NewAccountServiceTests.swift
 //  BeChattedTests
 //
 //  Created by Volodymyr Myroniuk on 18.02.2023.
@@ -8,7 +8,7 @@
 import XCTest
 import BeChatted
 
-final class NewAccountInfoSenderTests: XCTestCase {
+final class NewAccountServiceTests: XCTestCase {
 
     func test_init_doesNotSendNewAccountInfoByURL() {
         // given
