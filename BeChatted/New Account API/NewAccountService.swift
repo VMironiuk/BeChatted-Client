@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class NewAccountService {
+public final class NewAccountService: NewAccountServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
@@ -23,7 +23,7 @@ public final class NewAccountService {
         self.client = client
     }
     
-    public func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(newAccountInfo)
@@ -35,7 +35,7 @@ public final class NewAccountService {
             case let .success(_, response):
                 completion(HTTPResponseToResultMapper.result(for: response))
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             }
         }
     }
