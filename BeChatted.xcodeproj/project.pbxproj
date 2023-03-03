@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E03215629A93CB500B11ACD /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03215529A93CB500B11ACD /* HTTPClientProtocol.swift */; };
-		2E03215829A93D1700B11ACD /* NewAccountInfoSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03215729A93D1700B11ACD /* NewAccountInfoSender.swift */; };
+		2E03215829A93D1700B11ACD /* NewAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03215729A93D1700B11ACD /* NewAccountService.swift */; };
 		2E0EA12529A00041006402BE /* NewAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EA12429A00041006402BE /* NewAccountInfo.swift */; };
 		2E0EA12729A0044F006402BE /* NewAccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EA12629A0044F006402BE /* NewAccountServiceProtocol.swift */; };
 		2E158A6E29A0F394001B2521 /* NewAccountInfoSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E158A6D29A0F394001B2521 /* NewAccountInfoSenderTests.swift */; };
@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		2E03215529A93CB500B11ACD /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
-		2E03215729A93D1700B11ACD /* NewAccountInfoSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfoSender.swift; sourceTree = "<group>"; };
+		2E03215729A93D1700B11ACD /* NewAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountService.swift; sourceTree = "<group>"; };
 		2E0EA12429A00041006402BE /* NewAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfo.swift; sourceTree = "<group>"; };
 		2E0EA12629A0044F006402BE /* NewAccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountServiceProtocol.swift; sourceTree = "<group>"; };
 		2E158A6D29A0F394001B2521 /* NewAccountInfoSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountInfoSenderTests.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				2E03215529A93CB500B11ACD /* HTTPClientProtocol.swift */,
-				2E03215729A93D1700B11ACD /* NewAccountInfoSender.swift */,
+				2E03215729A93D1700B11ACD /* NewAccountService.swift */,
 				2EFF6D1B29AA188F007A46C5 /* HTTPResponseToResultMapper.swift */,
 			);
 			path = "New Account API";
@@ -224,7 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E0EA12529A00041006402BE /* NewAccountInfo.swift in Sources */,
-				2E03215829A93D1700B11ACD /* NewAccountInfoSender.swift in Sources */,
+				2E03215829A93D1700B11ACD /* NewAccountService.swift in Sources */,
 				2E03215629A93CB500B11ACD /* HTTPClientProtocol.swift in Sources */,
 				2EFF6D1C29AA188F007A46C5 /* HTTPResponseToResultMapper.swift in Sources */,
 				2E0EA12729A0044F006402BE /* NewAccountServiceProtocol.swift in Sources */,

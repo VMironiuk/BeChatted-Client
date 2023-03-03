@@ -104,7 +104,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
+        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: anyNSError())
@@ -113,7 +113,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
+        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: httpResponse(withStatusCode: 300))
@@ -122,7 +122,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverSuccessAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
+        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: httpResponse(withStatusCode: 200))
@@ -135,9 +135,9 @@ final class NewAccountInfoSenderTests: XCTestCase {
         url: URL = URL(string: "http://any-url.com")!,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (sut: NewAccountInfoSender, client: HTTPClientSpy) {
+    ) -> (sut: NewAccountService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = NewAccountInfoSender(url: url, client: client)
+        let sut = NewAccountService(url: url, client: client)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
@@ -161,15 +161,15 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: NewAccountInfoSender,
-        toCompleteWithError expectedError: NewAccountInfoSender.Error,
+        _ sut: NewAccountService,
+        toCompleteWithError expectedError: NewAccountService.Error,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedError: NewAccountInfoSender.Error?
+        var receivedError: NewAccountService.Error?
         sut.send(newAccountInfo: anyNewAccountInfo()) { result in
             switch result {
             case let .failure(error):
@@ -191,14 +191,14 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: NewAccountInfoSender,
+        _ sut: NewAccountService,
         toCompleteWithSuccessWhen action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
+        var receivedResult: Result<Void, NewAccountService.Error>?
         sut.send(newAccountInfo: anyNewAccountInfo()) { result in
             switch result {
             case .success:
@@ -220,13 +220,13 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: inout NewAccountInfoSender?,
+        _ sut: inout NewAccountService?,
         deliversNoResultWhen action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
+        var receivedResult: Result<Void, NewAccountService.Error>?
         sut?.send(newAccountInfo: anyNewAccountInfo()) { result in
             receivedResult = result
         }

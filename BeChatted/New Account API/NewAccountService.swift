@@ -1,5 +1,5 @@
 //
-//  NewAccountInfoSender.swift
+//  NewAccountService.swift
 //  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 24.02.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class NewAccountInfoSender {
+public final class NewAccountService {
     private let url: URL
     private let client: HTTPClientProtocol
     

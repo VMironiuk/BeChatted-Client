@@ -9,7 +9,7 @@ import Foundation
 
 
 final class HTTPResponseToResultMapper {
-    static func result(for response: HTTPURLResponse?) -> Result<Void, NewAccountInfoSender.Error> {
+    static func result(for response: HTTPURLResponse?) -> Result<Void, NewAccountService.Error> {
         guard let response = response else { return .failure(.unknown) }
         
         switch response.statusCode {
