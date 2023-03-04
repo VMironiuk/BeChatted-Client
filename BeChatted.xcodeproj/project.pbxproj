@@ -14,6 +14,7 @@
 		2E158A6E29A0F394001B2521 /* NewAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E158A6D29A0F394001B2521 /* NewAccountServiceTests.swift */; };
 		2E64BFFA299EB047000451D9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64BFF1299EB047000451D9 /* BeChatted.framework */; };
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */; };
 		2EFF6D1C29AA188F007A46C5 /* HTTPResponseToResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF6D1B29AA188F007A46C5 /* HTTPResponseToResultMapper.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		2E64BFF1299EB047000451D9 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E64BFF4299EB047000451D9 /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
 		2E64BFF9299EB047000451D9 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginPayload.swift; sourceTree = "<group>"; };
 		2EFF6D1B29AA188F007A46C5 /* HTTPResponseToResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseToResultMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 			children = (
 				2E64BFF4299EB047000451D9 /* BeChatted.h */,
 				2E0EA12829A00555006402BE /* New Account Feature */,
+				2E80D0C529B37E7E003598C7 /* User Login Feature */,
 				2E03215929A93DA800B11ACD /* New Account API */,
 			);
 			path = BeChatted;
@@ -111,6 +114,14 @@
 				2E158A6D29A0F394001B2521 /* NewAccountServiceTests.swift */,
 			);
 			path = BeChattedTests;
+			sourceTree = "<group>";
+		};
+		2E80D0C529B37E7E003598C7 /* User Login Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */,
+			);
+			path = "User Login Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */,
 				2E0EA12529A00041006402BE /* NewAccountInfo.swift in Sources */,
 				2E03215829A93D1700B11ACD /* NewAccountService.swift in Sources */,
 				2E03215629A93CB500B11ACD /* HTTPClientProtocol.swift in Sources */,
