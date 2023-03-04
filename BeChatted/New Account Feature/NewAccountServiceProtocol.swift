@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol NewAccountServiceProtocol {
-    func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, Error>) -> Void)
+    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void)
 }

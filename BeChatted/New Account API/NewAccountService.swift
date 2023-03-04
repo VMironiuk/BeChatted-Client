@@ -23,10 +23,10 @@ public final class NewAccountService: NewAccountServiceProtocol {
         self.client = client
     }
     
-    public func send(newAccountInfo: NewAccountInfo, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
+    public func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpBody = try? JSONEncoder().encode(newAccountInfo)
+        request.httpBody = try? JSONEncoder().encode(newAccountPayload)
         
         client.perform(request: request) { [weak self] result in
             guard self != nil else { return }
