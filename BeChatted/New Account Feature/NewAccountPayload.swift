@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct NewAccountPayload: Codable, Equatable {
-    let email: String
-    let password: String
+public struct NewAccountPayload: Encodable, Equatable {
+    private let email: String
+    private let password: String
     
     public init(email: String, password: String) {
         self.email = email
