@@ -17,6 +17,8 @@ final class UserLoginServiceTests: XCTestCase {
     // 6. send() delivers server error on 500...599 HTTP response
     // 7. send() delivers unknown error on non 200, 401 and 500...599 HTTP responses
     // 8. send() delivers invalid data error on 200 HTTP response with invalid responses body
-    // 9. send() does not send user login payload if instance has been deallocated
+    // 9. send() does not deliver error after instance has been deallocated
+    // 10. send() does not deliver error on non 200 HTTP response after instance has been deallocated
+    // 11. send() does not deliver user(name) and token on 200 HTTP response after instance has been deallocated
     // 10. send() delivers user(name) and token on 200 HTTP response
 }
