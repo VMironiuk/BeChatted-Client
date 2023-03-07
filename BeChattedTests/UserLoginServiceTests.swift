@@ -7,9 +7,31 @@
 
 import XCTest
 
+protocol HTTPClient {
+    func perform(request: URLRequest, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void)
+}
+
+final class UserLoginService {
+    private let client: HTTPClient
+    
+    init(client: HTTPClient) {
+        self.client = client
+    }
+}
+
 final class UserLoginServiceTests: XCTestCase {
     
-    // 1. init() does not send user login payload by URL
+    func test_init_doesNotSendUserLoginPayloadByURL() {
+        // given
+        let client = HTTPClientSpy()
+        
+        // when
+        _ = UserLoginService(client: client)
+        
+        // then
+        XCTAssertNil(client.requestedURL)
+    }
+    
     // 2. send() sends user login payload by URL
     // 3. call send() twice sends user login payload by URL twice
     // 4. send() delivers connectivity error if there is no connectivity
@@ -21,4 +43,12 @@ final class UserLoginServiceTests: XCTestCase {
     // 10. send() does not deliver error on non 200 HTTP response after instance has been deallocated
     // 11. send() does not deliver user(name) and token on 200 HTTP response after instance has been deallocated
     // 10. send() delivers user(name) and token on 200 HTTP response
+    
+    // MARK: - Helpers
+    
+    private final class HTTPClientSpy: HTTPClient {
+        private(set) var requestedURL: URL?
+        
+        func perform(request: URLRequest, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {}
+    }
 }
