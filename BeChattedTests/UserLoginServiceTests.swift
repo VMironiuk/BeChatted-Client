@@ -43,7 +43,6 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertNil(client.requestedURL)
     }
     
-    // 2. send() sends user login payload by URL
     func test_send_sendsUserLoginPayloadByURL() {
         // given
         let url = anyURL()
