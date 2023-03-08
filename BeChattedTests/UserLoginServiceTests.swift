@@ -34,11 +34,10 @@ final class UserLoginServiceTests: XCTestCase {
     
     func test_init_doesNotSendUserLoginPayloadByURL() {
         // given
-        let url = URL(string: "http://any-url.com")!
         let client = HTTPClientSpy()
         
         // when
-        _ = UserLoginService(url: url, client: client)
+        _ = UserLoginService(url: anyURL(), client: client)
         
         // then
         XCTAssertNil(client.requestedURL)
@@ -47,7 +46,7 @@ final class UserLoginServiceTests: XCTestCase {
     // 2. send() sends user login payload by URL
     func test_send_sendsUserLoginPayloadByURL() {
         // given
-        let url = URL(string: "http://any-url.com")!
+        let url = anyURL()
         let client = HTTPClientSpy()
         let sut = UserLoginService(url: url, client: client)
         
@@ -72,6 +71,10 @@ final class UserLoginServiceTests: XCTestCase {
     // 10. send() delivers user(name) and token on 200 HTTP response
     
     // MARK: - Helpers
+    
+    private func anyURL() -> URL {
+        URL(string: "http://any-url.com")!
+    }
     
     private final class HTTPClientSpy: HTTPClient {
         private(set) var requestedURL: URL?
