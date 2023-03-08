@@ -6,16 +6,27 @@
 //
 
 import XCTest
+import BeChatted
 
 protocol HTTPClient {
     func perform(request: URLRequest, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void)
 }
 
 final class UserLoginService {
+    private let url: URL
     private let client: HTTPClient
     
-    init(client: HTTPClient) {
+    init(url: URL, client: HTTPClient) {
+        self.url = url
         self.client = client
+    }
+    
+    func send(userLoginPayload: UserLoginPayload) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONEncoder().encode(userLoginPayload)
+        
+        client.perform(request: request) { _, _, _ in }
     }
 }
 
@@ -23,16 +34,32 @@ final class UserLoginServiceTests: XCTestCase {
     
     func test_init_doesNotSendUserLoginPayloadByURL() {
         // given
+        let url = URL(string: "http://any-url.com")!
         let client = HTTPClientSpy()
         
         // when
-        _ = UserLoginService(client: client)
+        _ = UserLoginService(url: url, client: client)
         
         // then
         XCTAssertNil(client.requestedURL)
     }
     
     // 2. send() sends user login payload by URL
+    func test_send_sendsUserLoginPayloadByURL() {
+        // given
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClientSpy()
+        let sut = UserLoginService(url: url, client: client)
+        
+        let userLoginPayload = UserLoginPayload(email: "my@example.com", password: "123456")
+        
+        // when
+        sut.send(userLoginPayload: userLoginPayload)
+        
+        // then
+        XCTAssertEqual(client.requestedURL, url)
+    }
+    
     // 3. call send() twice sends user login payload by URL twice
     // 4. send() delivers connectivity error if there is no connectivity
     // 5. send() delivers invalid credentials error on 401 HTTP response
@@ -49,6 +76,8 @@ final class UserLoginServiceTests: XCTestCase {
     private final class HTTPClientSpy: HTTPClient {
         private(set) var requestedURL: URL?
         
-        func perform(request: URLRequest, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {}
+        func perform(request: URLRequest, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+            requestedURL = request.url
+        }
     }
 }

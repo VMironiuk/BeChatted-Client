@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct UserLoginPayload: Encodable {
+public struct UserLoginPayload: Encodable {
     private let email: String
     private let password: String
     
-    init(email: String, password: String) {
+    public init(email: String, password: String) {
         self.email = email
         self.password = password
     }
