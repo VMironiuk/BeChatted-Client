@@ -16,6 +16,7 @@
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */; };
 		2EAC443C29B5FC4900CC7697 /* UserLoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */; };
+		2EBDD4E229BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */; };
 		2ECC02DD29B380CD00FD0AE7 /* UserLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02DC29B380CD00FD0AE7 /* UserLoginInfo.swift */; };
 		2ECC02DF29B382F000FD0AE7 /* UserLoginServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02DE29B382F000FD0AE7 /* UserLoginServiceProtocol.swift */; };
 		2ECC02E229B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02E129B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift */; };
@@ -43,6 +44,7 @@
 		2E64BFF9299EB047000451D9 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginPayload.swift; sourceTree = "<group>"; };
 		2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceTests.swift; sourceTree = "<group>"; };
+		2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2ECC02DC29B380CD00FD0AE7 /* UserLoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginInfo.swift; sourceTree = "<group>"; };
 		2ECC02DE29B382F000FD0AE7 /* UserLoginServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceProtocol.swift; sourceTree = "<group>"; };
 		2ECC02E129B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewAccountPayload+Decodable.swift"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				2ECC02E129B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift */,
+				2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E158A6E29A0F394001B2521 /* NewAccountServiceTests.swift in Sources */,
+				2EBDD4E229BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2EAC443C29B5FC4900CC7697 /* UserLoginServiceTests.swift in Sources */,
 				2ECC02E229B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift in Sources */,
 			);

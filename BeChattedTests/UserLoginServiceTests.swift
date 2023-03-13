@@ -100,21 +100,6 @@ final class UserLoginServiceTests: XCTestCase {
         return (sut, client)
     }
     
-    private func trackForMemoryLeaks(
-        _ object: AnyObject,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        addTeardownBlock { [weak object] in
-            XCTAssertNil(
-                object,
-                "Expected object to be nil. Potential memory leak",
-                file: file,
-                line: line
-            )
-        }
-    }
-    
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
     }
