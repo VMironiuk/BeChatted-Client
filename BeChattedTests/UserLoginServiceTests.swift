@@ -40,7 +40,7 @@ final class UserLoginServiceTests: XCTestCase {
         _ = UserLoginService(url: anyURL(), client: client)
         
         // then
-        XCTAssertNil(client.requestedURL)
+        XCTAssertEqual(client.requestedURLs, [])
     }
     
     func test_send_sendsUserLoginPayloadByURL() {
@@ -55,10 +55,25 @@ final class UserLoginServiceTests: XCTestCase {
         sut.send(userLoginPayload: userLoginPayload)
         
         // then
-        XCTAssertEqual(client.requestedURL, url)
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    // 3. call send() twice sends user login payload by URL twice
+    func test_send_sendsUserLoginPayloadByURLTwice() {
+        // given
+        let url = anyURL()
+        let client = HTTPClientSpy()
+        let sut = UserLoginService(url: url, client: client)
+        
+        let userLoginPayload = UserLoginPayload(email: "my@example.com", password: "123456")
+        
+        // when
+        sut.send(userLoginPayload: userLoginPayload)
+        sut.send(userLoginPayload: userLoginPayload)
+        
+        // then
+        XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
     // 4. send() delivers connectivity error if there is no connectivity
     // 5. send() delivers invalid credentials error on 401 HTTP response
     // 6. send() delivers server error on 500...599 HTTP response
@@ -76,10 +91,12 @@ final class UserLoginServiceTests: XCTestCase {
     }
     
     private final class HTTPClientSpy: HTTPClient {
-        private(set) var requestedURL: URL?
+        private(set) var requestedURLs = [URL]()
         
         func perform(request: URLRequest, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
-            requestedURL = request.url
+            if let requestedUrl = request.url {
+                requestedURLs.append(requestedUrl)
+            }
         }
     }
 }
