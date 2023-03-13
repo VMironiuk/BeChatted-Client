@@ -86,6 +86,35 @@ final class UserLoginServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
+    private func makeSUT(
+        url: URL = URL(string: "http://any-url.com")!,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (UserLoginService, HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = UserLoginService(url: url, client: client)
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(client, file: file, line: line)
+        
+        return (sut, client)
+    }
+    
+    private func trackForMemoryLeaks(
+        _ object: AnyObject,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        addTeardownBlock { [weak object] in
+            XCTAssertNil(
+                object,
+                "Expected object to be nil. Potential memory leak",
+                file: file,
+                line: line
+            )
+        }
+    }
+    
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
     }
