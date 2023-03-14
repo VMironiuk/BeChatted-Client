@@ -57,11 +57,9 @@ final class UserLoginServiceTests: XCTestCase {
         let url = anyURL()
         let client = HTTPClientSpy()
         let sut = UserLoginService(url: url, client: client)
-        
-        let userLoginPayload = UserLoginPayload(email: "my@example.com", password: "123456")
-        
+                
         // when
-        sut.send(userLoginPayload: userLoginPayload) { _ in }
+        sut.send(userLoginPayload: anyUserLoginPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
@@ -72,12 +70,10 @@ final class UserLoginServiceTests: XCTestCase {
         let url = anyURL()
         let client = HTTPClientSpy()
         let sut = UserLoginService(url: url, client: client)
-        
-        let userLoginPayload = UserLoginPayload(email: "my@example.com", password: "123456")
-        
+                
         // when
-        sut.send(userLoginPayload: userLoginPayload) { _ in }
-        sut.send(userLoginPayload: userLoginPayload) { _ in }
+        sut.send(userLoginPayload: anyUserLoginPayload()) { _ in }
+        sut.send(userLoginPayload: anyUserLoginPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
@@ -86,13 +82,11 @@ final class UserLoginServiceTests: XCTestCase {
     func test_send_deliversConnectivityErrorOnClientError() {
         // given
         let (sut, client) = makeSUT()
-        let userLoginPayload = UserLoginPayload(email: "my@example.com", password: "123456")
-        
         let exp = expectation(description: "Wait for completion")
         
         // when
         var receivedError: UserLoginService.Error?
-        sut.send(userLoginPayload: userLoginPayload) { result in
+        sut.send(userLoginPayload: anyUserLoginPayload()) { result in
             switch result {
             case let .failure(error):
                 receivedError = error
@@ -104,7 +98,6 @@ final class UserLoginServiceTests: XCTestCase {
         }
         
         client.complete(withError: NSError(domain: "any error", code: 1))
-        
         wait(for: [exp], timeout: 1.0)
         
         // then
@@ -138,6 +131,10 @@ final class UserLoginServiceTests: XCTestCase {
     
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
+    }
+    
+    private func anyUserLoginPayload() -> UserLoginPayload {
+        UserLoginPayload(email: "my@example.com", password: "123456")
     }
     
     private final class HTTPClientSpy: HTTPClient {
