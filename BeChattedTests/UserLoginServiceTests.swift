@@ -33,8 +33,12 @@ final class UserLoginService {
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(userLoginPayload)
         
-        client.perform(request: request) { _, _, _ in
-            completion(.failure(.connectivity))
+        client.perform(request: request) { _, response, error in
+            if error != nil {
+                completion(.failure(.connectivity))
+            } else if let response = response, response.statusCode == 401 {
+                completion(.failure(.credentials))
+            }
         }
     }
 }
@@ -104,7 +108,31 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(receivedError, .connectivity)
     }
     
-    // 5. send() delivers invalid credentials error on 401 HTTP response
+    func test_send_deliversInvalidCredentialsErrorOn401HTTPResponseError() {
+        // given
+        let (sut, client) = makeSUT()
+        let exp = expectation(description: "Wait for completion")
+        
+        // when
+        var receivedError: UserLoginService.Error?
+        sut.send(userLoginPayload: anyUserLoginPayload()) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+            default:
+                XCTFail("Expected connectivity error, got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        client.complete(withStatusCode: 401)
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedError, .credentials)
+    }
+    
     // 6. send() delivers server error on 500...599 HTTP response
     // 7. send() delivers unknown error on non 200, 401 and 500...599 HTTP responses
     // 8. send() delivers invalid data error on 200 HTTP response with invalid responses body
@@ -157,6 +185,13 @@ final class UserLoginServiceTests: XCTestCase {
         
         func complete(withError error: Error, at index: Int = 0) {
             messages[index].completion(nil, nil, error)
+        }
+        
+        func complete(withStatusCode code: Int, at index: Int = 0) {
+            let url = URL(string: "http://any-url.com")!
+            let response = HTTPURLResponse(url: url, statusCode: code, httpVersion: nil, headerFields: nil)
+            
+            messages[index].completion(nil, response, nil)
         }
     }
 }
