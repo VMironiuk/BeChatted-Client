@@ -84,53 +84,19 @@ final class UserLoginServiceTests: XCTestCase {
     }
     
     func test_send_deliversConnectivityErrorOnClientError() {
-        // given
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Wait for completion")
         
-        // when
-        var receivedError: UserLoginService.Error?
-        sut.send(userLoginPayload: anyUserLoginPayload()) { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error
-            default:
-                XCTFail("Expected connectivity error, got \(result) instead")
-            }
-            
-            exp.fulfill()
-        }
-        
-        client.complete(withError: NSError(domain: "any error", code: 1))
-        wait(for: [exp], timeout: 1.0)
-        
-        // then
-        XCTAssertEqual(receivedError, .connectivity)
+        expect(sut: sut, toCompleteWithError: .connectivity, when: {
+            client.complete(withError: NSError(domain: "any error", code: 1))
+        })
     }
     
     func test_send_deliversInvalidCredentialsErrorOn401HTTPResponseError() {
-        // given
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Wait for completion")
-        
-        // when
-        var receivedError: UserLoginService.Error?
-        sut.send(userLoginPayload: anyUserLoginPayload()) { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error
-            default:
-                XCTFail("Expected connectivity error, got \(result) instead")
-            }
-            
-            exp.fulfill()
-        }
-        
-        client.complete(withStatusCode: 401)
-        wait(for: [exp], timeout: 1.0)
-        
-        // then
-        XCTAssertEqual(receivedError, .credentials)
+
+        expect(sut: sut, toCompleteWithError: .credentials, when: {
+            client.complete(withStatusCode: 401)
+        })
     }
     
     // 6. send() delivers server error on 500...599 HTTP response
@@ -155,6 +121,36 @@ final class UserLoginServiceTests: XCTestCase {
         trackForMemoryLeaks(client, file: file, line: line)
         
         return (sut, client)
+    }
+    
+    private func expect(
+        sut: UserLoginService,
+        toCompleteWithError expectedError: UserLoginService.Error,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        // given
+        let exp = expectation(description: "Wait for completion")
+        var receivedError: UserLoginService.Error?
+        sut.send(userLoginPayload: anyUserLoginPayload()) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+            default:
+                XCTFail("Expected connectivity error, got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        // when
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedError, expectedError)
     }
     
     private func anyURL() -> URL {
