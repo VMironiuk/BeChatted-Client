@@ -95,7 +95,7 @@ final class UserLoginServiceTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         expect(sut: sut, toCompleteWithError: .credentials, when: {
-            client.complete(withStatusCode: 401)
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 401))
         })
     }
     
@@ -161,6 +161,10 @@ final class UserLoginServiceTests: XCTestCase {
         UserLoginPayload(email: "my@example.com", password: "123456")
     }
     
+    private func httpResponse(withStatusCode statusCode: Int) -> HTTPURLResponse {
+        HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+    }
+    
     private final class HTTPClientSpy: HTTPClient {
         private var messages = [Message]()
         
@@ -183,11 +187,8 @@ final class UserLoginServiceTests: XCTestCase {
             messages[index].completion(nil, nil, error)
         }
         
-        func complete(withStatusCode code: Int, at index: Int = 0) {
-            let url = URL(string: "http://any-url.com")!
-            let response = HTTPURLResponse(url: url, statusCode: code, httpVersion: nil, headerFields: nil)
-            
-            messages[index].completion(nil, response, nil)
+        func complete(withHTTPResponse httpResponse: HTTPURLResponse, at index: Int = 0) {
+            messages[index].completion(nil, httpResponse, nil)
         }
     }
 }
