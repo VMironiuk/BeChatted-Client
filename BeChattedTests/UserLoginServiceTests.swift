@@ -41,6 +41,8 @@ final class UserLoginService {
                     completion(.failure(.credentials))
                 } else if (500...599).contains(response.statusCode) {
                     completion(.failure(.server))
+                } else {
+                    completion(.failure(.unknown))
                 }
             }
         }
@@ -115,7 +117,18 @@ final class UserLoginServiceTests: XCTestCase {
         }
     }
 
-    // 7. send() delivers unknown error on non 200, 401 and 500...599 HTTP responses
+    func test_send_deliversUnknownErrorOnNon200Or401Or5xxHTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        let samples = [199, 201, 400, 402, 300, 309, 499]
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut: sut, toCompleteWithError: .unknown, when: {
+                client.complete(withHTTPResponse: httpResponse(withStatusCode: code), at: index)
+            })
+        }
+    }
+
     // 8. send() delivers invalid data error on 200 HTTP response with invalid responses body
     // 9. send() does not deliver error after instance has been deallocated
     // 10. send() does not deliver error on non 200 HTTP response after instance has been deallocated
