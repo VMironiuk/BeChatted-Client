@@ -95,7 +95,7 @@ final class UserLoginServiceTests: XCTestCase {
         })
     }
     
-    func test_send_deliversInvalidCredentialsErrorOn401HTTPResponseError() {
+    func test_send_deliversInvalidCredentialsErrorOn401HTTPResponse() {
         let (sut, client) = makeSUT()
 
         expect(sut: sut, toCompleteWithError: .credentials, when: {
