@@ -36,8 +36,12 @@ final class UserLoginService {
         client.perform(request: request) { _, response, error in
             if error != nil {
                 completion(.failure(.connectivity))
-            } else if let response = response, response.statusCode == 401 {
-                completion(.failure(.credentials))
+            } else if let response = response {
+                if response.statusCode == 401 {
+                    completion(.failure(.credentials))
+                } else if (500...599).contains(response.statusCode) {
+                    completion(.failure(.server))
+                }
             }
         }
     }
@@ -99,7 +103,18 @@ final class UserLoginServiceTests: XCTestCase {
         })
     }
     
-    // 6. send() delivers server error on 500...599 HTTP response
+    func test_send_deliversServerErrorOn5xxHTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        let samples = [500, 501, 502, 550, 580, 590, 599]
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut: sut, toCompleteWithError: .server, when: {
+                client.complete(withHTTPResponse: httpResponse(withStatusCode: code), at: index)
+            })
+        }
+    }
+
     // 7. send() delivers unknown error on non 200, 401 and 500...599 HTTP responses
     // 8. send() delivers invalid data error on 200 HTTP response with invalid responses body
     // 9. send() does not deliver error after instance has been deallocated
