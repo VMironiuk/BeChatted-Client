@@ -20,6 +20,7 @@ final class UserLoginService {
         case connectivity
         case credentials
         case server
+        case invalidData
         case unknown
     }
     
@@ -33,11 +34,17 @@ final class UserLoginService {
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(userLoginPayload)
         
-        client.perform(request: request) { _, response, error in
+        client.perform(request: request) { data, response, error in
             if error != nil {
                 completion(.failure(.connectivity))
             } else if let response = response {
-                if response.statusCode == 401 {
+                if response.statusCode == 200 {
+                    if let data = data, let userInfo = try? JSONDecoder().decode(UserLoginInfo.self, from: data) {
+                        completion(.success(userInfo))
+                    } else {
+                        completion(.failure(.invalidData))
+                    }
+                } else if response.statusCode == 401 {
                     completion(.failure(.credentials))
                 } else if (500...599).contains(response.statusCode) {
                     completion(.failure(.server))
@@ -129,7 +136,14 @@ final class UserLoginServiceTests: XCTestCase {
         }
     }
 
-    // 8. send() delivers invalid data error on 200 HTTP response with invalid responses body
+    func test_send_deliversInvalidDataErrorOn200HTTPResponseWithInvalidBody() {
+        let (sut, client) = makeSUT()
+
+        expect(sut: sut, toCompleteWithError: .invalidData, when: {
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 200), data: anyData())
+        })
+    }
+
     // 9. send() does not deliver error after instance has been deallocated
     // 10. send() does not deliver error on non 200 HTTP response after instance has been deallocated
     // 11. send() does not deliver user(name) and token on 200 HTTP response after instance has been deallocated
@@ -189,6 +203,10 @@ final class UserLoginServiceTests: XCTestCase {
         UserLoginPayload(email: "my@example.com", password: "123456")
     }
     
+    private func anyData() -> Data {
+        Data("any data".utf8)
+    }
+    
     private func httpResponse(withStatusCode statusCode: Int) -> HTTPURLResponse {
         HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
@@ -215,8 +233,8 @@ final class UserLoginServiceTests: XCTestCase {
             messages[index].completion(nil, nil, error)
         }
         
-        func complete(withHTTPResponse httpResponse: HTTPURLResponse, at index: Int = 0) {
-            messages[index].completion(nil, httpResponse, nil)
+        func complete(withHTTPResponse httpResponse: HTTPURLResponse, data: Data? = nil, at index: Int = 0) {
+            messages[index].completion(data, httpResponse, nil)
         }
     }
 }
