@@ -34,7 +34,8 @@ final class UserLoginService {
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(userLoginPayload)
         
-        client.perform(request: request) { data, response, error in
+        client.perform(request: request) { [weak self] data, response, error in
+            guard self != nil else { return }
             if error != nil {
                 completion(.failure(.connectivity))
             } else if let response = response {
@@ -100,7 +101,7 @@ final class UserLoginServiceTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut: sut, toCompleteWithError: .connectivity, when: {
-            client.complete(withError: NSError(domain: "any error", code: 1))
+            client.complete(withError: anyNSError())
         })
     }
     
@@ -144,10 +145,18 @@ final class UserLoginServiceTests: XCTestCase {
         })
     }
 
-    // 9. send() does not deliver error after instance has been deallocated
+    func test_send_doesNotDeliverConnectivityErrorOnClientErrorAfterInstanceHasBeenDeallocated() {
+        let client = HTTPClientSpy()
+        var sut: UserLoginService? = UserLoginService(url: anyURL(), client: client)
+
+        expect(sut: &sut, deliversNoResultWhen: {
+            client.complete(withError: anyNSError())
+        })
+    }
+
     // 10. send() does not deliver error on non 200 HTTP response after instance has been deallocated
     // 11. send() does not deliver user(name) and token on 200 HTTP response after instance has been deallocated
-    // 10. send() delivers user(name) and token on 200 HTTP response
+    // 12. send() delivers user(name) and token on 200 HTTP response
     
     // MARK: - Helpers
     
@@ -195,6 +204,27 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(receivedError, expectedError)
     }
     
+    private func expect(
+        sut: inout UserLoginService?,
+        deliversNoResultWhen action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        // given
+        var receivedResult: Result<UserLoginInfo, UserLoginService.Error>?
+        sut?.send(userLoginPayload: anyUserLoginPayload()) { result in
+            receivedResult = result
+        }
+        
+        // when
+        sut = nil
+        
+        action()
+                
+        // then
+        XCTAssertNil(receivedResult, file: file, line: line)
+    }
+    
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
     }
@@ -205,6 +235,10 @@ final class UserLoginServiceTests: XCTestCase {
     
     private func anyData() -> Data {
         Data("any data".utf8)
+    }
+    
+    private func anyNSError() -> NSError {
+        NSError(domain: "any error", code: 1)
     }
     
     private func httpResponse(withStatusCode statusCode: Int) -> HTTPURLResponse {
