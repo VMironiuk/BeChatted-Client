@@ -145,7 +145,7 @@ final class UserLoginServiceTests: XCTestCase {
         })
     }
 
-    func test_send_doesNotDeliverConnectivityErrorOnClientErrorAfterInstanceHasBeenDeallocated() {
+    func test_send_doesNotDeliverResultOnClientErrorAfterInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         var sut: UserLoginService? = UserLoginService(url: anyURL(), client: client)
 
