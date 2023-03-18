@@ -154,7 +154,15 @@ final class UserLoginServiceTests: XCTestCase {
         })
     }
 
-    // 10. send() does not deliver error on non 200 HTTP response after instance has been deallocated
+    func test_send_doesNotDeliverResultOn401HTTPResponseAfterInstanceHasBeenDeallocated() {
+        let client = HTTPClientSpy()
+        var sut: UserLoginService? = UserLoginService(url: anyURL(), client: client)
+        
+        expect(sut: &sut, deliversNoResultWhen: {
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 401))
+        })
+    }
+
     // 11. send() does not deliver user(name) and token on 200 HTTP response after instance has been deallocated
     // 12. send() delivers user(name) and token on 200 HTTP response
     
