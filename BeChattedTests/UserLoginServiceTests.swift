@@ -171,8 +171,16 @@ final class UserLoginServiceTests: XCTestCase {
             client.complete(withHTTPResponse: httpResponse(withStatusCode: 500))
         })
     }
+    
+    func test_send_doesNotDeliverResultOn200HTTPResponseAfterInstanceHasBeenDeallocated() {
+        let client = HTTPClientSpy()
+        var sut: UserLoginService? = UserLoginService(url: anyURL(), client: client)
+        
+        expect(sut: &sut, deliversNoResultWhen: {
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 200))
+        })
+    }
 
-    // 11. send() does not deliver user(name) and token on 200 HTTP response after instance has been deallocated
     // 12. send() delivers user(name) and token on 200 HTTP response
     
     // MARK: - Helpers
