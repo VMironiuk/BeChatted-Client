@@ -181,7 +181,15 @@ final class UserLoginServiceTests: XCTestCase {
         })
     }
 
-    // 12. send() delivers user(name) and token on 200 HTTP response
+    func test_send_deliversUserLoginInfoOn200HTTPResponse() {
+        let expectedUserLoginInfo = UserLoginInfo(user: "a user", token: "auth token")
+        let (sut, client) = makeSUT()
+        
+        expect(sut: sut, toCompleteWithUserLoginInfo: expectedUserLoginInfo, when: {
+            let expectedUserLoginInfoData = try! JSONEncoder().encode(expectedUserLoginInfo)
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 200), data: expectedUserLoginInfoData)
+        })
+    }
     
     // MARK: - Helpers
     
@@ -248,6 +256,36 @@ final class UserLoginServiceTests: XCTestCase {
                 
         // then
         XCTAssertNil(receivedResult, file: file, line: line)
+    }
+    
+    private func expect(
+        sut: UserLoginService,
+        toCompleteWithUserLoginInfo expectedUserLoginInfo: UserLoginInfo,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        // given
+        let exp = expectation(description: "Wait for completion")
+        var receivedUserLoginInfo: UserLoginInfo?
+        
+        sut.send(userLoginPayload: anyUserLoginPayload()) { result in
+            switch result {
+            case let .success(userLoginInfo):
+                receivedUserLoginInfo = userLoginInfo
+            default:
+                XCTFail("Expected success result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        // when
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(expectedUserLoginInfo, receivedUserLoginInfo)
     }
     
     private func anyURL() -> URL {
