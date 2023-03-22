@@ -1,5 +1,5 @@
 //
-//  NewAccountInfoSenderTests.swift
+//  NewAccountServiceTests.swift
 //  BeChattedTests
 //
 //  Created by Volodymyr Myroniuk on 18.02.2023.
@@ -8,9 +8,9 @@
 import XCTest
 import BeChatted
 
-final class NewAccountInfoSenderTests: XCTestCase {
+final class NewAccountServiceTests: XCTestCase {
 
-    func test_init_doesNotSendNewAccountInfoByURL() {
+    func test_init_doesNotSendNewAccountPayloadByURL() {
         // given
         
         // when
@@ -18,39 +18,39 @@ final class NewAccountInfoSenderTests: XCTestCase {
         
         // then
         XCTAssertEqual(client.requestedURLs, [])
-        XCTAssertEqual(client.newAccountInfos, [])
+        XCTAssertEqual(client.newAccountPayloads, [])
         XCTAssertEqual(client.httpMethods, [])
     }
     
-    func test_send_sendsNewAccountInfoByURL() {
+    func test_send_sendsNewAccountPayloadByURL() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        let newAccountInfo = NewAccountInfo(email: "my@example.com", password: "123456")
+        let newAccountPayload = NewAccountPayload(email: "my@example.com", password: "123456")
         
         // when
-        sut.send(newAccountInfo: newAccountInfo) { _ in }
+        sut.send(newAccountPayload: newAccountPayload) { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
-        XCTAssertEqual(client.newAccountInfos, [newAccountInfo])
+        XCTAssertEqual(client.newAccountPayloads, [newAccountPayload])
         XCTAssertEqual(client.httpMethods, ["POST"])
     }
     
-    func test_send_sendsNewAccountInfoByURLTwice() {
+    func test_send_sendsNewAccountPayloadByURLTwice() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        let newAccountInfo1 = NewAccountInfo(email: "my@example.com", password: "123456")
-        let newAccountInfo2 = NewAccountInfo(email: "my.other@example.com", password: "31415")
+        let newAccountPayload1 = NewAccountPayload(email: "my@example.com", password: "123456")
+        let newAccountPayload2 = NewAccountPayload(email: "my.other@example.com", password: "31415")
         
         // when
-        sut.send(newAccountInfo: newAccountInfo1) { _ in }
-        sut.send(newAccountInfo: newAccountInfo2) { _ in }
+        sut.send(newAccountPayload: newAccountPayload1) { _ in }
+        sut.send(newAccountPayload: newAccountPayload2) { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
-        XCTAssertEqual(client.newAccountInfos, [newAccountInfo1, newAccountInfo2])
+        XCTAssertEqual(client.newAccountPayloads, [newAccountPayload1, newAccountPayload2])
         XCTAssertEqual(client.httpMethods, ["POST", "POST"])
     }
     
@@ -104,7 +104,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
+        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: anyNSError())
@@ -113,7 +113,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
+        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: httpResponse(withStatusCode: 300))
@@ -122,7 +122,7 @@ final class NewAccountInfoSenderTests: XCTestCase {
     
     func test_send_doesNotDeliverSuccessAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountInfoSender? = NewAccountInfoSender(url: anyURL(), client: client)
+        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: httpResponse(withStatusCode: 200))
@@ -135,45 +135,30 @@ final class NewAccountInfoSenderTests: XCTestCase {
         url: URL = URL(string: "http://any-url.com")!,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (sut: NewAccountInfoSender, client: HTTPClientSpy) {
+    ) -> (sut: NewAccountService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = NewAccountInfoSender(url: url, client: client)
+        let sut = NewAccountService(url: url, client: client)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
 
         return (sut, client)
     }
-    
-    private func trackForMemoryLeaks(
-        _ object: AnyObject,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        addTeardownBlock { [weak object] in
-            XCTAssertNil(
-                object,
-                "Expected object to be nil. Potential memory leak",
-                file: file,
-                line: line
-            )
-        }
-    }
-    
+        
     private func expect(
-        _ sut: NewAccountInfoSender,
-        toCompleteWithError expectedError: NewAccountInfoSender.Error,
+        _ sut: NewAccountService,
+        toCompleteWithError expectedError: NewAccountService.Error,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedError: NewAccountInfoSender.Error?
-        sut.send(newAccountInfo: anyNewAccountInfo()) { result in
+        var receivedError: NewAccountService.Error?
+        sut.send(newAccountPayload: anyNewAccountPayload()) { result in
             switch result {
             case let .failure(error):
-                receivedError = error
+                receivedError = error as? NewAccountService.Error
             default:
                 XCTFail("Expected failure, got \(result) instead", file: file, line: line)
             }
@@ -191,15 +176,15 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: NewAccountInfoSender,
+        _ sut: NewAccountService,
         toCompleteWithSuccessWhen action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
-        sut.send(newAccountInfo: anyNewAccountInfo()) { result in
+        var receivedResult: Result<Void, Error>?
+        sut.send(newAccountPayload: anyNewAccountPayload()) { result in
             switch result {
             case .success:
                 receivedResult = result
@@ -220,14 +205,14 @@ final class NewAccountInfoSenderTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: inout NewAccountInfoSender?,
+        _ sut: inout NewAccountService?,
         deliversNoResultWhen action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<Void, NewAccountInfoSender.Error>?
-        sut?.send(newAccountInfo: anyNewAccountInfo()) { result in
+        var receivedResult: Result<Void, Error>?
+        sut?.send(newAccountPayload: anyNewAccountPayload()) { result in
             receivedResult = result
         }
         
@@ -252,8 +237,8 @@ final class NewAccountInfoSenderTests: XCTestCase {
         HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
     
-    private func anyNewAccountInfo() -> NewAccountInfo {
-        NewAccountInfo(email: "my@example.com", password: "123456")
+    private func anyNewAccountPayload() -> NewAccountPayload {
+        NewAccountPayload(email: "my@example.com", password: "123456")
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
@@ -267,10 +252,10 @@ final class NewAccountInfoSenderTests: XCTestCase {
             messages.compactMap { $0.request.httpMethod }
         }
 
-        var newAccountInfos: [NewAccountInfo] {
+        var newAccountPayloads: [NewAccountPayload] {
             messages.compactMap {
                 guard let data = $0.request.httpBody else { return nil }
-                return try? JSONDecoder().decode(NewAccountInfo.self, from: data)
+                return try? JSONDecoder().decode(NewAccountPayload.self, from: data)
             }
         }
             
