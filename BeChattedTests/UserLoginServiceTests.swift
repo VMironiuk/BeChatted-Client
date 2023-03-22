@@ -171,7 +171,7 @@ final class UserLoginServiceTests: XCTestCase {
         sut.send(userLoginPayload: anyUserLoginPayload()) { result in
             switch result {
             case let .failure(error):
-                receivedError = error
+                receivedError = error as? UserLoginService.Error
             default:
                 XCTFail("Expected connectivity error, got \(result) instead")
             }
@@ -195,7 +195,7 @@ final class UserLoginServiceTests: XCTestCase {
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<UserLoginInfo, UserLoginService.Error>?
+        var receivedResult: Result<UserLoginInfo, Error>?
         sut?.send(userLoginPayload: anyUserLoginPayload()) { result in
             receivedResult = result
         }
