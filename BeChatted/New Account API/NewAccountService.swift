@@ -33,7 +33,7 @@ public final class NewAccountService: NewAccountServiceProtocol {
             
             switch result {
             case let .success(_, response):
-                completion(HTTPResponseToResultMapper.result(for: response))
+                completion(NewAccountServiceResultMapper.result(for: response))
             case .failure:
                 completion(.failure(Error.connectivity))
             }

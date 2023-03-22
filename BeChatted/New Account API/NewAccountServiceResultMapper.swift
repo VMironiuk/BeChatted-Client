@@ -1,5 +1,5 @@
 //
-//  HTTPResponseToResultMapper.swift
+//  NewAccountServiceResultMapper.swift
 //  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 25.02.2023.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class HTTPResponseToResultMapper {
+struct NewAccountServiceResultMapper {
     static func result(for response: HTTPURLResponse?) -> Result<Void, Error> {
         guard let response = response else { return .failure(NewAccountService.Error.unknown) }
         
