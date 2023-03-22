@@ -13,6 +13,7 @@
 		2E0EA12729A0044F006402BE /* NewAccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EA12629A0044F006402BE /* NewAccountServiceProtocol.swift */; };
 		2E158A6E29A0F394001B2521 /* NewAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E158A6D29A0F394001B2521 /* NewAccountServiceTests.swift */; };
 		2E3D588629CB7B2700B7F02A /* UserLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D588529CB7B2700B7F02A /* UserLoginService.swift */; };
+		2E3D588A29CB81B000B7F02A /* UserLoginServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D588929CB81B000B7F02A /* UserLoginServiceResultMapper.swift */; };
 		2E64BFFA299EB047000451D9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64BFF1299EB047000451D9 /* BeChatted.framework */; };
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */; };
@@ -41,6 +42,7 @@
 		2E0EA12629A0044F006402BE /* NewAccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountServiceProtocol.swift; sourceTree = "<group>"; };
 		2E158A6D29A0F394001B2521 /* NewAccountServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountServiceTests.swift; sourceTree = "<group>"; };
 		2E3D588529CB7B2700B7F02A /* UserLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginService.swift; sourceTree = "<group>"; };
+		2E3D588929CB81B000B7F02A /* UserLoginServiceResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceResultMapper.swift; sourceTree = "<group>"; };
 		2E64BFF1299EB047000451D9 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E64BFF4299EB047000451D9 /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
 		2E64BFF9299EB047000451D9 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				2E3D588529CB7B2700B7F02A /* UserLoginService.swift */,
+				2E3D588929CB81B000B7F02A /* UserLoginServiceResultMapper.swift */,
 			);
 			path = "User Login API";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				2ECC02DF29B382F000FD0AE7 /* UserLoginServiceProtocol.swift in Sources */,
 				2E03215629A93CB500B11ACD /* HTTPClientProtocol.swift in Sources */,
 				2EFF6D1C29AA188F007A46C5 /* HTTPResponseToResultMapper.swift in Sources */,
+				2E3D588A29CB81B000B7F02A /* UserLoginServiceResultMapper.swift in Sources */,
 				2E0EA12729A0044F006402BE /* NewAccountServiceProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
