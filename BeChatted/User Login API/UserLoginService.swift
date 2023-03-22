@@ -7,13 +7,9 @@
 
 import Foundation
 
-public protocol HTTPClient {
-    func perform(request: URLRequest, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void)
-}
-
 public final class UserLoginService: UserLoginServiceProtocol {
     private let url: URL
-    private let client: HTTPClient
+    private let client: HTTPClientProtocol
     
     public enum Error: Swift.Error {
         case connectivity
@@ -23,7 +19,7 @@ public final class UserLoginService: UserLoginServiceProtocol {
         case unknown
     }
     
-    public init(url: URL, client: HTTPClient) {
+    public init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
@@ -33,24 +29,28 @@ public final class UserLoginService: UserLoginServiceProtocol {
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(userLoginPayload)
         
-        client.perform(request: request) { [weak self] data, response, error in
+        client.perform(request: request) { [weak self] result in
             guard self != nil else { return }
-            if error != nil {
-                completion(.failure(Error.connectivity))
-            } else if let response = response {
-                if response.statusCode == 200 {
-                    if let data = data, let userInfo = try? JSONDecoder().decode(UserLoginInfo.self, from: data) {
-                        completion(.success(userInfo))
+            switch result {
+            case let .success(data, response):
+                if let response = response {
+                    if response.statusCode == 200 {
+                        if let data = data, let userInfo = try? JSONDecoder().decode(UserLoginInfo.self, from: data) {
+                            completion(.success(userInfo))
+                        } else {
+                            completion(.failure(Error.invalidData))
+                        }
+                    } else if response.statusCode == 401 {
+                        completion(.failure(Error.credentials))
+                    } else if (500...599).contains(response.statusCode) {
+                        completion(.failure(Error.server))
                     } else {
-                        completion(.failure(Error.invalidData))
+                        completion(.failure(Error.unknown))
                     }
-                } else if response.statusCode == 401 {
-                    completion(.failure(Error.credentials))
-                } else if (500...599).contains(response.statusCode) {
-                    completion(.failure(Error.server))
-                } else {
-                    completion(.failure(Error.unknown))
                 }
+                
+            case .failure:
+                completion(.failure(Error.connectivity))
             }
         }
     }

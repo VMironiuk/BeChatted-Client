@@ -259,30 +259,30 @@ final class UserLoginServiceTests: XCTestCase {
         HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
     
-    private final class HTTPClientSpy: HTTPClient {
+    private final class HTTPClientSpy: HTTPClientProtocol {
         private var messages = [Message]()
         
         private struct Message {
             let url: URL
-            let completion: (Data?, HTTPURLResponse?, Error?) -> Void
+            let completion: (HTTPClientResult) -> Void
         }
         
         var requestedURLs: [URL] {
             messages.map { $0.url }
         }
         
-        func perform(request: URLRequest, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
             if let requestedUrl = request.url {
                 messages.append(Message(url: requestedUrl, completion: completion))
             }
         }
         
         func complete(withError error: Error, at index: Int = 0) {
-            messages[index].completion(nil, nil, error)
+            messages[index].completion(.failure(error))
         }
         
         func complete(withHTTPResponse httpResponse: HTTPURLResponse, data: Data? = nil, at index: Int = 0) {
-            messages[index].completion(data, httpResponse, nil)
+            messages[index].completion(.success(data, httpResponse))
         }
     }
 }
