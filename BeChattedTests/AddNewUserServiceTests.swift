@@ -8,8 +8,6 @@
 import XCTest
 import BeChatted
 
-struct NewUserPayload {}
-
 class AddNewUserService {
     private let url: URL
     private let client: HTTPClientProtocol
@@ -94,7 +92,11 @@ final class AddNewUserServiceTests: XCTestCase {
     }
     
     private func anyNewUserPayload() -> NewUserPayload {
-        NewUserPayload()
+        NewUserPayload(
+            name: "user name",
+            email: "user@example.com",
+            avatarName: "avatar name",
+            avatarColor: "avatar color")
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
