@@ -31,25 +31,38 @@ final class AddNewUserServiceTests: XCTestCase {
     func test_init_doesNotSendNewUserPayloadByURL() {
         // given
         // when
-        let (_, client) = makeSUT()
+        let (_, client) = makeSUT(url: anyURL())
         
         // then
-        XCTAssertNil(client.requestedURL)
+        XCTAssertEqual(client.requestedURLs, [])
     }
     
     func test_send_sendNewUserPayloadByURL() {
         // given
-        let (sut, client) = makeSUT()
-        let newUserPayload = NewUserPayload()
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send(newUserPayload: newUserPayload)
+        sut.send(newUserPayload: anyNewUserPayload())
         
         // then
-        XCTAssertNotNil(client.requestedURL)
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     // 3. send() sends new user payload by URL twice
+    func test_send_sendsNewUserPayloadByURLTwice() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.send(newUserPayload: anyNewUserPayload())
+        sut.send(newUserPayload: anyNewUserPayload())
+        
+        // then
+        XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
     // 4. send() delivers connectivity error on client error
     // 5. send() delivers server error on 500 HTTP response
     // 6. send() delivers unknown error on non 200 HTTP response
@@ -76,11 +89,20 @@ final class AddNewUserServiceTests: XCTestCase {
         return (sut, client)
     }
     
+    private func anyURL() -> URL {
+        URL(string: "http://any-url.com")!
+    }
+    
+    private func anyNewUserPayload() -> NewUserPayload {
+        NewUserPayload()
+    }
+    
     private class HTTPClientSpy: HTTPClientProtocol {
-        private(set) var requestedURL: URL?
+        private(set) var requestedURLs = [URL]()
         
         func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            requestedURL = request.url
+            guard let url = request.url else { return }
+            requestedURLs.append(url)
         }
     }
 }
