@@ -30,11 +30,8 @@ final class AddNewUserServiceTests: XCTestCase {
 
     func test_init_doesNotSendNewUserPayloadByURL() {
         // given
-        let url = URL(string: "http://any-url.com")!
-        let client = HTTPClientSpy()
-        
         // when
-        _ = AddNewUserService(url: url, client: client)
+        let (_, client) = makeSUT()
         
         // then
         XCTAssertNil(client.requestedURL)
@@ -42,9 +39,7 @@ final class AddNewUserServiceTests: XCTestCase {
     
     func test_send_sendNewUserPayloadByURL() {
         // given
-        let url = URL(string: "http://any-url.com")!
-        let client = HTTPClientSpy()
-        let sut = AddNewUserService(url: url, client: client)
+        let (sut, client) = makeSUT()
         let newUserPayload = NewUserPayload()
         
         // when
@@ -66,6 +61,20 @@ final class AddNewUserServiceTests: XCTestCase {
     // 12. send() delivers new user info on 200HTTP response with valid body
     
     // MARK: - Helpers
+    
+    private func makeSUT(
+        url: URL = URL(string: "http://any-url.com")!,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (AddNewUserService, HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = AddNewUserService(url: url, client: client)
+        
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        return (sut, client)
+    }
     
     private class HTTPClientSpy: HTTPClientProtocol {
         private(set) var requestedURL: URL?
