@@ -6,22 +6,15 @@
 //
 
 import XCTest
-
-class HTTPClientSpy {
-    private(set) var requestedURL: URL?
-    
-    func perform(request: URLRequest) {
-        requestedURL = request.url
-    }
-}
+import BeChatted
 
 struct NewUserPayload {}
 
 class AddNewUserService {
     private let url: URL
-    private let client: HTTPClientSpy
+    private let client: HTTPClientProtocol
     
-    init(url: URL, client: HTTPClientSpy) {
+    init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
@@ -29,7 +22,7 @@ class AddNewUserService {
     func send(newUserPayload: NewUserPayload) {
         let request = URLRequest(url: url)
         
-        client.perform(request: request)
+        client.perform(request: request) { _ in }
     }
 }
 
@@ -71,4 +64,14 @@ final class AddNewUserServiceTests: XCTestCase {
     // 10. send() does not deliver result on non 200 HTTP response after instance has been deallocated
     // 11. send() does not deliver result on 200 HTTP response after instance has been deallocated
     // 12. send() delivers new user info on 200HTTP response with valid body
+    
+    // MARK: - Helpers
+    
+    private class HTTPClientSpy: HTTPClientProtocol {
+        private(set) var requestedURL: URL?
+        
+        func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
+            requestedURL = request.url
+        }
+    }
 }
