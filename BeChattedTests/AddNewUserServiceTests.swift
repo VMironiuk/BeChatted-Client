@@ -9,7 +9,13 @@ import XCTest
 
 class HTTPClientSpy {
     private(set) var requestedURL: URL?
+    
+    func perform(request: URLRequest) {
+        requestedURL = request.url
+    }
 }
+
+struct NewUserPayload {}
 
 class AddNewUserService {
     private let url: URL
@@ -18,6 +24,12 @@ class AddNewUserService {
     init(url: URL, client: HTTPClientSpy) {
         self.url = url
         self.client = client
+    }
+    
+    func send(newUserPayload: NewUserPayload) {
+        let request = URLRequest(url: url)
+        
+        client.perform(request: request)
     }
 }
 
@@ -35,7 +47,20 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertNil(client.requestedURL)
     }
     
-    // 2. send() sends new user payload by URL
+    func test_send_sendNewUserPayloadByURL() {
+        // given
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClientSpy()
+        let sut = AddNewUserService(url: url, client: client)
+        let newUserPayload = NewUserPayload()
+        
+        // when
+        sut.send(newUserPayload: newUserPayload)
+        
+        // then
+        XCTAssertNotNil(client.requestedURL)
+    }
+    
     // 3. send() sends new user payload by URL twice
     // 4. send() delivers connectivity error on client error
     // 5. send() delivers server error on 500 HTTP response
