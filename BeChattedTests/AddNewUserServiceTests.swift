@@ -47,7 +47,6 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    // 3. send() sends new user payload by URL twice
     func test_send_sendsNewUserPayloadByURLTwice() {
         // given
         let url = anyURL()
