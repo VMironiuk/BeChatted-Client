@@ -7,9 +7,34 @@
 
 import XCTest
 
+class HTTPClientSpy {
+    private(set) var requestedURL: URL?
+}
+
+class AddNewUserService {
+    private let url: URL
+    private let client: HTTPClientSpy
+    
+    init(url: URL, client: HTTPClientSpy) {
+        self.url = url
+        self.client = client
+    }
+}
+
 final class AddNewUserServiceTests: XCTestCase {
 
-    // 1. init() does not send new user payload by URL
+    func test_init_doesNotSendNewUserPayloadByURL() {
+        // given
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClientSpy()
+        
+        // when
+        _ = AddNewUserService(url: url, client: client)
+        
+        // then
+        XCTAssertNil(client.requestedURL)
+    }
+    
     // 2. send() sends new user payload by URL
     // 3. send() sends new user payload by URL twice
     // 4. send() delivers connectivity error on client error
