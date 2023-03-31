@@ -12,15 +12,28 @@ class AddNewUserService {
     private let url: URL
     private let client: HTTPClientProtocol
     
+    enum AddNewUserError: Swift.Error {
+        case connectivity
+    }
+    
+    typealias Error = AddNewUserError
+    
     init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
-    func send(newUserPayload: NewUserPayload) {
+    func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
         let request = URLRequest(url: url)
         
-        client.perform(request: request) { _ in }
+        client.perform(request: request) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                completion(.failure(.connectivity))
+            }
+        }
     }
 }
 
@@ -41,7 +54,7 @@ final class AddNewUserServiceTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send(newUserPayload: anyNewUserPayload())
+        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
@@ -53,14 +66,40 @@ final class AddNewUserServiceTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send(newUserPayload: anyNewUserPayload())
-        sut.send(newUserPayload: anyNewUserPayload())
+        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
+        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
-    // 4. send() delivers connectivity error on client error
+    func test_send_deliversConnectivityErrorOnClientError() {
+        // given
+        let (sut, client) = makeSUT()
+        
+        // when
+        let exp = expectation(description: "Wait for completion")
+        var receivedError: AddNewUserService.Error?
+        sut.send(newUserPayload: anyNewUserPayload()) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+                
+            default:
+                XCTFail("Expected failure, got \(result) instead.")
+            }
+            
+            exp.fulfill()
+        }
+        
+        client.complete(with: NSError(domain: "any error", code: 0))
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedError, .connectivity)
+    }
+    
     // 5. send() delivers server error on 500 HTTP response
     // 6. send() delivers unknown error on non 200 HTTP response
     // 7. send() delivers invalid data error on 200 HTTP response with invalid body
@@ -99,11 +138,28 @@ final class AddNewUserServiceTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
-        private(set) var requestedURLs = [URL]()
+        private var messages = [Message]()
+        
+        var requestedURLs: [URL] {
+            messages.compactMap { $0.request.url }
+        }
+        
+        private struct Message {
+            let request:  URLRequest
+            let completion: (HTTPClientResult) -> Void
+            
+            init(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
+                self.request = request
+                self.completion = completion
+            }
+        }
         
         func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            guard let url = request.url else { return }
-            requestedURLs.append(url)
+            messages.append(Message(request: request, completion: completion))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[0].completion(.failure(error))
         }
     }
 }
