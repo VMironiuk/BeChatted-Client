@@ -23,6 +23,7 @@
 		2ECC02DD29B380CD00FD0AE7 /* UserLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02DC29B380CD00FD0AE7 /* UserLoginInfo.swift */; };
 		2ECC02DF29B382F000FD0AE7 /* UserLoginServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02DE29B382F000FD0AE7 /* UserLoginServiceProtocol.swift */; };
 		2ECC02E229B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02E129B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift */; };
+		2ECC281229D7411D008F16F2 /* AddNewUserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC281129D7411D008F16F2 /* AddNewUserServiceProtocol.swift */; };
 		2EF450B729D5F6E7007AB010 /* NewUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF450B629D5F6E7007AB010 /* NewUserPayload.swift */; };
 		2EF450B929D5F86D007AB010 /* NewUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF450B829D5F86D007AB010 /* NewUserInfo.swift */; };
 		2EFF6D1C29AA188F007A46C5 /* NewAccountServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF6D1B29AA188F007A46C5 /* NewAccountServiceResultMapper.swift */; };
@@ -56,6 +57,7 @@
 		2ECC02DC29B380CD00FD0AE7 /* UserLoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginInfo.swift; sourceTree = "<group>"; };
 		2ECC02DE29B382F000FD0AE7 /* UserLoginServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceProtocol.swift; sourceTree = "<group>"; };
 		2ECC02E129B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewAccountPayload+Decodable.swift"; sourceTree = "<group>"; };
+		2ECC281129D7411D008F16F2 /* AddNewUserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserServiceProtocol.swift; sourceTree = "<group>"; };
 		2EF450B629D5F6E7007AB010 /* NewUserPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserPayload.swift; sourceTree = "<group>"; };
 		2EF450B829D5F86D007AB010 /* NewUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserInfo.swift; sourceTree = "<group>"; };
 		2EFF6D1B29AA188F007A46C5 /* NewAccountServiceResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountServiceResultMapper.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				2EF450B629D5F6E7007AB010 /* NewUserPayload.swift */,
 				2EF450B829D5F86D007AB010 /* NewUserInfo.swift */,
+				2ECC281129D7411D008F16F2 /* AddNewUserServiceProtocol.swift */,
 			);
 			path = "Add New User Feature";
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */,
 				2E3D588629CB7B2700B7F02A /* UserLoginService.swift in Sources */,
 				2E0EA12529A00041006402BE /* NewAccountPayload.swift in Sources */,
+				2ECC281229D7411D008F16F2 /* AddNewUserServiceProtocol.swift in Sources */,
 				2E03215829A93D1700B11ACD /* NewAccountService.swift in Sources */,
 				2EF450B929D5F86D007AB010 /* NewUserInfo.swift in Sources */,
 				2ECC02DD29B380CD00FD0AE7 /* UserLoginInfo.swift in Sources */,
