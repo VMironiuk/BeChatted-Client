@@ -81,7 +81,7 @@ final class AddNewUserServiceTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut: sut, toCompleteWithError: .connectivity, when: {
-            client.complete(withError: NSError(domain: "any error", code: 0))
+            client.complete(withError: anyNSError())
         })
     }
     
@@ -156,6 +156,10 @@ final class AddNewUserServiceTests: XCTestCase {
     
     private func httpResponse(withStatusCode code: Int) -> HTTPURLResponse {
         HTTPURLResponse(url: anyURL(), statusCode: code, httpVersion: nil, headerFields: nil)!
+    }
+    
+    private func anyNSError() -> NSError {
+        NSError(domain: "any error", code: 0)
     }
     
     private func anyNewUserPayload() -> NewUserPayload {
