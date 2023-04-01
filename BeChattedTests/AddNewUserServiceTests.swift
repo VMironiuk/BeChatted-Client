@@ -14,6 +14,7 @@ class AddNewUserService {
     
     enum AddNewUserError: Swift.Error {
         case connectivity
+        case server
     }
     
     typealias Error = AddNewUserError
@@ -28,7 +29,10 @@ class AddNewUserService {
         
         client.perform(request: request) { result in
             switch result {
-            case .success:
+            case let .success(_, response):
+                if response?.statusCode == 500 {
+                    completion(.failure(.server))
+                }
                 break
             case .failure:
                 completion(.failure(.connectivity))
@@ -92,7 +96,7 @@ final class AddNewUserServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        client.complete(with: NSError(domain: "any error", code: 0))
+        client.complete(withError: NSError(domain: "any error", code: 0))
         
         wait(for: [exp], timeout: 1.0)
         
@@ -100,7 +104,33 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(receivedError, .connectivity)
     }
     
-    // 5. send() delivers server error on 500 HTTP response
+    func test_send_deliversServerErrorOn500HTTPResponse() {
+        // given
+        let (sut, client) = makeSUT()
+        
+        // when
+        let exp = expectation(description: "Wait for completion")
+        var receivedError: AddNewUserService.Error?
+        sut.send(newUserPayload: anyNewUserPayload()) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+                
+            default:
+                XCTFail("Expected failure, got \(result) instead.")
+            }
+            
+            exp.fulfill()
+        }
+        
+        client.complete(withHTTPResponse: httpResponse(withStatusCode: 500))
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedError, .server)
+    }
+    
     // 6. send() delivers unknown error on non 200 HTTP response
     // 7. send() delivers invalid data error on 200 HTTP response with invalid body
     // 8. send() does not deliver result on client error after instance has been deallocated
@@ -127,6 +157,10 @@ final class AddNewUserServiceTests: XCTestCase {
     
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
+    }
+    
+    private func httpResponse(withStatusCode code: Int) -> HTTPURLResponse {
+        HTTPURLResponse(url: anyURL(), statusCode: code, httpVersion: nil, headerFields: nil)!
     }
     
     private func anyNewUserPayload() -> NewUserPayload {
@@ -158,8 +192,12 @@ final class AddNewUserServiceTests: XCTestCase {
             messages.append(Message(request: request, completion: completion))
         }
         
-        func complete(with error: Error, at index: Int = 0) {
+        func complete(withError error: Error, at index: Int = 0) {
             messages[0].completion(.failure(error))
+        }
+        
+        func complete(withHTTPResponse response: HTTPURLResponse, at index: Int = 0) {
+            messages[index].completion(.success(nil, response))
         }
     }
 }
