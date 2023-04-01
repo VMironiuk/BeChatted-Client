@@ -78,57 +78,19 @@ final class AddNewUserServiceTests: XCTestCase {
     }
     
     func test_send_deliversConnectivityErrorOnClientError() {
-        // given
         let (sut, client) = makeSUT()
         
-        // when
-        let exp = expectation(description: "Wait for completion")
-        var receivedError: AddNewUserService.Error?
-        sut.send(newUserPayload: anyNewUserPayload()) { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error
-                
-            default:
-                XCTFail("Expected failure, got \(result) instead.")
-            }
-            
-            exp.fulfill()
-        }
-        
-        client.complete(withError: NSError(domain: "any error", code: 0))
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        // then
-        XCTAssertEqual(receivedError, .connectivity)
+        expect(sut: sut, toCompleteWithError: .connectivity, when: {
+            client.complete(withError: NSError(domain: "any error", code: 0))
+        })
     }
     
     func test_send_deliversServerErrorOn500HTTPResponse() {
-        // given
         let (sut, client) = makeSUT()
         
-        // when
-        let exp = expectation(description: "Wait for completion")
-        var receivedError: AddNewUserService.Error?
-        sut.send(newUserPayload: anyNewUserPayload()) { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error
-                
-            default:
-                XCTFail("Expected failure, got \(result) instead.")
-            }
-            
-            exp.fulfill()
-        }
-        
-        client.complete(withHTTPResponse: httpResponse(withStatusCode: 500))
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        // then
-        XCTAssertEqual(receivedError, .server)
+        expect(sut: sut, toCompleteWithError: .server, when: {
+            client.complete(withHTTPResponse: httpResponse(withStatusCode: 500))
+        })
     }
     
     // 6. send() delivers unknown error on non 200 HTTP response
@@ -153,6 +115,39 @@ final class AddNewUserServiceTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, client)
+    }
+    
+    private func expect(
+        sut: AddNewUserService,
+        toCompleteWithError expectedError: AddNewUserService.Error,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        // given
+        let exp = expectation(description: "Wait for completion")
+        var receivedError: AddNewUserService.Error?
+        
+        sut.send(newUserPayload: anyNewUserPayload()) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+                
+            default:
+                XCTFail("Expected failure, got \(result) instead.", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        // when
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+
     }
     
     private func anyURL() -> URL {
