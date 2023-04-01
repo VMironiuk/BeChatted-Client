@@ -15,6 +15,7 @@ class AddNewUserService {
     enum AddNewUserError: Swift.Error {
         case connectivity
         case server
+        case unknown
     }
     
     typealias Error = AddNewUserError
@@ -32,6 +33,8 @@ class AddNewUserService {
             case let .success(_, response):
                 if response?.statusCode == 500 {
                     completion(.failure(.server))
+                } else {
+                    completion(.failure(.unknown))
                 }
                 break
             case .failure:
@@ -93,7 +96,17 @@ final class AddNewUserServiceTests: XCTestCase {
         })
     }
     
-    // 6. send() delivers unknown error on non 200 HTTP response
+    func test_send_deliversUnknownErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        let samples = [100, 199, 201, 300, 400, 599]
+        samples.enumerated().forEach { index, code in
+            expect(sut: sut, toCompleteWithError: .unknown, when: {
+                client.complete(withHTTPResponse: httpResponse(withStatusCode: code), at: index)
+            })
+        }
+    }
+    
     // 7. send() delivers invalid data error on 200 HTTP response with invalid body
     // 8. send() does not deliver result on client error after instance has been deallocated
     // 9. send() does not deliver result on 500 HTTP response after instance has been deallocated
