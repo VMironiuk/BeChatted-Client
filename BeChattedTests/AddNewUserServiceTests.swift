@@ -16,6 +16,7 @@ class AddNewUserService {
         case connectivity
         case server
         case unknown
+        case invalidData
     }
     
     typealias Error = AddNewUserError
@@ -30,8 +31,14 @@ class AddNewUserService {
         
         client.perform(request: request) { result in
             switch result {
-            case let .success(_, response):
-                if response?.statusCode == 500 {
+            case let .success(data, response):
+                if response?.statusCode == 200 {
+                    if let data = data, let newUser = try? JSONDecoder().decode(NewUserInfo.self, from: data) {
+                        completion(.success(newUser))
+                    } else {
+                        completion(.failure(.invalidData))
+                    }
+                } else if response?.statusCode == 500 {
                     completion(.failure(.server))
                 } else {
                     completion(.failure(.unknown))
@@ -92,7 +99,7 @@ final class AddNewUserServiceTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut: sut, toCompleteWithError: .server, when: {
-            client.complete(withHTTPResponse: httpResponse(withStatusCode: 500))
+            client.completeWith(response: httpResponse(withStatusCode: 500))
         })
     }
     
@@ -102,12 +109,19 @@ final class AddNewUserServiceTests: XCTestCase {
         let samples = [100, 199, 201, 300, 400, 599]
         samples.enumerated().forEach { index, code in
             expect(sut: sut, toCompleteWithError: .unknown, when: {
-                client.complete(withHTTPResponse: httpResponse(withStatusCode: code), at: index)
+                client.completeWith(response: httpResponse(withStatusCode: code), at: index)
             })
         }
     }
     
-    // 7. send() delivers invalid data error on 200 HTTP response with invalid body
+    func test_send_deliversInvalidDataErrorOn200HTTPResponseWithInvalidBody() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut: sut, toCompleteWithError: .invalidData, when: {
+            client.completeWith(data: "any data".data(using: .utf8), response: httpResponse(withStatusCode: 200))
+        })
+    }
+    
     // 8. send() does not deliver result on client error after instance has been deallocated
     // 9. send() does not deliver result on 500 HTTP response after instance has been deallocated
     // 10. send() does not deliver result on non 200 HTTP response after instance has been deallocated
@@ -208,8 +222,8 @@ final class AddNewUserServiceTests: XCTestCase {
             messages[0].completion(.failure(error))
         }
         
-        func complete(withHTTPResponse response: HTTPURLResponse, at index: Int = 0) {
-            messages[index].completion(.success(nil, response))
+        func completeWith(data: Data? = nil, response: HTTPURLResponse, at index: Int = 0) {
+            messages[index].completion(.success(data, response))
         }
     }
 }
