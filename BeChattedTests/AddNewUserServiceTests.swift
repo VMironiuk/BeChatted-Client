@@ -143,7 +143,20 @@ final class AddNewUserServiceTests: XCTestCase {
         })
     }
 
-    // 10. send() does not deliver result on non 200 HTTP response after instance has been deallocated
+    func test_send_doesNotDeliverResultOnNon200HTTPResponseAfterInstanceDeallocated() {
+        let url = anyURL()
+        let client = HTTPClientSpy()
+        var sut: AddNewUserService? = AddNewUserService(url: url, client: client)
+        
+        let samples = [199, 201, 300, 400]
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut: &sut, doesNotDeliverResultWhen: {
+                client.completeWith(response: httpResponse(withStatusCode: code))
+            })
+        }
+    }
+
     // 11. send() does not deliver result on 200 HTTP response after instance has been deallocated
     // 12. send() delivers new user info on 200HTTP response with valid body
     
@@ -261,7 +274,7 @@ final class AddNewUserServiceTests: XCTestCase {
         }
         
         func complete(withError error: Error, at index: Int = 0) {
-            messages[0].completion(.failure(error))
+            messages[index].completion(.failure(error))
         }
         
         func completeWith(data: Data? = nil, response: HTTPURLResponse, at index: Int = 0) {
