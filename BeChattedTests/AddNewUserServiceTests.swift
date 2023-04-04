@@ -119,7 +119,7 @@ final class AddNewUserServiceTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut: sut, toCompleteWithError: .invalidData, when: {
-            client.completeWith(data: "any data".data(using: .utf8), response: httpResponse(withStatusCode: 200))
+            client.completeWith(data: anyData(), response: httpResponse(withStatusCode: 200))
         })
     }
     
@@ -157,7 +157,16 @@ final class AddNewUserServiceTests: XCTestCase {
         }
     }
 
-    // 11. send() does not deliver result on 200 HTTP response after instance has been deallocated
+    func test_send_doesNotDeliverResultOn200HTTPResponseWithInvalidBodyAfterInstanceDeallocated() {
+        let url = anyURL()
+        let client = HTTPClientSpy()
+        var sut: AddNewUserService? = AddNewUserService(url: url, client: client)
+        
+        expect(sut: &sut, doesNotDeliverResultWhen: {
+            client.completeWith(data: anyData(), response: httpResponse(withStatusCode: 200))
+        })
+    }
+
     // 12. send() delivers new user info on 200HTTP response with valid body
     
     // MARK: - Helpers
@@ -242,6 +251,10 @@ final class AddNewUserServiceTests: XCTestCase {
     
     private func anyNSError() -> NSError {
         NSError(domain: "any error", code: 0)
+    }
+    
+    private func anyData() -> Data? {
+        "any data".data(using: .utf8)
     }
     
     private func anyNewUserPayload() -> NewUserPayload {
