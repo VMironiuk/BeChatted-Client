@@ -29,7 +29,8 @@ class AddNewUserService {
     func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
         let request = URLRequest(url: url)
         
-        client.perform(request: request) { result in
+        client.perform(request: request) { [weak self] result in
+            guard self != nil else { return }
             switch result {
             case let .success(data, response):
                 if response?.statusCode == 200 {
@@ -122,7 +123,16 @@ final class AddNewUserServiceTests: XCTestCase {
         })
     }
     
-    // 8. send() does not deliver result on client error after instance has been deallocated
+    func test_send_doesNotDeliverResultOnClientErrorAfterInstanceDeallocated() {
+        let url = anyURL()
+        let client = HTTPClientSpy()
+        var sut: AddNewUserService? = AddNewUserService(url: url, client: client)
+        
+        expect(sut: &sut, doesNotDeliverResultWhen: {
+            client.complete(withError: anyNSError())
+        })
+    }
+    
     // 9. send() does not deliver result on 500 HTTP response after instance has been deallocated
     // 10. send() does not deliver result on non 200 HTTP response after instance has been deallocated
     // 11. send() does not deliver result on 200 HTTP response after instance has been deallocated
@@ -174,8 +184,31 @@ final class AddNewUserServiceTests: XCTestCase {
         
         // then
         XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+    }
+    
+    private func expect(
+        sut: inout AddNewUserService?,
+        doesNotDeliverResultWhen action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        // given
+        var receivedResult: Result<NewUserInfo, AddNewUserService.Error>?
+        
+        sut?.send(newUserPayload: anyNewUserPayload()) { result in
+            receivedResult = result
+        }
+        
+        // when
+        sut = nil
+        
+        action()
+        
+        // then
+        XCTAssertNil(receivedResult, file: file, line: line)
 
     }
+
     
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
