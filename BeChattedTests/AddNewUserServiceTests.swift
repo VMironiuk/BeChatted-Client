@@ -133,7 +133,16 @@ final class AddNewUserServiceTests: XCTestCase {
         })
     }
     
-    // 9. send() does not deliver result on 500 HTTP response after instance has been deallocated
+    func test_send_doesNotDeliverResultOn500HTTPResponseAfterInstanceDeallocated() {
+        let url = anyURL()
+        let client = HTTPClientSpy()
+        var sut: AddNewUserService? = AddNewUserService(url: url, client: client)
+        
+        expect(sut: &sut, doesNotDeliverResultWhen: {
+            client.completeWith(response: httpResponse(withStatusCode: 500))
+        })
+    }
+
     // 10. send() does not deliver result on non 200 HTTP response after instance has been deallocated
     // 11. send() does not deliver result on 200 HTTP response after instance has been deallocated
     // 12. send() delivers new user info on 200HTTP response with valid body
