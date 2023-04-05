@@ -7,12 +7,7 @@
 
 import Foundation
 
-public struct UserLoginInfo: Codable, Equatable {
+public struct UserLoginInfo: Decodable, Equatable {
     let user: String
     let token: String
-    
-    public init(user: String, token: String) {
-        self.user = user
-        self.token = token
-    }
 }

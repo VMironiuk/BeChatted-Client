@@ -51,8 +51,8 @@ I cannot login into the app
 
 ```
 Given the user has no connectivity
+ Wnen the user requests a user login
  Then the app should display an error message
-  And there should no possibility to send a login request
 ```
 
 ## Use Cases
@@ -81,7 +81,7 @@ Given the user has no connectivity
 2. System does not allow to enter the application.
 
 ### Non 200 HTTP response - error course (sad path):
-1. System delivers unknown server.
+1. System delivers unknown error.
 
 #### No connectivity - error course (sad path):
 1. System delivers no connectivity error.
@@ -102,14 +102,14 @@ Given the user has no connectivity
 POST /v1/account/login
 
 {
-  "email": "example@email.com"
+  "email": "example@email.com",
   "password": "123456" 
 }
 
 200 RESPONSE
 
 {
-  "user": "<USER>"
+  "user": "<USER>",
   "token": "<ACCESS_TOKEN>"
 }
 

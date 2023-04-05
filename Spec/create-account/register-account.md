@@ -51,8 +51,8 @@ I cannot register a new account
 
 ```
 Given the user has no connectivity
+ When the user requests a new account registration
  Then the app should display an error message
-  And there should no possibility to send a registration request
 ```
 
 ## Use Cases
@@ -97,7 +97,7 @@ Given the user has no connectivity
 POST /v1/account/register
 
 {
-  "email": "example@email.com"
+  "email": "example@email.com",
   "password": "123456" 
 }
 

@@ -9,6 +9,8 @@ import Foundation
 
 
 struct NewAccountServiceResultMapper {
+    private init() {}
+    
     static func result(for response: HTTPURLResponse?) -> Result<Void, Error> {
         guard let response = response else { return .failure(NewAccountService.Error.unknown) }
         

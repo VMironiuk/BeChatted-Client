@@ -8,6 +8,8 @@
 import Foundation
 
 struct UserLoginServiceResultMapper {
+    private init() {}
+    
     static func result(for data: Data?, response: HTTPURLResponse?) -> Result<UserLoginInfo, Swift.Error> {
         guard let response = response else { return .failure(UserLoginService.Error.unknown) }
         
