@@ -8,50 +8,6 @@
 import XCTest
 import BeChatted
 
-class AddNewUserService {
-    private let url: URL
-    private let client: HTTPClientProtocol
-    
-    enum AddNewUserError: Swift.Error {
-        case connectivity
-        case server
-        case unknown
-        case invalidData
-    }
-    
-    typealias Error = AddNewUserError
-    
-    init(url: URL, client: HTTPClientProtocol) {
-        self.url = url
-        self.client = client
-    }
-    
-    func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
-        let request = URLRequest(url: url)
-        
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            switch result {
-            case let .success(data, response):
-                if response?.statusCode == 200 {
-                    if let data = data, let newUser = try? JSONDecoder().decode(NewUserInfo.self, from: data) {
-                        completion(.success(newUser))
-                    } else {
-                        completion(.failure(.invalidData))
-                    }
-                } else if response?.statusCode == 500 {
-                    completion(.failure(.server))
-                } else {
-                    completion(.failure(.unknown))
-                }
-                break
-            case .failure:
-                completion(.failure(.connectivity))
-            }
-        }
-    }
-}
-
 final class AddNewUserServiceTests: XCTestCase {
 
     func test_init_doesNotSendNewUserPayloadByURL() {
