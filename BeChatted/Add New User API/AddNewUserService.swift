@@ -30,22 +30,12 @@ public final class AddNewUserService: AddNewUserServiceProtocol {
         
         client.perform(request: request) { [weak self] result in
             guard self != nil else { return }
+            
             switch result {
             case let .success(data, response):
-                if response?.statusCode == 200 {
-                    if let data = data, let newUser = try? JSONDecoder().decode(NewUserInfo.self, from: data) {
-                        completion(.success(newUser))
-                    } else {
-                        completion(.failure(AddNewUserError.invalidData))
-                    }
-                } else if response?.statusCode == 500 {
-                    completion(.failure(AddNewUserError.server))
-                } else {
-                    completion(.failure(AddNewUserError.unknown))
-                }
-                break
+                completion(AddNewUserServiceResultMapper.result(for: data, response: response))
             case .failure:
-                completion(.failure(AddNewUserError.connectivity))
+                completion(.failure(Error.connectivity))
             }
         }
     }
