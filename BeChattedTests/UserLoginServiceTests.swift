@@ -133,11 +133,16 @@ final class UserLoginServiceTests: XCTestCase {
     }
 
     func test_send_deliversUserLoginInfoOn200HTTPResponse() {
-        let expectedUserLoginInfo = UserLoginInfo(user: "a user", token: "auth token")
+        let expectedUserLoginInfoData = """
+        {
+            "user": "a user",
+            "token": "auth token"
+        }
+        """.data(using: .utf8)
+        let expectedUserLoginInfo = try! JSONDecoder().decode(UserLoginInfo.self, from: expectedUserLoginInfoData!)
         let (sut, client) = makeSUT()
         
         expect(sut: sut, toCompleteWithUserLoginInfo: expectedUserLoginInfo, when: {
-            let expectedUserLoginInfoData = try! JSONEncoder().encode(expectedUserLoginInfo)
             client.complete(withHTTPResponse: httpResponse(withStatusCode: 200), data: expectedUserLoginInfoData)
         })
     }
