@@ -167,7 +167,43 @@ final class AddNewUserServiceTests: XCTestCase {
         })
     }
 
-    // 12. send() delivers new user info on 200HTTP response with valid body
+    func test_send_deliversNewUserInfoOn200HTTPResponseWithValidBody() {
+        // given
+        let (sut, client) = makeSUT()
+        
+        let expectedNewUserInfoData = """
+        {
+            "name": "new user",
+            "email": "new-user@example.com",
+            "avatarName": "avatarName",
+            "avatarColor": "avatarColor"
+        }
+        """.data(using: .utf8)
+        let expectedNewUserInfo = try! JSONDecoder().decode(NewUserInfo.self, from: expectedNewUserInfoData!)
+        
+        let exp = expectation(description: "Wait for completion")
+        var receivedNewUserInfo: NewUserInfo?
+        
+        sut.send(newUserPayload: anyNewUserPayload()) { result in
+            switch result {
+            case let .success(newUserInfo):
+                receivedNewUserInfo = newUserInfo
+                
+            default:
+                XCTFail("Expected new user info, got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        // when
+        client.completeWith(data: expectedNewUserInfoData, response: httpResponse(withStatusCode: 200))
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedNewUserInfo, expectedNewUserInfo)
+    }
     
     // MARK: - Helpers
     
