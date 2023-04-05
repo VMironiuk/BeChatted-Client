@@ -172,7 +172,7 @@ final class AddNewUserServiceTests: XCTestCase {
         sut.send(newUserPayload: anyNewUserPayload()) { result in
             switch result {
             case let .failure(error):
-                receivedError = error
+                receivedError = error as? AddNewUserService.Error
                 
             default:
                 XCTFail("Expected failure, got \(result) instead.", file: file, line: line)
@@ -197,7 +197,7 @@ final class AddNewUserServiceTests: XCTestCase {
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<NewUserInfo, AddNewUserService.Error>?
+        var receivedResult: Result<NewUserInfo, Error>?
         
         sut?.send(newUserPayload: anyNewUserPayload()) { result in
             receivedResult = result

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class AddNewUserService {
+public final class AddNewUserService: AddNewUserServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
@@ -25,7 +25,7 @@ public final class AddNewUserService {
         self.client = client
     }
     
-    public func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
+    public func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Swift.Error>) -> Void) {
         let request = URLRequest(url: url)
         
         client.perform(request: request) { [weak self] result in
@@ -36,16 +36,16 @@ public final class AddNewUserService {
                     if let data = data, let newUser = try? JSONDecoder().decode(NewUserInfo.self, from: data) {
                         completion(.success(newUser))
                     } else {
-                        completion(.failure(.invalidData))
+                        completion(.failure(AddNewUserError.invalidData))
                     }
                 } else if response?.statusCode == 500 {
-                    completion(.failure(.server))
+                    completion(.failure(AddNewUserError.server))
                 } else {
-                    completion(.failure(.unknown))
+                    completion(.failure(AddNewUserError.unknown))
                 }
                 break
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(AddNewUserError.connectivity))
             }
         }
     }
