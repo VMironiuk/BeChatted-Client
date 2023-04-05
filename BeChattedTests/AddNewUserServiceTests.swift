@@ -181,28 +181,9 @@ final class AddNewUserServiceTests: XCTestCase {
         """.data(using: .utf8)
         let expectedNewUserInfo = try! JSONDecoder().decode(NewUserInfo.self, from: expectedNewUserInfoData!)
         
-        let exp = expectation(description: "Wait for completion")
-        var receivedNewUserInfo: NewUserInfo?
-        
-        sut.send(newUserPayload: anyNewUserPayload()) { result in
-            switch result {
-            case let .success(newUserInfo):
-                receivedNewUserInfo = newUserInfo
-                
-            default:
-                XCTFail("Expected new user info, got \(result) instead")
-            }
-            
-            exp.fulfill()
-        }
-        
-        // when
-        client.completeWith(data: expectedNewUserInfoData, response: httpResponse(withStatusCode: 200))
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        // then
-        XCTAssertEqual(receivedNewUserInfo, expectedNewUserInfo)
+        expect(sut: sut, toCompleteWithNewUserInfo: expectedNewUserInfo, when: {
+            client.completeWith(data: expectedNewUserInfoData, response: httpResponse(withStatusCode: 200))
+        })
     }
     
     // MARK: - Helpers
@@ -276,6 +257,38 @@ final class AddNewUserServiceTests: XCTestCase {
 
     }
 
+    private func expect(
+        sut: AddNewUserService,
+        toCompleteWithNewUserInfo expectedNewUserInfo: NewUserInfo,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        // given
+        let exp = expectation(description: "Wait for completion")
+        var receivedNewUserInfo: NewUserInfo?
+        
+        sut.send(newUserPayload: anyNewUserPayload()) { result in
+            switch result {
+            case let .success(newUserInfo):
+                receivedNewUserInfo = newUserInfo
+                
+            default:
+                XCTFail("Expected new user info, got \(result) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        // when
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedNewUserInfo, expectedNewUserInfo, file: file, line: line)
+
+    }
     
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
