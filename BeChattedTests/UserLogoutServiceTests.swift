@@ -27,10 +27,14 @@ final class UserLogoutService {
 final class UserLogoutServiceTests: XCTestCase {
     
     func test_init_doesNotSendRequestByURL() {
+        // given
         let client = HTTPClientSpy()
         let url = URL(string: "http://any-url.com")!
+        
+        // when
         _ = UserLogoutService(url: url, client: client)
         
+        // then
         XCTAssertNil(client.requestedURL)
     }
     
