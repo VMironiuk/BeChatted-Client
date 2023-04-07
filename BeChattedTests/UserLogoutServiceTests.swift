@@ -24,7 +24,9 @@ final class UserLogoutService {
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         let request = URLRequest(url: url)
         
-        client.perform(request: request) { result in
+        client.perform(request: request) { [weak self] result in
+            guard self != nil else { return }
+            
             switch result {
             case .success:
                 break
@@ -101,7 +103,32 @@ final class UserLogoutServiceTests: XCTestCase {
         XCTAssertEqual(receivedError, .connectivity)
     }
     
-    // 5. logout() does not deliver result after the instance has been deallocated
+    func test_logout_doesNotDeliverErrorAfterInstanceHasBeenDeallocated() {
+        // given
+        let url = anyURL()
+        let client = HTTPClientSpy()
+        var sut: UserLogoutService? = UserLogoutService(url: url, client: client)
+        
+        var receivedError: UserLogoutService.Error?
+        sut?.logout() { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+                
+            default:
+                XCTFail("Expected failure, got \(result) instead")
+            }
+        }
+        
+        // when
+        sut = nil
+        
+        client.complete(withError: NSError(domain: "any error", code: 0))
+        
+        // then
+        XCTAssertNil(receivedError)
+    }
+
     // 6. logout() delivers successful result on any HTTP response
     
     // MARK: - Helpers
