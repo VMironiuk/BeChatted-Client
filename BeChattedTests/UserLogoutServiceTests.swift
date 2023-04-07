@@ -128,6 +128,26 @@ final class UserLogoutServiceTests: XCTestCase {
         // then
         XCTAssertNil(receivedError)
     }
+    
+    func test_logout_doesNotDeliverResultAfterInstanceHasBeenDeallocated() {
+        // given
+        let url = anyURL()
+        let client = HTTPClientSpy()
+        var sut: UserLogoutService? = UserLogoutService(url: url, client: client)
+        
+        var receivedResult: Result<Void, UserLogoutService.Error>?
+        sut?.logout() { result in
+            receivedResult = result
+        }
+        
+        // when
+        sut = nil
+        
+        client.complete()
+        
+        // then
+        XCTAssertNil(receivedResult)
+    }
 
     // 6. logout() delivers successful result on any HTTP response
     
@@ -169,6 +189,10 @@ final class UserLogoutServiceTests: XCTestCase {
         
         func complete(withError error: Error, at index: Int = 0) {
             messages[index].completion(.failure(error))
+        }
+        
+        func complete(at index: Int = 0) {
+            messages[index].completion(.success(nil, nil))
         }
     }
 }
