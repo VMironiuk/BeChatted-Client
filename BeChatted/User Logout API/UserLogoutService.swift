@@ -7,7 +7,8 @@
 
 import Foundation
 
-public final class UserLogoutService {
+public final class UserLogoutService: UserLogoutServiceProtocol {
+    
     private let url: URL
     private let client: HTTPClientProtocol
     
@@ -20,7 +21,7 @@ public final class UserLogoutService {
         self.client = client
     }
     
-    public func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+    public func logout(completion: @escaping (Result<Void, Swift.Error>) -> Void) {
         let request = URLRequest(url: url)
         
         client.perform(request: request) { [weak self] result in
@@ -30,7 +31,7 @@ public final class UserLogoutService {
             case .success:
                 completion(.success(()))
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             }
         }
     }
