@@ -29,7 +29,7 @@ final class UserLogoutService {
             
             switch result {
             case .success:
-                break
+                completion(.success(()))
             case .failure:
                 completion(.failure(.connectivity))
             }
@@ -149,7 +149,21 @@ final class UserLogoutServiceTests: XCTestCase {
         XCTAssertNil(receivedResult)
     }
 
-    // 6. logout() delivers successful result on any HTTP response
+    func test_logout_deliversSuccessfulResultOnAnyResponse() {
+        // given
+        let (sut, client) = makeSUT()
+        
+        var receivedResult: Result<Void, UserLogoutService.Error>?
+        sut.logout() { result in
+            receivedResult = result
+        }
+        
+        // when
+        client.complete()
+        
+        // then
+        XCTAssertNotNil(receivedResult)
+    }
     
     // MARK: - Helpers
     
