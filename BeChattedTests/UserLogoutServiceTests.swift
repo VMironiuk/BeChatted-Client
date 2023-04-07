@@ -16,6 +16,12 @@ final class UserLogoutService {
         self.url = url
         self.client = client
     }
+    
+    func send() {
+        let request = URLRequest(url: url)
+        
+        client.perform(request: request, completion: { _ in })
+    }
 }
 
 final class UserLogoutServiceTests: XCTestCase {
@@ -28,7 +34,19 @@ final class UserLogoutServiceTests: XCTestCase {
         XCTAssertNil(client.requestedURL)
     }
     
-    // 2. send() sends logout request by URL
+    func test_send_sendsLogoutRequestByURL() {
+        // given
+        let client = HTTPClientSpy()
+        let url = URL(string: "http://any-url.com")!
+        let sut = UserLogoutService(url: url, client: client)
+        
+        // when
+        sut.send()
+        
+        // then
+        XCTAssertNotNil(client.requestedURL)
+    }
+
     // 3. send() sends logout request by URL twice
     // 4. send() delivers connectivity error on client error
     // 5. send() does not deliver result after the instance has been deallocated
