@@ -12,15 +12,26 @@ final class UserLogoutService {
     private let url: URL
     private let client: HTTPClientProtocol
     
+    enum Error: Swift.Error {
+        case connectivity
+    }
+    
     init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
-    func send() {
+    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         let request = URLRequest(url: url)
         
-        client.perform(request: request, completion: { _ in })
+        client.perform(request: request) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                completion(.failure(.connectivity))
+            }
+        }
     }
 }
 
@@ -38,34 +49,60 @@ final class UserLogoutServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [])
     }
     
-    func test_send_sendsLogoutRequestByURL() {
+    func test_logout_sendsLogoutRequestByURL() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send()
+        sut.logout() { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
     }
 
-    func test_send_sendsLogoutRequestByURLTwice() {
+    func test_logout_sendsLogoutRequestByURLTwice() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send()
-        sut.send()
+        sut.logout() { _ in }
+        sut.logout() { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
 
-    // 4. send() delivers connectivity error on client error
-    // 5. send() does not deliver result after the instance has been deallocated
-    // 6. send() delivers successful result on any HTTP response
+    func test_logout_deliversConnectivityErrorOnClientError() {
+        // given
+        let (sut, client) = makeSUT()
+        
+        var receivedError: UserLogoutService.Error?
+        let exp = expectation(description: "Wait for completion")
+        sut.logout() { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+                
+            default:
+                XCTFail("Expected failure, got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        // when
+        client.complete(withError: NSError(domain: "any error", code: 0))
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        // then
+        XCTAssertEqual(receivedError, .connectivity)
+    }
+    
+    // 5. logout() does not deliver result after the instance has been deallocated
+    // 6. logout() delivers successful result on any HTTP response
     
     // MARK: - Helpers
     
@@ -88,12 +125,23 @@ final class UserLogoutServiceTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
-        private(set) var requestedURLs = [URL]()
+        private var messages = [Message]()
         
-        func perform(request: URLRequest, completion: @escaping (BeChatted.HTTPClientResult) -> Void) {
-            if let url = request.url {
-                requestedURLs.append(url)
-            }
+        var requestedURLs: [URL] {
+            messages.compactMap { $0.request.url }
+        }
+        
+        private struct Message {
+            let request: URLRequest
+            let completion: (HTTPClientResult) -> Void
+        }
+        
+        func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
+            messages.append(Message(request: request, completion: completion))
+        }
+        
+        func complete(withError error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     }
 }
