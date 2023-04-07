@@ -19,6 +19,7 @@
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */; };
 		2EAC443C29B5FC4900CC7697 /* UserLoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */; };
+		2EB7F43329E0862700F765B7 /* UserLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7F43229E0862700F765B7 /* UserLogoutService.swift */; };
 		2EBDD4E229BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */; };
 		2EC581D529DDECAD0044B64E /* AddNewUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC581D429DDECAD0044B64E /* AddNewUserService.swift */; };
 		2EC581D729DDEFC90044B64E /* AddNewUserServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC581D629DDEFC90044B64E /* AddNewUserServiceResultMapper.swift */; };
@@ -57,6 +58,7 @@
 		2E64BFF9299EB047000451D9 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginPayload.swift; sourceTree = "<group>"; };
 		2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceTests.swift; sourceTree = "<group>"; };
+		2EB7F43229E0862700F765B7 /* UserLogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogoutService.swift; sourceTree = "<group>"; };
 		2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2EC581D429DDECAD0044B64E /* AddNewUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserService.swift; sourceTree = "<group>"; };
 		2EC581D629DDEFC90044B64E /* AddNewUserServiceResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserServiceResultMapper.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				2E03215929A93DA800B11ACD /* New Account API */,
 				2E3D588729CB7B4600B7F02A /* User Login API */,
 				2EC581D329DDEC7C0044B64E /* Add New User API */,
+				2EB7F43429E0868000F765B7 /* User Logout API */,
 			);
 			path = BeChatted;
 			sourceTree = "<group>";
@@ -179,6 +182,14 @@
 				2ECC02DE29B382F000FD0AE7 /* UserLoginServiceProtocol.swift */,
 			);
 			path = "User Login Feature";
+			sourceTree = "<group>";
+		};
+		2EB7F43429E0868000F765B7 /* User Logout API */ = {
+			isa = PBXGroup;
+			children = (
+				2EB7F43229E0862700F765B7 /* UserLogoutService.swift */,
+			);
+			path = "User Logout API";
 			sourceTree = "<group>";
 		};
 		2EC581D329DDEC7C0044B64E /* Add New User API */ = {
@@ -343,6 +354,7 @@
 				2E3D588A29CB81B000B7F02A /* UserLoginServiceResultMapper.swift in Sources */,
 				2E0EA12729A0044F006402BE /* NewAccountServiceProtocol.swift in Sources */,
 				2EC581D729DDEFC90044B64E /* AddNewUserServiceResultMapper.swift in Sources */,
+				2EB7F43329E0862700F765B7 /* UserLogoutService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,35 +8,6 @@
 import XCTest
 import BeChatted
 
-final class UserLogoutService {
-    private let url: URL
-    private let client: HTTPClientProtocol
-    
-    enum Error: Swift.Error {
-        case connectivity
-    }
-    
-    init(url: URL, client: HTTPClientProtocol) {
-        self.url = url
-        self.client = client
-    }
-    
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        let request = URLRequest(url: url)
-        
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure:
-                completion(.failure(.connectivity))
-            }
-        }
-    }
-}
-
 final class UserLogoutServiceTests: XCTestCase {
     
     func test_init_doesNotSendRequestByURL() {
