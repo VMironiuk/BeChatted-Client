@@ -18,6 +18,7 @@
 		2E64BFFA299EB047000451D9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64BFF1299EB047000451D9 /* BeChatted.framework */; };
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */; };
+		2E9EF29029E8766B0031BE21 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EF28F29E8766B0031BE21 /* URLSessionHTTPClientTests.swift */; };
 		2EAC443C29B5FC4900CC7697 /* UserLoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */; };
 		2EB7F43329E0862700F765B7 /* UserLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB7F43229E0862700F765B7 /* UserLogoutService.swift */; };
 		2EBDD4E229BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -57,6 +58,7 @@
 		2E64BFF4299EB047000451D9 /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
 		2E64BFF9299EB047000451D9 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginPayload.swift; sourceTree = "<group>"; };
+		2E9EF28F29E8766B0031BE21 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceTests.swift; sourceTree = "<group>"; };
 		2EB7F43229E0862700F765B7 /* UserLogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogoutService.swift; sourceTree = "<group>"; };
 		2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */,
 				2E5738C029D34ADD00BA2E8A /* AddNewUserServiceTests.swift */,
 				2EDA004529E0760C004CB9A1 /* UserLogoutServiceTests.swift */,
+				2E9EF28F29E8766B0031BE21 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E9EF29029E8766B0031BE21 /* URLSessionHTTPClientTests.swift in Sources */,
 				2EDA004629E0760C004CB9A1 /* UserLogoutServiceTests.swift in Sources */,
 				2E158A6E29A0F394001B2521 /* NewAccountServiceTests.swift in Sources */,
 				2EBDD4E229BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
