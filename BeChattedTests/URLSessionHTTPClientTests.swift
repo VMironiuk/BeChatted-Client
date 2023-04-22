@@ -9,6 +9,8 @@ import XCTest
 import BeChatted
 
 final class URLSessionHTTPClient: HTTPClientProtocol {
+    struct UnexpectedValuesRepresentation: Error {}
+    
     private let session: URLSession
     
     init(session: URLSession = .shared) {
@@ -19,6 +21,8 @@ final class URLSessionHTTPClient: HTTPClientProtocol {
         session.dataTask(with: request) { _, _, error in
             if let error = error {
                 completion(.failure(error))
+            } else {
+                completion(.failure(UnexpectedValuesRepresentation()))
             }
         }.resume()
     }
@@ -60,6 +64,24 @@ final class URLSessionHTTPClientTests: XCTestCase {
             case let .failure(receivedError as NSError):
                 XCTAssertEqual(receivedError.domain, error.domain)
                 XCTAssertEqual(receivedError.code, error.code)
+            default:
+                XCTFail("Expected failure, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_performRequest_failsOnAllNilValues() {
+        let request = URLRequest(url: anyURL())
+        URLProtocolStub.stub(data: nil, response: nil, error: nil)
+                
+        let exp = expectation(description: "Wait for completion")
+        makeSUT().perform(request: request) { result in
+            switch result {
+            case .failure:
+                break
             default:
                 XCTFail("Expected failure, got \(result) instead")
             }
