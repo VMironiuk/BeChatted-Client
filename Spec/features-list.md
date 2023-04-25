@@ -6,3 +6,4 @@
 * [Create a channel](create-channel.md)
 * [Send a message](send-message.md)
 * [Fetch channels](fetch-channels.md)
+* [URLSession HTTP client](urlsession-http-client.md)
