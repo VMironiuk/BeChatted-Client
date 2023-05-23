@@ -17,6 +17,7 @@
 		2E5738C129D34ADD00BA2E8A /* AddNewUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5738C029D34ADD00BA2E8A /* AddNewUserServiceTests.swift */; };
 		2E64BFFA299EB047000451D9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64BFF1299EB047000451D9 /* BeChatted.framework */; };
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E75272D2A1D228600E4AAF2 /* EmailUserInputValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75272C2A1D228600E4AAF2 /* EmailUserInputValidationTests.swift */; };
 		2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */; };
 		2E9EF29029E8766B0031BE21 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EF28F29E8766B0031BE21 /* URLSessionHTTPClientTests.swift */; };
 		2EAC443C29B5FC4900CC7697 /* UserLoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */; };
@@ -58,6 +59,7 @@
 		2E64BFF1299EB047000451D9 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E64BFF4299EB047000451D9 /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
 		2E64BFF9299EB047000451D9 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E75272C2A1D228600E4AAF2 /* EmailUserInputValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailUserInputValidationTests.swift; sourceTree = "<group>"; };
 		2E80D0C329B37E37003598C7 /* UserLoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginPayload.swift; sourceTree = "<group>"; };
 		2E9EF28F29E8766B0031BE21 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		2EAC443B29B5FC4900CC7697 /* UserLoginServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceTests.swift; sourceTree = "<group>"; };
@@ -201,8 +203,17 @@
 			children = (
 				2ECC02E029B384E400FD0AE7 /* Helpers */,
 				2E00218329F96C6500CAAFAE /* Auth Service */,
+				2E7527292A1BC0A800E4AAF2 /* User Input Validation */,
 			);
 			path = BeChattedTests;
+			sourceTree = "<group>";
+		};
+		2E7527292A1BC0A800E4AAF2 /* User Input Validation */ = {
+			isa = PBXGroup;
+			children = (
+				2E75272C2A1D228600E4AAF2 /* EmailUserInputValidationTests.swift */,
+			);
+			path = "User Input Validation";
 			sourceTree = "<group>";
 		};
 		2E80D0C529B37E7E003598C7 /* User Login Feature */ = {
@@ -396,6 +407,7 @@
 				2E9EF29029E8766B0031BE21 /* URLSessionHTTPClientTests.swift in Sources */,
 				2EDA004629E0760C004CB9A1 /* UserLogoutServiceTests.swift in Sources */,
 				2E158A6E29A0F394001B2521 /* NewAccountServiceTests.swift in Sources */,
+				2E75272D2A1D228600E4AAF2 /* EmailUserInputValidationTests.swift in Sources */,
 				2EBDD4E229BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2EAC443C29B5FC4900CC7697 /* UserLoginServiceTests.swift in Sources */,
 				2ECC02E229B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift in Sources */,
