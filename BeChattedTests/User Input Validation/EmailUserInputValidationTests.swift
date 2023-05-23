@@ -24,4 +24,14 @@ final class EmailUserInputValidationTests: XCTestCase {
         // then
         XCTAssertFalse(sut.isValid(email))
     }
+    
+    func test_isValid_returnsFalseForTwoAtSymbols() {
+        // given
+        let email = "email@@example.com"
+        let sut = EmailValidator()
+        
+        // when
+        // then
+        XCTAssertFalse(sut.isValid(email))
+    }
 }
