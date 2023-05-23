@@ -64,4 +64,14 @@ final class EmailUserInputValidationTests: XCTestCase {
         // then
         XCTAssertFalse(sut.isValid(email))
     }
+    
+    func test_isValid_returnsFalseIfLocalPartEndsWithUnderscore() {
+        // given
+        let email = "email_@example.com"
+        let sut = EmailValidator()
+
+        // when
+        // then
+        XCTAssertFalse(sut.isValid(email))
+    }
 }
