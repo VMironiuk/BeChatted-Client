@@ -84,4 +84,14 @@ final class EmailUserInputValidationTests: XCTestCase {
         // then
         XCTAssertFalse(sut.isValid(email))
     }
+    
+    func test_isValid_returnsFalseIfDomainPartDoesNotContainPeriod() {
+        // given
+        let email = "email@examplecom"
+        let sut = EmailValidator()
+
+        // when
+        // then
+        XCTAssertFalse(sut.isValid(email))
+    }
 }
