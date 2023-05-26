@@ -104,4 +104,14 @@ final class EmailUserInputValidationTests: XCTestCase {
         // then
         XCTAssertFalse(sut.isValid(email))
     }
+    
+    func test_isValid_returnsFalseIfDomainPartContainsInvalidCharacter() {
+        // given
+        let email = "email@e%ample.com"
+        let sut = EmailValidator()
+
+        // when
+        // then
+        XCTAssertFalse(sut.isValid(email))
+    }
 }
