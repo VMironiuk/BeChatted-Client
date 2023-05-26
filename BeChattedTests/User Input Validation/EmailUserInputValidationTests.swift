@@ -114,4 +114,15 @@ final class EmailUserInputValidationTests: XCTestCase {
         // then
         XCTAssertFalse(sut.isValid(email))
     }
+    
+    func test_isValid_returnsFalseIfDomainPartContainsMoreThan255Characters() {
+        // given
+        let domain = Array(repeating: "example", count: 37).joined()
+        let email = "email@\(domain).com"
+        let sut = EmailValidator()
+
+        // when
+        // then
+        XCTAssertFalse(sut.isValid(email))
+    }
 }
