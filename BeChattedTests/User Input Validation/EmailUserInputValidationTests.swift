@@ -6,14 +6,7 @@
 //
 
 import XCTest
-
-struct EmailValidator {
-    func isValid(_ email: String) -> Bool {
-        let emailRegEx = "^(?!\\.)(?!.*\\.\\.)(?!_)(?!.*_{2})[A-Z0-9a-z%+\\-]{1,64}(\\.[A-Z0-9a-z%+\\-]+)*@(?!-)(?!.*--)[A-Za-z0-9.-]{1,255}\\.[A-Za-z]{2,63}$"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPredicate.evaluate(with: email)
-    }
-}
+import BeChatted
 
 final class EmailUserInputValidationTests: XCTestCase {
 

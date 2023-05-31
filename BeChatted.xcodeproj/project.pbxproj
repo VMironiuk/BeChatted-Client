@@ -26,6 +26,7 @@
 		2EBDD4E229BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */; };
 		2EC581D529DDECAD0044B64E /* AddNewUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC581D429DDECAD0044B64E /* AddNewUserService.swift */; };
 		2EC581D729DDEFC90044B64E /* AddNewUserServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC581D629DDEFC90044B64E /* AddNewUserServiceResultMapper.swift */; };
+		2EC8A56E2A27B51700FAADF6 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC8A56D2A27B51700FAADF6 /* EmailValidator.swift */; };
 		2ECC02DD29B380CD00FD0AE7 /* UserLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02DC29B380CD00FD0AE7 /* UserLoginInfo.swift */; };
 		2ECC02DF29B382F000FD0AE7 /* UserLoginServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02DE29B382F000FD0AE7 /* UserLoginServiceProtocol.swift */; };
 		2ECC02E229B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC02E129B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift */; };
@@ -68,6 +69,7 @@
 		2EBDD4E129BF905B008F0247 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2EC581D429DDECAD0044B64E /* AddNewUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserService.swift; sourceTree = "<group>"; };
 		2EC581D629DDEFC90044B64E /* AddNewUserServiceResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserServiceResultMapper.swift; sourceTree = "<group>"; };
+		2EC8A56D2A27B51700FAADF6 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		2ECC02DC29B380CD00FD0AE7 /* UserLoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginInfo.swift; sourceTree = "<group>"; };
 		2ECC02DE29B382F000FD0AE7 /* UserLoginServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceProtocol.swift; sourceTree = "<group>"; };
 		2ECC02E129B384FE00FD0AE7 /* NewAccountPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewAccountPayload+Decodable.swift"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				2E64BFF4299EB047000451D9 /* BeChatted.h */,
 				2E00218529F96CB400CAAFAE /* Auth Service */,
+				2EC8A56C2A27B4EF00FAADF6 /* User Input Validation */,
 			);
 			path = BeChatted;
 			sourceTree = "<group>";
@@ -241,6 +244,14 @@
 				2EC581D629DDEFC90044B64E /* AddNewUserServiceResultMapper.swift */,
 			);
 			path = "Add New User API";
+			sourceTree = "<group>";
+		};
+		2EC8A56C2A27B4EF00FAADF6 /* User Input Validation */ = {
+			isa = PBXGroup;
+			children = (
+				2EC8A56D2A27B51700FAADF6 /* EmailValidator.swift */,
+			);
+			path = "User Input Validation";
 			sourceTree = "<group>";
 		};
 		2ECC02E029B384E400FD0AE7 /* Helpers */ = {
@@ -394,6 +405,7 @@
 				2EFF6D1C29AA188F007A46C5 /* NewAccountServiceResultMapper.swift in Sources */,
 				2E3D588A29CB81B000B7F02A /* UserLoginServiceResultMapper.swift in Sources */,
 				2E0EA12729A0044F006402BE /* NewAccountServiceProtocol.swift in Sources */,
+				2EC8A56E2A27B51700FAADF6 /* EmailValidator.swift in Sources */,
 				2EC581D729DDEFC90044B64E /* AddNewUserServiceResultMapper.swift in Sources */,
 				2EB7F43329E0862700F765B7 /* UserLogoutService.swift in Sources */,
 				2EAFE9FC29F83AA000B882F9 /* URLSessionHTTPClient.swift in Sources */,
