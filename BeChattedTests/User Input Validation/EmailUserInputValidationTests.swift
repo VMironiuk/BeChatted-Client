@@ -148,4 +148,14 @@ final class EmailUserInputValidationTests: XCTestCase {
         // then
         XCTAssertTrue(sut.isValid(email))
     }
+    
+    func test_isValid_caseInsensitive() {
+        // given
+        let email = "Email@Example.com"
+        let sut = EmailValidator()
+
+        // when
+        // then
+        XCTAssertTrue(sut.isValid(email))
+    }
 }
