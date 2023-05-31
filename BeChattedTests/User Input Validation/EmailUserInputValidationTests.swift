@@ -9,7 +9,9 @@ import XCTest
 
 struct EmailValidator {
     func isValid(_ email: String) -> Bool {
-        false
+        let emailRegEx = "^(?!\\.)(?!.*\\.\\.)(?!_)(?!.*_{2})[A-Z0-9a-z%+\\-]{1,64}(\\.[A-Z0-9a-z%+\\-]+)*@(?!-)(?!.*--)[A-Za-z0-9.-]{1,255}\\.[A-Za-z]{2,63}$"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPredicate.evaluate(with: email)
     }
 }
 
@@ -135,5 +137,15 @@ final class EmailUserInputValidationTests: XCTestCase {
         // when
         // then
         XCTAssertFalse(sut.isValid(email))
+    }
+    
+    func test_isValid_returnsTrueForValidEmail() {
+        // given
+        let email = "email@example.com"
+        let sut = EmailValidator()
+
+        // when
+        // then
+        XCTAssertTrue(sut.isValid(email))
     }
 }
