@@ -8,3 +8,4 @@
 * [Fetch channels](fetch-channels.md)
 * [URLSession HTTP client](urlsession-http-client.md)
 * [Email validation](validations/email-validation.md)
+* [Password validation](validations/password-validation.md)
