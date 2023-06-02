@@ -9,7 +9,7 @@ import XCTest
 
 struct PasswordValidator {
     func isValid(_ password: String) -> Bool {
-        false
+        !password.contains(" ") && password.count >= 8
     }
 }
 
@@ -63,5 +63,15 @@ final class PasswordUserInputValidationTests: XCTestCase {
         // when
         // then
         XCTAssertFalse(sut.isValid(password))
+    }
+    
+    func test_isValid_returnsTrueForValidPassword() {
+        // given
+        let password = "12345678"
+        let sut = PasswordValidator()
+        
+        // when
+        // then
+        XCTAssertTrue(sut.isValid(password))
     }
 }
