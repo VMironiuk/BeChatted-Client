@@ -54,4 +54,14 @@ final class PasswordUserInputValidationTests: XCTestCase {
         // then
         XCTAssertFalse(sut.isValid(password))
     }
+    
+    func test_isValid_returnsFalseIfPasswordHasSpaceInside() {
+        // given
+        let password = "12345 678"
+        let sut = PasswordValidator()
+        
+        // when
+        // then
+        XCTAssertFalse(sut.isValid(password))
+    }
 }
