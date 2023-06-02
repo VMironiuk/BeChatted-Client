@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct EmailValidator {
+public struct EmailValidator: UserInputValidatorProtocol {
     public init() {}
     
     public func isValid(_ email: String) -> Bool {
