@@ -6,12 +6,7 @@
 //
 
 import XCTest
-
-struct PasswordValidator {
-    func isValid(_ password: String) -> Bool {
-        !password.contains(" ") && password.count >= 8
-    }
-}
+import BeChatted
 
 final class PasswordUserInputValidationTests: XCTestCase {
     
