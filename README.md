@@ -3,3 +3,4 @@
 BeChatted app for iOS and macOS.
 
 ## [Features List](Spec/features-list.md)
+## [Auth Flow (iOS)](Spec/flows/auth-flow-ios.md)
