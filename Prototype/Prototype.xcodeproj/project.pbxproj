@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E7CC2892AE6C22300E69F30 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7CC2882AE6C22300E69F30 /* LoginView.swift */; };
 		2EB92EE62AE5469300E86A03 /* MacPrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB92EE52AE5469300E86A03 /* MacPrototypeApp.swift */; };
 		2EB92EE82AE5469300E86A03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB92EE72AE5469300E86A03 /* ContentView.swift */; };
 		2EB92EEA2AE5469500E86A03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB92EE92AE5469500E86A03 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E7CC2882AE6C22300E69F30 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EB92EE32AE5469300E86A03 /* MacPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB92EE52AE5469300E86A03 /* MacPrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacPrototypeApp.swift; sourceTree = "<group>"; };
 		2EB92EE72AE5469300E86A03 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				2EE45A102AE17D0C00335725 /* PrototypeApp.swift */,
 				2EE45A122AE17D0C00335725 /* ContentView.swift */,
+				2E7CC2882AE6C22300E69F30 /* LoginView.swift */,
 				2EE45A142AE17D0E00335725 /* Assets.xcassets */,
 				2EE45A162AE17D0E00335725 /* Preview Content */,
 			);
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E7CC2892AE6C22300E69F30 /* LoginView.swift in Sources */,
 				2EE45A132AE17D0C00335725 /* ContentView.swift in Sources */,
 				2EE45A112AE17D0C00335725 /* PrototypeApp.swift in Sources */,
 			);
