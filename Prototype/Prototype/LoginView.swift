@@ -16,7 +16,7 @@ struct LoginView: View {
             )
             .frame(height: 220)
             
-            UserInputView()
+            UserInputView(title: "Email")
                 .padding(.top, 64)
                 .padding(.horizontal, 20)
             

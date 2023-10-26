@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UserInputView: View {
+    let title: String
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             TextField("", text: .constant("example@mail.com"))
@@ -18,7 +20,7 @@ struct UserInputView: View {
                         .frame(height: 50)
                 )
             
-            Text("Email")
+            Text(title)
                 .font(.system(size: 12, weight: .medium))
                 .foregroundStyle(Color(("Auth/UserInput/TitleColor")))
                 .padding(.horizontal, 8)
@@ -29,5 +31,5 @@ struct UserInputView: View {
 }
 
 #Preview {
-    UserInputView()
+    UserInputView(title: "Email")
 }
