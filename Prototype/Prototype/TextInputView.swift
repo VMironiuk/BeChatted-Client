@@ -1,5 +1,5 @@
 //
-//  UserInputView.swift
+//  TextInputView.swift
 //  Prototype
 //
 //  Created by Volodymyr Myroniuk on 25.10.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserInputView: View {
+struct TextInputView: View {
     let title: String
     
     var body: some View {
@@ -31,5 +31,5 @@ struct UserInputView: View {
 }
 
 #Preview {
-    UserInputView(title: "Email")
+    TextInputView(title: "Email")
 }

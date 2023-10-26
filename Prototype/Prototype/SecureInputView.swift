@@ -1,5 +1,5 @@
 //
-//  SecureUserInputView.swift
+//  SecureInputView.swift
 //  Prototype
 //
 //  Created by Volodymyr Myroniuk on 26.10.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SecureUserInputView: View {
+struct SecureInputView: View {
     @State private var isSecured = true
     let title: String
     
@@ -46,6 +46,6 @@ struct SecureUserInputView: View {
 }
 
 #Preview {
-    SecureUserInputView(title: "Password")
+    SecureInputView(title: "Password")
         .frame(height: 60)
 }
