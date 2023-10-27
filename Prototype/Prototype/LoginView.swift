@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct LoginView: View {    
+struct LoginView: View {
+    @State private var isActive = true
+    
     var body: some View {
         VStack {
             AuthHeaderView(
@@ -30,10 +32,13 @@ struct LoginView: View {
             
             Spacer()
             
-            MainButton(title: "Login")
-                .padding(.horizontal, 20)
+            Button("Login") {
+                
+            }
+            .buttonStyle(MainButtonStyle(isActive: isActive))
+            .padding(.horizontal, 20)
         }
-    }
+    }    
 }
 
 #Preview {
