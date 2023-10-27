@@ -37,6 +37,22 @@ struct LoginView: View {
             }
             .buttonStyle(MainButtonStyle(isActive: isActive))
             .padding(.horizontal, 20)
+            .padding(.bottom, 32)
+            
+            HStack {
+                Text("Don’t have an account?")
+                    .font(.system(size: 14, weight: .regular))
+                    .foregroundStyle(Color("Auth/BottomLabelColor"))
+                
+                Button {
+                    
+                } label: {
+                    Text("Register")
+                        .font(.system(size: 14, weight: .regular))
+                        .foregroundStyle(Color("Auth/MainButtonColor"))
+                }
+            }
+            .padding(.bottom, 40)
         }
     }    
 }
