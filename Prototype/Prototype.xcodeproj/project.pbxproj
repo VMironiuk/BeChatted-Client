@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E7CC2892AE6C22300E69F30 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7CC2882AE6C22300E69F30 /* LoginView.swift */; };
+		2E84A7812AEC025500A846FE /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E84A7802AEC025500A846FE /* MainButton.swift */; };
 		2EB1D6F22AE81C5400249882 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB1D6F12AE81C5400249882 /* AuthHeaderView.swift */; };
 		2EB92EE62AE5469300E86A03 /* MacPrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB92EE52AE5469300E86A03 /* MacPrototypeApp.swift */; };
 		2EB92EE82AE5469300E86A03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB92EE72AE5469300E86A03 /* ContentView.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		2E7CC2882AE6C22300E69F30 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2E84A7802AEC025500A846FE /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		2EB1D6F12AE81C5400249882 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		2EB92EE32AE5469300E86A03 /* MacPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB92EE52AE5469300E86A03 /* MacPrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacPrototypeApp.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				2EB1D6F12AE81C5400249882 /* AuthHeaderView.swift */,
 				2ED9A2EC2AE971E60069C7E6 /* TextInputView.swift */,
 				2EC01C5A2AEAA7C40059F6A4 /* SecureInputView.swift */,
+				2E84A7802AEC025500A846FE /* MainButton.swift */,
 				2E7CC2882AE6C22300E69F30 /* LoginView.swift */,
 				2EE45A142AE17D0E00335725 /* Assets.xcassets */,
 				2EE45A162AE17D0E00335725 /* Preview Content */,
@@ -229,6 +232,7 @@
 			files = (
 				2E7CC2892AE6C22300E69F30 /* LoginView.swift in Sources */,
 				2EC01C5B2AEAA7C40059F6A4 /* SecureInputView.swift in Sources */,
+				2E84A7812AEC025500A846FE /* MainButton.swift in Sources */,
 				2ED9A2ED2AE971E60069C7E6 /* TextInputView.swift in Sources */,
 				2EB1D6F22AE81C5400249882 /* AuthHeaderView.swift in Sources */,
 				2EE45A132AE17D0C00335725 /* ContentView.swift in Sources */,

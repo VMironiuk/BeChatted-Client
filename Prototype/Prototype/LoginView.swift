@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginView: View {
+struct LoginView: View {    
     var body: some View {
         VStack {
             AuthHeaderView(
@@ -26,9 +26,12 @@ struct LoginView: View {
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
-                
-                Spacer()
             }
+            
+            Spacer()
+            
+            MainButton(title: "Login")
+                .padding(.horizontal, 20)
         }
     }
 }
