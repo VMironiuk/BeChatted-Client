@@ -14,6 +14,7 @@
 		2EB92EE82AE5469300E86A03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB92EE72AE5469300E86A03 /* ContentView.swift */; };
 		2EB92EEA2AE5469500E86A03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB92EE92AE5469500E86A03 /* Assets.xcassets */; };
 		2EB92EED2AE5469500E86A03 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB92EEC2AE5469500E86A03 /* Preview Assets.xcassets */; };
+		2EBA2A8E2AED22B400E47486 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA2A8D2AED22B400E47486 /* RegisterView.swift */; };
 		2EC01C5B2AEAA7C40059F6A4 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC01C5A2AEAA7C40059F6A4 /* SecureInputView.swift */; };
 		2ED9A2ED2AE971E60069C7E6 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED9A2EC2AE971E60069C7E6 /* TextInputView.swift */; };
 		2EE45A112AE17D0C00335725 /* PrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE45A102AE17D0C00335725 /* PrototypeApp.swift */; };
@@ -32,6 +33,7 @@
 		2EB92EE92AE5469500E86A03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EB92EEC2AE5469500E86A03 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2EB92EEE2AE5469500E86A03 /* MacPrototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacPrototype.entitlements; sourceTree = "<group>"; };
+		2EBA2A8D2AED22B400E47486 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		2EC01C5A2AEAA7C40059F6A4 /* SecureInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		2ED9A2EC2AE971E60069C7E6 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		2EE45A0D2AE17D0C00335725 /* Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 				2EC01C5A2AEAA7C40059F6A4 /* SecureInputView.swift */,
 				2E84A7802AEC025500A846FE /* MainButtonStyles.swift */,
 				2E7CC2882AE6C22300E69F30 /* LoginView.swift */,
+				2EBA2A8D2AED22B400E47486 /* RegisterView.swift */,
 				2EE45A142AE17D0E00335725 /* Assets.xcassets */,
 				2EE45A162AE17D0E00335725 /* Preview Content */,
 			);
@@ -235,6 +238,7 @@
 				2E84A7812AEC025500A846FE /* MainButtonStyles.swift in Sources */,
 				2ED9A2ED2AE971E60069C7E6 /* TextInputView.swift in Sources */,
 				2EB1D6F22AE81C5400249882 /* AuthHeaderView.swift in Sources */,
+				2EBA2A8E2AED22B400E47486 /* RegisterView.swift in Sources */,
 				2EE45A132AE17D0C00335725 /* ContentView.swift in Sources */,
 				2EE45A112AE17D0C00335725 /* PrototypeApp.swift in Sources */,
 			);
