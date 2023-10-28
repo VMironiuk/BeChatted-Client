@@ -52,7 +52,20 @@ struct LoginView: View {
             }
             .padding(.bottom, 40)
         }
-    }    
+        .ignoresSafeArea(.keyboard)
+        .onTapGesture {
+            hideKeyboard()
+        }
+    }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+    }
 }
 
 #Preview {
