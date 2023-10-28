@@ -42,12 +42,11 @@ struct LoginView: View {
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(Color("Auth/BottomLabelColor"))
                 
-                Button {
-                    
-                } label: {
+                NavigationLink(destination: RegisterView()) {
                     Text("Register")
                         .font(.system(size: 14, weight: .regular))
                         .foregroundStyle(Color("Auth/MainButtonColor"))
+                    
                 }
             }
             .padding(.bottom, 40)
