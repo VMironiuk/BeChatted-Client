@@ -18,17 +18,15 @@ struct LoginView: View {
             )
             .frame(height: 220)
             
-            ScrollView {
-                TextInputView(title: "Email")
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 64)
-                
-                SecureInputView(title: "Password")
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 16)
-            }
+            TextInputView(title: "Email")
+                .frame(height: 50)
+                .padding(.horizontal, 20)
+                .padding(.top, 64)
+            
+            SecureInputView(title: "Password")
+                .frame(height: 50)
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
             
             Spacer()
             
