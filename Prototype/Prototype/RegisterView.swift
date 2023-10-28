@@ -62,6 +62,7 @@ struct RegisterView: View {
         .onTapGesture {
             hideKeyboard()
         }
+        .navigationBarBackButtonHidden()
     }
     
     private func hideKeyboard() {
