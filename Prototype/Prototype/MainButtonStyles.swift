@@ -20,6 +20,7 @@ struct MainButtonStyle: ButtonStyle {
                 .frame(maxWidth: .infinity)
                 .frame(height: 50)
                 .foregroundStyle(.white)
+                .opacity(configuration.isPressed ? 0.3 : 1)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
                         .fill(Color("Auth/MainButtonColor"))
