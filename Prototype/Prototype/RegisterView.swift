@@ -32,20 +32,22 @@ struct RegisterView: View {
             }
             .frame(height: 180)
             
-            TextInputView(title: "Your Name")
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .padding(.top, 64)
-            
-            TextInputView(title: "Email")
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .padding(.top, 16)
-            
-            SecureInputView(title: "Password")
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .padding(.top, 16)
+            ScrollView {
+                TextInputView(title: "Your Name")
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 64)
+                
+                TextInputView(title: "Email")
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 16)
+                
+                SecureInputView(title: "Password")
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 16)
+            }
             
             Spacer()
             
