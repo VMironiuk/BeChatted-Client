@@ -13,11 +13,24 @@ struct RegisterView: View {
     
     var body: some View {
         VStack {
-            AuthHeaderView(
-                title: "Register",
-                subtitle: "Create your Account"
-            )
-            .frame(height: 220)
+            ZStack {
+                AuthHeaderView(
+                    title: "Register",
+                    subtitle: "Create your Account"
+                )
+                
+                GeometryReader { geometry in
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.title)
+                            .foregroundStyle(Color("Auth/Header/TitleColor"))
+                    }
+                    .offset(x: 20, y: 20)
+                }
+            }
+            .frame(height: 180)
             
             TextInputView(title: "Your Name")
                 .frame(height: 50)

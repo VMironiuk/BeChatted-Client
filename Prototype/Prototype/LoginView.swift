@@ -16,7 +16,7 @@ struct LoginView: View {
                 title: "Sign in to your\nAccount",
                 subtitle: "Sign in to your Account"
             )
-            .frame(height: 220)
+            .frame(height: 180)
             
             TextInputView(title: "Email")
                 .frame(height: 50)
