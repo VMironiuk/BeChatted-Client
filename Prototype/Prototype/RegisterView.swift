@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var isActive = true
     
     var body: some View {
@@ -48,7 +49,7 @@ struct RegisterView: View {
                     .foregroundStyle(Color("Auth/BottomLabelColor"))
                 
                 Button {
-                    
+                    dismiss()
                 } label: {
                     Text("Login")
                         .font(.system(size: 14, weight: .regular))
