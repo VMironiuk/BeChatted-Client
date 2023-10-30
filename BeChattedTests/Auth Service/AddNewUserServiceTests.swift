@@ -82,7 +82,7 @@ final class AddNewUserServiceTests: XCTestCase {
     func test_send_doesNotDeliverResultOnClientErrorAfterInstanceDeallocated() {
         let url = anyURL()
         let client = HTTPClientSpy()
-        var sut: AddNewUserService? = AddNewUserService(url: url, client: client)
+        var sut: AddNewUserServiceProtocol? = AddNewUserService(url: url, client: client)
         
         expect(sut: &sut, doesNotDeliverResultWhen: {
             client.complete(withError: anyNSError())
@@ -92,7 +92,7 @@ final class AddNewUserServiceTests: XCTestCase {
     func test_send_doesNotDeliverResultOn500HTTPResponseAfterInstanceDeallocated() {
         let url = anyURL()
         let client = HTTPClientSpy()
-        var sut: AddNewUserService? = AddNewUserService(url: url, client: client)
+        var sut: AddNewUserServiceProtocol? = AddNewUserService(url: url, client: client)
         
         expect(sut: &sut, doesNotDeliverResultWhen: {
             client.completeWith(response: httpResponse(withStatusCode: 500))
@@ -102,7 +102,7 @@ final class AddNewUserServiceTests: XCTestCase {
     func test_send_doesNotDeliverResultOnNon200HTTPResponseAfterInstanceDeallocated() {
         let url = anyURL()
         let client = HTTPClientSpy()
-        var sut: AddNewUserService? = AddNewUserService(url: url, client: client)
+        var sut: AddNewUserServiceProtocol? = AddNewUserService(url: url, client: client)
         
         let samples = [199, 201, 300, 400]
         
@@ -116,7 +116,7 @@ final class AddNewUserServiceTests: XCTestCase {
     func test_send_doesNotDeliverResultOn200HTTPResponseWithInvalidBodyAfterInstanceDeallocated() {
         let url = anyURL()
         let client = HTTPClientSpy()
-        var sut: AddNewUserService? = AddNewUserService(url: url, client: client)
+        var sut: AddNewUserServiceProtocol? = AddNewUserService(url: url, client: client)
         
         expect(sut: &sut, doesNotDeliverResultWhen: {
             client.completeWith(data: anyData(), response: httpResponse(withStatusCode: 200))
@@ -148,7 +148,7 @@ final class AddNewUserServiceTests: XCTestCase {
         url: URL = URL(string: "http://any-url.com")!,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (AddNewUserService, HTTPClientSpy) {
+    ) -> (AddNewUserServiceProtocol, HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = AddNewUserService(url: url, client: client)
         
@@ -159,7 +159,7 @@ final class AddNewUserServiceTests: XCTestCase {
     }
     
     private func expect(
-        sut: AddNewUserService,
+        sut: AddNewUserServiceProtocol,
         toCompleteWithError expectedError: AddNewUserService.Error,
         when action: () -> Void,
         file: StaticString = #filePath,
@@ -191,7 +191,7 @@ final class AddNewUserServiceTests: XCTestCase {
     }
     
     private func expect(
-        sut: inout AddNewUserService?,
+        sut: inout AddNewUserServiceProtocol?,
         doesNotDeliverResultWhen action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
@@ -214,7 +214,7 @@ final class AddNewUserServiceTests: XCTestCase {
     }
 
     private func expect(
-        sut: AddNewUserService,
+        sut: AddNewUserServiceProtocol,
         toCompleteWithNewUserInfo expectedNewUserInfo: NewUserInfo,
         when action: () -> Void,
         file: StaticString = #filePath,
