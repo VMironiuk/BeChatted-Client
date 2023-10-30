@@ -104,7 +104,7 @@ final class NewAccountServiceTests: XCTestCase {
     
     func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
+        var sut: NewAccountServiceProtocol? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: anyNSError())
@@ -113,7 +113,7 @@ final class NewAccountServiceTests: XCTestCase {
     
     func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
+        var sut: NewAccountServiceProtocol? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: httpResponse(withStatusCode: 300))
@@ -122,7 +122,7 @@ final class NewAccountServiceTests: XCTestCase {
     
     func test_send_doesNotDeliverSuccessAfterSUTInstanceDeallocated() {
         let client = HTTPClientSpy()
-        var sut: NewAccountService? = NewAccountService(url: anyURL(), client: client)
+        var sut: NewAccountServiceProtocol? = NewAccountService(url: anyURL(), client: client)
         
         expect(&sut, deliversNoResultWhen: {
             client.complete(with: httpResponse(withStatusCode: 200))
@@ -135,7 +135,7 @@ final class NewAccountServiceTests: XCTestCase {
         url: URL = URL(string: "http://any-url.com")!,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (sut: NewAccountService, client: HTTPClientSpy) {
+    ) -> (sut: NewAccountServiceProtocol, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = NewAccountService(url: url, client: client)
         
@@ -146,7 +146,7 @@ final class NewAccountServiceTests: XCTestCase {
     }
         
     private func expect(
-        _ sut: NewAccountService,
+        _ sut: NewAccountServiceProtocol,
         toCompleteWithError expectedError: NewAccountService.Error,
         when action: () -> Void,
         file: StaticString = #filePath,
@@ -176,7 +176,7 @@ final class NewAccountServiceTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: NewAccountService,
+        _ sut: NewAccountServiceProtocol,
         toCompleteWithSuccessWhen action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
@@ -205,7 +205,7 @@ final class NewAccountServiceTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: inout NewAccountService?,
+        _ sut: inout NewAccountServiceProtocol?,
         deliversNoResultWhen action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
