@@ -78,7 +78,7 @@ final class UserLogoutServiceTests: XCTestCase {
         // given
         let url = anyURL()
         let client = HTTPClientSpy()
-        var sut: UserLogoutService? = UserLogoutService(url: url, client: client)
+        var sut: UserLogoutServiceProtocol? = UserLogoutService(url: url, client: client)
         
         var receivedError: UserLogoutService.Error?
         sut?.logout() { result in
@@ -104,7 +104,7 @@ final class UserLogoutServiceTests: XCTestCase {
         // given
         let url = anyURL()
         let client = HTTPClientSpy()
-        var sut: UserLogoutService? = UserLogoutService(url: url, client: client)
+        var sut: UserLogoutServiceProtocol? = UserLogoutService(url: url, client: client)
         
         var receivedResult: Result<Void, Error>?
         sut?.logout() { result in
@@ -142,7 +142,7 @@ final class UserLogoutServiceTests: XCTestCase {
         url: URL = URL(string: "http://any-url.com")!,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (UserLogoutService, HTTPClientSpy) {
+    ) -> (UserLogoutServiceProtocol, HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = UserLogoutService(url: url, client: client)
         
