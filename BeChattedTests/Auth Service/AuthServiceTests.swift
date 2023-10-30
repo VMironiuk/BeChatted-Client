@@ -25,6 +25,10 @@ final class AuthService {
         self.userLoginService = userLoginService
         self.userLogoutService = userLogoutService
     }
+    
+    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void) {
+        newAccountService.send(newAccountPayload: newAccountPayload, completion: completion)
+    }
 }
 
 final class AuthServiceTests: XCTestCase {
@@ -51,21 +55,52 @@ final class AuthServiceTests: XCTestCase {
         XCTAssertTrue(userLogoutService.messages.isEmpty)
     }
     
+    func test_sendNewAccount_sendsNewAccountMessage() {
+        // given
+        let newAccountService = NewAccountServiceSpy()
+        let addNewUserService = AddNewUserServiceSpy()
+        let userLoginService = UserLoginServiceSpy()
+        let userLogoutService = UserLogoutServiceSpy()
+        
+        let newAccountPayload = anyNewAccountPayload()
+        
+        let sut = AuthService(
+            newAccountService: newAccountService,
+            addNewUserService: addNewUserService,
+            userLoginService: userLoginService,
+            userLogoutService: userLogoutService
+        )
+        
+        // when
+        sut.send(newAccountPayload: newAccountPayload) { _ in }
+        
+        // then
+        XCTAssertEqual(newAccountService.messages[0].newAccountPayload, newAccountPayload)
+        XCTAssertTrue(addNewUserService.messages.isEmpty)
+        XCTAssertTrue(userLoginService.messages.isEmpty)
+        XCTAssertTrue(userLogoutService.messages.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private final class NewAccountServiceSpy: NewAccountServiceProtocol {
         private(set) var messages = [Message]()
         
         struct Message {
-            private let newAccountPayload: NewAccountPayload
-            private let completion: (Result<Void, Error>) -> Void
+            let newAccountPayload: NewAccountPayload
+            let completion: (Result<Void, Error>) -> Void
         }
         
         func send(
             newAccountPayload: NewAccountPayload,
             completion: @escaping (Result<Void, Error>) -> Void
         ) {
+            messages.append(Message(newAccountPayload: newAccountPayload, completion: completion))
         }
+    }
+    
+    private func anyNewAccountPayload() -> NewAccountPayload {
+        NewAccountPayload(email: "my@example.com", password: "123456")
     }
     
     private final class AddNewUserServiceSpy: AddNewUserServiceProtocol {
