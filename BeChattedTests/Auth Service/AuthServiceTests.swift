@@ -79,6 +79,28 @@ final class AuthServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
+    func test_sendNewAccount_completesWithFailureOnNewAccountServiceFailedCompletion() {
+        // given
+        let newAccountPayload = anyNewAccountPayload()
+        let exp = expectation(description: "Wait for new account request completion")
+        
+        // when
+        sut.send(newAccountPayload: newAccountPayload) { result in
+            // then
+            switch result {
+            case .failure:
+                break
+            default:
+                XCTFail("Expected failed result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        newAccountService.complete(with: anyNSError())
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     func test_sendUserLogin_sendsUserLoginMessage() {
         // given
         let userLoginPayload = anyUserLoginPayload()
@@ -138,6 +160,10 @@ final class AuthServiceTests: XCTestCase {
             avatarColor: "avatar color")
     }
     
+    private func anyNSError() -> Error {
+        NSError(domain: "any error", code: 1)
+    }
+    
     private final class NewAccountServiceSpy: NewAccountServiceProtocol {
         private(set) var messages = [Message]()
         
@@ -155,6 +181,10 @@ final class AuthServiceTests: XCTestCase {
         
         func complete(at index: Int = 0) {
             messages[index].completion(.success(()))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     }
         
