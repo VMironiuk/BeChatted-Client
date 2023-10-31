@@ -115,6 +115,28 @@ final class AuthServiceTests: XCTestCase {
         XCTAssertTrue(userLogoutService.messages.isEmpty)
     }
     
+    func test_sendUserLogin_completesWithSuccessOnUserLoginServiceSuccessfulCompletion() {
+        // given
+        let userLoginPayload = anyUserLoginPayload()
+        let exp = expectation(description: "Wait for user login request completion")
+        
+        // when
+        sut.send(userLoginPayload: userLoginPayload) { result in
+            // then
+            switch result {
+            case .success:
+                break
+            default:
+                XCTFail("Expected successful result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        userLoginService.complete(with: anyUserLoginInfo())
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     func test_sendNewUser_sendsNewUserMessage() {
         // given
         let newUserPayload = anyNewUserPayload()
@@ -162,6 +184,11 @@ final class AuthServiceTests: XCTestCase {
     
     private func anyNSError() -> Error {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private func anyUserLoginInfo() -> UserLoginInfo {
+        let jsonData = Data("{\"user\":\"a user\", \"token\":\"a token\"}".utf8)
+        return try! JSONDecoder().decode(UserLoginInfo.self, from: jsonData)
     }
     
     private final class NewAccountServiceSpy: NewAccountServiceProtocol {
@@ -217,6 +244,14 @@ final class AuthServiceTests: XCTestCase {
             completion: @escaping (Result<UserLoginInfo, Error>) -> Void
         ) {
             messages.append(Message(userLoginPayload: userLoginPayload, completion: completion))
+        }
+        
+        func complete(with info: UserLoginInfo ,at index: Int = 0) {
+            messages[index].completion(.success(info))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     }
     
