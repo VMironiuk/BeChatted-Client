@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol AuthServiceProtocol:
+    AnyObject,
     NewAccountServiceProtocol,
     UserLoginServiceProtocol,
     AddNewUserServiceProtocol,

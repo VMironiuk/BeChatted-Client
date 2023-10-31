@@ -9,21 +9,32 @@ import XCTest
 import BeChatted
 
 final class AuthServiceTests: XCTestCase {
+    private var sut: AuthServiceProtocol!
+    private var newAccountService: NewAccountServiceSpy!
+    private var addNewUserService: AddNewUserServiceSpy!
+    private var userLoginService: UserLoginServiceSpy!
+    private var userLogoutService: UserLogoutServiceSpy!
     
-    func test_init_doesNotSendAnyMessages() {
-        // given
-        let newAccountService = NewAccountServiceSpy()
-        let addNewUserService = AddNewUserServiceSpy()
-        let userLoginService = UserLoginServiceSpy()
-        let userLogoutService = UserLogoutServiceSpy()
+    override func setUp() {
+        super.setUp()
         
-        // when
-        _ = AuthService(
+        newAccountService = NewAccountServiceSpy()
+        addNewUserService = AddNewUserServiceSpy()
+        userLoginService = UserLoginServiceSpy()
+        userLogoutService = UserLogoutServiceSpy()
+
+        sut = AuthService(
             newAccountService: newAccountService,
             addNewUserService: addNewUserService,
             userLoginService: userLoginService,
             userLogoutService: userLogoutService
         )
+    }
+    
+    func test_init_doesNotSendAnyMessages() {
+        // given
+        
+        // when
         
         // then
         XCTAssertTrue(newAccountService.messages.isEmpty)
@@ -34,19 +45,7 @@ final class AuthServiceTests: XCTestCase {
     
     func test_sendNewAccount_sendsNewAccountMessage() {
         // given
-        let newAccountService = NewAccountServiceSpy()
-        let addNewUserService = AddNewUserServiceSpy()
-        let userLoginService = UserLoginServiceSpy()
-        let userLogoutService = UserLogoutServiceSpy()
-        
         let newAccountPayload = anyNewAccountPayload()
-        
-        let sut = AuthService(
-            newAccountService: newAccountService,
-            addNewUserService: addNewUserService,
-            userLoginService: userLoginService,
-            userLogoutService: userLogoutService
-        )
         
         // when
         sut.send(newAccountPayload: newAccountPayload) { _ in }
@@ -60,19 +59,7 @@ final class AuthServiceTests: XCTestCase {
     
     func test_sendUserLogin_sendsUserLoginMessage() {
         // given
-        let newAccountService = NewAccountServiceSpy()
-        let addNewUserService = AddNewUserServiceSpy()
-        let userLoginService = UserLoginServiceSpy()
-        let userLogoutService = UserLogoutServiceSpy()
-        
         let userLoginPayload = anyUserLoginPayload()
-        
-        let sut = AuthService(
-            newAccountService: newAccountService,
-            addNewUserService: addNewUserService,
-            userLoginService: userLoginService,
-            userLogoutService: userLogoutService
-        )
         
         // when
         sut.send(userLoginPayload: userLoginPayload) { _ in }
@@ -86,19 +73,7 @@ final class AuthServiceTests: XCTestCase {
     
     func test_sendNewUser_sendsNewUserMessage() {
         // given
-        let newAccountService = NewAccountServiceSpy()
-        let addNewUserService = AddNewUserServiceSpy()
-        let userLoginService = UserLoginServiceSpy()
-        let userLogoutService = UserLogoutServiceSpy()
-        
         let newUserPayload = anyNewUserPayload()
-        
-        let sut = AuthService(
-            newAccountService: newAccountService,
-            addNewUserService: addNewUserService,
-            userLoginService: userLoginService,
-            userLogoutService: userLogoutService
-        )
         
         // when
         sut.send(newUserPayload: newUserPayload) { _ in }
@@ -112,17 +87,6 @@ final class AuthServiceTests: XCTestCase {
     
     func test_sendUserLogout_sendsUserLogoutMessage() {
         // given
-        let newAccountService = NewAccountServiceSpy()
-        let addNewUserService = AddNewUserServiceSpy()
-        let userLoginService = UserLoginServiceSpy()
-        let userLogoutService = UserLogoutServiceSpy()
-                
-        let sut = AuthService(
-            newAccountService: newAccountService,
-            addNewUserService: addNewUserService,
-            userLoginService: userLoginService,
-            userLogoutService: userLogoutService
-        )
         
         // when
         sut.logout { _ in }
