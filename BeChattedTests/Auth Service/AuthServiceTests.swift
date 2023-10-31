@@ -173,6 +173,28 @@ final class AuthServiceTests: XCTestCase {
         XCTAssertTrue(userLogoutService.messages.isEmpty)
     }
     
+    func test_sendNewUser_completesWithSuccessOnAddNewUserServiceSuccessfulCompletion() {
+        // given
+        let newUserPayload = anyNewUserPayload()
+        let exp = expectation(description: "Wait for new user request completion")
+        
+        // when
+        sut.send(newUserPayload: newUserPayload) { result in
+            // then
+            switch result {
+            case .success:
+                break
+            default:
+                XCTFail("Expected successful result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        addNewUserService.complete(with: anyNewUserInfo())
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     func test_sendUserLogout_sendsUserLogoutMessage() {
         // given
         
@@ -213,6 +235,11 @@ final class AuthServiceTests: XCTestCase {
         return try! JSONDecoder().decode(UserLoginInfo.self, from: jsonData)
     }
     
+    private func anyNewUserInfo() -> NewUserInfo {
+        let jsonData = Data("{\"name\":\"a name\", \"email\":\"mail@example.com\", \"avatarName\":\"\", \"avatarColor\":\"\"}".utf8)
+        return try! JSONDecoder().decode(NewUserInfo.self, from: jsonData)
+    }
+    
     private final class NewAccountServiceSpy: NewAccountServiceProtocol {
         private(set) var messages = [Message]()
         
@@ -250,6 +277,14 @@ final class AuthServiceTests: XCTestCase {
             completion: @escaping (Result<NewUserInfo, Error>) -> Void
         ) {
             messages.append(Message(newUserPayload: newUserPayload, completion: completion))
+        }
+        
+        func complete(with info: NewUserInfo, at index: Int = 0) {
+            messages[index].completion(.success(info))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     }
     
