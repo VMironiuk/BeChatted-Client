@@ -37,6 +37,10 @@ final class AuthService {
     func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
         addNewUserService.send(newUserPayload: newUserPayload, completion: completion)
     }
+    
+    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+        userLogoutService.logout(completion: completion)
+    }
 }
 
 final class AuthServiceTests: XCTestCase {
@@ -141,6 +145,30 @@ final class AuthServiceTests: XCTestCase {
         XCTAssertTrue(userLogoutService.messages.isEmpty)
     }
     
+    func test_sendUserLogout_sendsUserLogoutMessage() {
+        // given
+        let newAccountService = NewAccountServiceSpy()
+        let addNewUserService = AddNewUserServiceSpy()
+        let userLoginService = UserLoginServiceSpy()
+        let userLogoutService = UserLogoutServiceSpy()
+                
+        let sut = AuthService(
+            newAccountService: newAccountService,
+            addNewUserService: addNewUserService,
+            userLoginService: userLoginService,
+            userLogoutService: userLogoutService
+        )
+        
+        // when
+        sut.logout { _ in }
+        
+        // then
+        XCTAssertTrue(newAccountService.messages.isEmpty)
+        XCTAssertTrue(addNewUserService.messages.isEmpty)
+        XCTAssertTrue(userLoginService.messages.isEmpty)
+        XCTAssertEqual(userLogoutService.messages.count, 1)
+    }
+    
     // MARK: - Helpers
     
     private func anyNewAccountPayload() -> NewAccountPayload {
@@ -211,10 +239,11 @@ final class AuthServiceTests: XCTestCase {
         private(set) var messages = [Message]()
         
         struct Message {
-            private let completion: (Result<Void, Error>) -> Void
+            let completion: (Result<Void, Error>) -> Void
         }
 
         func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+            messages.append(Message(completion: completion))
         }
     }
 }
