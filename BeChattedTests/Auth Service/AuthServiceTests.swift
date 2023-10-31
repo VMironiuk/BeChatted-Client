@@ -367,7 +367,7 @@ final class AuthServiceTests: XCTestCase {
             messages.append(Message(userLoginPayload: userLoginPayload, completion: completion))
         }
         
-        func complete(with info: UserLoginInfo ,at index: Int = 0) {
+        func complete(with info: UserLoginInfo, at index: Int = 0) {
             messages[index].completion(.success(info))
         }
         
