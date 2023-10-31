@@ -19,6 +19,7 @@
 		2E33FD432AEFE32100510129 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E33FD422AEFE32100510129 /* AuthServiceTests.swift */; };
 		2E3D588629CB7B2700B7F02A /* UserLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D588529CB7B2700B7F02A /* UserLoginService.swift */; };
 		2E3D588A29CB81B000B7F02A /* UserLoginServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D588929CB81B000B7F02A /* UserLoginServiceResultMapper.swift */; };
+		2E4BC6E62AF11645004D9C30 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4BC6E52AF11645004D9C30 /* AuthService.swift */; };
 		2E5738C129D34ADD00BA2E8A /* AddNewUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5738C029D34ADD00BA2E8A /* AddNewUserServiceTests.swift */; };
 		2E64BFFA299EB047000451D9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64BFF1299EB047000451D9 /* BeChatted.framework */; };
 		2E64C000299EB047000451D9 /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64BFF4299EB047000451D9 /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,6 +67,7 @@
 		2E33FD422AEFE32100510129 /* AuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTests.swift; sourceTree = "<group>"; };
 		2E3D588529CB7B2700B7F02A /* UserLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginService.swift; sourceTree = "<group>"; };
 		2E3D588929CB81B000B7F02A /* UserLoginServiceResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginServiceResultMapper.swift; sourceTree = "<group>"; };
+		2E4BC6E52AF11645004D9C30 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2E5738C029D34ADD00BA2E8A /* AddNewUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserServiceTests.swift; sourceTree = "<group>"; };
 		2E64BFF1299EB047000451D9 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E64BFF4299EB047000451D9 /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				2E80D0C529B37E7E003598C7 /* User Login Feature */,
 				2EF450B529D5F6BF007AB010 /* Add New User Feature */,
 				2EDA004429E07505004CB9A1 /* User Logout Feature */,
+				2E4BC6E72AF1164B004D9C30 /* Auth API */,
 				2E03215929A93DA800B11ACD /* New Account API */,
 				2E3D588729CB7B4600B7F02A /* User Login API */,
 				2EC581D329DDEC7C0044B64E /* Add New User API */,
@@ -191,6 +194,14 @@
 				2EAFE9FB29F83AA000B882F9 /* URLSessionHTTPClient.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		2E4BC6E72AF1164B004D9C30 /* Auth API */ = {
+			isa = PBXGroup;
+			children = (
+				2E4BC6E52AF11645004D9C30 /* AuthService.swift */,
+			);
+			path = "Auth API";
 			sourceTree = "<group>";
 		};
 		2E64BFE7299EB046000451D9 = {
@@ -414,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EF450B729D5F6E7007AB010 /* NewUserPayload.swift in Sources */,
+				2E4BC6E62AF11645004D9C30 /* AuthService.swift in Sources */,
 				2E80D0C429B37E37003598C7 /* UserLoginPayload.swift in Sources */,
 				2E2C99062A2A4EDA0099AAA6 /* UserInputValidatorProtocol.swift in Sources */,
 				2E3D588629CB7B2700B7F02A /* UserLoginService.swift in Sources */,
