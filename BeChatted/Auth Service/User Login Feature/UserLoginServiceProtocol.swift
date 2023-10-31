@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol UserLoginServiceProtocol {
+public protocol UserLoginServiceProtocol {
     func send(userLoginPayload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct UserLoginPayload: Encodable {
+public struct UserLoginPayload: Encodable, Equatable {
     private let email: String
     private let password: String
     
