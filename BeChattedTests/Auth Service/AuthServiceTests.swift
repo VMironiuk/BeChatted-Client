@@ -57,6 +57,28 @@ final class AuthServiceTests: XCTestCase {
         XCTAssertTrue(userLogoutService.messages.isEmpty)
     }
     
+    func test_sendNewAccount_completesWithSuccessOnNewAccountServiceSuccessfulCompletion() {
+        // given
+        let newAccountPayload = anyNewAccountPayload()
+        let exp = expectation(description: "Wait for new account request completion")
+        
+        // when
+        sut.send(newAccountPayload: newAccountPayload) { result in
+            // then
+            switch result {
+            case .success:
+                break
+            default:
+                XCTFail("Expected successful result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        newAccountService.complete()
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     func test_sendUserLogin_sendsUserLoginMessage() {
         // given
         let userLoginPayload = anyUserLoginPayload()
@@ -129,6 +151,10 @@ final class AuthServiceTests: XCTestCase {
             completion: @escaping (Result<Void, Error>) -> Void
         ) {
             messages.append(Message(newAccountPayload: newAccountPayload, completion: completion))
+        }
+        
+        func complete(at index: Int = 0) {
+            messages[index].completion(.success(()))
         }
     }
         
