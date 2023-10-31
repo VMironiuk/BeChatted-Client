@@ -230,6 +230,27 @@ final class AuthServiceTests: XCTestCase {
         XCTAssertEqual(userLogoutService.messages.count, 1)
     }
     
+    func test_sendUserLogout_completesWithSuccessOnUserLogoutServiceSuccessfulCompletion() {
+        // given
+        let exp = expectation(description: "Wait for user logout request completion")
+        
+        // when
+        sut.logout { result in
+            // then
+            switch result {
+            case .success:
+                break
+            default:
+                XCTFail("Expected successful result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        userLogoutService.complete()
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     // MARK: - Helpers
     
     private func anyNewAccountPayload() -> NewAccountPayload {
@@ -343,6 +364,14 @@ final class AuthServiceTests: XCTestCase {
 
         func logout(completion: @escaping (Result<Void, Error>) -> Void) {
             messages.append(Message(completion: completion))
+        }
+        
+        func complete(at index: Int = 0) {
+            messages[index].completion(.success(()))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     }
 }
