@@ -29,6 +29,10 @@ final class AuthService {
     func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void) {
         newAccountService.send(newAccountPayload: newAccountPayload, completion: completion)
     }
+    
+    func send(userLoginPayload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
+        userLoginService.send(userLoginPayload: userLoginPayload, completion: completion)
+    }
 }
 
 final class AuthServiceTests: XCTestCase {
@@ -81,10 +85,40 @@ final class AuthServiceTests: XCTestCase {
         XCTAssertTrue(userLogoutService.messages.isEmpty)
     }
     
+    func test_sendUserLogin_sendsUserLoginMessage() {
+        // given
+        let newAccountService = NewAccountServiceSpy()
+        let addNewUserService = AddNewUserServiceSpy()
+        let userLoginService = UserLoginServiceSpy()
+        let userLogoutService = UserLogoutServiceSpy()
+        
+        let userLoginPayload = anyUserLoginPayload()
+        
+        let sut = AuthService(
+            newAccountService: newAccountService,
+            addNewUserService: addNewUserService,
+            userLoginService: userLoginService,
+            userLogoutService: userLogoutService
+        )
+        
+        // when
+        sut.send(userLoginPayload: userLoginPayload) { _ in }
+        
+        // then
+        XCTAssertTrue(newAccountService.messages.isEmpty)
+        XCTAssertTrue(addNewUserService.messages.isEmpty)
+        XCTAssertEqual(userLoginService.messages[0].userLoginPayload, userLoginPayload)
+        XCTAssertTrue(userLogoutService.messages.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func anyNewAccountPayload() -> NewAccountPayload {
         NewAccountPayload(email: "my@example.com", password: "123456")
+    }
+    
+    private func anyUserLoginPayload() -> UserLoginPayload {
+        UserLoginPayload(email: "my@example.com", password: "123456")
     }
     
     private final class NewAccountServiceSpy: NewAccountServiceProtocol {
@@ -122,14 +156,15 @@ final class AuthServiceTests: XCTestCase {
         private(set) var messages = [Message]()
         
         struct Message {
-            private let userLoginPayload: UserLoginPayload
-            private let completion: (Result<UserLoginInfo, Error>) -> Void
+            let userLoginPayload: UserLoginPayload
+            let completion: (Result<UserLoginInfo, Error>) -> Void
         }
 
         func send(
             userLoginPayload: UserLoginPayload,
             completion: @escaping (Result<UserLoginInfo, Error>) -> Void
         ) {
+            messages.append(Message(userLoginPayload: userLoginPayload, completion: completion))
         }
     }
     
