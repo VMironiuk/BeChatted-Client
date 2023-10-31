@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import BeChatted
+import BeChattedAuth
 
 final class NewAccountServiceTests: XCTestCase {
 

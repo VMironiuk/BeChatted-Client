@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import BeChatted
+import BeChattedAuth
 
 extension NewAccountPayload: Decodable {
     private enum CodingKeys: String, CodingKey {

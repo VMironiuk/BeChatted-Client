@@ -1,0 +1,687 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E97702B2AF140C100136A72 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9770222AF140C000136A72 /* BeChattedAuth.framework */; };
+		2E9770312AF140C100136A72 /* BeChattedAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E9770252AF140C000136A72 /* BeChattedAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E9770592AF1411300136A72 /* UserLoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97703B2AF1411300136A72 /* UserLoginPayload.swift */; };
+		2E97705A2AF1411300136A72 /* UserLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97703C2AF1411300136A72 /* UserLoginInfo.swift */; };
+		2E97705B2AF1411300136A72 /* UserLoginServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97703D2AF1411300136A72 /* UserLoginServiceProtocol.swift */; };
+		2E97705C2AF1411300136A72 /* UserLogoutServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97703F2AF1411300136A72 /* UserLogoutServiceProtocol.swift */; };
+		2E97705D2AF1411300136A72 /* NewAccountPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770412AF1411300136A72 /* NewAccountPayload.swift */; };
+		2E97705E2AF1411300136A72 /* NewAccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770422AF1411300136A72 /* NewAccountServiceProtocol.swift */; };
+		2E97705F2AF1411300136A72 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770442AF1411300136A72 /* URLSessionHTTPClient.swift */; };
+		2E9770602AF1411300136A72 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770452AF1411300136A72 /* HTTPClientProtocol.swift */; };
+		2E9770612AF1411300136A72 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770472AF1411300136A72 /* AuthService.swift */; };
+		2E9770622AF1411300136A72 /* NewUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770492AF1411300136A72 /* NewUserInfo.swift */; };
+		2E9770632AF1411300136A72 /* NewUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97704A2AF1411300136A72 /* NewUserPayload.swift */; };
+		2E9770642AF1411300136A72 /* AddNewUserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97704B2AF1411300136A72 /* AddNewUserServiceProtocol.swift */; };
+		2E9770652AF1411300136A72 /* UserLoginServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97704D2AF1411300136A72 /* UserLoginServiceResultMapper.swift */; };
+		2E9770662AF1411300136A72 /* UserLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97704E2AF1411300136A72 /* UserLoginService.swift */; };
+		2E9770672AF1411300136A72 /* NewAccountServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770502AF1411300136A72 /* NewAccountServiceResultMapper.swift */; };
+		2E9770682AF1411300136A72 /* NewAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770512AF1411300136A72 /* NewAccountService.swift */; };
+		2E9770692AF1411300136A72 /* UserLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770532AF1411300136A72 /* UserLogoutService.swift */; };
+		2E97706A2AF1411300136A72 /* AddNewUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770552AF1411300136A72 /* AddNewUserService.swift */; };
+		2E97706B2AF1411300136A72 /* AddNewUserServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770562AF1411300136A72 /* AddNewUserServiceResultMapper.swift */; };
+		2E97706C2AF1411300136A72 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770582AF1411300136A72 /* AuthServiceProtocol.swift */; };
+		2E9770752AF1415100136A72 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97706D2AF1415100136A72 /* URLSessionHTTPClientTests.swift */; };
+		2E9770762AF1415100136A72 /* NewAccountPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97706F2AF1415100136A72 /* NewAccountPayload+Decodable.swift */; };
+		2E9770772AF1415100136A72 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770702AF1415100136A72 /* AuthServiceTests.swift */; };
+		2E9770782AF1415100136A72 /* UserLoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770712AF1415100136A72 /* UserLoginServiceTests.swift */; };
+		2E9770792AF1415100136A72 /* NewAccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770722AF1415100136A72 /* NewAccountServiceTests.swift */; };
+		2E97707A2AF1415100136A72 /* UserLogoutServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770732AF1415100136A72 /* UserLogoutServiceTests.swift */; };
+		2E97707B2AF1415100136A72 /* AddNewUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9770742AF1415100136A72 /* AddNewUserServiceTests.swift */; };
+		2E97707D2AF1416300136A72 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97707C2AF1416300136A72 /* XCTestCase+MemoryLeakTracking.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2E97702C2AF140C100136A72 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E9770192AF140C000136A72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E9770212AF140C000136A72;
+			remoteInfo = BeChattedAuth;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2E9770222AF140C000136A72 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E9770252AF140C000136A72 /* BeChattedAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedAuth.h; sourceTree = "<group>"; };
+		2E97702A2AF140C100136A72 /* BeChattedAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E97703B2AF1411300136A72 /* UserLoginPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginPayload.swift; sourceTree = "<group>"; };
+		2E97703C2AF1411300136A72 /* UserLoginInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginInfo.swift; sourceTree = "<group>"; };
+		2E97703D2AF1411300136A72 /* UserLoginServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginServiceProtocol.swift; sourceTree = "<group>"; };
+		2E97703F2AF1411300136A72 /* UserLogoutServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogoutServiceProtocol.swift; sourceTree = "<group>"; };
+		2E9770412AF1411300136A72 /* NewAccountPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAccountPayload.swift; sourceTree = "<group>"; };
+		2E9770422AF1411300136A72 /* NewAccountServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAccountServiceProtocol.swift; sourceTree = "<group>"; };
+		2E9770442AF1411300136A72 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		2E9770452AF1411300136A72 /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
+		2E9770472AF1411300136A72 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		2E9770492AF1411300136A72 /* NewUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserInfo.swift; sourceTree = "<group>"; };
+		2E97704A2AF1411300136A72 /* NewUserPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserPayload.swift; sourceTree = "<group>"; };
+		2E97704B2AF1411300136A72 /* AddNewUserServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewUserServiceProtocol.swift; sourceTree = "<group>"; };
+		2E97704D2AF1411300136A72 /* UserLoginServiceResultMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginServiceResultMapper.swift; sourceTree = "<group>"; };
+		2E97704E2AF1411300136A72 /* UserLoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginService.swift; sourceTree = "<group>"; };
+		2E9770502AF1411300136A72 /* NewAccountServiceResultMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAccountServiceResultMapper.swift; sourceTree = "<group>"; };
+		2E9770512AF1411300136A72 /* NewAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAccountService.swift; sourceTree = "<group>"; };
+		2E9770532AF1411300136A72 /* UserLogoutService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogoutService.swift; sourceTree = "<group>"; };
+		2E9770552AF1411300136A72 /* AddNewUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewUserService.swift; sourceTree = "<group>"; };
+		2E9770562AF1411300136A72 /* AddNewUserServiceResultMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewUserServiceResultMapper.swift; sourceTree = "<group>"; };
+		2E9770582AF1411300136A72 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
+		2E97706D2AF1415100136A72 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLSessionHTTPClientTests.swift; path = "../../BeChattedTests/Auth Service/URLSessionHTTPClientTests.swift"; sourceTree = "<group>"; };
+		2E97706F2AF1415100136A72 /* NewAccountPayload+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewAccountPayload+Decodable.swift"; sourceTree = "<group>"; };
+		2E9770702AF1415100136A72 /* AuthServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthServiceTests.swift; path = "../../BeChattedTests/Auth Service/AuthServiceTests.swift"; sourceTree = "<group>"; };
+		2E9770712AF1415100136A72 /* UserLoginServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserLoginServiceTests.swift; path = "../../BeChattedTests/Auth Service/UserLoginServiceTests.swift"; sourceTree = "<group>"; };
+		2E9770722AF1415100136A72 /* NewAccountServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAccountServiceTests.swift; path = "../../BeChattedTests/Auth Service/NewAccountServiceTests.swift"; sourceTree = "<group>"; };
+		2E9770732AF1415100136A72 /* UserLogoutServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserLogoutServiceTests.swift; path = "../../BeChattedTests/Auth Service/UserLogoutServiceTests.swift"; sourceTree = "<group>"; };
+		2E9770742AF1415100136A72 /* AddNewUserServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddNewUserServiceTests.swift; path = "../../BeChattedTests/Auth Service/AddNewUserServiceTests.swift"; sourceTree = "<group>"; };
+		2E97707C2AF1416300136A72 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XCTestCase+MemoryLeakTracking.swift"; path = "../../Helpers/XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E97701F2AF140C000136A72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E9770272AF140C100136A72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E97702B2AF140C100136A72 /* BeChattedAuth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E9770182AF140C000136A72 = {
+			isa = PBXGroup;
+			children = (
+				2E9770242AF140C000136A72 /* BeChattedAuth */,
+				2E97702E2AF140C100136A72 /* BeChattedAuthTests */,
+				2E9770232AF140C000136A72 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2E9770232AF140C000136A72 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770222AF140C000136A72 /* BeChattedAuth.framework */,
+				2E97702A2AF140C100136A72 /* BeChattedAuthTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2E9770242AF140C000136A72 /* BeChattedAuth */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770252AF140C000136A72 /* BeChattedAuth.h */,
+				2E9770542AF1411300136A72 /* Add New User API */,
+				2E9770482AF1411300136A72 /* Add New User Feature */,
+				2E9770462AF1411300136A72 /* Auth API */,
+				2E9770572AF1411300136A72 /* Auth Feature */,
+				2E97704F2AF1411300136A72 /* New Account API */,
+				2E9770402AF1411300136A72 /* New Account Feature */,
+				2E9770432AF1411300136A72 /* Shared */,
+				2E97704C2AF1411300136A72 /* User Login API */,
+				2E97703A2AF1411300136A72 /* User Login Feature */,
+				2E9770522AF1411300136A72 /* User Logout API */,
+				2E97703E2AF1411300136A72 /* User Logout Feature */,
+			);
+			path = BeChattedAuth;
+			sourceTree = "<group>";
+		};
+		2E97702E2AF140C100136A72 /* BeChattedAuthTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E97706E2AF1415100136A72 /* Helpers */,
+				2E9770742AF1415100136A72 /* AddNewUserServiceTests.swift */,
+				2E9770702AF1415100136A72 /* AuthServiceTests.swift */,
+				2E9770722AF1415100136A72 /* NewAccountServiceTests.swift */,
+				2E97706D2AF1415100136A72 /* URLSessionHTTPClientTests.swift */,
+				2E9770712AF1415100136A72 /* UserLoginServiceTests.swift */,
+				2E9770732AF1415100136A72 /* UserLogoutServiceTests.swift */,
+			);
+			path = BeChattedAuthTests;
+			sourceTree = "<group>";
+		};
+		2E97703A2AF1411300136A72 /* User Login Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2E97703B2AF1411300136A72 /* UserLoginPayload.swift */,
+				2E97703C2AF1411300136A72 /* UserLoginInfo.swift */,
+				2E97703D2AF1411300136A72 /* UserLoginServiceProtocol.swift */,
+			);
+			name = "User Login Feature";
+			path = "../../BeChatted/Auth Service/User Login Feature";
+			sourceTree = "<group>";
+		};
+		2E97703E2AF1411300136A72 /* User Logout Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2E97703F2AF1411300136A72 /* UserLogoutServiceProtocol.swift */,
+			);
+			name = "User Logout Feature";
+			path = "../../BeChatted/Auth Service/User Logout Feature";
+			sourceTree = "<group>";
+		};
+		2E9770402AF1411300136A72 /* New Account Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770412AF1411300136A72 /* NewAccountPayload.swift */,
+				2E9770422AF1411300136A72 /* NewAccountServiceProtocol.swift */,
+			);
+			name = "New Account Feature";
+			path = "../../BeChatted/Auth Service/New Account Feature";
+			sourceTree = "<group>";
+		};
+		2E9770432AF1411300136A72 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770442AF1411300136A72 /* URLSessionHTTPClient.swift */,
+				2E9770452AF1411300136A72 /* HTTPClientProtocol.swift */,
+			);
+			name = Shared;
+			path = "../../BeChatted/Auth Service/Shared";
+			sourceTree = "<group>";
+		};
+		2E9770462AF1411300136A72 /* Auth API */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770472AF1411300136A72 /* AuthService.swift */,
+			);
+			name = "Auth API";
+			path = "../../BeChatted/Auth Service/Auth API";
+			sourceTree = "<group>";
+		};
+		2E9770482AF1411300136A72 /* Add New User Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770492AF1411300136A72 /* NewUserInfo.swift */,
+				2E97704A2AF1411300136A72 /* NewUserPayload.swift */,
+				2E97704B2AF1411300136A72 /* AddNewUserServiceProtocol.swift */,
+			);
+			name = "Add New User Feature";
+			path = "../../BeChatted/Auth Service/Add New User Feature";
+			sourceTree = "<group>";
+		};
+		2E97704C2AF1411300136A72 /* User Login API */ = {
+			isa = PBXGroup;
+			children = (
+				2E97704D2AF1411300136A72 /* UserLoginServiceResultMapper.swift */,
+				2E97704E2AF1411300136A72 /* UserLoginService.swift */,
+			);
+			name = "User Login API";
+			path = "../../BeChatted/Auth Service/User Login API";
+			sourceTree = "<group>";
+		};
+		2E97704F2AF1411300136A72 /* New Account API */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770502AF1411300136A72 /* NewAccountServiceResultMapper.swift */,
+				2E9770512AF1411300136A72 /* NewAccountService.swift */,
+			);
+			name = "New Account API";
+			path = "../../BeChatted/Auth Service/New Account API";
+			sourceTree = "<group>";
+		};
+		2E9770522AF1411300136A72 /* User Logout API */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770532AF1411300136A72 /* UserLogoutService.swift */,
+			);
+			name = "User Logout API";
+			path = "../../BeChatted/Auth Service/User Logout API";
+			sourceTree = "<group>";
+		};
+		2E9770542AF1411300136A72 /* Add New User API */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770552AF1411300136A72 /* AddNewUserService.swift */,
+				2E9770562AF1411300136A72 /* AddNewUserServiceResultMapper.swift */,
+			);
+			name = "Add New User API";
+			path = "../../BeChatted/Auth Service/Add New User API";
+			sourceTree = "<group>";
+		};
+		2E9770572AF1411300136A72 /* Auth Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2E9770582AF1411300136A72 /* AuthServiceProtocol.swift */,
+			);
+			name = "Auth Feature";
+			path = "../../BeChatted/Auth Service/Auth Feature";
+			sourceTree = "<group>";
+		};
+		2E97706E2AF1415100136A72 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E97707C2AF1416300136A72 /* XCTestCase+MemoryLeakTracking.swift */,
+				2E97706F2AF1415100136A72 /* NewAccountPayload+Decodable.swift */,
+			);
+			name = Helpers;
+			path = "../../BeChattedTests/Auth Service/Helpers";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2E97701D2AF140C000136A72 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E9770312AF140C100136A72 /* BeChattedAuth.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2E9770212AF140C000136A72 /* BeChattedAuth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E9770342AF140C100136A72 /* Build configuration list for PBXNativeTarget "BeChattedAuth" */;
+			buildPhases = (
+				2E97701D2AF140C000136A72 /* Headers */,
+				2E97701E2AF140C000136A72 /* Sources */,
+				2E97701F2AF140C000136A72 /* Frameworks */,
+				2E9770202AF140C000136A72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeChattedAuth;
+			productName = BeChattedAuth;
+			productReference = 2E9770222AF140C000136A72 /* BeChattedAuth.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2E9770292AF140C100136A72 /* BeChattedAuthTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E9770372AF140C100136A72 /* Build configuration list for PBXNativeTarget "BeChattedAuthTests" */;
+			buildPhases = (
+				2E9770262AF140C100136A72 /* Sources */,
+				2E9770272AF140C100136A72 /* Frameworks */,
+				2E9770282AF140C100136A72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E97702D2AF140C100136A72 /* PBXTargetDependency */,
+			);
+			name = BeChattedAuthTests;
+			productName = BeChattedAuthTests;
+			productReference = 2E97702A2AF140C100136A72 /* BeChattedAuthTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2E9770192AF140C000136A72 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					2E9770212AF140C000136A72 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					2E9770292AF140C100136A72 = {
+						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
+					};
+				};
+			};
+			buildConfigurationList = 2E97701C2AF140C000136A72 /* Build configuration list for PBXProject "BeChattedAuth" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2E9770182AF140C000136A72;
+			productRefGroup = 2E9770232AF140C000136A72 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2E9770212AF140C000136A72 /* BeChattedAuth */,
+				2E9770292AF140C100136A72 /* BeChattedAuthTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2E9770202AF140C000136A72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E9770282AF140C100136A72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2E97701E2AF140C000136A72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E9770632AF1411300136A72 /* NewUserPayload.swift in Sources */,
+				2E97705F2AF1411300136A72 /* URLSessionHTTPClient.swift in Sources */,
+				2E97705E2AF1411300136A72 /* NewAccountServiceProtocol.swift in Sources */,
+				2E97705B2AF1411300136A72 /* UserLoginServiceProtocol.swift in Sources */,
+				2E9770672AF1411300136A72 /* NewAccountServiceResultMapper.swift in Sources */,
+				2E9770612AF1411300136A72 /* AuthService.swift in Sources */,
+				2E9770652AF1411300136A72 /* UserLoginServiceResultMapper.swift in Sources */,
+				2E97705A2AF1411300136A72 /* UserLoginInfo.swift in Sources */,
+				2E9770602AF1411300136A72 /* HTTPClientProtocol.swift in Sources */,
+				2E9770662AF1411300136A72 /* UserLoginService.swift in Sources */,
+				2E9770682AF1411300136A72 /* NewAccountService.swift in Sources */,
+				2E9770642AF1411300136A72 /* AddNewUserServiceProtocol.swift in Sources */,
+				2E97705C2AF1411300136A72 /* UserLogoutServiceProtocol.swift in Sources */,
+				2E97706C2AF1411300136A72 /* AuthServiceProtocol.swift in Sources */,
+				2E9770592AF1411300136A72 /* UserLoginPayload.swift in Sources */,
+				2E97705D2AF1411300136A72 /* NewAccountPayload.swift in Sources */,
+				2E97706B2AF1411300136A72 /* AddNewUserServiceResultMapper.swift in Sources */,
+				2E97706A2AF1411300136A72 /* AddNewUserService.swift in Sources */,
+				2E9770622AF1411300136A72 /* NewUserInfo.swift in Sources */,
+				2E9770692AF1411300136A72 /* UserLogoutService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E9770262AF140C100136A72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E97707A2AF1415100136A72 /* UserLogoutServiceTests.swift in Sources */,
+				2E97707D2AF1416300136A72 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				2E9770792AF1415100136A72 /* NewAccountServiceTests.swift in Sources */,
+				2E9770752AF1415100136A72 /* URLSessionHTTPClientTests.swift in Sources */,
+				2E9770762AF1415100136A72 /* NewAccountPayload+Decodable.swift in Sources */,
+				2E9770782AF1415100136A72 /* UserLoginServiceTests.swift in Sources */,
+				2E9770772AF1415100136A72 /* AuthServiceTests.swift in Sources */,
+				2E97707B2AF1415100136A72 /* AddNewUserServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E97702D2AF140C100136A72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E9770212AF140C000136A72 /* BeChattedAuth */;
+			targetProxy = 2E97702C2AF140C100136A72 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2E9770322AF140C100136A72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2E9770332AF140C100136A72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2E9770352AF140C100136A72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8U849676MP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedAuth;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2E9770362AF140C100136A72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8U849676MP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedAuth;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2E9770382AF140C100136A72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8U849676MP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedAuthTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2E9770392AF140C100136A72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8U849676MP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedAuthTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E97701C2AF140C000136A72 /* Build configuration list for PBXProject "BeChattedAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E9770322AF140C100136A72 /* Debug */,
+				2E9770332AF140C100136A72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E9770342AF140C100136A72 /* Build configuration list for PBXNativeTarget "BeChattedAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E9770352AF140C100136A72 /* Debug */,
+				2E9770362AF140C100136A72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E9770372AF140C100136A72 /* Build configuration list for PBXNativeTarget "BeChattedAuthTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E9770382AF140C100136A72 /* Debug */,
+				2E9770392AF140C100136A72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E9770192AF140C000136A72 /* Project object */;
+}
