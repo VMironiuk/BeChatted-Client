@@ -251,6 +251,27 @@ final class AuthServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
+    func test_sendUserLogout_completesWithFailureOnUserLogoutServiceFailedCompletion() {
+        // given
+        let exp = expectation(description: "Wait for user logout request completion")
+        
+        // when
+        sut.logout { result in
+            // then
+            switch result {
+            case .failure:
+                break
+            default:
+                XCTFail("Expected successful result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        userLogoutService.complete(with: anyNSError())
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     // MARK: - Helpers
     
     private func anyNewAccountPayload() -> NewAccountPayload {
