@@ -83,6 +83,10 @@ final class AuthServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
+    private func anyNewAccountPayload() -> NewAccountPayload {
+        NewAccountPayload(email: "my@example.com", password: "123456")
+    }
+    
     private final class NewAccountServiceSpy: NewAccountServiceProtocol {
         private(set) var messages = [Message]()
         
@@ -98,11 +102,7 @@ final class AuthServiceTests: XCTestCase {
             messages.append(Message(newAccountPayload: newAccountPayload, completion: completion))
         }
     }
-    
-    private func anyNewAccountPayload() -> NewAccountPayload {
-        NewAccountPayload(email: "my@example.com", password: "123456")
-    }
-    
+        
     private final class AddNewUserServiceSpy: AddNewUserServiceProtocol {
         private(set) var messages = [Message]()
         
