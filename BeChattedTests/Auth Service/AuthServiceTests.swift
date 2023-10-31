@@ -74,7 +74,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        newAccountService.complete()
+        newAccountService.complete(with: .success(()))
         
         wait(for: [exp], timeout: 1)
     }
@@ -96,7 +96,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        newAccountService.complete(with: anyNSError())
+        newAccountService.complete(with: .failure(anyNSError()))
         
         wait(for: [exp], timeout: 1)
     }
@@ -132,7 +132,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        userLoginService.complete(with: anyUserLoginInfo())
+        userLoginService.complete(with: .success(anyUserLoginInfo()))
         
         wait(for: [exp], timeout: 1)
     }
@@ -154,7 +154,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        userLoginService.complete(with: anyNSError())
+        userLoginService.complete(with: .failure(anyNSError()))
         
         wait(for: [exp], timeout: 1)
     }
@@ -190,7 +190,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        addNewUserService.complete(with: anyNewUserInfo())
+        addNewUserService.complete(with: .success(anyNewUserInfo()))
         
         wait(for: [exp], timeout: 1)
     }
@@ -212,7 +212,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        addNewUserService.complete(with: anyNSError())
+        addNewUserService.complete(with: .failure(anyNSError()))
         
         wait(for: [exp], timeout: 1)
     }
@@ -246,7 +246,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        userLogoutService.complete()
+        userLogoutService.complete(with: .success(()))
         
         wait(for: [exp], timeout: 1)
     }
@@ -267,7 +267,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        userLogoutService.complete(with: anyNSError())
+        userLogoutService.complete(with: .failure(anyNSError()))
         
         wait(for: [exp], timeout: 1)
     }
@@ -319,12 +319,8 @@ final class AuthServiceTests: XCTestCase {
             messages.append(Message(newAccountPayload: newAccountPayload, completion: completion))
         }
         
-        func complete(at index: Int = 0) {
-            messages[index].completion(.success(()))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
+        func complete(with result: Result<Void, Error>, at index: Int = 0) {
+            messages[index].completion(result)
         }
     }
         
@@ -343,12 +339,8 @@ final class AuthServiceTests: XCTestCase {
             messages.append(Message(newUserPayload: newUserPayload, completion: completion))
         }
         
-        func complete(with info: NewUserInfo, at index: Int = 0) {
-            messages[index].completion(.success(info))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
+        func complete(with result: Result<NewUserInfo, Error>, at index: Int = 0) {
+            messages[index].completion(result)
         }
     }
     
@@ -367,12 +359,8 @@ final class AuthServiceTests: XCTestCase {
             messages.append(Message(userLoginPayload: userLoginPayload, completion: completion))
         }
         
-        func complete(with info: UserLoginInfo, at index: Int = 0) {
-            messages[index].completion(.success(info))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
+        func complete(with result: Result<UserLoginInfo, Error>, at index: Int = 0) {
+            messages[index].completion(result)
         }
     }
     
@@ -387,12 +375,8 @@ final class AuthServiceTests: XCTestCase {
             messages.append(Message(completion: completion))
         }
         
-        func complete(at index: Int = 0) {
-            messages[index].completion(.success(()))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
+        func complete(with result: Result<Void, Error>, at index: Int = 0) {
+            messages[index].completion(result)
         }
     }
 }
