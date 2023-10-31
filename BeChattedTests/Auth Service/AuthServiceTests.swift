@@ -8,7 +8,7 @@
 import XCTest
 import BeChatted
 
-final class AuthService {
+final class AuthService: AuthServiceProtocol {
     private let newAccountService: NewAccountServiceProtocol
     private let addNewUserService: AddNewUserServiceProtocol
     private let userLoginService: UserLoginServiceProtocol
