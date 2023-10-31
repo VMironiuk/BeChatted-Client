@@ -137,6 +137,28 @@ final class AuthServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
+    func test_sendUserLogin_completesWithFailureOnUserLoginServiceFailedCompletion() {
+        // given
+        let userLoginPayload = anyUserLoginPayload()
+        let exp = expectation(description: "Wait for user login request completion")
+        
+        // when
+        sut.send(userLoginPayload: userLoginPayload) { result in
+            // then
+            switch result {
+            case .failure:
+                break
+            default:
+                XCTFail("Expected failed result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        userLoginService.complete(with: anyNSError())
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     func test_sendNewUser_sendsNewUserMessage() {
         // given
         let newUserPayload = anyNewUserPayload()
