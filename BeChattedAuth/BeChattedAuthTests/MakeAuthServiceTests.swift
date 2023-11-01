@@ -21,66 +21,50 @@ final class MakeAuthServiceTests: XCTestCase {
     }
     
     func test_makeAuthService_setsCorrectNewAccountURL() {
-        let authServiceConfiguration = authServiceConfiguration()
-        let authService = makeAuthService(configuration: authServiceConfiguration)
-        let newAccountURL = newAccountURL()
-        
-        let exp = expectation(description: "Wait for request")
-        URLProtocolStub.observeRequests { receivedRequest in
-            XCTAssertEqual(receivedRequest.url, newAccountURL)
-            exp.fulfill()
-        }
-        
-        authService.send(newAccountPayload: anyNewAccountPayload()) { _ in }
-        wait(for: [exp], timeout: 1.0)
+        expect(newAccountURL(), when: {
+            authService().send(newAccountPayload: anyNewAccountPayload()) { _ in }
+        })
     }
     
     func test_makeAuthService_setsCorrectNewUserURL() {
-        let authServiceConfiguration = authServiceConfiguration()
-        let authService = makeAuthService(configuration: authServiceConfiguration)
-        let newUserURL = newUserURL()
-        
-        let exp = expectation(description: "Wait for request")
-        URLProtocolStub.observeRequests { receivedRequest in
-            XCTAssertEqual(receivedRequest.url, newUserURL)
-            exp.fulfill()
-        }
-        
-        authService.send(newUserPayload: anyNewUserPayload()) { _ in }
-        wait(for: [exp], timeout: 1.0)
+        expect(newUserURL(), when: {
+            authService().send(newUserPayload: anyNewUserPayload()) { _ in }
+        })
     }
     
     func test_makeAuthService_setsCorrectUserLoginURL() {
-        let authServiceConfiguration = authServiceConfiguration()
-        let authService = makeAuthService(configuration: authServiceConfiguration)
-        let userLoginURL = userLoginURL()
-        
-        let exp = expectation(description: "Wait for request")
-        URLProtocolStub.observeRequests { receivedRequest in
-            XCTAssertEqual(receivedRequest.url, userLoginURL)
-            exp.fulfill()
-        }
-        
-        authService.send(userLoginPayload: anyUserLoginPayload()) { _ in }
-        wait(for: [exp], timeout: 1.0)
+        expect(userLoginURL(), when: {
+            authService().send(userLoginPayload: anyUserLoginPayload()) { _ in }
+        })
     }
     
     func test_makeAuthService_setsCorrectUserLogoutURL() {
-        let authServiceConfiguration = authServiceConfiguration()
-        let authService = makeAuthService(configuration: authServiceConfiguration)
-        let userLogoutURL = userLogoutURL()
-        
-        let exp = expectation(description: "Wait for request")
-        URLProtocolStub.observeRequests { receivedRequest in
-            XCTAssertEqual(receivedRequest.url, userLogoutURL)
-            exp.fulfill()
-        }
-        
-        authService.logout() { _ in }
-        wait(for: [exp], timeout: 1.0)
+        expect(userLogoutURL(), when: {
+            authService().logout() { _ in }
+        })
     }
     
     // MARK: - Helpers
+    
+    
+    private func authService() -> AuthServiceProtocol {
+        makeAuthService(configuration: authServiceConfiguration())
+    }
+    
+    private func expect(_ expectedURL: URL, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        // given
+        
+        let exp = expectation(description: "Wait for request")
+        URLProtocolStub.observeRequests { receivedRequest in
+            // then
+            XCTAssertEqual(receivedRequest.url, expectedURL)
+            exp.fulfill()
+        }
+        
+        // when
+        action()
+        wait(for: [exp], timeout: 1.0)
+    }
     
     private func authServiceConfiguration() -> AuthServiceConfiguration {
         AuthServiceConfiguration(
