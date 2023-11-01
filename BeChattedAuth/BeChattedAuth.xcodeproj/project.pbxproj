@@ -39,6 +39,7 @@
 		2EDB71652AF2B6EE00243018 /* UserLogoutServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71512AF2B6EE00243018 /* UserLogoutServiceProtocol.swift */; };
 		2EDB71672AF2B7F700243018 /* BeChattedAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71662AF2B7F700243018 /* BeChattedAuth.swift */; };
 		2EDB71692AF2BA7C00243018 /* MakeAuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71682AF2BA7C00243018 /* MakeAuthServiceTests.swift */; };
+		2EDB716B2AF2C3F800243018 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB716A2AF2C3F800243018 /* URLProtocolStub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		2EDB71512AF2B6EE00243018 /* UserLogoutServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogoutServiceProtocol.swift; sourceTree = "<group>"; };
 		2EDB71662AF2B7F700243018 /* BeChattedAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedAuth.swift; sourceTree = "<group>"; };
 		2EDB71682AF2BA7C00243018 /* MakeAuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAuthServiceTests.swift; sourceTree = "<group>"; };
+		2EDB716A2AF2C3F800243018 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +164,9 @@
 		2EDB71262AF2B6CD00243018 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				2EDB71272AF2B6CD00243018 /* NewAccountPayload+Decodable.swift */,
 				2EDB71282AF2B6CD00243018 /* XCTestCase+MemoryLeakTracking.swift */,
+				2EDB71272AF2B6CD00243018 /* NewAccountPayload+Decodable.swift */,
+				2EDB716A2AF2C3F800243018 /* URLProtocolStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				2EDB712B2AF2B6CD00243018 /* URLSessionHTTPClientTests.swift in Sources */,
 				2EDB71302AF2B6CD00243018 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2EDB71692AF2BA7C00243018 /* MakeAuthServiceTests.swift in Sources */,
+				2EDB716B2AF2C3F800243018 /* URLProtocolStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
