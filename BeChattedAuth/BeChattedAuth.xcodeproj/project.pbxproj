@@ -37,6 +37,8 @@
 		2EDB71632AF2B6EE00243018 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB714D2AF2B6EE00243018 /* HTTPClientProtocol.swift */; };
 		2EDB71642AF2B6EE00243018 /* UserLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB714F2AF2B6EE00243018 /* UserLogoutService.swift */; };
 		2EDB71652AF2B6EE00243018 /* UserLogoutServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71512AF2B6EE00243018 /* UserLogoutServiceProtocol.swift */; };
+		2EDB71672AF2B7F700243018 /* BeChattedAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71662AF2B7F700243018 /* BeChattedAuth.swift */; };
+		2EDB71692AF2BA7C00243018 /* MakeAuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71682AF2BA7C00243018 /* MakeAuthServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		2EDB714D2AF2B6EE00243018 /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
 		2EDB714F2AF2B6EE00243018 /* UserLogoutService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogoutService.swift; sourceTree = "<group>"; };
 		2EDB71512AF2B6EE00243018 /* UserLogoutServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogoutServiceProtocol.swift; sourceTree = "<group>"; };
+		2EDB71662AF2B7F700243018 /* BeChattedAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedAuth.swift; sourceTree = "<group>"; };
+		2EDB71682AF2BA7C00243018 /* MakeAuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAuthServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				2EDB710D2AF2B52800243018 /* BeChattedAuth.h */,
+				2EDB71662AF2B7F700243018 /* BeChattedAuth.swift */,
 				2EDB71462AF2B6EE00243018 /* Add New User API */,
 				2EDB71422AF2B6EE00243018 /* Add New User Feature */,
 				2EDB71492AF2B6EE00243018 /* Auth API */,
@@ -143,12 +148,13 @@
 			isa = PBXGroup;
 			children = (
 				2EDB71262AF2B6CD00243018 /* Helpers */,
-				2EDB71242AF2B6CD00243018 /* AddNewUserServiceTests.swift */,
 				2EDB71292AF2B6CD00243018 /* AuthServiceTests.swift */,
 				2EDB71252AF2B6CD00243018 /* NewAccountServiceTests.swift */,
-				2EDB71222AF2B6CD00243018 /* URLSessionHTTPClientTests.swift */,
+				2EDB71242AF2B6CD00243018 /* AddNewUserServiceTests.swift */,
 				2EDB71232AF2B6CD00243018 /* UserLoginServiceTests.swift */,
 				2EDB712A2AF2B6CD00243018 /* UserLogoutServiceTests.swift */,
+				2EDB71222AF2B6CD00243018 /* URLSessionHTTPClientTests.swift */,
+				2EDB71682AF2BA7C00243018 /* MakeAuthServiceTests.swift */,
 			);
 			path = BeChattedAuthTests;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				2EDB71652AF2B6EE00243018 /* UserLogoutServiceProtocol.swift in Sources */,
 				2EDB715E2AF2B6EE00243018 /* AddNewUserServiceProtocol.swift in Sources */,
 				2EDB715F2AF2B6EE00243018 /* AddNewUserService.swift in Sources */,
+				2EDB71672AF2B7F700243018 /* BeChattedAuth.swift in Sources */,
 				2EDB715B2AF2B6EE00243018 /* AuthServiceProtocol.swift in Sources */,
 				2EDB71592AF2B6EE00243018 /* UserLoginServiceResultMapper.swift in Sources */,
 				2EDB71562AF2B6EE00243018 /* UserLoginPayload.swift in Sources */,
@@ -404,6 +411,7 @@
 				2EDB712E2AF2B6CD00243018 /* NewAccountServiceTests.swift in Sources */,
 				2EDB712B2AF2B6CD00243018 /* URLSessionHTTPClientTests.swift in Sources */,
 				2EDB71302AF2B6CD00243018 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				2EDB71692AF2BA7C00243018 /* MakeAuthServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
