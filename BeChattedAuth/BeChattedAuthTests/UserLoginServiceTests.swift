@@ -244,26 +244,6 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(expectedUserLoginInfo, receivedUserLoginInfo)
     }
     
-    private func anyURL() -> URL {
-        URL(string: "http://any-url.com")!
-    }
-    
-    private func anyUserLoginPayload() -> UserLoginPayload {
-        UserLoginPayload(email: "my@example.com", password: "123456")
-    }
-    
-    private func anyData() -> Data {
-        Data("any data".utf8)
-    }
-    
-    private func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 1)
-    }
-    
-    private func httpResponse(withStatusCode statusCode: Int) -> HTTPURLResponse {
-        HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-    }
-    
     private final class HTTPClientSpy: HTTPClientProtocol {
         private var messages = [Message]()
         

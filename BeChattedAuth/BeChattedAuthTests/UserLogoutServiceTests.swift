@@ -152,10 +152,6 @@ final class UserLogoutServiceTests: XCTestCase {
         return (sut, client)
     }
     
-    private func anyURL() -> URL {
-        URL(string: "http://any-url.com")!
-    }
-    
     private class HTTPClientSpy: HTTPClientProtocol {
         private var messages = [Message]()
         

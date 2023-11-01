@@ -274,26 +274,6 @@ final class AuthServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func anyNewAccountPayload() -> NewAccountPayload {
-        NewAccountPayload(email: "my@example.com", password: "123456")
-    }
-    
-    private func anyUserLoginPayload() -> UserLoginPayload {
-        UserLoginPayload(email: "my@example.com", password: "123456")
-    }
-    
-    private func anyNewUserPayload() -> NewUserPayload {
-        NewUserPayload(
-            name: "user name",
-            email: "user@example.com",
-            avatarName: "avatar name",
-            avatarColor: "avatar color")
-    }
-    
-    private func anyNSError() -> Error {
-        NSError(domain: "any error", code: 1)
-    }
-    
     private func anyUserLoginInfo() -> UserLoginInfo {
         let jsonData = Data("{\"user\":\"a user\", \"token\":\"a token\"}".utf8)
         return try! JSONDecoder().decode(UserLoginInfo.self, from: jsonData)

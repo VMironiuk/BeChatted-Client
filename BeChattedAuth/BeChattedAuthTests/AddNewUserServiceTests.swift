@@ -246,30 +246,6 @@ final class AddNewUserServiceTests: XCTestCase {
 
     }
     
-    private func anyURL() -> URL {
-        URL(string: "http://any-url.com")!
-    }
-    
-    private func httpResponse(withStatusCode code: Int) -> HTTPURLResponse {
-        HTTPURLResponse(url: anyURL(), statusCode: code, httpVersion: nil, headerFields: nil)!
-    }
-    
-    private func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 0)
-    }
-    
-    private func anyData() -> Data? {
-        "any data".data(using: .utf8)
-    }
-    
-    private func anyNewUserPayload() -> NewUserPayload {
-        NewUserPayload(
-            name: "user name",
-            email: "user@example.com",
-            avatarName: "avatar name",
-            avatarColor: "avatar color")
-    }
-    
     private class HTTPClientSpy: HTTPClientProtocol {
         private var messages = [Message]()
         

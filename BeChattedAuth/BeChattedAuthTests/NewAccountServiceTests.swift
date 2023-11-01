@@ -225,22 +225,6 @@ final class NewAccountServiceTests: XCTestCase {
         XCTAssertNil(receivedResult, file: file, line: line)
     }
 
-    private func anyURL() -> URL {
-        URL(string: "http://any-url.com")!
-    }
-    
-    private func anyNSError() -> Error {
-        NSError(domain: "any error", code: 1)
-    }
-    
-    private func httpResponse(withStatusCode statusCode: Int) -> HTTPURLResponse {
-        HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-    }
-    
-    private func anyNewAccountPayload() -> NewAccountPayload {
-        NewAccountPayload(email: "my@example.com", password: "123456")
-    }
-    
     private class HTTPClientSpy: HTTPClientProtocol {
         private var messages = [(request: URLRequest, completion: (HTTPClientResult) -> Void)]()
                 

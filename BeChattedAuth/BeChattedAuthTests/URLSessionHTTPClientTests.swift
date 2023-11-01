@@ -34,7 +34,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
     }
 
     func test_performRequest_failsOnRequestError() {
-        let requestError = anyNSError()
+        let requestError = anyNSError() as NSError
         let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
                 
         XCTAssertEqual((receivedError as? NSError)?.domain, requestError.domain)
@@ -143,23 +143,11 @@ final class URLSessionHTTPClientTests: XCTestCase {
         return receivedResult
     }
     
-    private func anyURL() -> URL {
-        URL(string: "https://any-url.com")!
-    }
-    
     private func nonHTTPURLResponse() -> URLResponse {
         URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
     }
     
     private func anyHTTPURLResponse() -> HTTPURLResponse {
         HTTPURLResponse(url: anyURL(), statusCode: 200, httpVersion: nil, headerFields: nil)!
-    }
-    
-    private func anyData() -> Data {
-        "any data".data(using: .utf8)!
-    }
-    
-    private func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 0)
     }
 }
