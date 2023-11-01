@@ -133,17 +133,17 @@
 			children = (
 				2EDB710D2AF2B52800243018 /* BeChattedAuth.h */,
 				2EDB71662AF2B7F700243018 /* BeChattedAuth.swift */,
-				2EDB71462AF2B6EE00243018 /* Add New User API */,
-				2EDB71422AF2B6EE00243018 /* Add New User Feature */,
-				2EDB71492AF2B6EE00243018 /* Auth API */,
-				2EDB71402AF2B6EE00243018 /* Auth Feature */,
-				2EDB71332AF2B6EE00243018 /* New Account API */,
-				2EDB71362AF2B6EE00243018 /* New Account Feature */,
 				2EDB714B2AF2B6EE00243018 /* Shared */,
-				2EDB713D2AF2B6EE00243018 /* User Login API */,
+				2EDB71402AF2B6EE00243018 /* Auth Feature */,
+				2EDB71492AF2B6EE00243018 /* Auth API */,
+				2EDB71362AF2B6EE00243018 /* New Account Feature */,
+				2EDB71332AF2B6EE00243018 /* New Account API */,
+				2EDB71422AF2B6EE00243018 /* Add New User Feature */,
+				2EDB71462AF2B6EE00243018 /* Add New User API */,
 				2EDB71392AF2B6EE00243018 /* User Login Feature */,
-				2EDB714E2AF2B6EE00243018 /* User Logout API */,
+				2EDB713D2AF2B6EE00243018 /* User Login API */,
 				2EDB71502AF2B6EE00243018 /* User Logout Feature */,
+				2EDB714E2AF2B6EE00243018 /* User Logout API */,
 			);
 			path = BeChattedAuth;
 			sourceTree = "<group>";

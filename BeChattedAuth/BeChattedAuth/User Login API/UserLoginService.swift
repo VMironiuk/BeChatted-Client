@@ -7,11 +7,11 @@
 
 import Foundation
 
-public final class UserLoginService: UserLoginServiceProtocol {
+final class UserLoginService: UserLoginServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
-    public enum Error: Swift.Error {
+    enum Error: Swift.Error {
         case connectivity
         case credentials
         case server
@@ -19,12 +19,12 @@ public final class UserLoginService: UserLoginServiceProtocol {
         case unknown
     }
     
-    public init(url: URL, client: HTTPClientProtocol) {
+    init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
-    public func send(
+    func send(
         userLoginPayload: UserLoginPayload,
         completion: @escaping (Result<UserLoginInfo, Swift.Error>) -> Void
     ) {

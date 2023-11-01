@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol AddNewUserServiceProtocol {
+protocol AddNewUserServiceProtocol {
     func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void)
 }

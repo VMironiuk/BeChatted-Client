@@ -7,25 +7,25 @@
 
 import Foundation
 
-public final class AddNewUserService: AddNewUserServiceProtocol {
+final class AddNewUserService: AddNewUserServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
-    public enum AddNewUserError: Swift.Error {
+    enum AddNewUserError: Swift.Error {
         case connectivity
         case server
         case unknown
         case invalidData
     }
     
-    public typealias Error = AddNewUserError
+    typealias Error = AddNewUserError
     
-    public init(url: URL, client: HTTPClientProtocol) {
+    init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
-    public func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Swift.Error>) -> Void) {
+    func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Swift.Error>) -> Void) {
         let request = URLRequest(url: url)
         
         client.perform(request: request) { [weak self] result in

@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol UserLogoutServiceProtocol {
+protocol UserLogoutServiceProtocol {
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
 }

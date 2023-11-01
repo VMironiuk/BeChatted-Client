@@ -7,11 +7,9 @@
 
 import Foundation
 
-public protocol AuthServiceProtocol:
-    AnyObject,
-    NewAccountServiceProtocol,
-    UserLoginServiceProtocol,
-    AddNewUserServiceProtocol,
-    UserLogoutServiceProtocol
-{
+public protocol AuthServiceProtocol: AnyObject {
+    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void)
+    func send(userLoginPayload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void)
+    func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void)
+    func logout(completion: @escaping (Result<Void, Error>) -> Void)
 }

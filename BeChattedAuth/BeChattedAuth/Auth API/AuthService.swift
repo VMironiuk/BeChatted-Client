@@ -7,13 +7,13 @@
 
 import Foundation
 
-public final class AuthService: AuthServiceProtocol {
+final class AuthService: AuthServiceProtocol {
     private let newAccountService: NewAccountServiceProtocol
     private let addNewUserService: AddNewUserServiceProtocol
     private let userLoginService: UserLoginServiceProtocol
     private let userLogoutService: UserLogoutServiceProtocol
     
-    public init(
+    init(
         newAccountService: NewAccountServiceProtocol,
         addNewUserService: AddNewUserServiceProtocol,
         userLoginService: UserLoginServiceProtocol,
@@ -25,19 +25,19 @@ public final class AuthService: AuthServiceProtocol {
         self.userLogoutService = userLogoutService
     }
     
-    public func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void) {
+    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void) {
         newAccountService.send(newAccountPayload: newAccountPayload, completion: completion)
     }
     
-    public func send(userLoginPayload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
+    func send(userLoginPayload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
         userLoginService.send(userLoginPayload: userLoginPayload, completion: completion)
     }
     
-    public func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
+    func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
         addNewUserService.send(newUserPayload: newUserPayload, completion: completion)
     }
     
-    public func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         userLogoutService.logout(completion: completion)
     }
 }

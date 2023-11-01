@@ -7,21 +7,21 @@
 
 import Foundation
 
-public final class UserLogoutService: UserLogoutServiceProtocol {
+final class UserLogoutService: UserLogoutServiceProtocol {
     
     private let url: URL
     private let client: HTTPClientProtocol
     
-    public enum Error: Swift.Error {
+    enum Error: Swift.Error {
         case connectivity
     }
     
-    public init(url: URL, client: HTTPClientProtocol) {
+    init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
-    public func logout(completion: @escaping (Result<Void, Swift.Error>) -> Void) {
+    func logout(completion: @escaping (Result<Void, Swift.Error>) -> Void) {
         let request = URLRequest(url: url)
         
         client.perform(request: request) { [weak self] result in
