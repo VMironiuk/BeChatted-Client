@@ -65,6 +65,21 @@ final class MakeAuthServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_makeAuthService_setsCorrectUserLogoutURL() {
+        let authServiceConfiguration = authServiceConfiguration()
+        let authService = makeAuthService(configuration: authServiceConfiguration)
+        let userLogoutURL = userLogoutURL()
+        
+        let exp = expectation(description: "Wait for request")
+        URLProtocolStub.observeRequests { receivedRequest in
+            XCTAssertEqual(receivedRequest.url, userLogoutURL)
+            exp.fulfill()
+        }
+        
+        authService.logout() { _ in }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func authServiceConfiguration() -> AuthServiceConfiguration {
