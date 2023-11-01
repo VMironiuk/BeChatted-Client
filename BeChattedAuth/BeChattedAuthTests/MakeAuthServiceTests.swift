@@ -50,6 +50,21 @@ final class MakeAuthServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_makeAuthService_setsCorrectUserLoginURL() {
+        let authServiceConfiguration = authServiceConfiguration()
+        let authService = makeAuthService(configuration: authServiceConfiguration)
+        let userLoginURL = userLoginURL()
+        
+        let exp = expectation(description: "Wait for request")
+        URLProtocolStub.observeRequests { receivedRequest in
+            XCTAssertEqual(receivedRequest.url, userLoginURL)
+            exp.fulfill()
+        }
+        
+        authService.send(userLoginPayload: anyUserLoginPayload()) { _ in }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func authServiceConfiguration() -> AuthServiceConfiguration {
@@ -87,6 +102,10 @@ final class MakeAuthServiceTests: XCTestCase {
             email: "user@example.com",
             avatarName: "avatar name",
             avatarColor: "avatar color")
+    }
+    
+    private func anyUserLoginPayload() -> UserLoginPayload {
+        UserLoginPayload(email: "my@example.com", password: "123456")
     }
     
     private class URLProtocolStub: URLProtocol {
