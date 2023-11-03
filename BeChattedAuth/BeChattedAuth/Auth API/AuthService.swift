@@ -29,14 +29,14 @@ final class AuthService: AuthServiceProtocol {
         newAccountService.send(newAccountPayload: payload, completion: completion)
     }
     
-    func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
-        userLoginService.send(userLoginPayload: payload, completion: completion)
-    }
-    
     func addUser(_ payload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
         addNewUserService.send(newUserPayload: payload, completion: completion)
     }
     
+    func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
+        userLoginService.send(userLoginPayload: payload, completion: completion)
+    }
+        
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         userLogoutService.logout(completion: completion)
     }
