@@ -25,18 +25,18 @@ final class AuthService: AuthServiceProtocol {
         self.userLogoutService = userLogoutService
     }
     
-    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void) {
-        newAccountService.send(newAccountPayload: newAccountPayload, completion: completion)
+    func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void) {
+        newAccountService.send(newAccountPayload: payload, completion: completion)
     }
     
-    func send(userLoginPayload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
-        userLoginService.send(userLoginPayload: userLoginPayload, completion: completion)
+    func addUser(_ payload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
+        addNewUserService.send(newUserPayload: payload, completion: completion)
     }
     
-    func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
-        addNewUserService.send(newUserPayload: newUserPayload, completion: completion)
+    func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
+        userLoginService.send(userLoginPayload: payload, completion: completion)
     }
-    
+        
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         userLogoutService.logout(completion: completion)
     }

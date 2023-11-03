@@ -22,19 +22,19 @@ final class MakeAuthServiceTests: XCTestCase {
     
     func test_makeAuthService_setsCorrectNewAccountURL() {
         expect(newAccountURL(), when: {
-            authService().send(newAccountPayload: anyNewAccountPayload()) { _ in }
+            authService().createAccount(anyNewAccountPayload()) { _ in }
         })
     }
     
     func test_makeAuthService_setsCorrectNewUserURL() {
         expect(newUserURL(), when: {
-            authService().send(newUserPayload: anyNewUserPayload()) { _ in }
+            authService().addUser(anyNewUserPayload()) { _ in }
         })
     }
     
     func test_makeAuthService_setsCorrectUserLoginURL() {
         expect(userLoginURL(), when: {
-            authService().send(userLoginPayload: anyUserLoginPayload()) { _ in }
+            authService().login(anyUserLoginPayload()) { _ in }
         })
     }
     
