@@ -34,7 +34,7 @@ final class MakeAuthServiceTests: XCTestCase {
     
     func test_makeAuthService_setsCorrectUserLoginURL() {
         expect(userLoginURL(), when: {
-            authService().send(userLoginPayload: anyUserLoginPayload()) { _ in }
+            authService().login(anyUserLoginPayload()) { _ in }
         })
     }
     
