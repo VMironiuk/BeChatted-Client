@@ -28,7 +28,7 @@ final class MakeAuthServiceTests: XCTestCase {
     
     func test_makeAuthService_setsCorrectNewUserURL() {
         expect(newUserURL(), when: {
-            authService().send(newUserPayload: anyNewUserPayload()) { _ in }
+            authService().addUser(anyNewUserPayload()) { _ in }
         })
     }
     

@@ -164,7 +164,7 @@ final class AuthServiceTests: XCTestCase {
         let newUserPayload = anyNewUserPayload()
         
         // when
-        sut.send(newUserPayload: newUserPayload) { _ in }
+        sut.addUser(newUserPayload) { _ in }
         
         // then
         XCTAssertTrue(newAccountService.messages.isEmpty)
@@ -179,7 +179,7 @@ final class AuthServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for new user request completion")
         
         // when
-        sut.send(newUserPayload: newUserPayload) { result in
+        sut.addUser(newUserPayload) { result in
             // then
             switch result {
             case .success:
@@ -201,7 +201,7 @@ final class AuthServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for new user request completion")
         
         // when
-        sut.send(newUserPayload: newUserPayload) { result in
+        sut.addUser(newUserPayload) { result in
             // then
             switch result {
             case .failure:
