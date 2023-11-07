@@ -11,6 +11,12 @@
 		2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E16A2AF6013700DE8E68 /* ContentView.swift */; };
 		2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16C2AF6013900DE8E68 /* Assets.xcassets */; };
 		2E73E1702AF6013900DE8E68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */; };
+		2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */; };
+		2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */; };
+		2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */; };
+		2EC7AB1B2AFA7A2100BFDB29 /* MainButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */; };
+		2EC7AB1C2AFA7A2100BFDB29 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */; };
+		2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		2E73E16A2AF6013700DE8E68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E73E16C2AF6013900DE8E68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
+		2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
+		2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainButtonStyles.swift; sourceTree = "<group>"; };
+		2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +65,12 @@
 			children = (
 				2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */,
 				2E73E16A2AF6013700DE8E68 /* ContentView.swift */,
+				2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */,
+				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
+				2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */,
+				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
+				2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */,
+				2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */,
 				2E73E16C2AF6013900DE8E68 /* Assets.xcassets */,
 				2E73E16E2AF6013900DE8E68 /* Preview Content */,
 			);
@@ -138,6 +156,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */,
+				2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */,
+				2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */,
+				2EC7AB1B2AFA7A2100BFDB29 /* MainButtonStyles.swift in Sources */,
+				2EC7AB1C2AFA7A2100BFDB29 /* RegisterView.swift in Sources */,
+				2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */,
+				2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */,
 				2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
