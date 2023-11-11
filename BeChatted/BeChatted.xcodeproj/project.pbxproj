@@ -12,6 +12,8 @@
 		2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16C2AF6013900DE8E68 /* Assets.xcassets */; };
 		2E73E1702AF6013900DE8E68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */; };
 		2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */; };
+		2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; };
+		2E9D056E2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */; };
 		2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */; };
 		2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */; };
@@ -30,6 +32,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2E9D056F2AFF7BA0007547CD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2E9D056E2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2E73E1652AF6013700DE8E68 /* BeChatted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChatted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
@@ -38,6 +54,7 @@
 		2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E9D05542AFF733F007547CD /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedUserInputValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -51,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +88,7 @@
 				2E73E1672AF6013700DE8E68 /* BeChatted */,
 				2E9D05552AFF733F007547CD /* BeChattedTests */,
 				2E73E1662AF6013700DE8E68 /* Products */,
+				2E9D056B2AFF7BA0007547CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +198,14 @@
 			path = BeChattedTests;
 			sourceTree = "<group>";
 		};
+		2E9D056B2AFF7BA0007547CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,6 +216,7 @@
 				2E73E1612AF6013700DE8E68 /* Sources */,
 				2E73E1622AF6013700DE8E68 /* Frameworks */,
 				2E73E1632AF6013700DE8E68 /* Resources */,
+				2E9D056F2AFF7BA0007547CD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

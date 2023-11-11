@@ -6,12 +6,16 @@
 //
 
 import XCTest
+import BeChattedUserInputValidation
 
 final class LoginViewModel {
+    private let emailValidator: UserInputValidatorProtocol = EmailValidator()
+    private let passwordValidator: UserInputValidatorProtocol = PasswordValidator()
+    
     var email: String = ""
     var password: String = ""
     var isUserInputValid: Bool {
-        false
+        emailValidator.isValid(email) && passwordValidator.isValid(password)
     }
 }
 
@@ -56,5 +60,14 @@ final class LoginViewModelTests: XCTestCase {
         sut.password = "1234"
         
         XCTAssertFalse(sut.isUserInputValid)
+    }
+    
+    func test_isUserInputValid_returnsTrueOnValidCredentials() {
+        let sut = LoginViewModel()
+        
+        sut.email = "mail@example.com"
+        sut.password = "0123456789"
+        
+        XCTAssertTrue(sut.isUserInputValid)
     }
 }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol UserInputValidatorProtocol {
+public protocol UserInputValidatorProtocol {
     func isValid(_ input: String) -> Bool
 }
