@@ -22,14 +22,11 @@ final class LoginViewModel {
 final class LoginViewModelTests: XCTestCase {
 
     func test_init_containsNonValidUserInput() {
-        let sut = LoginViewModel()
-        
-        
-        XCTAssertFalse(sut.isUserInputValid)
+        XCTAssertFalse(makeSUT().isUserInputValid)
     }
     
     func test_isUserInputValid_returnsFalseOnEmptyPassword() {
-        let sut = LoginViewModel()
+        let sut = makeSUT()
         
         sut.email = "mail@example.com"
         
@@ -37,7 +34,7 @@ final class LoginViewModelTests: XCTestCase {
     }
     
     func test_isUserInputValid_returnsFalseOnEmptyEmail() {
-        let sut = LoginViewModel()
+        let sut = makeSUT()
         
         sut.password = "0123456789"
         
@@ -45,7 +42,7 @@ final class LoginViewModelTests: XCTestCase {
     }
     
     func test_isUserInputValid_returnsFalseOnInvalidEmailFormat() {
-        let sut = LoginViewModel()
+        let sut = makeSUT()
         
         sut.email = "emailexample.com"
         sut.password = "0123456789"
@@ -54,7 +51,7 @@ final class LoginViewModelTests: XCTestCase {
     }
     
     func test_isUserInputValid_returnsFalseOnInvalidPasswordFormat() {
-        let sut = LoginViewModel()
+        let sut = makeSUT()
         
         sut.email = "emailexample.com"
         sut.password = "1234"
@@ -63,11 +60,17 @@ final class LoginViewModelTests: XCTestCase {
     }
     
     func test_isUserInputValid_returnsTrueOnValidCredentials() {
-        let sut = LoginViewModel()
+        let sut = makeSUT()
         
         sut.email = "mail@example.com"
         sut.password = "0123456789"
         
         XCTAssertTrue(sut.isUserInputValid)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT() -> LoginViewModel {
+        LoginViewModel()
     }
 }
