@@ -8,20 +8,26 @@
 import SwiftUI
 
 struct TextInputView: View {
-    let title: String
+    private let title: String
+    
+    init(title: String = "") {
+        self.title = title
+    }
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color("Auth/UserInput/BorderColor"), lineWidth: 1)
             
-            GeometryReader { geometry in
-                Text(title)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(Color(("Auth/UserInput/TitleColor")))
-                    .padding(.horizontal, 8)
-                    .background(Color.white)
-                    .offset(x: 4, y: -8)
+            if !title.isEmpty {
+                GeometryReader { geometry in
+                    Text(title)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundStyle(Color(("Auth/UserInput/TitleColor")))
+                        .padding(.horizontal, 8)
+                        .background(Color.white)
+                        .offset(x: 4, y: -8)
+                }
             }
             
             TextField("", text: .constant("mail@example.com"))
