@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import BeChattedUserInputValidation
 
 struct LoginView: View {
+    @ObservedObject private var viewModel: LoginViewModel
     @State private var isActive = true
     @State private var email = "mail@example.com"
+    
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -20,7 +26,7 @@ struct LoginView: View {
             .frame(height: 180)
             
             ScrollView {
-                TextInputView(title: "Email", text: $email)
+                TextInputView(title: "Email", text: $viewModel.email)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 64)
@@ -71,5 +77,10 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView(
+        viewModel: LoginViewModel(
+            emailValidator: EmailValidator(),
+            passwordValidator: PasswordValidator()
+        )
+    )
 }

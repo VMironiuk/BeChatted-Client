@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol LoginViewModelProtocol: AnyObject {
+public protocol LoginViewModelProtocol: AnyObject, ObservableObject {
     var email: String { get set }
     var password: String { get set }
     var isUserInputValid: Bool { get }

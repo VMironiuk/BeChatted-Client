@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import BeChattedUserInputValidation
 
 struct ContentView: View {
     var body: some View {
         NavigationStack {
-            LoginView()
+            LoginView(
+                viewModel: LoginViewModel(
+                    emailValidator: EmailValidator(),
+                    passwordValidator: PasswordValidator()
+                )
+            )
         }
     }
 }

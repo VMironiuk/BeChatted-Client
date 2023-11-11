@@ -8,7 +8,7 @@
 import Foundation
 import BeChattedUserInputValidation
 
-public final class LoginViewModel: LoginViewModelProtocol {
+public final class LoginViewModel: LoginViewModelProtocol, ObservableObject {
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
     
