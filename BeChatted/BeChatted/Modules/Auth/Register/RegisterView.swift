@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import BeChattedUserInputValidation
 
 struct RegisterView: View {
+    @ObservedObject private var viewModel: RegisterViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var isActive = true
+    
+    init(viewModel: RegisterViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -33,17 +38,17 @@ struct RegisterView: View {
             .frame(height: 180)
             
             ScrollView {
-                TextInputView(title: "Your Name", text: .constant("Jonny B"))
+                TextInputView(title: "Your Name", text: $viewModel.name)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 64)
                 
-                TextInputView(title: "Email", text: .constant("mail@example.com"))
+                TextInputView(title: "Email", text: $viewModel.email)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
                 
-                SecureInputView(title: "Password", text: .constant("0123456789"))
+                SecureInputView(title: "Password", text: $viewModel.password)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
@@ -54,7 +59,7 @@ struct RegisterView: View {
             Button("Register") {
                 
             }
-            .buttonStyle(MainButtonStyle(isActive: isActive))
+            .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
             
@@ -91,5 +96,10 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView()
+    RegisterView(
+        viewModel: RegisterViewModel(
+            emailValidator: EmailValidator(),
+            passwordValidator: PasswordValidator()
+        )
+    )
 }

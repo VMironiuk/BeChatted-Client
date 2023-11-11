@@ -158,8 +158,8 @@
 		2E9D054A2AFF718F007547CD /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
 				2E9D05792AFF9793007547CD /* RegisterViewModel.swift */,
+				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";

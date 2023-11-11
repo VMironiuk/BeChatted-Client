@@ -49,7 +49,7 @@ struct LoginView: View {
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(Color("Auth/BottomLabelColor"))
                 
-                NavigationLink(destination: RegisterView()) {
+                NavigationLink(destination: registerView()) {
                     Text("Register")
                         .font(.system(size: 14, weight: .regular))
                         .foregroundStyle(Color("Auth/MainButtonColor"))
@@ -70,6 +70,15 @@ struct LoginView: View {
             to: nil,
             from: nil,
             for: nil
+        )
+    }
+    
+    private func registerView() -> RegisterView {
+        RegisterView(
+            viewModel: RegisterViewModel(
+                emailValidator: EmailValidator(),
+                passwordValidator: PasswordValidator()
+            )
         )
     }
 }
