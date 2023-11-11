@@ -60,7 +60,7 @@ final class LoginViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> LoginViewModelProtocol {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> LoginViewModel {
         let emailValidator = EmailValidator()
         let passwordValidator = PasswordValidator()
         let sut = LoginViewModel(emailValidator: emailValidator, passwordValidator: passwordValidator)
