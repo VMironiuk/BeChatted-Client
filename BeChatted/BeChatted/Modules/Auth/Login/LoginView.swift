@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @State private var isActive = true
+    @State private var email = "mail@example.com"
     
     var body: some View {
         VStack {
@@ -19,7 +20,7 @@ struct LoginView: View {
             .frame(height: 180)
             
             ScrollView {
-                TextInputView(title: "Email", text: .constant("mail@example.com"))
+                TextInputView(title: "Email", text: $email)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 64)
