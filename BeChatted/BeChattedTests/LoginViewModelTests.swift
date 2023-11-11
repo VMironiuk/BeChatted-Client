@@ -48,4 +48,13 @@ final class LoginViewModelTests: XCTestCase {
         
         XCTAssertFalse(sut.isUserInputValid)
     }
+    
+    func test_isUserInputValid_returnsFalseOnInvalidPasswordFormat() {
+        let sut = LoginViewModel()
+        
+        sut.email = "emailexample.com"
+        sut.password = "1234"
+        
+        XCTAssertFalse(sut.isUserInputValid)
+    }
 }
