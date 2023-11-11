@@ -16,6 +16,7 @@
 		2E9D056E2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E9D05722AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D05712AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift */; };
 		2E9D05742AFF8349007547CD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D05732AFF8349007547CD /* LoginViewModel.swift */; };
+		2E9D05782AFF94D0007547CD /* RegisterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D05772AFF94D0007547CD /* RegisterViewModelTests.swift */; };
 		2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */; };
 		2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */; };
 		2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */; };
@@ -59,6 +60,7 @@
 		2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedUserInputValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9D05712AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2E9D05732AFF8349007547CD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		2E9D05772AFF94D0007547CD /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
 		2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				2E9D05702AFF7E6C007547CD /* Helpers */,
 				2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */,
+				2E9D05772AFF94D0007547CD /* RegisterViewModelTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E9D05782AFF94D0007547CD /* RegisterViewModelTests.swift in Sources */,
 				2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */,
 				2E9D05722AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
