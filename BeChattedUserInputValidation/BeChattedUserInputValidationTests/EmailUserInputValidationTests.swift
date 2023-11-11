@@ -17,7 +17,7 @@ final class EmailUserInputValidationTests: XCTestCase {
         
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseForTwoAtSymbols() {
@@ -27,7 +27,7 @@ final class EmailUserInputValidationTests: XCTestCase {
         
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfLocalPartStartsWithPeriod() {
@@ -37,7 +37,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfLocalPartEndsWithPeriod() {
@@ -47,7 +47,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfLocalPartStartsWithUnderscore() {
@@ -57,7 +57,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfLocalPartEndsWithUnderscore() {
@@ -67,7 +67,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfLocalPartIsLongerThan65Characters() {
@@ -77,7 +77,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfDomainPartDoesNotContainPeriod() {
@@ -87,7 +87,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfDomainPartContainsMoreThanOnePeriod() {
@@ -97,7 +97,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfDomainPartContainsInvalidCharacter() {
@@ -107,7 +107,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfDomainPartContainsMoreThan255Characters() {
@@ -118,7 +118,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsFalseIfTLDPartContainsMoreThan63Characters() {
@@ -129,7 +129,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertFalse(sut.isValid(email))
+        XCTAssertFalse(sut.isValid(email: email))
     }
     
     func test_isValid_returnsTrueForValidEmail() {
@@ -139,7 +139,7 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertTrue(sut.isValid(email))
+        XCTAssertTrue(sut.isValid(email: email))
     }
     
     func test_isValid_caseInsensitive() {
@@ -149,6 +149,6 @@ final class EmailUserInputValidationTests: XCTestCase {
 
         // when
         // then
-        XCTAssertTrue(sut.isValid(email))
+        XCTAssertTrue(sut.isValid(email: email))
     }
 }

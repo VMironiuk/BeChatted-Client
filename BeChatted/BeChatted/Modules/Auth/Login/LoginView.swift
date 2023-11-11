@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import BeChattedUserInputValidation
 
 struct LoginView: View {
-    @State private var isActive = true
+    @ObservedObject private var viewModel: LoginViewModel
+    private let registerViewBuilder: () -> RegisterView
+    
+    init(viewModel: LoginViewModel, registerViewBuilder: @escaping () -> RegisterView) {
+        self.viewModel = viewModel
+        self.registerViewBuilder = registerViewBuilder
+    }
     
     var body: some View {
         VStack {
@@ -19,12 +26,12 @@ struct LoginView: View {
             .frame(height: 180)
             
             ScrollView {
-                TextInputView(title: "Email")
+                TextInputView(title: "Email", text: $viewModel.email)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 64)
                 
-                SecureInputView(title: "Password")
+                SecureInputView(title: "Password", text: $viewModel.password)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
@@ -35,7 +42,7 @@ struct LoginView: View {
             Button("Login") {
                 
             }
-            .buttonStyle(MainButtonStyle(isActive: isActive))
+            .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
             
@@ -44,7 +51,7 @@ struct LoginView: View {
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(Color("Auth/BottomLabelColor"))
                 
-                NavigationLink(destination: RegisterView()) {
+                NavigationLink(destination: registerViewBuilder()) {
                     Text("Register")
                         .font(.system(size: 14, weight: .regular))
                         .foregroundStyle(Color("Auth/MainButtonColor"))
@@ -67,8 +74,30 @@ struct LoginView: View {
             for: nil
         )
     }
+    
+    private func registerView() -> RegisterView {
+        RegisterView(
+            viewModel: RegisterViewModel(
+                emailValidator: EmailValidator(),
+                passwordValidator: PasswordValidator()
+            )
+        )
+    }
 }
 
 #Preview {
-    LoginView()
+    LoginView(
+        viewModel: LoginViewModel(
+            emailValidator: EmailValidator(),
+            passwordValidator: PasswordValidator()
+        ),
+        registerViewBuilder: {
+            RegisterView(
+                viewModel: RegisterViewModel(
+                    emailValidator: EmailValidator(),
+                    passwordValidator: PasswordValidator()
+                )
+            )
+        }
+    )
 }

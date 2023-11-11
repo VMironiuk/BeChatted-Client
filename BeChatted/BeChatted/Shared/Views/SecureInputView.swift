@@ -9,27 +9,35 @@ import SwiftUI
 
 struct SecureInputView: View {
     @State private var isSecured = true
-    let title: String
+    private let title: String
+    @Binding private var text: String
+    
+    init(title: String = "", text: Binding<String>) {
+        self.title = title
+        self._text = text
+    }
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color("Auth/UserInput/BorderColor"), lineWidth: 1)
             
-            GeometryReader { geometry in
-                Text(title)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(Color(("Auth/UserInput/TitleColor")))
-                    .padding(.horizontal, 8)
-                    .background(Color.white)
-                    .offset(x: 4, y: -8)
+            if !title.isEmpty {
+                GeometryReader { geometry in
+                    Text(title)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundStyle(Color(("Auth/UserInput/TitleColor")))
+                        .padding(.horizontal, 8)
+                        .background(Color.white)
+                        .offset(x: 4, y: -8)
+                }
             }
             
             HStack {
                 if isSecured {
-                    SecureField("", text: .constant("0123456789"))
+                    SecureField("", text: $text)
                 } else {
-                    TextField("", text: .constant("0123456789"))
+                    TextField("", text: $text)
                 }
                 Button(action: {
                     isSecured.toggle()
@@ -46,6 +54,6 @@ struct SecureInputView: View {
 }
 
 #Preview {
-    SecureInputView(title: "Password")
+    SecureInputView(title: "Password", text: .constant("0123456789"))
         .frame(height: 60)
 }

@@ -11,6 +11,13 @@
 		2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E16A2AF6013700DE8E68 /* ContentView.swift */; };
 		2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16C2AF6013900DE8E68 /* Assets.xcassets */; };
 		2E73E1702AF6013900DE8E68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */; };
+		2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */; };
+		2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; };
+		2E9D056E2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E9D05722AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D05712AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift */; };
+		2E9D05742AFF8349007547CD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D05732AFF8349007547CD /* LoginViewModel.swift */; };
+		2E9D05782AFF94D0007547CD /* RegisterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D05772AFF94D0007547CD /* RegisterViewModelTests.swift */; };
+		2E9D057A2AFF9793007547CD /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D05792AFF9793007547CD /* RegisterViewModel.swift */; };
 		2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */; };
 		2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */; };
 		2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */; };
@@ -19,12 +26,43 @@
 		2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2E9D05582AFF733F007547CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E73E15D2AF6013700DE8E68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E73E1642AF6013700DE8E68;
+			remoteInfo = BeChatted;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2E9D056F2AFF7BA0007547CD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2E9D056E2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2E73E1652AF6013700DE8E68 /* BeChatted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChatted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
 		2E73E16A2AF6013700DE8E68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E73E16C2AF6013900DE8E68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2E9D05542AFF733F007547CD /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedUserInputValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E9D05712AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		2E9D05732AFF8349007547CD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		2E9D05772AFF94D0007547CD /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
+		2E9D05792AFF9793007547CD /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -38,6 +76,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E9D05512AFF733F007547CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,7 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				2E73E1672AF6013700DE8E68 /* BeChatted */,
+				2E9D05552AFF733F007547CD /* BeChattedTests */,
 				2E73E1662AF6013700DE8E68 /* Products */,
+				2E9D056B2AFF7BA0007547CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				2E73E1652AF6013700DE8E68 /* BeChatted.app */,
+				2E9D05542AFF733F007547CD /* BeChattedTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,14 +112,9 @@
 		2E73E1672AF6013700DE8E68 /* BeChatted */ = {
 			isa = PBXGroup;
 			children = (
-				2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */,
-				2E73E16A2AF6013700DE8E68 /* ContentView.swift */,
-				2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */,
-				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
-				2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */,
-				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
-				2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */,
-				2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */,
+				2E9D054E2AFF7232007547CD /* App */,
+				2E9D054B2AFF71B9007547CD /* Shared */,
+				2E9D05472AFF716A007547CD /* Modules */,
 				2E73E16C2AF6013900DE8E68 /* Assets.xcassets */,
 				2E73E16E2AF6013900DE8E68 /* Preview Content */,
 			);
@@ -85,6 +129,103 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2E9D05472AFF716A007547CD /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D05482AFF7179007547CD /* Auth */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		2E9D05482AFF7179007547CD /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D054A2AFF718F007547CD /* Register */,
+				2E9D05492AFF7181007547CD /* Login */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		2E9D05492AFF7181007547CD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D05732AFF8349007547CD /* LoginViewModel.swift */,
+				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2E9D054A2AFF718F007547CD /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D05792AFF9793007547CD /* RegisterViewModel.swift */,
+				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		2E9D054B2AFF71B9007547CD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D054D2AFF7212007547CD /* Styles */,
+				2E9D054C2AFF71DA007547CD /* Views */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		2E9D054C2AFF71DA007547CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */,
+				2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */,
+				2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2E9D054D2AFF7212007547CD /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		2E9D054E2AFF7232007547CD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */,
+				2E73E16A2AF6013700DE8E68 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2E9D05552AFF733F007547CD /* BeChattedTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D05702AFF7E6C007547CD /* Helpers */,
+				2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */,
+				2E9D05772AFF94D0007547CD /* RegisterViewModelTests.swift */,
+			);
+			path = BeChattedTests;
+			sourceTree = "<group>";
+		};
+		2E9D056B2AFF7BA0007547CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E9D05702AFF7E6C007547CD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D05712AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,6 +236,7 @@
 				2E73E1612AF6013700DE8E68 /* Sources */,
 				2E73E1622AF6013700DE8E68 /* Frameworks */,
 				2E73E1632AF6013700DE8E68 /* Resources */,
+				2E9D056F2AFF7BA0007547CD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -104,6 +246,24 @@
 			productName = BeChatted;
 			productReference = 2E73E1652AF6013700DE8E68 /* BeChatted.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2E9D05532AFF733F007547CD /* BeChattedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E9D055A2AFF733F007547CD /* Build configuration list for PBXNativeTarget "BeChattedTests" */;
+			buildPhases = (
+				2E9D05502AFF733F007547CD /* Sources */,
+				2E9D05512AFF733F007547CD /* Frameworks */,
+				2E9D05522AFF733F007547CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E9D05592AFF733F007547CD /* PBXTargetDependency */,
+			);
+			name = BeChattedTests;
+			productName = BeChattedTests;
+			productReference = 2E9D05542AFF733F007547CD /* BeChattedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -117,6 +277,11 @@
 				TargetAttributes = {
 					2E73E1642AF6013700DE8E68 = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					2E9D05532AFF733F007547CD = {
+						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
+						TestTargetID = 2E73E1642AF6013700DE8E68;
 					};
 				};
 			};
@@ -134,6 +299,7 @@
 			projectRoot = "";
 			targets = (
 				2E73E1642AF6013700DE8E68 /* BeChatted */,
+				2E9D05532AFF733F007547CD /* BeChattedTests */,
 			);
 		};
 /* End PBXProject section */
@@ -148,6 +314,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2E9D05522AFF733F007547CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -156,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */,
+				2E9D057A2AFF9793007547CD /* RegisterViewModel.swift in Sources */,
 				2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */,
 				2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */,
 				2EC7AB1B2AFA7A2100BFDB29 /* MainButtonStyles.swift in Sources */,
@@ -163,10 +337,29 @@
 				2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */,
 				2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */,
 				2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */,
+				2E9D05742AFF8349007547CD /* LoginViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E9D05502AFF733F007547CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E9D05782AFF94D0007547CD /* RegisterViewModelTests.swift in Sources */,
+				2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */,
+				2E9D05722AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E9D05592AFF733F007547CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E73E1642AF6013700DE8E68 /* BeChatted */;
+			targetProxy = 2E9D05582AFF733F007547CD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2E73E1712AF6013900DE8E68 /* Debug */ = {
@@ -302,8 +495,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -331,8 +525,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -343,6 +538,45 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2E9D055B2AFF733F007547CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8U849676MP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeChatted.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BeChatted";
+			};
+			name = Debug;
+		};
+		2E9D055C2AFF733F007547CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8U849676MP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeChatted.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BeChatted";
 			};
 			name = Release;
 		};
@@ -363,6 +597,15 @@
 			buildConfigurations = (
 				2E73E1742AF6013900DE8E68 /* Debug */,
 				2E73E1752AF6013900DE8E68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E9D055A2AFF733F007547CD /* Build configuration list for PBXNativeTarget "BeChattedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E9D055B2AFF733F007547CD /* Debug */,
+				2E9D055C2AFF733F007547CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
