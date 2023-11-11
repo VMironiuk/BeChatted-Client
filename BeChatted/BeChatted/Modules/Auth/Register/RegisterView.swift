@@ -43,7 +43,7 @@ struct RegisterView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
                 
-                SecureInputView(title: "Password")
+                SecureInputView(title: "Password", text: .constant("0123456789"))
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 16)

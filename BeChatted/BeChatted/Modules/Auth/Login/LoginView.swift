@@ -31,7 +31,7 @@ struct LoginView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 64)
                 
-                SecureInputView(title: "Password")
+                SecureInputView(title: "Password", text: $viewModel.password)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 16)

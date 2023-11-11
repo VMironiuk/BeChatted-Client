@@ -10,9 +10,11 @@ import SwiftUI
 struct SecureInputView: View {
     @State private var isSecured = true
     private let title: String
+    @Binding private var text: String
     
-    init(title: String = "") {
+    init(title: String = "", text: Binding<String>) {
         self.title = title
+        self._text = text
     }
     
     var body: some View {
@@ -33,9 +35,9 @@ struct SecureInputView: View {
             
             HStack {
                 if isSecured {
-                    SecureField("", text: .constant("0123456789"))
+                    SecureField("", text: $text)
                 } else {
-                    TextField("", text: .constant("0123456789"))
+                    TextField("", text: $text)
                 }
                 Button(action: {
                     isSecured.toggle()
@@ -52,6 +54,6 @@ struct SecureInputView: View {
 }
 
 #Preview {
-    SecureInputView(title: "Password")
+    SecureInputView(title: "Password", text: .constant("0123456789"))
         .frame(height: 60)
 }
