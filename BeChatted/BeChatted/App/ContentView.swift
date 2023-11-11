@@ -15,7 +15,14 @@ struct ContentView: View {
                 viewModel: LoginViewModel(
                     emailValidator: EmailValidator(),
                     passwordValidator: PasswordValidator()
-                )
+                ), registerViewBuilder: {
+                    RegisterView(
+                        viewModel: RegisterViewModel(
+                            emailValidator: EmailValidator(),
+                            passwordValidator: PasswordValidator()
+                        )
+                    )
+                }
             )
         }
     }

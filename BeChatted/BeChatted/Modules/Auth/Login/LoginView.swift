@@ -10,9 +10,11 @@ import BeChattedUserInputValidation
 
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
+    private let registerViewBuilder: () -> RegisterView
     
-    init(viewModel: LoginViewModel) {
+    init(viewModel: LoginViewModel, registerViewBuilder: @escaping () -> RegisterView) {
         self.viewModel = viewModel
+        self.registerViewBuilder = registerViewBuilder
     }
     
     var body: some View {
@@ -49,7 +51,7 @@ struct LoginView: View {
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(Color("Auth/BottomLabelColor"))
                 
-                NavigationLink(destination: registerView()) {
+                NavigationLink(destination: registerViewBuilder()) {
                     Text("Register")
                         .font(.system(size: 14, weight: .regular))
                         .foregroundStyle(Color("Auth/MainButtonColor"))
@@ -88,6 +90,14 @@ struct LoginView: View {
         viewModel: LoginViewModel(
             emailValidator: EmailValidator(),
             passwordValidator: PasswordValidator()
-        )
+        ),
+        registerViewBuilder: {
+            RegisterView(
+                viewModel: RegisterViewModel(
+                    emailValidator: EmailValidator(),
+                    passwordValidator: PasswordValidator()
+                )
+            )
+        }
     )
 }
