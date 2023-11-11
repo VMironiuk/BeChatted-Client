@@ -10,8 +10,6 @@ import BeChattedUserInputValidation
 
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
-    @State private var isActive = true
-    @State private var email = "mail@example.com"
     
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
@@ -42,7 +40,7 @@ struct LoginView: View {
             Button("Login") {
                 
             }
-            .buttonStyle(MainButtonStyle(isActive: isActive))
+            .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
             

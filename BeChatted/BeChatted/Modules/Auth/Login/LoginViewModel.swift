@@ -12,8 +12,8 @@ public final class LoginViewModel: LoginViewModelProtocol, ObservableObject {
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
     
-    public var email: String = ""
-    public var password: String = ""
+    @Published public var email: String = ""
+    @Published public var password: String = ""
     public var isUserInputValid: Bool {
         emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }
