@@ -11,6 +11,7 @@
 		2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E16A2AF6013700DE8E68 /* ContentView.swift */; };
 		2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16C2AF6013900DE8E68 /* Assets.xcassets */; };
 		2E73E1702AF6013900DE8E68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */; };
+		2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */; };
 		2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */; };
 		2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */; };
 		2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */; };
@@ -19,12 +20,24 @@
 		2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2E9D05582AFF733F007547CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E73E15D2AF6013700DE8E68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E73E1642AF6013700DE8E68;
+			remoteInfo = BeChatted;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2E73E1652AF6013700DE8E68 /* BeChatted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChatted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
 		2E73E16A2AF6013700DE8E68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E73E16C2AF6013900DE8E68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2E9D05542AFF733F007547CD /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -41,6 +54,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2E9D05512AFF733F007547CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -48,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				2E73E1672AF6013700DE8E68 /* BeChatted */,
+				2E9D05552AFF733F007547CD /* BeChattedTests */,
 				2E73E1662AF6013700DE8E68 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				2E73E1652AF6013700DE8E68 /* BeChatted.app */,
+				2E9D05542AFF733F007547CD /* BeChattedTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +171,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		2E9D05552AFF733F007547CD /* BeChattedTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */,
+			);
+			path = BeChattedTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,6 +199,24 @@
 			productReference = 2E73E1652AF6013700DE8E68 /* BeChatted.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2E9D05532AFF733F007547CD /* BeChattedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E9D055A2AFF733F007547CD /* Build configuration list for PBXNativeTarget "BeChattedTests" */;
+			buildPhases = (
+				2E9D05502AFF733F007547CD /* Sources */,
+				2E9D05512AFF733F007547CD /* Frameworks */,
+				2E9D05522AFF733F007547CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E9D05592AFF733F007547CD /* PBXTargetDependency */,
+			);
+			name = BeChattedTests;
+			productName = BeChattedTests;
+			productReference = 2E9D05542AFF733F007547CD /* BeChattedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -181,6 +229,11 @@
 				TargetAttributes = {
 					2E73E1642AF6013700DE8E68 = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					2E9D05532AFF733F007547CD = {
+						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
+						TestTargetID = 2E73E1642AF6013700DE8E68;
 					};
 				};
 			};
@@ -198,6 +251,7 @@
 			projectRoot = "";
 			targets = (
 				2E73E1642AF6013700DE8E68 /* BeChatted */,
+				2E9D05532AFF733F007547CD /* BeChattedTests */,
 			);
 		};
 /* End PBXProject section */
@@ -209,6 +263,13 @@
 			files = (
 				2E73E1702AF6013900DE8E68 /* Preview Assets.xcassets in Resources */,
 				2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E9D05522AFF733F007547CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +291,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2E9D05502AFF733F007547CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E9D05592AFF733F007547CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E73E1642AF6013700DE8E68 /* BeChatted */;
+			targetProxy = 2E9D05582AFF733F007547CD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2E73E1712AF6013900DE8E68 /* Debug */ = {
@@ -410,6 +487,45 @@
 			};
 			name = Release;
 		};
+		2E9D055B2AFF733F007547CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8U849676MP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeChatted.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BeChatted";
+			};
+			name = Debug;
+		};
+		2E9D055C2AFF733F007547CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8U849676MP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeChatted.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BeChatted";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -427,6 +543,15 @@
 			buildConfigurations = (
 				2E73E1742AF6013900DE8E68 /* Debug */,
 				2E73E1752AF6013900DE8E68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E9D055A2AFF733F007547CD /* Build configuration list for PBXNativeTarget "BeChattedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E9D055B2AFF733F007547CD /* Debug */,
+				2E9D055C2AFF733F007547CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
