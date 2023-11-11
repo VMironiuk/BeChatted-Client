@@ -7,10 +7,14 @@
 
 import Foundation
 
-public struct PasswordValidator: UserInputValidatorProtocol {
+public protocol PasswordValidatorProtocol {
+    func isValid(password: String) -> Bool
+}
+
+public struct PasswordValidator: PasswordValidatorProtocol {
     public init() {}
     
-    public func isValid(_ password: String) -> Bool {
+    public func isValid(password: String) -> Bool {
         !password.contains(" ") && password.count >= 8
     }
 }

@@ -9,16 +9,16 @@ import XCTest
 import BeChattedUserInputValidation
 
 final class LoginViewModel {
-    private let emailValidator: UserInputValidatorProtocol
-    private let passwordValidator: UserInputValidatorProtocol
+    private let emailValidator: EmailValidatorProtocol
+    private let passwordValidator: PasswordValidatorProtocol
     
     var email: String = ""
     var password: String = ""
     var isUserInputValid: Bool {
-        emailValidator.isValid(email) && passwordValidator.isValid(password)
+        emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }
     
-    init(emailValidator: UserInputValidatorProtocol, passwordValidator: UserInputValidatorProtocol) {
+    init(emailValidator: EmailValidatorProtocol, passwordValidator: PasswordValidatorProtocol) {
         self.emailValidator = emailValidator
         self.passwordValidator = passwordValidator
     }

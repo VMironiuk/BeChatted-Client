@@ -7,10 +7,14 @@
 
 import Foundation
 
-public struct EmailValidator: UserInputValidatorProtocol {
+public protocol EmailValidatorProtocol {
+    func isValid(email: String) -> Bool
+}
+
+public struct EmailValidator: EmailValidatorProtocol {
     public init() {}
     
-    public func isValid(_ email: String) -> Bool {
+    public func isValid(email: String) -> Bool {
         let emailRegEx = [
             "^(?!\\.)",                  // Local part should not start with a period
             "(?!.*\\.\\.)",              // Local part should not contain consecutive periods

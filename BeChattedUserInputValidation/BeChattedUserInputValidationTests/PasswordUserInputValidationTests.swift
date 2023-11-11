@@ -17,7 +17,7 @@ final class PasswordUserInputValidationTests: XCTestCase {
         
         // when
         // then
-        XCTAssertFalse(sut.isValid(password))
+        XCTAssertFalse(sut.isValid(password: password))
     }
     
     func test_isValid_returnsFalseIfPasswordIsEmpty() {
@@ -27,7 +27,7 @@ final class PasswordUserInputValidationTests: XCTestCase {
         
         // when
         // then
-        XCTAssertFalse(sut.isValid(password))
+        XCTAssertFalse(sut.isValid(password: password))
     }
     
     func test_isValid_returnsFalseIfPasswordHasLeadingSpace() {
@@ -37,7 +37,7 @@ final class PasswordUserInputValidationTests: XCTestCase {
         
         // when
         // then
-        XCTAssertFalse(sut.isValid(password))
+        XCTAssertFalse(sut.isValid(password: password))
     }
     
     func test_isValid_returnsFalseIfPasswordHasTrailingSpace() {
@@ -47,7 +47,7 @@ final class PasswordUserInputValidationTests: XCTestCase {
         
         // when
         // then
-        XCTAssertFalse(sut.isValid(password))
+        XCTAssertFalse(sut.isValid(password: password))
     }
     
     func test_isValid_returnsFalseIfPasswordHasSpaceInside() {
@@ -57,7 +57,7 @@ final class PasswordUserInputValidationTests: XCTestCase {
         
         // when
         // then
-        XCTAssertFalse(sut.isValid(password))
+        XCTAssertFalse(sut.isValid(password: password))
     }
     
     func test_isValid_returnsTrueForValidPassword() {
@@ -67,6 +67,6 @@ final class PasswordUserInputValidationTests: XCTestCase {
         
         // when
         // then
-        XCTAssertTrue(sut.isValid(password))
+        XCTAssertTrue(sut.isValid(password: password))
     }
 }

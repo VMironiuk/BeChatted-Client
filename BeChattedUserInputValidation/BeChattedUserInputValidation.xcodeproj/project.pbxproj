@@ -11,7 +11,6 @@
 		2E8A725D2AF4002E0075FF43 /* BeChattedUserInputValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E8A72512AF4002E0075FF43 /* BeChattedUserInputValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E8A72692AF4015F0075FF43 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A72662AF4015F0075FF43 /* PasswordValidator.swift */; };
 		2E8A726A2AF4015F0075FF43 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A72672AF4015F0075FF43 /* EmailValidator.swift */; };
-		2E8A726B2AF4015F0075FF43 /* UserInputValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A72682AF4015F0075FF43 /* UserInputValidatorProtocol.swift */; };
 		2E8A726E2AF401880075FF43 /* PasswordUserInputValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A726C2AF401880075FF43 /* PasswordUserInputValidationTests.swift */; };
 		2E8A726F2AF401880075FF43 /* EmailUserInputValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A726D2AF401880075FF43 /* EmailUserInputValidationTests.swift */; };
 /* End PBXBuildFile section */
@@ -32,7 +31,6 @@
 		2E8A72562AF4002E0075FF43 /* BeChattedUserInputValidationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedUserInputValidationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E8A72662AF4015F0075FF43 /* PasswordValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		2E8A72672AF4015F0075FF43 /* EmailValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
-		2E8A72682AF4015F0075FF43 /* UserInputValidatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInputValidatorProtocol.swift; sourceTree = "<group>"; };
 		2E8A726C2AF401880075FF43 /* PasswordUserInputValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordUserInputValidationTests.swift; sourceTree = "<group>"; };
 		2E8A726D2AF401880075FF43 /* EmailUserInputValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailUserInputValidationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,7 +78,6 @@
 				2E8A72512AF4002E0075FF43 /* BeChattedUserInputValidation.h */,
 				2E8A72672AF4015F0075FF43 /* EmailValidator.swift */,
 				2E8A72662AF4015F0075FF43 /* PasswordValidator.swift */,
-				2E8A72682AF4015F0075FF43 /* UserInputValidatorProtocol.swift */,
 			);
 			path = BeChattedUserInputValidation;
 			sourceTree = "<group>";
@@ -207,7 +204,6 @@
 			files = (
 				2E8A72692AF4015F0075FF43 /* PasswordValidator.swift in Sources */,
 				2E8A726A2AF4015F0075FF43 /* EmailValidator.swift in Sources */,
-				2E8A726B2AF4015F0075FF43 /* UserInputValidatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
