@@ -9,9 +9,11 @@ import SwiftUI
 
 struct TextInputView: View {
     private let title: String
+    @Binding private var text: String
     
-    init(title: String = "") {
+    init(title: String = "", text: Binding<String>) {
         self.title = title
+        self._text = text
     }
     
     var body: some View {
@@ -30,13 +32,13 @@ struct TextInputView: View {
                 }
             }
             
-            TextField("", text: .constant("mail@example.com"))
+            TextField("", text: $text)
                 .padding(.horizontal, 20)
         }
     }
 }
 
 #Preview {
-    TextInputView(title: "Email")
+    TextInputView(title: "Email", text: .constant("mail@example.com"))
         .frame(height: 60)
 }

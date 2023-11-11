@@ -33,12 +33,12 @@ struct RegisterView: View {
             .frame(height: 180)
             
             ScrollView {
-                TextInputView(title: "Your Name")
+                TextInputView(title: "Your Name", text: .constant("Jonny B"))
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 64)
                 
-                TextInputView(title: "Email")
+                TextInputView(title: "Email", text: .constant("mail@example.com"))
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
