@@ -63,14 +63,9 @@
 		2E73E1672AF6013700DE8E68 /* BeChatted */ = {
 			isa = PBXGroup;
 			children = (
-				2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */,
-				2E73E16A2AF6013700DE8E68 /* ContentView.swift */,
-				2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */,
-				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
-				2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */,
-				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
-				2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */,
-				2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */,
+				2E9D054E2AFF7232007547CD /* App */,
+				2E9D054B2AFF71B9007547CD /* Shared */,
+				2E9D05472AFF716A007547CD /* Modules */,
 				2E73E16C2AF6013900DE8E68 /* Assets.xcassets */,
 				2E73E16E2AF6013900DE8E68 /* Preview Content */,
 			);
@@ -83,6 +78,75 @@
 				2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2E9D05472AFF716A007547CD /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D05482AFF7179007547CD /* Auth */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		2E9D05482AFF7179007547CD /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D054A2AFF718F007547CD /* Register */,
+				2E9D05492AFF7181007547CD /* Login */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		2E9D05492AFF7181007547CD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2E9D054A2AFF718F007547CD /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		2E9D054B2AFF71B9007547CD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D054D2AFF7212007547CD /* Styles */,
+				2E9D054C2AFF71DA007547CD /* Views */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		2E9D054C2AFF71DA007547CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EC7AB122AFA7A2100BFDB29 /* AuthHeaderView.swift */,
+				2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */,
+				2EC7AB132AFA7A2100BFDB29 /* TextInputView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2E9D054D2AFF7212007547CD /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		2E9D054E2AFF7232007547CD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */,
+				2E73E16A2AF6013700DE8E68 /* ContentView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
