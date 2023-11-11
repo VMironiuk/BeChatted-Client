@@ -8,7 +8,13 @@
 import XCTest
 import BeChattedUserInputValidation
 
-final class LoginViewModel {
+protocol LoginViewModelProtocol: AnyObject {
+    var email: String { get set }
+    var password: String { get set }
+    var isUserInputValid: Bool { get }
+}
+
+final class LoginViewModel: LoginViewModelProtocol {
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
     
@@ -75,7 +81,7 @@ final class LoginViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> LoginViewModel {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> LoginViewModelProtocol {
         let emailValidator = EmailValidator()
         let passwordValidator = PasswordValidator()
         let sut = LoginViewModel(emailValidator: emailValidator, passwordValidator: passwordValidator)
