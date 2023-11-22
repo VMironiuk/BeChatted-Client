@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct ContentView: View {
@@ -14,12 +15,28 @@ struct ContentView: View {
             LoginView(
                 viewModel: LoginViewModel(
                     emailValidator: EmailValidator(),
-                    passwordValidator: PasswordValidator()
+                    passwordValidator: PasswordValidator(),
+                    authService: makeAuthService(
+                        configuration: AuthServiceConfiguration(
+                            newAccountURL: URL(string: "http://new-account.com")!,
+                            newUserURL: URL(string: "http://new-user.com")!,
+                            userLoginURL: URL(string: "http://user-login.com")!,
+                            userLogoutURL: URL(string: "http://user-logout.com")!
+                        )
+                    )
                 ), registerViewBuilder: {
                     RegisterView(
                         viewModel: RegisterViewModel(
                             emailValidator: EmailValidator(),
-                            passwordValidator: PasswordValidator()
+                            passwordValidator: PasswordValidator(),
+                            authService: makeAuthService(
+                                configuration: AuthServiceConfiguration(
+                                    newAccountURL: URL(string: "http://new-account.com")!,
+                                    newUserURL: URL(string: "http://new-user.com")!,
+                                    userLoginURL: URL(string: "http://user-login.com")!,
+                                    userLogoutURL: URL(string: "http://user-logout.com")!
+                                )
+                            )
                         )
                     )
                 }

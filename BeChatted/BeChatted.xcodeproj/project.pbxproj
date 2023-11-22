@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E40B0612B0E64C2000D2A77 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */; };
+		2E40B0622B0E64C2000D2A77 /* BeChattedAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */; };
 		2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E16A2AF6013700DE8E68 /* ContentView.swift */; };
 		2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16C2AF6013900DE8E68 /* Assets.xcassets */; };
@@ -44,6 +46,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2E9D056E2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Embed Frameworks */,
+				2E40B0622B0E64C2000D2A77 /* BeChattedAuth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E73E1652AF6013700DE8E68 /* BeChatted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChatted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
 		2E73E16A2AF6013700DE8E68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */,
+				2E40B0612B0E64C2000D2A77 /* BeChattedAuth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +218,7 @@
 		2E9D056B2AFF7BA0007547CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */,
 				2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */,
 			);
 			name = Frameworks;

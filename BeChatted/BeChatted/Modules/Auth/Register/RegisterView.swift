@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct RegisterView: View {
@@ -57,7 +58,7 @@ struct RegisterView: View {
             Spacer()
             
             Button("Register") {
-                
+                viewModel.register()
             }
             .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)
@@ -99,7 +100,15 @@ struct RegisterView: View {
     RegisterView(
         viewModel: RegisterViewModel(
             emailValidator: EmailValidator(),
-            passwordValidator: PasswordValidator()
+            passwordValidator: PasswordValidator(),
+            authService: makeAuthService(
+                configuration: AuthServiceConfiguration(
+                    newAccountURL: URL(string: "http://new-account.com")!,
+                    newUserURL: URL(string: "http://new-user.com")!,
+                    userLoginURL: URL(string: "http://user-login.com")!,
+                    userLogoutURL: URL(string: "http://user-logout.com")!
+                )
+            )
         )
     )
 }

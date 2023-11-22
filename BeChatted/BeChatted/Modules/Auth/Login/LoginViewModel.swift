@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import BeChattedAuth
 import BeChattedUserInputValidation
 
 public final class LoginViewModel: ObservableObject {
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
+    private let authService: AuthServiceProtocol
     
     @Published public var email: String = ""
     @Published public var password: String = ""
@@ -18,8 +20,24 @@ public final class LoginViewModel: ObservableObject {
         emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }
     
-    public init(emailValidator: EmailValidatorProtocol, passwordValidator: PasswordValidatorProtocol) {
+    public init(
+        emailValidator: EmailValidatorProtocol,
+        passwordValidator: PasswordValidatorProtocol,
+        authService: AuthServiceProtocol
+    ) {
         self.emailValidator = emailValidator
         self.passwordValidator = passwordValidator
+        self.authService = authService
+    }
+    
+    public func login() {
+        authService.login(UserLoginPayload(email: email, password: password)) { result in
+            switch result {
+            case .success:
+                print("success")
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
