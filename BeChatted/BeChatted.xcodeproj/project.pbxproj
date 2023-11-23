@@ -26,6 +26,8 @@
 		2EC7AB1B2AFA7A2100BFDB29 /* MainButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */; };
 		2EC7AB1C2AFA7A2100BFDB29 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */; };
 		2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */; };
+		2ED3A3472B0FAAA700E2987A /* AuthServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3A3462B0FAAA700E2987A /* AuthServiceComposer.swift */; };
+		2ED3A3492B0FAEB900E2987A /* AuthModuleComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3A3482B0FAEB900E2987A /* AuthModuleComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		2EC7AB152AFA7A2100BFDB29 /* MainButtonStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainButtonStyles.swift; sourceTree = "<group>"; };
 		2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
+		2ED3A3462B0FAAA700E2987A /* AuthServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceComposer.swift; sourceTree = "<group>"; };
+		2ED3A3482B0FAEB900E2987A /* AuthModuleComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				2E9D054E2AFF7232007547CD /* App */,
+				2ED3A34A2B0FB27800E2987A /* Composition Root */,
 				2E9D054B2AFF71B9007547CD /* Shared */,
 				2E9D05472AFF716A007547CD /* Modules */,
 				2E73E16C2AF6013900DE8E68 /* Assets.xcassets */,
@@ -232,6 +237,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		2ED3A34A2B0FB27800E2987A /* Composition Root */ = {
+			isa = PBXGroup;
+			children = (
+				2ED3A3462B0FAAA700E2987A /* AuthServiceComposer.swift */,
+				2ED3A3482B0FAEB900E2987A /* AuthModuleComposer.swift */,
+			);
+			path = "Composition Root";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -339,11 +353,13 @@
 				2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */,
 				2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */,
 				2EC7AB1B2AFA7A2100BFDB29 /* MainButtonStyles.swift in Sources */,
+				2ED3A3472B0FAAA700E2987A /* AuthServiceComposer.swift in Sources */,
 				2EC7AB1C2AFA7A2100BFDB29 /* RegisterView.swift in Sources */,
 				2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */,
 				2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */,
 				2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */,
 				2E9D05742AFF8349007547CD /* LoginViewModel.swift in Sources */,
+				2ED3A3492B0FAEB900E2987A /* AuthModuleComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

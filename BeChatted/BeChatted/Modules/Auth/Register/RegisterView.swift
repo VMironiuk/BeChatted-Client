@@ -97,18 +97,8 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView(
-        viewModel: RegisterViewModel(
-            emailValidator: EmailValidator(),
-            passwordValidator: PasswordValidator(),
-            authService: makeAuthService(
-                configuration: AuthServiceConfiguration(
-                    newAccountURL: URL(string: "http://new-account.com")!,
-                    newUserURL: URL(string: "http://new-user.com")!,
-                    userLoginURL: URL(string: "http://user-login.com")!,
-                    userLogoutURL: URL(string: "http://user-logout.com")!
-                )
-            )
-        )
+    AuthModuleComposer(
+        authServiceComposer: AuthServiceComposer()
     )
+    .composeRegisterView()
 }

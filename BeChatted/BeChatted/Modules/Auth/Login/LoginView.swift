@@ -75,54 +75,11 @@ struct LoginView: View {
             for: nil
         )
     }
-    
-    private func registerView() -> RegisterView {
-        RegisterView(
-            viewModel: RegisterViewModel(
-                emailValidator: EmailValidator(),
-                passwordValidator: PasswordValidator(),
-                authService: makeAuthService(
-                    configuration: AuthServiceConfiguration(
-                        newAccountURL: URL(string: "http://new-account.com")!,
-                        newUserURL: URL(string: "http://new-user.com")!,
-                        userLoginURL: URL(string: "http://user-login.com")!,
-                        userLogoutURL: URL(string: "http://user-logout.com")!
-                    )
-                )
-            )
-        )
-    }
 }
 
 #Preview {
-    LoginView(
-        viewModel: LoginViewModel(
-            emailValidator: EmailValidator(),
-            passwordValidator: PasswordValidator(),
-            authService: makeAuthService(
-                configuration: AuthServiceConfiguration(
-                    newAccountURL: URL(string: "http://new-account.com")!,
-                    newUserURL: URL(string: "http://new-user.com")!,
-                    userLoginURL: URL(string: "http://user-login.com")!,
-                    userLogoutURL: URL(string: "http://user-logout.com")!
-                )
-            )
-        ),
-        registerViewBuilder: {
-            RegisterView(
-                viewModel: RegisterViewModel(
-                    emailValidator: EmailValidator(),
-                    passwordValidator: PasswordValidator(),
-                    authService: makeAuthService(
-                        configuration: AuthServiceConfiguration(
-                            newAccountURL: URL(string: "http://new-account.com")!,
-                            newUserURL: URL(string: "http://new-user.com")!,
-                            userLoginURL: URL(string: "http://user-login.com")!,
-                            userLogoutURL: URL(string: "http://user-logout.com")!
-                        )
-                    )
-                )
-            )
-        }
+    AuthModuleComposer(
+        authServiceComposer: AuthServiceComposer()
     )
+    .composeLoginView()
 }

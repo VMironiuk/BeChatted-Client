@@ -10,41 +10,23 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct ContentView: View {
+    private let authModuleComposer: AuthModuleComposer
+    
+    init(authModuleComposer: AuthModuleComposer) {
+        self.authModuleComposer = authModuleComposer
+    }
+    
     var body: some View {
         NavigationStack {
-            LoginView(
-                viewModel: LoginViewModel(
-                    emailValidator: EmailValidator(),
-                    passwordValidator: PasswordValidator(),
-                    authService: makeAuthService(
-                        configuration: AuthServiceConfiguration(
-                            newAccountURL: URL(string: "http://new-account.com")!,
-                            newUserURL: URL(string: "http://new-user.com")!,
-                            userLoginURL: URL(string: "http://user-login.com")!,
-                            userLogoutURL: URL(string: "http://user-logout.com")!
-                        )
-                    )
-                ), registerViewBuilder: {
-                    RegisterView(
-                        viewModel: RegisterViewModel(
-                            emailValidator: EmailValidator(),
-                            passwordValidator: PasswordValidator(),
-                            authService: makeAuthService(
-                                configuration: AuthServiceConfiguration(
-                                    newAccountURL: URL(string: "http://new-account.com")!,
-                                    newUserURL: URL(string: "http://new-user.com")!,
-                                    userLoginURL: URL(string: "http://user-login.com")!,
-                                    userLogoutURL: URL(string: "http://user-logout.com")!
-                                )
-                            )
-                        )
-                    )
-                }
-            )
+            authModuleComposer.composeLoginView()
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(
+        authModuleComposer: AuthModuleComposer(
+            authServiceComposer: AuthServiceComposer()
+        )
+    )
 }
