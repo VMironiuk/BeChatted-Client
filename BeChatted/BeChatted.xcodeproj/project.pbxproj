@@ -28,6 +28,7 @@
 		2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */; };
 		2ED3A3472B0FAAA700E2987A /* AuthServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3A3462B0FAAA700E2987A /* AuthServiceComposer.swift */; };
 		2ED3A3492B0FAEB900E2987A /* AuthModuleComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3A3482B0FAEB900E2987A /* AuthModuleComposer.swift */; };
+		2EDCFC4C2B109DEB003BE86A /* AuthServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDCFC4B2B109DEB003BE86A /* AuthServiceStub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		2ED3A3462B0FAAA700E2987A /* AuthServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceComposer.swift; sourceTree = "<group>"; };
 		2ED3A3482B0FAEB900E2987A /* AuthModuleComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleComposer.swift; sourceTree = "<group>"; };
+		2EDCFC4B2B109DEB003BE86A /* AuthServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				2E9D05712AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift */,
+				2EDCFC4B2B109DEB003BE86A /* AuthServiceStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E9D05782AFF94D0007547CD /* RegisterViewModelTests.swift in Sources */,
+				2EDCFC4C2B109DEB003BE86A /* AuthServiceStub.swift in Sources */,
 				2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */,
 				2E9D05722AFF7E85007547CD /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);

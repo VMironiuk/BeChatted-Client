@@ -77,7 +77,12 @@ final class RegisterViewModelTests: XCTestCase {
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> RegisterViewModel {
         let emailValidator = EmailValidator()
         let passwordValidator = PasswordValidator()
-        let sut = RegisterViewModel(emailValidator: emailValidator, passwordValidator: passwordValidator)
+        let authService = AuthServiceStub()
+        let sut = RegisterViewModel(
+            emailValidator: emailValidator,
+            passwordValidator: passwordValidator,
+            authService: authService
+        )
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

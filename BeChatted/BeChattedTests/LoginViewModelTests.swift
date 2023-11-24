@@ -63,7 +63,12 @@ final class LoginViewModelTests: XCTestCase {
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> LoginViewModel {
         let emailValidator = EmailValidator()
         let passwordValidator = PasswordValidator()
-        let sut = LoginViewModel(emailValidator: emailValidator, passwordValidator: passwordValidator)
+        let authService = AuthServiceStub()
+        let sut = LoginViewModel(
+            emailValidator: emailValidator,
+            passwordValidator: passwordValidator,
+            authService: authService
+        )
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
