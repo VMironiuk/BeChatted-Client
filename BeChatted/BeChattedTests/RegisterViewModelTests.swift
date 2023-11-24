@@ -12,11 +12,12 @@ import BeChattedUserInputValidation
 final class RegisterViewModelTests: XCTestCase {
 
     func test_init_containsNonValidUserInput() {
-        XCTAssertFalse(makeSUT().isUserInputValid)
+        let (sut, _) = makeSUT()
+        XCTAssertFalse(sut.isUserInputValid)
     }
     
     func test_isUserInputValid_returnsFalseOnEmptyName() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.email = "mail@example.com"
         sut.password = "0123456789"
@@ -25,7 +26,7 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     func test_isUserInputValid_returnsFalseOnEmptyEmail() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.name = "Jonny B"
         sut.password = "0123456789"
@@ -34,7 +35,7 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     func test_isUserInputValid_returnsFalseOnEmptyPassword() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.name = "Jonny B"
         sut.email = "mail@example.com"
@@ -43,7 +44,7 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     func test_isUserInputValid_returnsFalseOnInvalidEmailFormat() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.name = "Jonny B"
         sut.email = "emailexample.com"
@@ -53,7 +54,7 @@ final class RegisterViewModelTests: XCTestCase {
     }
 
     func test_isUserInputValid_returnsFalseOnInvalidPasswordFormat() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.name = "Jonny B"
         sut.email = "email@example.com"
@@ -63,7 +64,7 @@ final class RegisterViewModelTests: XCTestCase {
     }
 
     func test_isUserInputValid_returnsTrueOnValidCredentials() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.name = "Jonny B"
         sut.email = "mail@example.com"
@@ -71,10 +72,19 @@ final class RegisterViewModelTests: XCTestCase {
         
         XCTAssertTrue(sut.isUserInputValid)
     }
+    
+    func tests_init_doesNotSendMessagesToAuthService() {
+        let (_, authService) = makeSUT()
+        
+        XCTAssertEqual(authService.createAccountCallCount, 0)
+        XCTAssertEqual(authService.addUserCallCount, 0)
+        XCTAssertEqual(authService.loginCallCount, 0)
+        XCTAssertEqual(authService.logoutCallCount, 0)
+    }
 
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> RegisterViewModel {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RegisterViewModel, AuthServiceStub) {
         let emailValidator = EmailValidator()
         let passwordValidator = PasswordValidator()
         let authService = AuthServiceStub()
@@ -86,6 +96,6 @@ final class RegisterViewModelTests: XCTestCase {
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
-        return sut
+        return (sut, authService)
     }
 }
