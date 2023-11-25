@@ -14,13 +14,14 @@ struct AuthServiceComposer {
     private static let baseURLString = "\(httpProtocol)://\(host):\(port)"
     
     private static let createAccountEndpoint = "/v1/account/register"
-    private static let userLoginEndpoint = "/v1/account/login"
     private static let addUserEndpoint = "/v1/user/add"
+    private static let userLoginEndpoint = "/v1/account/login"
+    private static let userLogoutEndpoint = "/v1/account/logout"
     
     private static let newAccountURL = URL(string: "\(baseURLString)\(createAccountEndpoint)")!
     private static let newUserURL = URL(string: "\(baseURLString)\(addUserEndpoint)")!
     private static let userLoginURL = URL(string: "\(baseURLString)\(userLoginEndpoint)")!
-    private static let userLogoutURL = URL(string: "http://dummy-url.com")!
+    private static let userLogoutURL = URL(string: "\(baseURLString)\(userLogoutEndpoint)")!
     
     let authService = makeAuthService(
         configuration: AuthServiceConfiguration(
