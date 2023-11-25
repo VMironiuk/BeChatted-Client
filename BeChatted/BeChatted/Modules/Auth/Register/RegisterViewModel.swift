@@ -35,9 +35,9 @@ public final class RegisterViewModel: ObservableObject {
         authService.createAccount(NewAccountPayload(email: email, password: password)) { result in
             switch result {
             case .success:
-                print("success")
+                print("SUCCESS")
             case .failure(let error):
-                print(error)
+                print("ERROR: \(error.localizedDescription) (\(error))")
             }
         }
     }
