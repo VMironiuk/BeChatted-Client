@@ -86,57 +86,39 @@ final class RegisterViewModelTests: XCTestCase {
         let (sut, authService) = makeSUT()
         let createAccountError: NSError = anyNSError()
         
-        let exp = expectation(description: "Wait for registration completion")
-        var receivedError: NSError?
-        sut.register { result in
-            switch result {
-            case .success:
-                XCTFail("Expected registration to fail, got \(result) instead")
-            case .failure(let error):
-                receivedError = error as NSError
+        expect(
+            sut,
+            authService: authService,
+            toCompleteWith: createAccountError,
+            expectedCreateAccountCallCount: 1,
+            expectedAddUserCallCount: 0,
+            expectedLoginCallCount: 0,
+            expectedLogoutCallCount: 0,
+            when: {
+                authService.completeCreateAccount(with: createAccountError)
             }
-            exp.fulfill()
-        }
-        
-        authService.completeCreateAccount(with: createAccountError)
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(receivedError, createAccountError)
-        XCTAssertEqual(authService.createAccountCallCount, 1)
-        XCTAssertEqual(authService.addUserCallCount, 0)
-        XCTAssertEqual(authService.loginCallCount, 0)
-        XCTAssertEqual(authService.logoutCallCount, 0)
+        )
     }
     
     func test_register_failsIfAuthServiceLoginRequestFails() {
         let (sut, authService) = makeSUT()
         let loginError: NSError = anyNSError()
         
-        let exp = expectation(description: "Wait for registration completion")
-        var receivedError: NSError?
-        sut.register { result in
-            switch result {
-            case .success:
-                XCTFail("Expected registration to fail, got \(result) instead")
-            case .failure(let error):
-                receivedError = error as NSError
+        expect(
+            sut,
+            authService: authService,
+            toCompleteWith: loginError,
+            expectedCreateAccountCallCount: 1,
+            expectedAddUserCallCount: 0,
+            expectedLoginCallCount: 1,
+            expectedLogoutCallCount: 0,
+            when: {
+                authService.completeCreateAccountSuccessfully()
+                authService.completeLogin(with: loginError)
             }
-            exp.fulfill()
-        }
-        
-        authService.completeCreateAccountSuccessfully()
-        authService.completeLogin(with: loginError)
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(receivedError, loginError)
-        XCTAssertEqual(authService.createAccountCallCount, 1)
-        XCTAssertEqual(authService.addUserCallCount, 0)
-        XCTAssertEqual(authService.loginCallCount, 1)
-        XCTAssertEqual(authService.logoutCallCount, 0)
+        )
     }
-    
+
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RegisterViewModel, AuthServiceStub) {
@@ -152,6 +134,65 @@ final class RegisterViewModelTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, authService)
+    }
+    
+    private func expect(
+        _ sut: RegisterViewModel,
+        authService: AuthServiceStub,
+        toCompleteWith expectedError: NSError,
+        expectedCreateAccountCallCount: Int,
+        expectedAddUserCallCount: Int,
+        expectedLoginCallCount: Int,
+        expectedLogoutCallCount: Int,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for registration completion")
+        var receivedError: NSError?
+        sut.register { result in
+            switch result {
+            case .success:
+                XCTFail("Expected registration to fail, got \(result) instead", file: file, line: line)
+            case .failure(let error):
+                receivedError = error as NSError
+            }
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+        XCTAssertEqual(
+            authService.createAccountCallCount,
+            expectedCreateAccountCallCount,
+            "Expected \(expectedCreateAccountCallCount) create account calls count, got \(authService.createAccountCallCount) instead",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            authService.addUserCallCount,
+            expectedAddUserCallCount,
+            "Expected \(expectedAddUserCallCount) add user calls count, got \(authService.addUserCallCount) instead",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            authService.loginCallCount,
+            expectedLoginCallCount,
+            "Expected \(expectedLoginCallCount) login calls count, got \(authService.loginCallCount) instead",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            authService.logoutCallCount,
+            expectedLogoutCallCount,
+            "Expected \(expectedLogoutCallCount) logout calls count, got \(authService.logoutCallCount) instead",
+            file: file,
+            line: line
+        )
     }
     
     func anyNSError() -> NSError {
