@@ -32,10 +32,21 @@ public final class RegisterViewModel: ObservableObject {
     }
     
     public func register(completion: @escaping (Result<Void, Error>) -> Void) {
+        let authService = self.authService
+        let email = self.email
+        let password = self.password
         authService.createAccount(NewAccountPayload(email: email, password: password)) { result in
             switch result {
             case .success:
-                print("SUCCESS")
+                print("CREATE_ACCOUNT: SUCCESS")
+                authService.login(UserLoginPayload(email: email, password: password)) { result in
+                    switch result {
+                    case .success(let userLoginInfo):
+                        print("LOGIN: SUCCESS: \(userLoginInfo)")
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
             case .failure(let error):
                 completion(.failure(error))
             }

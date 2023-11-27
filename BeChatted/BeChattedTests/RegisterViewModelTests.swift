@@ -109,6 +109,34 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertEqual(authService.logoutCallCount, 0)
     }
     
+    func test_register_failsIfAuthServiceLoginRequestFails() {
+        let (sut, authService) = makeSUT()
+        let loginError: NSError = anyNSError()
+        
+        let exp = expectation(description: "Wait for registration completion")
+        var receivedError: NSError?
+        sut.register { result in
+            switch result {
+            case .success:
+                XCTFail("Expected registration to fail, got \(result) instead")
+            case .failure(let error):
+                receivedError = error as NSError
+            }
+            exp.fulfill()
+        }
+        
+        authService.completeCreateAccountSuccessfully()
+        authService.completeLogin(with: loginError)
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError, loginError)
+        XCTAssertEqual(authService.createAccountCallCount, 1)
+        XCTAssertEqual(authService.addUserCallCount, 0)
+        XCTAssertEqual(authService.loginCallCount, 1)
+        XCTAssertEqual(authService.logoutCallCount, 0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RegisterViewModel, AuthServiceStub) {
