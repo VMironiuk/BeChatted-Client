@@ -14,11 +14,14 @@ final class AuthServiceStub: AuthServiceProtocol {
     private(set) var loginCallCount: Int = 0
     private(set) var logoutCallCount: Int = 0
     
+    private var createAccountCompletion: ((Result<Void, Error>) -> Void)?
+    
     func createAccount(
         _ payload: NewAccountPayload,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
         createAccountCallCount += 1
+        createAccountCompletion = completion
     }
     
     func addUser(
@@ -37,5 +40,9 @@ final class AuthServiceStub: AuthServiceProtocol {
     
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         logoutCallCount += 1
+    }
+    
+    func completeCreateAccount(with error: Error) {
+        createAccountCompletion?(.failure(error))
     }
 }

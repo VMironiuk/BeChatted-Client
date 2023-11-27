@@ -81,7 +81,34 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertEqual(authService.loginCallCount, 0)
         XCTAssertEqual(authService.logoutCallCount, 0)
     }
-
+    
+    func test_register_failsIfAuthServiceCreateAccountRequestFails() {
+        let (sut, authService) = makeSUT()
+        let createAccountError: NSError = anyNSError()
+        
+        let exp = expectation(description: "Wait for registration completion")
+        var receivedError: NSError?
+        sut.register { result in
+            switch result {
+            case .success:
+                XCTFail("Expected registration to fail, got \(result) instead")
+            case .failure(let error):
+                receivedError = error as NSError
+            }
+            exp.fulfill()
+        }
+        
+        authService.completeCreateAccount(with: createAccountError)
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError, createAccountError)
+        XCTAssertEqual(authService.createAccountCallCount, 1)
+        XCTAssertEqual(authService.addUserCallCount, 0)
+        XCTAssertEqual(authService.loginCallCount, 0)
+        XCTAssertEqual(authService.logoutCallCount, 0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RegisterViewModel, AuthServiceStub) {
@@ -97,5 +124,9 @@ final class RegisterViewModelTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, authService)
+    }
+    
+    func anyNSError() -> NSError {
+        NSError(domain: "any error", code: 1)
     }
 }

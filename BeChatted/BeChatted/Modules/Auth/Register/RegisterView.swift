@@ -58,7 +58,7 @@ struct RegisterView: View {
             Spacer()
             
             Button("Register") {
-                viewModel.register()
+                viewModel.register { _ in }
             }
             .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)

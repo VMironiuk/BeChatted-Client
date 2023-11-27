@@ -31,13 +31,13 @@ public final class RegisterViewModel: ObservableObject {
         self.authService = authService
     }
     
-    public func register() {
+    public func register(completion: @escaping (Result<Void, Error>) -> Void) {
         authService.createAccount(NewAccountPayload(email: email, password: password)) { result in
             switch result {
             case .success:
                 print("SUCCESS")
             case .failure(let error):
-                print("ERROR: \(error.localizedDescription) (\(error))")
+                completion(.failure(error))
             }
         }
     }
