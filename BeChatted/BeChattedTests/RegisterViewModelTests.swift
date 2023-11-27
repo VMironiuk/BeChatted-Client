@@ -73,7 +73,7 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertTrue(sut.isUserInputValid)
     }
     
-    func tests_init_doesNotSendMessagesToAuthService() {
+    func test_init_doesNotSendMessagesToAuthService() {
         let (_, authService) = makeSUT()
         
         XCTAssertEqual(authService.createAccountCallCount, 0)
