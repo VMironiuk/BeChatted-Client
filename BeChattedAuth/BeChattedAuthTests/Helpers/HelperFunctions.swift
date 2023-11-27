@@ -24,7 +24,7 @@ func anyUserLoginPayload() -> UserLoginPayload {
     UserLoginPayload(email: "my@example.com", password: "123456")
 }
 
-func anyNSError() -> Error {
+func anyNSError() -> NSError {
     NSError(domain: "any error", code: 1)
 }
 
