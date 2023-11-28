@@ -34,6 +34,7 @@ public final class RegisterViewModel: ObservableObject {
     public func register(completion: @escaping (Result<Void, Error>) -> Void) {
         let authService = self.authService
         let email = self.email
+        let name = self.name
         let password = self.password
         authService.createAccount(NewAccountPayload(email: email, password: password)) { result in
             switch result {
@@ -43,6 +44,19 @@ public final class RegisterViewModel: ObservableObject {
                     switch result {
                     case .success(let userLoginInfo):
                         print("LOGIN: SUCCESS: \(userLoginInfo)")
+                        authService.addUser(
+                            NewUserPayload(
+                                name: name,
+                                email: email,
+                                avatarName: "",
+                                avatarColor: "")) { result in
+                                    switch result {
+                                    case .success:
+                                        print("ADD_USER: SUCCESS")
+                                    case .failure(let error):
+                                        completion(.failure(error))
+                                    }
+                                }
                     case .failure(let error):
                         completion(.failure(error))
                     }

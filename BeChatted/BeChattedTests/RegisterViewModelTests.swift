@@ -119,6 +119,26 @@ final class RegisterViewModelTests: XCTestCase {
         )
     }
 
+    func test_register_failsIfAuthServiceAddUserRequestFails() {
+        let (sut, authService) = makeSUT()
+        let addUserError: NSError = anyNSError()
+        
+        expect(
+            sut,
+            authService: authService,
+            toCompleteWith: addUserError,
+            expectedCreateAccountCallCount: 1,
+            expectedAddUserCallCount: 1,
+            expectedLoginCallCount: 1,
+            expectedLogoutCallCount: 0,
+            when: {
+                authService.completeCreateAccountSuccessfully()
+                authService.completeLoginSuccessfully()
+                authService.completeAddUser(with: addUserError)
+            }
+        )
+    }
+
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RegisterViewModel, AuthServiceStub) {
