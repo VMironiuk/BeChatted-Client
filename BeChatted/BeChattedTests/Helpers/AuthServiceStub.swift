@@ -72,4 +72,17 @@ final class AuthServiceStub: AuthServiceProtocol {
     func completeAddUser(with error: Error) {
         addUserCompletion?(.failure(error))
     }
+    
+    func completeAddUserSuccessfully() {
+        let dummyNewUserInfoData = """
+        {
+            "name": "new user",
+            "email": "new-user@example.com",
+            "avatarName": "avatarName",
+            "avatarColor": "avatarColor"
+        }
+        """.data(using: .utf8)
+        let dummyNewUserInfo = try! JSONDecoder().decode(NewUserInfo.self, from: dummyNewUserInfoData!)
+        addUserCompletion?(.success(dummyNewUserInfo))
+    }
 }

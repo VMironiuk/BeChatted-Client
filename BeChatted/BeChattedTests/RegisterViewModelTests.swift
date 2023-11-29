@@ -139,6 +139,26 @@ final class RegisterViewModelTests: XCTestCase {
         )
     }
 
+    func test_register_succeedsIfAllAuthServiceRequestsSucceed() {
+        let (sut, authService) = makeSUT()
+        let noError: NSError? = nil
+        
+        expect(
+            sut,
+            authService: authService,
+            toCompleteWith: noError,
+            expectedCreateAccountCallCount: 1,
+            expectedAddUserCallCount: 1,
+            expectedLoginCallCount: 1,
+            expectedLogoutCallCount: 0,
+            when: {
+                authService.completeCreateAccountSuccessfully()
+                authService.completeLoginSuccessfully()
+                authService.completeAddUserSuccessfully()
+            }
+        )
+    }
+
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RegisterViewModel, AuthServiceStub) {
@@ -159,7 +179,7 @@ final class RegisterViewModelTests: XCTestCase {
     private func expect(
         _ sut: RegisterViewModel,
         authService: AuthServiceStub,
-        toCompleteWith expectedError: NSError,
+        toCompleteWith expectedError: NSError?,
         expectedCreateAccountCallCount: Int,
         expectedAddUserCallCount: Int,
         expectedLoginCallCount: Int,
@@ -173,7 +193,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.register { result in
             switch result {
             case .success:
-                XCTFail("Expected registration to fail, got \(result) instead", file: file, line: line)
+                break
             case .failure(let error):
                 receivedError = error as NSError
             }

@@ -53,6 +53,7 @@ public final class RegisterViewModel: ObservableObject {
                                     switch result {
                                     case .success:
                                         print("ADD_USER: SUCCESS")
+                                        completion(.success(()))
                                     case .failure(let error):
                                         completion(.failure(error))
                                     }
