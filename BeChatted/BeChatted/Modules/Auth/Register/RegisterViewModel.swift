@@ -32,6 +32,10 @@ public final class RegisterViewModel: ObservableObject {
     }
     
     public func register(completion: @escaping (Result<Void, Error>) -> Void) {
+        createAccount(completion: completion)
+    }
+    
+    private func createAccount(completion: @escaping (Result<Void, Error>) -> Void) {
         let authService = self.authService
         let email = self.email
         let name = self.name
