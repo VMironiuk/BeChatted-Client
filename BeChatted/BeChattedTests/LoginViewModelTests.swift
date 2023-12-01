@@ -90,6 +90,25 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssertEqual(authService.loginCallCount, 2)
         XCTAssertEqual(authService.logoutCallCount, 0)
     }
+    
+    func test_login_failsIfAuthServiceLoginRequestFails() {
+        let (sut, authService) = makeSUT()
+        let loginError = anyNSError()
+        let exp = expectation(description: "Wait for login request completion")
+        
+        sut.login { result in
+            switch result {
+            case .success:
+                XCTFail("Expected error, got \(result) instead")
+            case let .failure(receivedError as NSError):
+                XCTAssertEqual(receivedError, loginError)
+            }
+            exp.fulfill()
+        }
+        
+        authService.completeLogin(with: loginError)
+        wait(for: [exp], timeout: 1)
+    }
 
     // MARK: - Helpers
     
@@ -106,5 +125,9 @@ final class LoginViewModelTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, authService)
+    }
+    
+    func anyNSError() -> NSError {
+        NSError(domain: "any error", code: 1)
     }
 }
