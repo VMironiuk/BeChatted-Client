@@ -10,6 +10,8 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 public final class RegisterViewModel: ObservableObject {
+    public typealias RegisterCompletion = (Result<Void, Error>) -> Void
+    
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol
@@ -31,11 +33,11 @@ public final class RegisterViewModel: ObservableObject {
         self.authService = authService
     }
     
-    public func register(completion: @escaping (Result<Void, Error>) -> Void) {
+    public func register(completion: @escaping RegisterCompletion) {
         createAccount(completion: completion)
     }
     
-    private func createAccount(completion: @escaping (Result<Void, Error>) -> Void) {
+    private func createAccount(completion: @escaping RegisterCompletion) {
         authService.createAccount(NewAccountPayload(email: email, password: password)) { [weak self] result in
             switch result {
             case .success:
@@ -46,7 +48,7 @@ public final class RegisterViewModel: ObservableObject {
         }
     }
         
-    private func login(completion: @escaping (Result<Void, Error>) -> Void) {
+    private func login(completion: @escaping RegisterCompletion) {
         authService.login(UserLoginPayload(email: email, password: password)) { [weak self] result in
             switch result {
             case .success:
@@ -57,7 +59,7 @@ public final class RegisterViewModel: ObservableObject {
         }
     }
     
-    private func addUser(completion: @escaping (Result<Void, Error>) -> Void) {
+    private func addUser(completion: @escaping RegisterCompletion) {
         authService.addUser(NewUserPayload(name: name, email: email, avatarName: "", avatarColor: "")) { result in
             switch result {
             case .success:
