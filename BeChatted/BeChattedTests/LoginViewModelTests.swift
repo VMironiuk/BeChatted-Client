@@ -71,7 +71,7 @@ final class LoginViewModelTests: XCTestCase {
     func test_login_sendsOnlyOneLoginMessageToAuthServiceOnOneCall() {
         let (sut, authService) = makeSUT()
         
-        sut.login()
+        sut.login { _ in }
         
         XCTAssertEqual(authService.createAccountCallCount, 0)
         XCTAssertEqual(authService.addUserCallCount, 0)
@@ -82,8 +82,8 @@ final class LoginViewModelTests: XCTestCase {
     func test_login_sendsOnlyTwoLoginMessagesToAuthServiceOnTwoCalls() {
         let (sut, authService) = makeSUT()
         
-        sut.login()
-        sut.login()
+        sut.login { _ in }
+        sut.login { _ in }
         
         XCTAssertEqual(authService.createAccountCallCount, 0)
         XCTAssertEqual(authService.addUserCallCount, 0)

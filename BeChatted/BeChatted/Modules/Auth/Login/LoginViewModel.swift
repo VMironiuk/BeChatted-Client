@@ -30,13 +30,13 @@ public final class LoginViewModel: ObservableObject {
         self.authService = authService
     }
     
-    public func login() {
+    public func login(completion: @escaping (Result<Void, Error>) -> Void) {
         authService.login(UserLoginPayload(email: email, password: password)) { result in
             switch result {
             case .success:
-                print("success")
+                completion(.success(()))
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             }
         }
     }

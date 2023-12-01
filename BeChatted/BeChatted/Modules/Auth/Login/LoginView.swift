@@ -41,7 +41,7 @@ struct LoginView: View {
             Spacer()
             
             Button("Login") {
-                viewModel.login()
+                viewModel.login { _ in }
             }
             .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)
