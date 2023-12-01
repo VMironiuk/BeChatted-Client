@@ -36,36 +36,39 @@ public final class RegisterViewModel: ObservableObject {
     }
     
     private func createAccount(completion: @escaping (Result<Void, Error>) -> Void) {
-        let authService = self.authService
-        let email = self.email
-        let name = self.name
-        let password = self.password
-        authService.createAccount(NewAccountPayload(email: email, password: password)) { result in
+        authService.createAccount(NewAccountPayload(email: email, password: password)) { [weak self] result in
             switch result {
             case .success:
                 print("CREATE_ACCOUNT: SUCCESS")
-                authService.login(UserLoginPayload(email: email, password: password)) { result in
-                    switch result {
-                    case .success(let userLoginInfo):
-                        print("LOGIN: SUCCESS: \(userLoginInfo)")
-                        authService.addUser(
-                            NewUserPayload(
-                                name: name,
-                                email: email,
-                                avatarName: "",
-                                avatarColor: "")) { result in
-                                    switch result {
-                                    case .success:
-                                        print("ADD_USER: SUCCESS")
-                                        completion(.success(()))
-                                    case .failure(let error):
-                                        completion(.failure(error))
-                                    }
-                                }
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
+                self?.login(completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func login(completion: @escaping (Result<Void, Error>) -> Void) {
+        let authService = self.authService
+        let name = self.name
+        let email = self.email
+        authService.login(UserLoginPayload(email: email, password: password)) { result in
+            switch result {
+            case .success(let userLoginInfo):
+                print("LOGIN: SUCCESS: \(userLoginInfo)")
+                authService.addUser(
+                    NewUserPayload(
+                        name: name,
+                        email: email,
+                        avatarName: "",
+                        avatarColor: "")) { result in
+                            switch result {
+                            case .success:
+                                print("ADD_USER: SUCCESS")
+                                completion(.success(()))
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+                        }
             case .failure(let error):
                 completion(.failure(error))
             }
