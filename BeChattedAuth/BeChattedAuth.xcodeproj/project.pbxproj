@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E8333AC2B1B25AD002E67D5 /* NewUserPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8333AB2B1B25AD002E67D5 /* NewUserPayload+Decodable.swift */; };
 		2EDB71132AF2B52800243018 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDB710A2AF2B52800243018 /* BeChattedAuth.framework */; };
 		2EDB71192AF2B52800243018 /* BeChattedAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EDB710D2AF2B52800243018 /* BeChattedAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EDB712B2AF2B6CD00243018 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71222AF2B6CD00243018 /* URLSessionHTTPClientTests.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E8333AB2B1B25AD002E67D5 /* NewUserPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewUserPayload+Decodable.swift"; sourceTree = "<group>"; };
 		2EDB710A2AF2B52800243018 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EDB710D2AF2B52800243018 /* BeChattedAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedAuth.h; sourceTree = "<group>"; };
 		2EDB71122AF2B52800243018 /* BeChattedAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 			children = (
 				2EDB71282AF2B6CD00243018 /* XCTestCase+MemoryLeakTracking.swift */,
 				2EDB71272AF2B6CD00243018 /* NewAccountPayload+Decodable.swift */,
+				2E8333AB2B1B25AD002E67D5 /* NewUserPayload+Decodable.swift */,
 				2EDB716A2AF2C3F800243018 /* URLProtocolStub.swift */,
 				2EDB716C2AF2C4B600243018 /* HelperFunctions.swift */,
 			);
@@ -415,6 +418,7 @@
 				2EDB712F2AF2B6CD00243018 /* NewAccountPayload+Decodable.swift in Sources */,
 				2EDB71322AF2B6CD00243018 /* UserLogoutServiceTests.swift in Sources */,
 				2EDB712E2AF2B6CD00243018 /* NewAccountServiceTests.swift in Sources */,
+				2E8333AC2B1B25AD002E67D5 /* NewUserPayload+Decodable.swift in Sources */,
 				2EDB712B2AF2B6CD00243018 /* URLSessionHTTPClientTests.swift in Sources */,
 				2EDB71302AF2B6CD00243018 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2EDB71692AF2BA7C00243018 /* MakeAuthServiceTests.swift in Sources */,
