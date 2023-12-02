@@ -248,18 +248,16 @@ final class UserLoginServiceTests: XCTestCase {
         private var messages = [Message]()
         
         private struct Message {
-            let url: URL
+            let request: URLRequest
             let completion: (HTTPClientResult) -> Void
         }
         
         var requestedURLs: [URL] {
-            messages.map { $0.url }
+            messages.compactMap { $0.request.url }
         }
         
         func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            if let requestedUrl = request.url {
-                messages.append(Message(url: requestedUrl, completion: completion))
-            }
+            messages.append(Message(request: request, completion: completion))
         }
         
         func complete(withError error: Error, at index: Int = 0) {
