@@ -110,6 +110,24 @@ final class LoginViewModelTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
 
+    func test_login_succeedsIfAuthServiceLoginRequestSucceeds() {
+        let (sut, authService) = makeSUT()
+        let exp = expectation(description: "Wait for login request completion")
+        
+        sut.login { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                XCTFail("Expected success, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        authService.completeLoginSuccessfully()
+        wait(for: [exp], timeout: 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LoginViewModel, AuthServiceStub) {
