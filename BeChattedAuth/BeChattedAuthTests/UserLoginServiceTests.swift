@@ -48,6 +48,18 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
+    func test_send_sendsUserLoginRequestAsPOSTMethod() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.send(userLoginPayload: anyUserLoginPayload()) { _ in }
+        
+        // then
+        XCTAssertEqual(client.httpMethods, ["POST"])
+    }
+
     func test_send_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         
@@ -256,6 +268,10 @@ final class UserLoginServiceTests: XCTestCase {
             messages.compactMap { $0.request.url }
         }
         
+        var httpMethods: [String] {
+            messages.compactMap { $0.request.httpMethod }
+        }
+
         func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
             messages.append(Message(request: request, completion: completion))
         }
