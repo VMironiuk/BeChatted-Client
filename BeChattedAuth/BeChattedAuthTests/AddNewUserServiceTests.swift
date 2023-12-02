@@ -19,7 +19,7 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [])
     }
     
-    func test_send_sendNewUserPayloadByURL() {
+    func test_send_sendNewUserPayloadRequestByURL() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
@@ -31,7 +31,7 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    func test_send_sendsNewUserPayloadByURLTwice() {
+    func test_send_sendsNewUserPayloadRequestByURLTwice() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
@@ -44,6 +44,18 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
+    func test_send_sendsNewAccountRequestAsPOSTMethod() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
+        
+        // then
+        XCTAssertEqual(client.httpMethods, ["POST"])
+    }
+
     func test_send_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         
@@ -253,6 +265,10 @@ final class AddNewUserServiceTests: XCTestCase {
             messages.compactMap { $0.request.url }
         }
         
+        var httpMethods: [String] {
+            messages.compactMap { $0.request.httpMethod }
+        }
+
         private struct Message {
             let request:  URLRequest
             let completion: (HTTPClientResult) -> Void
