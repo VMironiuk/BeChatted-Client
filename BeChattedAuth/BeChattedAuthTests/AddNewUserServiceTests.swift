@@ -56,6 +56,18 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(client.httpMethods, ["POST"])
     }
 
+    func test_send_sendsNewAccountRequestAsApplicationJSONContentType() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
+        
+        // then
+        XCTAssertEqual(client.contentTypes, ["application/json"])
+    }
+
     func test_send_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         
@@ -267,6 +279,10 @@ final class AddNewUserServiceTests: XCTestCase {
         
         var httpMethods: [String] {
             messages.compactMap { $0.request.httpMethod }
+        }
+
+        var contentTypes: [String] {
+            messages.compactMap { $0.request.value(forHTTPHeaderField: "Content-Type") }
         }
 
         private struct Message {
