@@ -67,6 +67,19 @@ final class AddNewUserServiceTests: XCTestCase {
         // then
         XCTAssertEqual(client.contentTypes, ["application/json"])
     }
+    
+    func test_send_sendsNewUserRequestWithAuthToken() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        let authToken = "auth token to check..."
+        
+        // when
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: authToken) { _ in }
+        
+        // then
+        XCTAssertEqual(client.authTokens, ["Bearer \(authToken)"])
+    }
 
     func test_send_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
@@ -285,6 +298,10 @@ final class AddNewUserServiceTests: XCTestCase {
             messages.compactMap { $0.request.value(forHTTPHeaderField: "Content-Type") }
         }
 
+        var authTokens: [String] {
+            messages.compactMap { $0.request.value(forHTTPHeaderField: "Authorization") }
+        }
+        
         private struct Message {
             let request:  URLRequest
             let completion: (HTTPClientResult) -> Void
