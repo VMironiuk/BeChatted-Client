@@ -159,16 +159,18 @@ final class AuthServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_sendNewUser_sendsNewUserMessage() {
+    func test_sendNewUser_sendsNewUserMessageAndAuthToken() {
         // given
         let newUserPayload = anyNewUserPayload()
+        let authToken = "auth token"
         
         // when
-        sut.addUser(newUserPayload) { _ in }
+        sut.addUser(newUserPayload, authToken: authToken) { _ in }
         
         // then
         XCTAssertTrue(newAccountService.messages.isEmpty)
         XCTAssertEqual(addNewUserService.messages[0].newUserPayload, newUserPayload)
+        XCTAssertEqual(addNewUserService.messages[0].authToken, authToken)
         XCTAssertTrue(userLoginService.messages.isEmpty)
         XCTAssertTrue(userLogoutService.messages.isEmpty)
     }
@@ -179,7 +181,7 @@ final class AuthServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for new user request completion")
         
         // when
-        sut.addUser(newUserPayload) { result in
+        sut.addUser(newUserPayload, authToken: "auth token") { result in
             // then
             switch result {
             case .success:
@@ -201,7 +203,7 @@ final class AuthServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for new user request completion")
         
         // when
-        sut.addUser(newUserPayload) { result in
+        sut.addUser(newUserPayload, authToken: "auth token") { result in
             // then
             switch result {
             case .failure:
@@ -309,14 +311,16 @@ final class AuthServiceTests: XCTestCase {
         
         struct Message {
             let newUserPayload: NewUserPayload
+            let authToken: String
             let completion: (Result<NewUserInfo, Error>) -> Void
         }
         
         func send(
             newUserPayload: NewUserPayload,
+            authToken: String,
             completion: @escaping (Result<NewUserInfo, Error>) -> Void
         ) {
-            messages.append(Message(newUserPayload: newUserPayload, completion: completion))
+            messages.append(Message(newUserPayload: newUserPayload, authToken: authToken, completion: completion))
         }
         
         func complete(with result: Result<NewUserInfo, Error>, at index: Int = 0) {

@@ -25,8 +25,16 @@ final class AddNewUserService: AddNewUserServiceProtocol {
         self.client = client
     }
     
-    func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Swift.Error>) -> Void) {
-        let request = URLRequest(url: url)
+    func send(
+        newUserPayload: NewUserPayload,
+        authToken: String,
+        completion: @escaping (Result<NewUserInfo, Swift.Error>) -> Void
+    ) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONEncoder().encode(newUserPayload)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         
         client.perform(request: request) { [weak self] result in
             guard self != nil else { return }

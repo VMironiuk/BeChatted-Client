@@ -51,16 +51,17 @@ public final class RegisterViewModel: ObservableObject {
     private func login(completion: @escaping RegisterCompletion) {
         authService.login(UserLoginPayload(email: email, password: password)) { [weak self] result in
             switch result {
-            case .success:
-                self?.addUser(completion: completion)
+            case let .success(loginInfo):
+                self?.addUser(with: loginInfo.token, completion: completion)
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    private func addUser(completion: @escaping RegisterCompletion) {
-        authService.addUser(NewUserPayload(name: name, email: email, avatarName: "", avatarColor: "")) { result in
+    private func addUser(with authToken: String, completion: @escaping RegisterCompletion) {
+        let newUserPayload = NewUserPayload(name: name, email: email, avatarName: "", avatarColor: "")
+        authService.addUser(newUserPayload, authToken: authToken) { result in
             switch result {
             case .success:
                 completion(.success(()))

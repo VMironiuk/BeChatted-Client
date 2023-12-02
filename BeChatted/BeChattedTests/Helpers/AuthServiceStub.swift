@@ -28,6 +28,7 @@ final class AuthServiceStub: AuthServiceProtocol {
     
     func addUser(
         _ payload: NewUserPayload,
+        authToken: String,
         completion: @escaping (Result<NewUserInfo, Error>) -> Void
     ) {
         addUserCallCount += 1

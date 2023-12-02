@@ -25,7 +25,7 @@ final class AddNewUserServiceTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
@@ -37,8 +37,8 @@ final class AddNewUserServiceTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
-        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
@@ -169,7 +169,7 @@ final class AddNewUserServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         var receivedError: AddNewUserService.Error?
         
-        sut.send(newUserPayload: anyNewUserPayload()) { result in
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { result in
             switch result {
             case let .failure(error):
                 receivedError = error as? AddNewUserService.Error
@@ -199,7 +199,7 @@ final class AddNewUserServiceTests: XCTestCase {
         // given
         var receivedResult: Result<NewUserInfo, Error>?
         
-        sut?.send(newUserPayload: anyNewUserPayload()) { result in
+        sut?.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { result in
             receivedResult = result
         }
         
@@ -224,7 +224,7 @@ final class AddNewUserServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         var receivedNewUserInfo: NewUserInfo?
         
-        sut.send(newUserPayload: anyNewUserPayload()) { result in
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { result in
             switch result {
             case let .success(newUserInfo):
                 receivedNewUserInfo = newUserInfo
