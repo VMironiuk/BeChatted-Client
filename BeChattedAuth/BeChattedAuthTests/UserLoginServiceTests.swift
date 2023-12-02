@@ -72,6 +72,19 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.contentTypes, ["application/json"])
     }
 
+    func test_send_sendsUserLoginPayload() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        let userLoginPayload = UserLoginPayload(email: "user@example.com", password: "user password")
+        
+        // when
+        sut.send(userLoginPayload: userLoginPayload) { _ in }
+        
+        // then
+        XCTAssertEqual(client.userLoginPayloads, [userLoginPayload])
+    }
+
     func test_send_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         
@@ -286,6 +299,13 @@ final class UserLoginServiceTests: XCTestCase {
 
         var contentTypes: [String] {
             messages.compactMap { $0.request.value(forHTTPHeaderField: "Content-Type") }
+        }
+
+        var userLoginPayloads: [UserLoginPayload] {
+            messages.compactMap {
+                guard let data = $0.request.httpBody else { return nil }
+                return try? JSONDecoder().decode(UserLoginPayload.self, from: data)
+            }
         }
 
         func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
