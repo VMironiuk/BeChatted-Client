@@ -44,7 +44,7 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
-    func test_send_sendsNewAccountRequestAsPOSTMethod() {
+    func test_send_sendsNewUserRequestAsPOSTMethod() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
@@ -56,7 +56,7 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(client.httpMethods, ["POST"])
     }
 
-    func test_send_sendsNewAccountRequestAsApplicationJSONContentType() {
+    func test_send_sendsNewUserRequestAsApplicationJSONContentType() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
