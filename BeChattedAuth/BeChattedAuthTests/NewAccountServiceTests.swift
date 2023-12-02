@@ -26,7 +26,7 @@ final class NewAccountServiceTests: XCTestCase {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        let newAccountPayload = NewAccountPayload(email: "my@example.com", password: "123456")
+        let newAccountPayload = anyNewAccountPayload()
         
         // when
         sut.send(newAccountPayload: newAccountPayload) { _ in }
@@ -39,7 +39,7 @@ final class NewAccountServiceTests: XCTestCase {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        let newAccountPayload = NewAccountPayload(email: "my@example.com", password: "123456")
+        let newAccountPayload = anyNewAccountPayload()
         
         // when
         sut.send(newAccountPayload: newAccountPayload) { _ in }
@@ -53,7 +53,7 @@ final class NewAccountServiceTests: XCTestCase {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        let newAccountPayload = NewAccountPayload(email: "my@example.com", password: "123456")
+        let newAccountPayload = anyNewAccountPayload()
         
         // when
         sut.send(newAccountPayload: newAccountPayload) { _ in }
@@ -66,7 +66,7 @@ final class NewAccountServiceTests: XCTestCase {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        let newAccountPayload = NewAccountPayload(email: "my@example.com", password: "123456")
+        let newAccountPayload = anyNewAccountPayload()
         
         // when
         sut.send(newAccountPayload: newAccountPayload) { _ in }
@@ -79,7 +79,7 @@ final class NewAccountServiceTests: XCTestCase {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        let newAccountPayload = NewAccountPayload(email: "my@example.com", password: "123456")
+        let newAccountPayload = anyNewAccountPayload()
         
         // when
         sut.send(newAccountPayload: newAccountPayload) { _ in }
@@ -292,5 +292,9 @@ final class NewAccountServiceTests: XCTestCase {
         func complete(with response: HTTPURLResponse, at index: Int = 0) {
             messages[index].completion(.success(nil, response))
         }
+    }
+    
+    private func anyNewAccountPayload() -> NewAccountPayload {
+        NewAccountPayload(email: "my@example.com", password: "123456")
     }
 }
