@@ -210,19 +210,19 @@ final class AddNewUserServiceTests: XCTestCase {
     
     private func expect(
         sut: AddNewUserServiceProtocol,
-        toCompleteWithError expectedError: AddNewUserService.Error,
+        toCompleteWithError expectedError: AddNewUserServiceError,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedError: AddNewUserService.Error?
+        var receivedError: AddNewUserServiceError?
         
         sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { result in
             switch result {
             case let .failure(error):
-                receivedError = error as? AddNewUserService.Error
+                receivedError = error
                 
             default:
                 XCTFail("Expected failure, got \(result) instead.", file: file, line: line)
@@ -247,7 +247,7 @@ final class AddNewUserServiceTests: XCTestCase {
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<NewUserInfo, Error>?
+        var receivedResult: Result<NewUserInfo, AddNewUserServiceError>?
         
         sut?.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { result in
             receivedResult = result

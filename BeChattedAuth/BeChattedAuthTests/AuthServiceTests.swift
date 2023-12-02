@@ -96,7 +96,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        newAccountService.complete(with: .failure(anyNSError()))
+        newAccountService.complete(with: .failure(.unknown))
         
         wait(for: [exp], timeout: 1)
     }
@@ -154,7 +154,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        userLoginService.complete(with: .failure(anyNSError()))
+        userLoginService.complete(with: .failure(.unknown))
         
         wait(for: [exp], timeout: 1)
     }
@@ -214,7 +214,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        addNewUserService.complete(with: .failure(anyNSError()))
+        addNewUserService.complete(with: .failure(.unknown))
         
         wait(for: [exp], timeout: 1)
     }
@@ -269,7 +269,7 @@ final class AuthServiceTests: XCTestCase {
             exp.fulfill()
         }
         
-        userLogoutService.complete(with: .failure(anyNSError()))
+        userLogoutService.complete(with: .failure(.connectivity))
         
         wait(for: [exp], timeout: 1)
     }
@@ -291,17 +291,17 @@ final class AuthServiceTests: XCTestCase {
         
         struct Message {
             let newAccountPayload: NewAccountPayload
-            let completion: (Result<Void, Error>) -> Void
+            let completion: (Result<Void, NewAccountServiceError>) -> Void
         }
         
         func send(
             newAccountPayload: NewAccountPayload,
-            completion: @escaping (Result<Void, Error>) -> Void
+            completion: @escaping (Result<Void, NewAccountServiceError>) -> Void
         ) {
             messages.append(Message(newAccountPayload: newAccountPayload, completion: completion))
         }
         
-        func complete(with result: Result<Void, Error>, at index: Int = 0) {
+        func complete(with result: Result<Void, NewAccountServiceError>, at index: Int = 0) {
             messages[index].completion(result)
         }
     }
@@ -312,18 +312,18 @@ final class AuthServiceTests: XCTestCase {
         struct Message {
             let newUserPayload: NewUserPayload
             let authToken: String
-            let completion: (Result<NewUserInfo, Error>) -> Void
+            let completion: (Result<NewUserInfo, AddNewUserServiceError>) -> Void
         }
         
         func send(
             newUserPayload: NewUserPayload,
             authToken: String,
-            completion: @escaping (Result<NewUserInfo, Error>) -> Void
+            completion: @escaping (Result<NewUserInfo, AddNewUserServiceError>) -> Void
         ) {
             messages.append(Message(newUserPayload: newUserPayload, authToken: authToken, completion: completion))
         }
         
-        func complete(with result: Result<NewUserInfo, Error>, at index: Int = 0) {
+        func complete(with result: Result<NewUserInfo, AddNewUserServiceError>, at index: Int = 0) {
             messages[index].completion(result)
         }
     }
@@ -333,17 +333,17 @@ final class AuthServiceTests: XCTestCase {
         
         struct Message {
             let userLoginPayload: UserLoginPayload
-            let completion: (Result<UserLoginInfo, Error>) -> Void
+            let completion: (Result<UserLoginInfo, UserLoginServiceError>) -> Void
         }
 
         func send(
             userLoginPayload: UserLoginPayload,
-            completion: @escaping (Result<UserLoginInfo, Error>) -> Void
+            completion: @escaping (Result<UserLoginInfo, UserLoginServiceError>) -> Void
         ) {
             messages.append(Message(userLoginPayload: userLoginPayload, completion: completion))
         }
         
-        func complete(with result: Result<UserLoginInfo, Error>, at index: Int = 0) {
+        func complete(with result: Result<UserLoginInfo, UserLoginServiceError>, at index: Int = 0) {
             messages[index].completion(result)
         }
     }
@@ -352,14 +352,14 @@ final class AuthServiceTests: XCTestCase {
         private(set) var messages = [Message]()
         
         struct Message {
-            let completion: (Result<Void, Error>) -> Void
+            let completion: (Result<Void, UserLogoutServiceError>) -> Void
         }
 
-        func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+        func logout(completion: @escaping (Result<Void, UserLogoutServiceError>) -> Void) {
             messages.append(Message(completion: completion))
         }
         
-        func complete(with result: Result<Void, Error>, at index: Int = 0) {
+        func complete(with result: Result<Void, UserLogoutServiceError>, at index: Int = 0) {
             messages[index].completion(result)
         }
     }

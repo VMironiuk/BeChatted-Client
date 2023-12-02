@@ -7,6 +7,7 @@
 
 import XCTest
 import BeChatted
+import BeChattedAuth
 import BeChattedUserInputValidation
 
 final class RegisterViewModelTests: XCTestCase {
@@ -84,7 +85,7 @@ final class RegisterViewModelTests: XCTestCase {
     
     func test_register_failsIfAuthServiceCreateAccountRequestFails() {
         let (sut, authService) = makeSUT()
-        let createAccountError: NSError = anyNSError()
+        let createAccountError = unknownAuthError()
         
         expect(
             sut,
@@ -102,7 +103,7 @@ final class RegisterViewModelTests: XCTestCase {
     
     func test_register_failsIfAuthServiceLoginRequestFails() {
         let (sut, authService) = makeSUT()
-        let loginError: NSError = anyNSError()
+        let loginError = AuthServiceError.unknown
         
         expect(
             sut,
@@ -121,7 +122,7 @@ final class RegisterViewModelTests: XCTestCase {
 
     func test_register_failsIfAuthServiceAddUserRequestFails() {
         let (sut, authService) = makeSUT()
-        let addUserError: NSError = anyNSError()
+        let addUserError = AuthServiceError.unknown
         
         expect(
             sut,
@@ -235,7 +236,69 @@ final class RegisterViewModelTests: XCTestCase {
         )
     }
     
+    private func expect(
+        _ sut: RegisterViewModel,
+        authService: AuthServiceStub,
+        toCompleteWith expectedError: AuthServiceError?,
+        expectedCreateAccountCallCount: Int,
+        expectedAddUserCallCount: Int,
+        expectedLoginCallCount: Int,
+        expectedLogoutCallCount: Int,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for registration completion")
+        var receivedError: AuthServiceError?
+        sut.register { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                receivedError = error as AuthServiceError
+            }
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+        XCTAssertEqual(
+            authService.createAccountCallCount,
+            expectedCreateAccountCallCount,
+            "Expected \(expectedCreateAccountCallCount) create account calls count, got \(authService.createAccountCallCount) instead",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            authService.addUserCallCount,
+            expectedAddUserCallCount,
+            "Expected \(expectedAddUserCallCount) add user calls count, got \(authService.addUserCallCount) instead",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            authService.loginCallCount,
+            expectedLoginCallCount,
+            "Expected \(expectedLoginCallCount) login calls count, got \(authService.loginCallCount) instead",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            authService.logoutCallCount,
+            expectedLogoutCallCount,
+            "Expected \(expectedLogoutCallCount) logout calls count, got \(authService.logoutCallCount) instead",
+            file: file,
+            line: line
+        )
+    }
     func anyNSError() -> NSError {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private func unknownAuthError() -> AuthServiceError {
+        .unknown
     }
 }

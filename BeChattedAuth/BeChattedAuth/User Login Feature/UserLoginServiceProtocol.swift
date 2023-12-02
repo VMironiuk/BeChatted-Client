@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum UserLoginServiceError: Error {
+    case connectivity
+    case credentials
+    case server
+    case invalidData
+    case unknown
+}
+
 protocol UserLoginServiceProtocol {
-    func send(userLoginPayload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void)
+    func send(userLoginPayload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, UserLoginServiceError>) -> Void)
 }

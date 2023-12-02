@@ -30,7 +30,7 @@ public final class LoginViewModel: ObservableObject {
         self.authService = authService
     }
     
-    public func login(completion: @escaping (Result<Void, Error>) -> Void) {
+    public func login(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
         authService.login(UserLoginPayload(email: email, password: password)) { result in
             switch result {
             case .success:

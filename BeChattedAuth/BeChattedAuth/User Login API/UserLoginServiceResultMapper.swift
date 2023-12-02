@@ -10,24 +10,24 @@ import Foundation
 struct UserLoginServiceResultMapper {
     private init() {}
     
-    static func result(for data: Data?, response: HTTPURLResponse?) -> Result<UserLoginInfo, Swift.Error> {
-        guard let response = response else { return .failure(UserLoginService.Error.unknown) }
+    static func result(for data: Data?, response: HTTPURLResponse?) -> Result<UserLoginInfo, UserLoginServiceError> {
+        guard let response = response else { return .failure(.unknown) }
         
         switch response.statusCode {
         case 200:
             return result(for: data)
         case 401:
-            return .failure(UserLoginService.Error.credentials)
+            return .failure(.credentials)
         case 500...599:
-            return .failure(UserLoginService.Error.server)
+            return .failure(.server)
         default:
-            return .failure(UserLoginService.Error.unknown)
+            return .failure(.unknown)
         }
     }
     
-    private static func result(for data: Data?) -> Result<UserLoginInfo, Swift.Error> {
+    private static func result(for data: Data?) -> Result<UserLoginInfo, UserLoginServiceError> {
         guard let data = data, let userInfo = try? JSONDecoder().decode(UserLoginInfo.self, from: data) else {
-            return .failure(UserLoginService.Error.invalidData)
+            return .failure(.invalidData)
         }
         
         return .success(userInfo)

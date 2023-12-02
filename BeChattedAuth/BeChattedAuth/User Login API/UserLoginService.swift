@@ -11,14 +11,6 @@ final class UserLoginService: UserLoginServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
-    enum Error: Swift.Error {
-        case connectivity
-        case credentials
-        case server
-        case invalidData
-        case unknown
-    }
-    
     init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
@@ -26,7 +18,7 @@ final class UserLoginService: UserLoginServiceProtocol {
     
     func send(
         userLoginPayload: UserLoginPayload,
-        completion: @escaping (Result<UserLoginInfo, Swift.Error>) -> Void
+        completion: @escaping (Result<UserLoginInfo, UserLoginServiceError>) -> Void
     ) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -40,7 +32,7 @@ final class UserLoginService: UserLoginServiceProtocol {
             case let .success(data, response):
                 completion(UserLoginServiceResultMapper.result(for: data, response: response))
             case .failure:
-                completion(.failure(Error.connectivity))
+                completion(.failure(.connectivity))
             }
         }
     }

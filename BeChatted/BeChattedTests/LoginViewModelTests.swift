@@ -7,6 +7,7 @@
 
 import XCTest
 import BeChatted
+import BeChattedAuth
 import BeChattedUserInputValidation
 
 final class LoginViewModelTests: XCTestCase {
@@ -93,14 +94,14 @@ final class LoginViewModelTests: XCTestCase {
     
     func test_login_failsIfAuthServiceLoginRequestFails() {
         let (sut, authService) = makeSUT()
-        let loginError = anyNSError()
+        let loginError = AuthServiceError.connectivity
         let exp = expectation(description: "Wait for login request completion")
         
         sut.login { result in
             switch result {
             case .success:
                 XCTFail("Expected error, got \(result) instead")
-            case let .failure(receivedError as NSError):
+            case let .failure(receivedError):
                 XCTAssertEqual(receivedError, loginError)
             }
             exp.fulfill()

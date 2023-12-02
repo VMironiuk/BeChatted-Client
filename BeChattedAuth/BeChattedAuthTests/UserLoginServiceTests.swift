@@ -202,18 +202,18 @@ final class UserLoginServiceTests: XCTestCase {
     
     private func expect(
         sut: UserLoginServiceProtocol,
-        toCompleteWithError expectedError: UserLoginService.Error,
+        toCompleteWithError expectedError: UserLoginServiceError,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedError: UserLoginService.Error?
+        var receivedError: UserLoginServiceError?
         sut.send(userLoginPayload: anyUserLoginPayload()) { result in
             switch result {
             case let .failure(error):
-                receivedError = error as? UserLoginService.Error
+                receivedError = error
             default:
                 XCTFail("Expected connectivity error, got \(result) instead")
             }
@@ -237,7 +237,7 @@ final class UserLoginServiceTests: XCTestCase {
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<UserLoginInfo, Error>?
+        var receivedResult: Result<UserLoginInfo, UserLoginServiceError>?
         sut?.send(userLoginPayload: anyUserLoginPayload()) { result in
             receivedResult = result
         }

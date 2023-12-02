@@ -181,18 +181,18 @@ final class NewAccountServiceTests: XCTestCase {
         
     private func expect(
         _ sut: NewAccountServiceProtocol,
-        toCompleteWithError expectedError: NewAccountService.Error,
+        toCompleteWithError expectedError: NewAccountServiceError,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedError: NewAccountService.Error?
+        var receivedError: NewAccountServiceError?
         sut.send(newAccountPayload: anyNewAccountPayload()) { result in
             switch result {
             case let .failure(error):
-                receivedError = error as? NewAccountService.Error
+                receivedError = error
             default:
                 XCTFail("Expected failure, got \(result) instead", file: file, line: line)
             }
@@ -217,7 +217,7 @@ final class NewAccountServiceTests: XCTestCase {
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedResult: Result<Void, Error>?
+        var receivedResult: Result<Void, NewAccountServiceError>?
         sut.send(newAccountPayload: anyNewAccountPayload()) { result in
             switch result {
             case .success:
@@ -245,7 +245,7 @@ final class NewAccountServiceTests: XCTestCase {
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<Void, Error>?
+        var receivedResult: Result<Void, NewAccountServiceError>?
         sut?.send(newAccountPayload: anyNewAccountPayload()) { result in
             receivedResult = result
         }

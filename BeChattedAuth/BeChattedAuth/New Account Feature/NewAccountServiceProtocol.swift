@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum NewAccountServiceError: Error {
+    case connectivity
+    case email
+    case server
+    case unknown
+}
+
 protocol NewAccountServiceProtocol {
-    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void)
+    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, NewAccountServiceError>) -> Void)
 }

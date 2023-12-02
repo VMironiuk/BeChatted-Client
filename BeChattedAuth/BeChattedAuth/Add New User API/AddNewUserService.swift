@@ -11,15 +11,6 @@ final class AddNewUserService: AddNewUserServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
-    enum AddNewUserError: Swift.Error {
-        case connectivity
-        case server
-        case unknown
-        case invalidData
-    }
-    
-    typealias Error = AddNewUserError
-    
     init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
@@ -28,7 +19,7 @@ final class AddNewUserService: AddNewUserServiceProtocol {
     func send(
         newUserPayload: NewUserPayload,
         authToken: String,
-        completion: @escaping (Result<NewUserInfo, Swift.Error>) -> Void
+        completion: @escaping (Result<NewUserInfo, AddNewUserServiceError>) -> Void
     ) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -43,7 +34,7 @@ final class AddNewUserService: AddNewUserServiceProtocol {
             case let .success(data, response):
                 completion(AddNewUserServiceResultMapper.result(for: data, response: response))
             case .failure:
-                completion(.failure(Error.connectivity))
+                completion(.failure(.connectivity))
             }
         }
     }

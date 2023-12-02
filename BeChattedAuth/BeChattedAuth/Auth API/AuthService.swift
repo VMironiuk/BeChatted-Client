@@ -25,19 +25,75 @@ final class AuthService: AuthServiceProtocol {
         self.userLogoutService = userLogoutService
     }
     
-    func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void) {
-        newAccountService.send(newAccountPayload: payload, completion: completion)
+    func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
+        newAccountService.send(newAccountPayload: payload) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                switch error {
+                case .server:
+                    completion(.failure(.server))
+                case .connectivity:
+                    completion(.failure(.connectivity))
+                case .email:
+                    completion(.failure(.email))
+                case .unknown:
+                    completion(.failure(.unknown))
+                }
+            }
+        }
     }
     
-    func addUser(_ payload: NewUserPayload, authToken: String, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
-        addNewUserService.send(newUserPayload: payload, authToken: authToken, completion: completion)
+    func addUser(_ payload: NewUserPayload, authToken: String, completion: @escaping (Result<NewUserInfo, AuthServiceError>) -> Void) {
+        addNewUserService.send(newUserPayload: payload, authToken: authToken) { result in
+            switch result {
+            case .success(let newUserInfo):
+                completion(.success(newUserInfo))
+            case .failure(let error):
+                switch error {
+                case .server:
+                    completion(.failure(.server))
+                case .connectivity:
+                    completion(.failure(.connectivity))
+                case .invalidData, .unknown:
+                    completion(.failure(.unknown))
+                }
+            }
+        }
     }
     
-    func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
-        userLoginService.send(userLoginPayload: payload, completion: completion)
+    func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, AuthServiceError>) -> Void) {
+        userLoginService.send(userLoginPayload: payload) { result in
+            switch result {
+            case .success(let userLoginInfo):
+                completion(.success(userLoginInfo))
+            case .failure(let error):
+                switch error {
+                case .server:
+                    completion(.failure(.server))
+                case .connectivity:
+                    completion(.failure(.connectivity))
+                case .credentials:
+                    completion(.failure(.credentials))
+                case .invalidData, .unknown:
+                    completion(.failure(.unknown))
+                }
+            }
+        }
     }
         
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        userLogoutService.logout(completion: completion)
+    func logout(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
+        userLogoutService.logout { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                switch error {
+                case .connectivity:
+                    completion(.failure(.connectivity))
+                }
+            }
+        }
     }
 }

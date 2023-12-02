@@ -10,7 +10,7 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 public final class RegisterViewModel: ObservableObject {
-    public typealias RegisterCompletion = (Result<Void, Error>) -> Void
+    public typealias RegisterCompletion = (Result<Void, AuthServiceError>) -> Void
     
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
