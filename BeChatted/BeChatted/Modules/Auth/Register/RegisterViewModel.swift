@@ -41,8 +41,10 @@ public final class RegisterViewModel: ObservableObject {
         authService.createAccount(NewAccountPayload(email: email, password: password)) { [weak self] result in
             switch result {
             case .success:
+                print("MYLOG: CREATE ACCOUNT: SUCCESS!")
                 self?.login(completion: completion)
             case .failure(let error):
+                print("MYLOG: CREATE ACCOUNT: FAILED: \(error) (\(error.localizedDescription))")
                 completion(.failure(error))
             }
         }
@@ -52,8 +54,10 @@ public final class RegisterViewModel: ObservableObject {
         authService.login(UserLoginPayload(email: email, password: password)) { [weak self] result in
             switch result {
             case let .success(loginInfo):
+                print("MYLOG: LOGIN: SUCCESS!")
                 self?.addUser(with: loginInfo.token, completion: completion)
             case .failure(let error):
+                print("MYLOG: LOGIN: FAILED: \(error) (\(error.localizedDescription))")
                 completion(.failure(error))
             }
         }
@@ -64,8 +68,10 @@ public final class RegisterViewModel: ObservableObject {
         authService.addUser(newUserPayload, authToken: authToken) { result in
             switch result {
             case .success:
+                print("MYLOG: ADD USER: SUCCESS!")
                 completion(.success(()))
             case .failure(let error):
+                print("MYLOG: ADD USER: FAILED: \(error) (\(error.localizedDescription))")
                 completion(.failure(error))
             }
         }
