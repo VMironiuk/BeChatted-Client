@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2E8333AC2B1B25AD002E67D5 /* NewUserPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8333AB2B1B25AD002E67D5 /* NewUserPayload+Decodable.swift */; };
 		2E8333AE2B1B2AC5002E67D5 /* UserLoginPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8333AD2B1B2AC5002E67D5 /* UserLoginPayload+Decodable.swift */; };
+		2E8333B02B1B638A002E67D5 /* NewAccountResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8333AF2B1B638A002E67D5 /* NewAccountResultMapper.swift */; };
+		2E8333B22B1B6564002E67D5 /* AddUserResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8333B12B1B6564002E67D5 /* AddUserResultMapper.swift */; };
+		2E8333B42B1B66EA002E67D5 /* LoginResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8333B32B1B66EA002E67D5 /* LoginResultMapper.swift */; };
+		2E8333B62B1B67FC002E67D5 /* LogoutResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8333B52B1B67FC002E67D5 /* LogoutResultMapper.swift */; };
 		2EDB71132AF2B52800243018 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDB710A2AF2B52800243018 /* BeChattedAuth.framework */; };
 		2EDB71192AF2B52800243018 /* BeChattedAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EDB710D2AF2B52800243018 /* BeChattedAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EDB712B2AF2B6CD00243018 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71222AF2B6CD00243018 /* URLSessionHTTPClientTests.swift */; };
@@ -58,6 +62,10 @@
 /* Begin PBXFileReference section */
 		2E8333AB2B1B25AD002E67D5 /* NewUserPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewUserPayload+Decodable.swift"; sourceTree = "<group>"; };
 		2E8333AD2B1B2AC5002E67D5 /* UserLoginPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserLoginPayload+Decodable.swift"; sourceTree = "<group>"; };
+		2E8333AF2B1B638A002E67D5 /* NewAccountResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountResultMapper.swift; sourceTree = "<group>"; };
+		2E8333B12B1B6564002E67D5 /* AddUserResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserResultMapper.swift; sourceTree = "<group>"; };
+		2E8333B32B1B66EA002E67D5 /* LoginResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResultMapper.swift; sourceTree = "<group>"; };
+		2E8333B52B1B67FC002E67D5 /* LogoutResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResultMapper.swift; sourceTree = "<group>"; };
 		2EDB710A2AF2B52800243018 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EDB710D2AF2B52800243018 /* BeChattedAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedAuth.h; sourceTree = "<group>"; };
 		2EDB71122AF2B52800243018 /* BeChattedAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +256,10 @@
 			isa = PBXGroup;
 			children = (
 				2EDB714A2AF2B6EE00243018 /* AuthService.swift */,
+				2E8333AF2B1B638A002E67D5 /* NewAccountResultMapper.swift */,
+				2E8333B12B1B6564002E67D5 /* AddUserResultMapper.swift */,
+				2E8333B32B1B66EA002E67D5 /* LoginResultMapper.swift */,
+				2E8333B52B1B67FC002E67D5 /* LogoutResultMapper.swift */,
 			);
 			path = "Auth API";
 			sourceTree = "<group>";
@@ -391,10 +403,13 @@
 				2EDB715A2AF2B6EE00243018 /* UserLoginService.swift in Sources */,
 				2EDB715D2AF2B6EE00243018 /* NewUserPayload.swift in Sources */,
 				2EDB71552AF2B6EE00243018 /* NewAccountServiceProtocol.swift in Sources */,
+				2E8333B02B1B638A002E67D5 /* NewAccountResultMapper.swift in Sources */,
 				2EDB71632AF2B6EE00243018 /* HTTPClientProtocol.swift in Sources */,
 				2EDB71622AF2B6EE00243018 /* URLSessionHTTPClient.swift in Sources */,
+				2E8333B42B1B66EA002E67D5 /* LoginResultMapper.swift in Sources */,
 				2EDB71652AF2B6EE00243018 /* UserLogoutServiceProtocol.swift in Sources */,
 				2EDB715E2AF2B6EE00243018 /* AddNewUserServiceProtocol.swift in Sources */,
+				2E8333B62B1B67FC002E67D5 /* LogoutResultMapper.swift in Sources */,
 				2EDB715F2AF2B6EE00243018 /* AddNewUserService.swift in Sources */,
 				2EDB71672AF2B7F700243018 /* BeChattedAuth.swift in Sources */,
 				2EDB715B2AF2B6EE00243018 /* AuthServiceProtocol.swift in Sources */,
@@ -405,6 +420,7 @@
 				2EDB71582AF2B6EE00243018 /* UserLoginServiceProtocol.swift in Sources */,
 				2EDB71522AF2B6EE00243018 /* NewAccountServiceResultMapper.swift in Sources */,
 				2EDB715C2AF2B6EE00243018 /* NewUserInfo.swift in Sources */,
+				2E8333B22B1B6564002E67D5 /* AddUserResultMapper.swift in Sources */,
 				2EDB71602AF2B6EE00243018 /* AddNewUserServiceResultMapper.swift in Sources */,
 				2EDB71612AF2B6EE00243018 /* AuthService.swift in Sources */,
 				2EDB71642AF2B6EE00243018 /* UserLogoutService.swift in Sources */,

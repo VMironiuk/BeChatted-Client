@@ -27,73 +27,25 @@ final class AuthService: AuthServiceProtocol {
     
     func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
         newAccountService.send(newAccountPayload: payload) { result in
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure(let error):
-                switch error {
-                case .server:
-                    completion(.failure(.server))
-                case .connectivity:
-                    completion(.failure(.connectivity))
-                case .email:
-                    completion(.failure(.email))
-                case .unknown:
-                    completion(.failure(.unknown))
-                }
-            }
+            completion(NewAccountResultMapper.result(for: result))
         }
     }
     
     func addUser(_ payload: NewUserPayload, authToken: String, completion: @escaping (Result<NewUserInfo, AuthServiceError>) -> Void) {
         addNewUserService.send(newUserPayload: payload, authToken: authToken) { result in
-            switch result {
-            case .success(let newUserInfo):
-                completion(.success(newUserInfo))
-            case .failure(let error):
-                switch error {
-                case .server:
-                    completion(.failure(.server))
-                case .connectivity:
-                    completion(.failure(.connectivity))
-                case .invalidData, .unknown:
-                    completion(.failure(.unknown))
-                }
-            }
+            completion(AddUserResultMapper.result(for: result))
         }
     }
     
     func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, AuthServiceError>) -> Void) {
         userLoginService.send(userLoginPayload: payload) { result in
-            switch result {
-            case .success(let userLoginInfo):
-                completion(.success(userLoginInfo))
-            case .failure(let error):
-                switch error {
-                case .server:
-                    completion(.failure(.server))
-                case .connectivity:
-                    completion(.failure(.connectivity))
-                case .credentials:
-                    completion(.failure(.credentials))
-                case .invalidData, .unknown:
-                    completion(.failure(.unknown))
-                }
-            }
+            completion(LoginResultMapper.result(for: result))
         }
     }
         
     func logout(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
         userLogoutService.logout { result in
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure(let error):
-                switch error {
-                case .connectivity:
-                    completion(.failure(.connectivity))
-                }
-            }
+            completion(LogoutResultMapper.result(for: result))
         }
     }
 }
