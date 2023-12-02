@@ -10,7 +10,7 @@ import XCTest
 
 final class AddNewUserServiceTests: XCTestCase {
 
-    func test_init_doesNotSendNewUserPayloadByURL() {
+    func test_init_doesNotSendNewUserRequestByURL() {
         // given
         // when
         let (_, client) = makeSUT(url: anyURL())

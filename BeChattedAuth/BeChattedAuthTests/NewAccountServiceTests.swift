@@ -10,7 +10,7 @@ import XCTest
 
 final class NewAccountServiceTests: XCTestCase {
 
-    func test_init_doesNotSendNewAccountPayloadByURL() {
+    func test_init_doesNotSendNewAccountRequestByURL() {
         // given
         
         // when

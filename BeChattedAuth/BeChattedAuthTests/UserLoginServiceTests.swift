@@ -10,7 +10,7 @@ import XCTest
 
 final class UserLoginServiceTests: XCTestCase {
     
-    func test_init_doesNotSendUserLoginPayloadByURL() {
+    func test_init_doesNotSendUserLoginRequestByURL() {
         // given
         let client = HTTPClientSpy()
         
@@ -21,7 +21,7 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [])
     }
     
-    func test_send_sendsUserLoginPayloadByURL() {
+    func test_send_sendsUserLoginRequestByURL() {
         // given
         let url = anyURL()
         let client = HTTPClientSpy()
@@ -34,7 +34,7 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    func test_send_sendsUserLoginPayloadByURLTwice() {
+    func test_send_sendsUserLoginRequestByURLTwice() {
         // given
         let url = anyURL()
         let client = HTTPClientSpy()
