@@ -94,7 +94,7 @@ final class LoginViewModelTests: XCTestCase {
     
     func test_login_failsIfAuthServiceLoginRequestFails() {
         let (sut, authService) = makeSUT()
-        let credentialsLoginError = LoginErrorMapper.error(for: .credentials)
+        let credentialsLoginError = AuthError(authServiceError: .credentials)
         let exp = expectation(description: "Wait for login request completion")
         
         sut.login { result in
@@ -144,9 +144,5 @@ final class LoginViewModelTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, authService)
-    }
-    
-    func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 1)
     }
 }

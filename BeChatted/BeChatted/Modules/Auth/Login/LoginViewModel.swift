@@ -10,16 +10,6 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 public final class LoginViewModel: ObservableObject {
-    public struct Error: Swift.Error, Equatable {
-        let title: String
-        let description: String
-        
-        public init(title: String, description: String) {
-            self.title = title
-            self.description = description
-        }
-    }
-
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol
@@ -40,13 +30,13 @@ public final class LoginViewModel: ObservableObject {
         self.authService = authService
     }
     
-    public func login(completion: @escaping (Result<Void, Error>) -> Void) {
+    public func login(completion: @escaping (Result<Void, AuthError>) -> Void) {
         authService.login(UserLoginPayload(email: email, password: password)) { result in
             switch result {
             case .success:
                 completion(.success(()))
             case .failure(let error):
-                completion(.failure(LoginErrorMapper.error(for: error)))
+                completion(.failure(AuthError(authServiceError: error)))
             }
         }
     }
