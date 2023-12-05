@@ -14,6 +14,14 @@ struct LoginView: View {
     @State private var showErrorAlert = false
     private let registerViewBuilder: () -> RegisterView
     
+    private var errorTitle: String {
+        viewModel.authError?.title ?? ""
+    }
+    
+    private var errorDescription: String {
+        viewModel.authError?.description ?? ""
+    }
+    
     init(viewModel: LoginViewModel, registerViewBuilder: @escaping () -> RegisterView) {
         self.viewModel = viewModel
         self.registerViewBuilder = registerViewBuilder
@@ -55,12 +63,10 @@ struct LoginView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
             .alert(
-                viewModel.authError?.title ?? "",
+                errorTitle,
                 isPresented: $showErrorAlert,
                 actions: {},
-                message: {
-                    Text(viewModel.authError?.description ?? "")
-                }
+                message: { Text(errorDescription) }
             )
             
             HStack {

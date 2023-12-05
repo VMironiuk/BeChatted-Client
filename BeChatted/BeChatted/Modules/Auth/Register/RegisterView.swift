@@ -14,6 +14,14 @@ struct RegisterView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showErrorAlert = false
     
+    private var errorTitle: String {
+        viewModel.authError?.title ?? ""
+    }
+    
+    private var errorDescription: String {
+        viewModel.authError?.description ?? ""
+    }
+    
     init(viewModel: RegisterViewModel) {
         self.viewModel = viewModel
     }
@@ -72,12 +80,10 @@ struct RegisterView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
             .alert(
-                viewModel.authError?.title ?? "",
+                errorTitle,
                 isPresented: $showErrorAlert,
-                actions: {
-                }, message: {
-                    Text(viewModel.authError?.description ?? "")
-                }
+                actions: {},
+                message: { Text(errorDescription) }
             )
             
             HStack {
