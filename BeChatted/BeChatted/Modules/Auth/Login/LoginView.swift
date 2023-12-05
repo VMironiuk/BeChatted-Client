@@ -41,7 +41,14 @@ struct LoginView: View {
             Spacer()
             
             Button("Login") {
-                viewModel.login { _ in }
+                viewModel.login { result in
+                    switch result {
+                    case .success:
+                        print("MYLOG: LOGIN SUCCESS")
+                    case let .failure(error):
+                        print("MYLOG: LOGIN FAILED: TITLE(\(error.title)); DESCRIPTION(\(error.description))")
+                    }
+                }
             }
             .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)

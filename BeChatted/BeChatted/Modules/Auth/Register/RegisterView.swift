@@ -63,7 +63,7 @@ struct RegisterView: View {
                     case .success:
                         print("MYLOG: REGISTRATION SUCCESS")
                     case let .failure(error):
-                        print("MYLOG: TITLE(\(error.title)); DESCRIPTION(\(error.description))")
+                        print("MYLOG: REGISTRATION FAILED TITLE(\(error.title)); DESCRIPTION(\(error.description))")
                     }
                 }
             }
