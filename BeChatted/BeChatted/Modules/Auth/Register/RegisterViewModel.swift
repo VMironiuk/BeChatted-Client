@@ -10,17 +10,7 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 public final class RegisterViewModel: ObservableObject {
-    public typealias RegisterCompletion = (Result<Void, Error>) -> Void
-    
-    public struct Error: Swift.Error, Equatable {
-        let title: String
-        let description: String
-        
-        public init(title: String, description: String) {
-            self.title = title
-            self.description = description
-        }
-    }
+    public typealias RegisterCompletion = (Result<Void, AuthError>) -> Void
     
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
@@ -53,7 +43,7 @@ public final class RegisterViewModel: ObservableObject {
             case .success:
                 self?.login(completion: completion)
             case .failure(let error):
-                completion(.failure(RegisterErrorMapper.error(for: error)))
+                completion(.failure(AuthError(authServiceError: error)))
             }
         }
     }
@@ -64,7 +54,7 @@ public final class RegisterViewModel: ObservableObject {
             case let .success(loginInfo):
                 self?.addUser(with: loginInfo.token, completion: completion)
             case .failure(let error):
-                completion(.failure(RegisterErrorMapper.error(for: error)))
+                completion(.failure(AuthError(authServiceError: error)))
             }
         }
     }
@@ -76,7 +66,7 @@ public final class RegisterViewModel: ObservableObject {
             case .success:
                 completion(.success(()))
             case .failure(let error):
-                completion(.failure(RegisterErrorMapper.error(for: error)))
+                completion(.failure(AuthError(authServiceError: error)))
             }
         }
     }

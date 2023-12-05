@@ -239,7 +239,7 @@ final class RegisterViewModelTests: XCTestCase {
     private func expect(
         _ sut: RegisterViewModel,
         authService: AuthServiceStub,
-        toCompleteWith expectedError: RegisterViewModel.Error?,
+        toCompleteWith expectedError: AuthError?,
         expectedCreateAccountCallCount: Int,
         expectedAddUserCallCount: Int,
         expectedLoginCallCount: Int,
@@ -249,7 +249,7 @@ final class RegisterViewModelTests: XCTestCase {
         line: UInt = #line
     ) {
         let exp = expectation(description: "Wait for registration completion")
-        var receivedError: RegisterViewModel.Error?
+        var receivedError: AuthError?
         sut.register { result in
             switch result {
             case .success:
@@ -295,7 +295,7 @@ final class RegisterViewModelTests: XCTestCase {
         )
     }
         
-    private func unknownRegisterError() -> RegisterViewModel.Error {
-        RegisterErrorMapper.error(for: .unknown)
+    private func unknownRegisterError() -> AuthError {
+        AuthError(authServiceError: .unknown)
     }
 }

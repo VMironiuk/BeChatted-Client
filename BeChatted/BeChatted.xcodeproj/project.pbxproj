@@ -14,7 +14,6 @@
 		2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E16A2AF6013700DE8E68 /* ContentView.swift */; };
 		2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16C2AF6013900DE8E68 /* Assets.xcassets */; };
 		2E73E1702AF6013900DE8E68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */; };
-		2E8333B92B1B6EA2002E67D5 /* RegisterErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8333B82B1B6EA2002E67D5 /* RegisterErrorMapper.swift */; };
 		2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */; };
 		2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; };
 		2E9D056E2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -66,7 +65,6 @@
 		2E73E16A2AF6013700DE8E68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E73E16C2AF6013900DE8E68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E73E16F2AF6013900DE8E68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2E8333B82B1B6EA2002E67D5 /* RegisterErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterErrorMapper.swift; sourceTree = "<group>"; };
 		2E9D05542AFF733F007547CD /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedUserInputValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,14 +151,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2E8333B72B1B6E94002E67D5 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				2E8333B82B1B6EA2002E67D5 /* RegisterErrorMapper.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		2E9D05472AFF716A007547CD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,7 +181,6 @@
 		2E9D054A2AFF718F007547CD /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				2E8333B72B1B6E94002E67D5 /* Helpers */,
 				2E9D05792AFF9793007547CD /* RegisterViewModel.swift */,
 				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
 			);
@@ -373,7 +362,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E8333B92B1B6EA2002E67D5 /* RegisterErrorMapper.swift in Sources */,
 				2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */,
 				2E9D057A2AFF9793007547CD /* RegisterViewModel.swift in Sources */,
 				2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */,
