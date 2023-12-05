@@ -12,6 +12,7 @@ import BeChattedUserInputValidation
 struct RegisterView: View {
     @ObservedObject private var viewModel: RegisterViewModel
     @Environment(\.dismiss) var dismiss
+    @State private var showErrorAlert = false
     
     init(viewModel: RegisterViewModel) {
         self.viewModel = viewModel
@@ -62,14 +63,22 @@ struct RegisterView: View {
                     switch result {
                     case .success:
                         print("MYLOG: REGISTRATION SUCCESS")
-                    case let .failure(error):
-                        print("MYLOG: REGISTRATION FAILED TITLE(\(error.title)); DESCRIPTION(\(error.description))")
+                    case .failure:
+                        showErrorAlert = true
                     }
                 }
             }
             .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
+            .alert(
+                viewModel.authError?.title ?? "",
+                isPresented: $showErrorAlert,
+                actions: {
+                }, message: {
+                    Text(viewModel.authError?.description ?? "")
+                }
+            )
             
             HStack {
                 Text("Already have an account?")

@@ -16,6 +16,8 @@ public final class RegisterViewModel: ObservableObject {
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol
     
+    private(set) var authError: AuthError?
+    
     @Published public var name: String = ""
     @Published public var email: String = ""
     @Published public var password: String = ""
@@ -43,6 +45,7 @@ public final class RegisterViewModel: ObservableObject {
             case .success:
                 self?.login(completion: completion)
             case .failure(let error):
+                self?.authError = AuthError(authServiceError: error)
                 completion(.failure(AuthError(authServiceError: error)))
             }
         }
@@ -54,6 +57,7 @@ public final class RegisterViewModel: ObservableObject {
             case let .success(loginInfo):
                 self?.addUser(with: loginInfo.token, completion: completion)
             case .failure(let error):
+                self?.authError = AuthError(authServiceError: error)
                 completion(.failure(AuthError(authServiceError: error)))
             }
         }
@@ -61,11 +65,12 @@ public final class RegisterViewModel: ObservableObject {
     
     private func addUser(with authToken: String, completion: @escaping RegisterCompletion) {
         let newUserPayload = NewUserPayload(name: name, email: email, avatarName: "", avatarColor: "")
-        authService.addUser(newUserPayload, authToken: authToken) { result in
+        authService.addUser(newUserPayload, authToken: authToken) { [weak self] result in
             switch result {
             case .success:
                 completion(.success(()))
             case .failure(let error):
+                self?.authError = AuthError(authServiceError: error)
                 completion(.failure(AuthError(authServiceError: error)))
             }
         }
