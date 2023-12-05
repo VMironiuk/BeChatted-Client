@@ -14,6 +14,8 @@ public final class LoginViewModel: ObservableObject {
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol
     
+    private(set) var authError: AuthError?
+    
     @Published public var email: String = ""
     @Published public var password: String = ""
     public var isUserInputValid: Bool {
@@ -31,11 +33,12 @@ public final class LoginViewModel: ObservableObject {
     }
     
     public func login(completion: @escaping (Result<Void, AuthError>) -> Void) {
-        authService.login(UserLoginPayload(email: email, password: password)) { result in
+        authService.login(UserLoginPayload(email: email, password: password)) { [weak self] result in
             switch result {
             case .success:
                 completion(.success(()))
             case .failure(let error):
+                self?.authError = AuthError(authServiceError: error)
                 completion(.failure(AuthError(authServiceError: error)))
             }
         }

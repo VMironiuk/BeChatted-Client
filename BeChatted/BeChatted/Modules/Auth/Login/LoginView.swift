@@ -11,6 +11,7 @@ import BeChattedUserInputValidation
 
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
+    @State private var showErrorAlert = false
     private let registerViewBuilder: () -> RegisterView
     
     init(viewModel: LoginViewModel, registerViewBuilder: @escaping () -> RegisterView) {
@@ -45,14 +46,22 @@ struct LoginView: View {
                     switch result {
                     case .success:
                         print("MYLOG: LOGIN SUCCESS")
-                    case let .failure(error):
-                        print("MYLOG: LOGIN FAILED: TITLE(\(error.title)); DESCRIPTION(\(error.description))")
+                    case .failure:
+                        showErrorAlert = true
                     }
                 }
             }
             .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
+            .alert(
+                viewModel.authError?.title ?? "",
+                isPresented: $showErrorAlert,
+                actions: {},
+                message: {
+                    Text(viewModel.authError?.description ?? "")
+                }
+            )
             
             HStack {
                 Text("Don’t have an account?")
