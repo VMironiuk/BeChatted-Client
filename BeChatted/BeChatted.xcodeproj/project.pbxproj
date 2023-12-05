@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E40B0612B0E64C2000D2A77 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */; };
 		2E40B0622B0E64C2000D2A77 /* BeChattedAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E55EC6A2B1F57EF002F0F5E /* LoginErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55EC692B1F57EF002F0F5E /* LoginErrorMapper.swift */; };
 		2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */; };
 		2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E16A2AF6013700DE8E68 /* ContentView.swift */; };
 		2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16C2AF6013900DE8E68 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E55EC692B1F57EF002F0F5E /* LoginErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrorMapper.swift; sourceTree = "<group>"; };
 		2E73E1652AF6013700DE8E68 /* BeChatted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChatted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
 		2E73E16A2AF6013700DE8E68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E55EC682B1F57D7002F0F5E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E55EC692B1F57EF002F0F5E /* LoginErrorMapper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		2E73E15C2AF6013700DE8E68 = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +181,7 @@
 		2E9D05492AFF7181007547CD /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				2E55EC682B1F57D7002F0F5E /* Helpers */,
 				2E9D05732AFF8349007547CD /* LoginViewModel.swift */,
 				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
 			);
@@ -369,6 +380,7 @@
 				2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */,
 				2EC7AB1B2AFA7A2100BFDB29 /* MainButtonStyles.swift in Sources */,
 				2ED3A3472B0FAAA700E2987A /* AuthServiceComposer.swift in Sources */,
+				2E55EC6A2B1F57EF002F0F5E /* LoginErrorMapper.swift in Sources */,
 				2EC7AB1C2AFA7A2100BFDB29 /* RegisterView.swift in Sources */,
 				2EC7AB192AFA7A2100BFDB29 /* TextInputView.swift in Sources */,
 				2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */,

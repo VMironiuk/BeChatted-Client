@@ -94,7 +94,7 @@ final class LoginViewModelTests: XCTestCase {
     
     func test_login_failsIfAuthServiceLoginRequestFails() {
         let (sut, authService) = makeSUT()
-        let loginError = AuthServiceError.connectivity
+        let credentialsLoginError = LoginErrorMapper.error(for: .credentials)
         let exp = expectation(description: "Wait for login request completion")
         
         sut.login { result in
@@ -102,12 +102,12 @@ final class LoginViewModelTests: XCTestCase {
             case .success:
                 XCTFail("Expected error, got \(result) instead")
             case let .failure(receivedError):
-                XCTAssertEqual(receivedError, loginError)
+                XCTAssertEqual(receivedError, credentialsLoginError)
             }
             exp.fulfill()
         }
         
-        authService.completeLogin(with: loginError)
+        authService.completeLogin(with: .credentials)
         wait(for: [exp], timeout: 1)
     }
 
