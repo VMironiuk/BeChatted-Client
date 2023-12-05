@@ -58,7 +58,14 @@ struct RegisterView: View {
             Spacer()
             
             Button("Register") {
-                viewModel.register { _ in }
+                viewModel.register { result in
+                    switch result {
+                    case .success:
+                        print("MYLOG: REGISTRATION SUCCESS")
+                    case let .failure(error):
+                        print("MYLOG: TITLE(\(error.title)); DESCRIPTION(\(error.description))")
+                    }
+                }
             }
             .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
             .padding(.horizontal, 20)

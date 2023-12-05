@@ -85,49 +85,49 @@ final class RegisterViewModelTests: XCTestCase {
     
     func test_register_failsIfAuthServiceCreateAccountRequestFails() {
         let (sut, authService) = makeSUT()
-        let createAccountError = unknownAuthError()
+        let unknownCreateAccountError = unknownRegisterError()
         
         expect(
             sut,
             authService: authService,
-            toCompleteWith: createAccountError,
+            toCompleteWith: unknownCreateAccountError,
             expectedCreateAccountCallCount: 1,
             expectedAddUserCallCount: 0,
             expectedLoginCallCount: 0,
             expectedLogoutCallCount: 0,
             when: {
-                authService.completeCreateAccount(with: createAccountError)
+                authService.completeCreateAccount(with: .unknown)
             }
         )
     }
     
     func test_register_failsIfAuthServiceLoginRequestFails() {
         let (sut, authService) = makeSUT()
-        let loginError = AuthServiceError.unknown
+        let unknownLoginError = unknownRegisterError()
         
         expect(
             sut,
             authService: authService,
-            toCompleteWith: loginError,
+            toCompleteWith: unknownLoginError,
             expectedCreateAccountCallCount: 1,
             expectedAddUserCallCount: 0,
             expectedLoginCallCount: 1,
             expectedLogoutCallCount: 0,
             when: {
                 authService.completeCreateAccountSuccessfully()
-                authService.completeLogin(with: loginError)
+                authService.completeLogin(with: .unknown)
             }
         )
     }
 
     func test_register_failsIfAuthServiceAddUserRequestFails() {
         let (sut, authService) = makeSUT()
-        let addUserError = AuthServiceError.unknown
+        let unknownAddUserError = unknownRegisterError()
         
         expect(
             sut,
             authService: authService,
-            toCompleteWith: addUserError,
+            toCompleteWith: unknownAddUserError,
             expectedCreateAccountCallCount: 1,
             expectedAddUserCallCount: 1,
             expectedLoginCallCount: 1,
@@ -135,7 +135,7 @@ final class RegisterViewModelTests: XCTestCase {
             when: {
                 authService.completeCreateAccountSuccessfully()
                 authService.completeLoginSuccessfully()
-                authService.completeAddUser(with: addUserError)
+                authService.completeAddUser(with: .unknown)
             }
         )
     }
@@ -239,7 +239,7 @@ final class RegisterViewModelTests: XCTestCase {
     private func expect(
         _ sut: RegisterViewModel,
         authService: AuthServiceStub,
-        toCompleteWith expectedError: AuthServiceError?,
+        toCompleteWith expectedError: RegisterViewModel.Error?,
         expectedCreateAccountCallCount: Int,
         expectedAddUserCallCount: Int,
         expectedLoginCallCount: Int,
@@ -249,13 +249,13 @@ final class RegisterViewModelTests: XCTestCase {
         line: UInt = #line
     ) {
         let exp = expectation(description: "Wait for registration completion")
-        var receivedError: AuthServiceError?
+        var receivedError: RegisterViewModel.Error?
         sut.register { result in
             switch result {
             case .success:
                 break
             case .failure(let error):
-                receivedError = error as AuthServiceError
+                receivedError = error
             }
             exp.fulfill()
         }
@@ -294,11 +294,8 @@ final class RegisterViewModelTests: XCTestCase {
             line: line
         )
     }
-    func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 1)
-    }
-    
-    private func unknownAuthError() -> AuthServiceError {
-        .unknown
+        
+    private func unknownRegisterError() -> RegisterViewModel.Error {
+        RegisterErrorMapper.error(for: .unknown)
     }
 }

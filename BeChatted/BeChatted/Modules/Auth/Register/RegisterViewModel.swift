@@ -10,7 +10,17 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 public final class RegisterViewModel: ObservableObject {
-    public typealias RegisterCompletion = (Result<Void, AuthServiceError>) -> Void
+    public typealias RegisterCompletion = (Result<Void, Error>) -> Void
+    
+    public struct Error: Swift.Error, Equatable {
+        let title: String
+        let description: String
+        
+        public init(title: String, description: String) {
+            self.title = title
+            self.description = description
+        }
+    }
     
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
@@ -41,11 +51,9 @@ public final class RegisterViewModel: ObservableObject {
         authService.createAccount(NewAccountPayload(email: email, password: password)) { [weak self] result in
             switch result {
             case .success:
-                print("MYLOG: CREATE ACCOUNT: SUCCESS!")
                 self?.login(completion: completion)
             case .failure(let error):
-                print("MYLOG: CREATE ACCOUNT: FAILED: \(error) (\(error.localizedDescription))")
-                completion(.failure(error))
+                completion(.failure(RegisterErrorMapper.error(for: error)))
             }
         }
     }
@@ -54,11 +62,9 @@ public final class RegisterViewModel: ObservableObject {
         authService.login(UserLoginPayload(email: email, password: password)) { [weak self] result in
             switch result {
             case let .success(loginInfo):
-                print("MYLOG: LOGIN: SUCCESS!")
                 self?.addUser(with: loginInfo.token, completion: completion)
             case .failure(let error):
-                print("MYLOG: LOGIN: FAILED: \(error) (\(error.localizedDescription))")
-                completion(.failure(error))
+                completion(.failure(RegisterErrorMapper.error(for: error)))
             }
         }
     }
@@ -68,11 +74,9 @@ public final class RegisterViewModel: ObservableObject {
         authService.addUser(newUserPayload, authToken: authToken) { result in
             switch result {
             case .success:
-                print("MYLOG: ADD USER: SUCCESS!")
                 completion(.success(()))
             case .failure(let error):
-                print("MYLOG: ADD USER: FAILED: \(error) (\(error.localizedDescription))")
-                completion(.failure(error))
+                completion(.failure(RegisterErrorMapper.error(for: error)))
             }
         }
     }
