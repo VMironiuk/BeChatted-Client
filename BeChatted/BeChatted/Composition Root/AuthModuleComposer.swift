@@ -32,7 +32,8 @@ struct AuthModuleComposer {
             viewModel: RegisterViewModel(
                 emailValidator: EmailValidator(),
                 passwordValidator: PasswordValidator(),
-                authService: authServiceComposer.authService
+                authService: authServiceComposer.authService,
+                successMessage: RegistrationSuccessMessage()
             )
         )
     }

@@ -8,7 +8,7 @@
 import Foundation
 import BeChattedAuth
 
-public struct AuthError: Error, Equatable {
+public struct AuthError: Error, Equatable, MessageProtocol {
     private let authServiceError: AuthServiceError
     
     public init(authServiceError: AuthServiceError) {

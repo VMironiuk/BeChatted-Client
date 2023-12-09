@@ -91,14 +91,14 @@ struct RegisterView: View {
                     message: { Text(errorDescription) }
                 )
                 .alert(
-                    viewModel.registrationSuccessTitle,
+                    viewModel.successTitle,
                     isPresented: $showRegistrationSuccessAlert,
                     actions: {
                         Button("OK") {
                             dismiss()
                         }
                     },
-                    message: { Text(viewModel.registrationSuccessDescription) }
+                    message: { Text(viewModel.successDescription) }
                 )
                 
                 HStack {

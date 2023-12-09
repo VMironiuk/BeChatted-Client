@@ -24,17 +24,20 @@ public final class RegisterViewModel: ObservableObject {
     public var isUserInputValid: Bool {
         !name.isEmpty && emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }
-    let registrationSuccessTitle = RegistrationSuccessMessage.title
-    let registrationSuccessDescription = RegistrationSuccessMessage.description
+    public let successTitle: String
+    public let successDescription: String
     
     public init(
         emailValidator: EmailValidatorProtocol,
         passwordValidator: PasswordValidatorProtocol,
-        authService: AuthServiceProtocol
+        authService: AuthServiceProtocol,
+        successMessage: MessageProtocol
     ) {
         self.emailValidator = emailValidator
         self.passwordValidator = passwordValidator
         self.authService = authService
+        self.successTitle = successMessage.title
+        self.successDescription = successMessage.description
     }
     
     public func register(completion: @escaping RegisterCompletion) {

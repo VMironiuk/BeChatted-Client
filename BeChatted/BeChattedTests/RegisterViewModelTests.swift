@@ -17,6 +17,22 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertFalse(sut.isUserInputValid)
     }
     
+    func test_init_setsSuccessTitleCorrectly() {
+        let successTitle = "success title"
+        let successMessage = SuccessMessageStub(stubbedTitle: successTitle)
+        let (sut, _) = makeSUT(successMessage: successMessage)
+        
+        XCTAssertEqual(sut.successTitle, successTitle)
+    }
+    
+    func test_init_setsSuccessDescriptionCorrectly() {
+        let successDescription = "success description"
+        let successMessage = SuccessMessageStub(stubbedDescription: successDescription)
+        let (sut, _) = makeSUT(successMessage: successMessage)
+        
+        XCTAssertEqual(sut.successDescription, successDescription)
+    }
+    
     func test_isUserInputValid_returnsFalseOnEmptyName() {
         let (sut, _) = makeSUT()
         
@@ -162,14 +178,19 @@ final class RegisterViewModelTests: XCTestCase {
 
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (RegisterViewModel, AuthServiceStub) {
+    private func makeSUT(
+        successMessage: SuccessMessageStub = SuccessMessageStub(),
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (RegisterViewModel, AuthServiceStub) {
         let emailValidator = EmailValidator()
         let passwordValidator = PasswordValidator()
         let authService = AuthServiceStub()
         let sut = RegisterViewModel(
             emailValidator: emailValidator,
             passwordValidator: passwordValidator,
-            authService: authService
+            authService: authService,
+            successMessage: successMessage
         )
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -297,5 +318,13 @@ final class RegisterViewModelTests: XCTestCase {
         
     private func unknownRegisterError() -> AuthError {
         AuthError(authServiceError: .unknown)
+    }
+    
+    private struct SuccessMessageStub: MessageProtocol {
+        var stubbedTitle: String = ""
+        var stubbedDescription: String = ""
+        
+        var title: String { stubbedTitle }
+        var description: String { stubbedDescription }
     }
 }
