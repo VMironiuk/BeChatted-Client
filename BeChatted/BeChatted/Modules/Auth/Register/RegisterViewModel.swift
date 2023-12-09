@@ -24,6 +24,8 @@ public final class RegisterViewModel: ObservableObject {
     public var isUserInputValid: Bool {
         !name.isEmpty && emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }
+    let registrationSuccessTitle = RegistrationSuccessMessage.title
+    let registrationSuccessDescription = RegistrationSuccessMessage.description
     
     public init(
         emailValidator: EmailValidatorProtocol,

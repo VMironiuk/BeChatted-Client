@@ -12,6 +12,7 @@ import BeChattedUserInputValidation
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
     @State private var showErrorAlert = false
+    @State private var showLoadingView = false
     private let registerViewBuilder: () -> RegisterView
     
     private var errorTitle: String {
@@ -28,64 +29,72 @@ struct LoginView: View {
     }
     
     var body: some View {
-        VStack {
-            AuthHeaderView(
-                title: "Sign in to your\nAccount",
-                subtitle: "Sign in to your Account"
-            )
-            .frame(height: 180)
-            
-            ScrollView {
-                TextInputView(title: "Email", text: $viewModel.email)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 64)
+        ZStack {
+            VStack {
+                AuthHeaderView(
+                    title: "Sign in to your\nAccount",
+                    subtitle: "Sign in to your Account"
+                )
+                .frame(height: 180)
+                                
+                ScrollView {
+                    TextInputView(title: "Email", text: $viewModel.email)
+                        .frame(height: 50)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 64)
+                    
+                    SecureInputView(title: "Password", text: $viewModel.password)
+                        .frame(height: 50)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 16)
+                }
                 
-                SecureInputView(title: "Password", text: $viewModel.password)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 16)
-            }
-            
-            Spacer()
-            
-            Button("Login") {
-                viewModel.login { result in
-                    switch result {
-                    case .success:
-                        print("MYLOG: LOGIN SUCCESS")
-                    case .failure:
-                        showErrorAlert = true
+                Spacer()
+                
+                Button("Login") {
+                    showLoadingView = true
+                    viewModel.login { result in
+                        showLoadingView = false
+                        switch result {
+                        case .success:
+                            print("MYLOG: LOGIN SUCCESS!")
+                        case .failure:
+                            showErrorAlert = true
+                        }
                     }
                 }
-            }
-            .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
-            .padding(.horizontal, 20)
-            .padding(.bottom, 32)
-            .alert(
-                errorTitle,
-                isPresented: $showErrorAlert,
-                actions: {},
-                message: { Text(errorDescription) }
-            )
-            
-            HStack {
-                Text("Don’t have an account?")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundStyle(Color("Auth/BottomLabelColor"))
+                .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
+                .padding(.horizontal, 20)
+                .padding(.bottom, 32)
+                .alert(
+                    errorTitle,
+                    isPresented: $showErrorAlert,
+                    actions: {},
+                    message: { Text(errorDescription) }
+                )
                 
-                NavigationLink(destination: registerViewBuilder()) {
-                    Text("Register")
+                HStack {
+                    Text("Don’t have an account?")
                         .font(.system(size: 14, weight: .regular))
-                        .foregroundStyle(Color("Auth/MainButtonColor"))
+                        .foregroundStyle(Color("Auth/BottomLabelColor"))
                     
+                    NavigationLink(destination: registerViewBuilder()) {
+                        Text("Register")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundStyle(Color("Auth/MainButtonColor"))
+                        
+                    }
                 }
+                .padding(.bottom, 40)
             }
-            .padding(.bottom, 40)
-        }
-        .ignoresSafeArea(.keyboard)
-        .onTapGesture {
-            hideKeyboard()
+            .ignoresSafeArea(.keyboard)
+            .onTapGesture {
+                hideKeyboard()
+            }
+            
+            if showLoadingView {
+                ProgressView()
+            }
         }
     }
     
