@@ -22,7 +22,7 @@ final class RegisterViewModelTests: XCTestCase {
         let successMessage = SuccessMessageStub(stubbedTitle: successTitle)
         let (sut, _) = makeSUT(successMessage: successMessage)
         
-        XCTAssertEqual(sut.successTitle, successTitle)
+        XCTAssertEqual(sut.successMessageTitle, successTitle)
     }
     
     func test_init_setsSuccessDescriptionCorrectly() {
@@ -30,7 +30,7 @@ final class RegisterViewModelTests: XCTestCase {
         let successMessage = SuccessMessageStub(stubbedDescription: successDescription)
         let (sut, _) = makeSUT(successMessage: successMessage)
         
-        XCTAssertEqual(sut.successDescription, successDescription)
+        XCTAssertEqual(sut.successMessageDescription, successDescription)
     }
     
     func test_isUserInputValid_returnsFalseOnEmptyName() {
