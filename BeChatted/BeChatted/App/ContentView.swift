@@ -6,28 +6,32 @@
 //
 
 import SwiftUI
+import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct ContentView: View {
+    private let authModuleComposer: AuthModuleComposer
+    @EnvironmentObject var appData: AppData
+    
+    init(authModuleComposer: AuthModuleComposer) {
+        self.authModuleComposer = authModuleComposer
+    }
+    
     var body: some View {
         NavigationStack {
-            LoginView(
-                viewModel: LoginViewModel(
-                    emailValidator: EmailValidator(),
-                    passwordValidator: PasswordValidator()
-                ), registerViewBuilder: {
-                    RegisterView(
-                        viewModel: RegisterViewModel(
-                            emailValidator: EmailValidator(),
-                            passwordValidator: PasswordValidator()
-                        )
-                    )
-                }
-            )
+            if appData.isUserLoggedIn {
+                DummyChatsView()
+            } else {
+                authModuleComposer.composeLoginView()
+            }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(
+        authModuleComposer: AuthModuleComposer(
+            authServiceComposer: AuthServiceComposer()
+        )
+    )
 }

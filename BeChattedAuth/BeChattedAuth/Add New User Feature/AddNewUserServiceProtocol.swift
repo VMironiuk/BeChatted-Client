@@ -7,6 +7,17 @@
 
 import Foundation
 
+enum AddNewUserServiceError: Error {
+    case connectivity
+    case server
+    case unknown
+    case invalidData
+}
+
 protocol AddNewUserServiceProtocol {
-    func send(newUserPayload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void)
+    func send(
+        newUserPayload: NewUserPayload,
+        authToken: String,
+        completion: @escaping (Result<NewUserInfo, AddNewUserServiceError>) -> Void
+    )
 }

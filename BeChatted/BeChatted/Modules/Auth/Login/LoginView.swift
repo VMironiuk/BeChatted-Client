@@ -6,11 +6,23 @@
 //
 
 import SwiftUI
+import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
+    @EnvironmentObject var appData: AppData
+    @State private var showErrorAlert = false
+    @State private var showLoadingView = false
     private let registerViewBuilder: () -> RegisterView
+    
+    private var errorTitle: String {
+        viewModel.authError?.title ?? ""
+    }
+    
+    private var errorDescription: String {
+        viewModel.authError?.description ?? ""
+    }
     
     init(viewModel: LoginViewModel, registerViewBuilder: @escaping () -> RegisterView) {
         self.viewModel = viewModel
@@ -18,51 +30,74 @@ struct LoginView: View {
     }
     
     var body: some View {
-        VStack {
-            AuthHeaderView(
-                title: "Sign in to your\nAccount",
-                subtitle: "Sign in to your Account"
-            )
-            .frame(height: 180)
-            
-            ScrollView {
-                TextInputView(title: "Email", text: $viewModel.email)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 64)
-                
-                SecureInputView(title: "Password", text: $viewModel.password)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 16)
-            }
-            
-            Spacer()
-            
-            Button("Login") {
-                
-            }
-            .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
-            .padding(.horizontal, 20)
-            .padding(.bottom, 32)
-            
-            HStack {
-                Text("Don’t have an account?")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundStyle(Color("Auth/BottomLabelColor"))
-                
-                NavigationLink(destination: registerViewBuilder()) {
-                    Text("Register")
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundStyle(Color("Auth/MainButtonColor"))
+        ZStack {
+            VStack {
+                AuthHeaderView(
+                    title: "Sign in to your\nAccount",
+                    subtitle: "Sign in to your Account"
+                )
+                .frame(height: 180)
+                                
+                ScrollView {
+                    TextInputView(title: "Email", text: $viewModel.email)
+                        .frame(height: 50)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 64)
                     
+                    SecureInputView(title: "Password", text: $viewModel.password)
+                        .frame(height: 50)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 16)
                 }
+                
+                Spacer()
+                
+                Button("Login") {
+                    showLoadingView = true
+                    viewModel.login { result in
+                        showLoadingView = false
+                        switch result {
+                        case .success:
+                            DispatchQueue.main.async {
+                                appData.isUserLoggedIn = true
+                            }
+                        case .failure:
+                            showErrorAlert = true
+                        }
+                    }
+                }
+                .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
+                .padding(.horizontal, 20)
+                .padding(.bottom, 32)
+                .alert(
+                    errorTitle,
+                    isPresented: $showErrorAlert,
+                    actions: {},
+                    message: { Text(errorDescription) }
+                )
+                
+                HStack {
+                    Text("Don’t have an account?")
+                        .font(.system(size: 14, weight: .regular))
+                        .foregroundStyle(Color("Auth/BottomLabelColor"))
+                    
+                    NavigationLink(destination: registerViewBuilder()) {
+                        Text("Register")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundStyle(Color("Auth/MainButtonColor"))
+                        
+                    }
+                }
+                .padding(.bottom, 40)
             }
-            .padding(.bottom, 40)
-        }
-        .ignoresSafeArea(.keyboard)
-        .onTapGesture {
-            hideKeyboard()
+            .ignoresSafeArea(.keyboard)
+            .onTapGesture {
+                hideKeyboard()
+            }
+            
+            if showLoadingView {
+                ProgressView()
+            }
         }
     }
     
@@ -74,30 +109,11 @@ struct LoginView: View {
             for: nil
         )
     }
-    
-    private func registerView() -> RegisterView {
-        RegisterView(
-            viewModel: RegisterViewModel(
-                emailValidator: EmailValidator(),
-                passwordValidator: PasswordValidator()
-            )
-        )
-    }
 }
 
 #Preview {
-    LoginView(
-        viewModel: LoginViewModel(
-            emailValidator: EmailValidator(),
-            passwordValidator: PasswordValidator()
-        ),
-        registerViewBuilder: {
-            RegisterView(
-                viewModel: RegisterViewModel(
-                    emailValidator: EmailValidator(),
-                    passwordValidator: PasswordValidator()
-                )
-            )
-        }
+    AuthModuleComposer(
+        authServiceComposer: AuthServiceComposer()
     )
+    .composeLoginView()
 }

@@ -10,7 +10,7 @@ import XCTest
 
 final class AddNewUserServiceTests: XCTestCase {
 
-    func test_init_doesNotSendNewUserPayloadByURL() {
+    func test_init_doesNotSendNewUserRequestByURL() {
         // given
         // when
         let (_, client) = makeSUT(url: anyURL())
@@ -19,31 +19,81 @@ final class AddNewUserServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [])
     }
     
-    func test_send_sendNewUserPayloadByURL() {
+    func test_send_sendNewUserPayloadRequestByURL() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    func test_send_sendsNewUserPayloadByURLTwice() {
+    func test_send_sendsNewUserPayloadRequestByURLTwice() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         
         // when
-        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
-        sut.send(newUserPayload: anyNewUserPayload()) { _ in }
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
+    func test_send_sendsNewUserRequestAsPOSTMethod() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
+        
+        // then
+        XCTAssertEqual(client.httpMethods, ["POST"])
+    }
+
+    func test_send_sendsNewUserRequestAsApplicationJSONContentType() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { _ in }
+        
+        // then
+        XCTAssertEqual(client.contentTypes, ["application/json"])
+    }
+    
+    func test_send_sendsNewUserRequestWithAuthToken() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        let authToken = "auth token to check..."
+        
+        // when
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: authToken) { _ in }
+        
+        // then
+        XCTAssertEqual(client.authTokens, ["Bearer \(authToken)"])
+    }
+    
+    func test_send_sendsNewUserPayload() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        let newUserPayload = NewUserPayload(name: "a name", email: "email@example.com", avatarName: "", avatarColor: "")
+        
+        // when
+        sut.send(newUserPayload: newUserPayload, authToken: "auth token") { _ in }
+        
+        // then
+        XCTAssertEqual(client.newUserPayloads, [newUserPayload])
+    }
+
     func test_send_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         
@@ -160,19 +210,19 @@ final class AddNewUserServiceTests: XCTestCase {
     
     private func expect(
         sut: AddNewUserServiceProtocol,
-        toCompleteWithError expectedError: AddNewUserService.Error,
+        toCompleteWithError expectedError: AddNewUserServiceError,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedError: AddNewUserService.Error?
+        var receivedError: AddNewUserServiceError?
         
-        sut.send(newUserPayload: anyNewUserPayload()) { result in
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { result in
             switch result {
             case let .failure(error):
-                receivedError = error as? AddNewUserService.Error
+                receivedError = error
                 
             default:
                 XCTFail("Expected failure, got \(result) instead.", file: file, line: line)
@@ -197,9 +247,9 @@ final class AddNewUserServiceTests: XCTestCase {
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<NewUserInfo, Error>?
+        var receivedResult: Result<NewUserInfo, AddNewUserServiceError>?
         
-        sut?.send(newUserPayload: anyNewUserPayload()) { result in
+        sut?.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { result in
             receivedResult = result
         }
         
@@ -224,7 +274,7 @@ final class AddNewUserServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         var receivedNewUserInfo: NewUserInfo?
         
-        sut.send(newUserPayload: anyNewUserPayload()) { result in
+        sut.send(newUserPayload: anyNewUserPayload(), authToken: "auth token") { result in
             switch result {
             case let .success(newUserInfo):
                 receivedNewUserInfo = newUserInfo
@@ -253,6 +303,25 @@ final class AddNewUserServiceTests: XCTestCase {
             messages.compactMap { $0.request.url }
         }
         
+        var httpMethods: [String] {
+            messages.compactMap { $0.request.httpMethod }
+        }
+
+        var contentTypes: [String] {
+            messages.compactMap { $0.request.value(forHTTPHeaderField: "Content-Type") }
+        }
+
+        var authTokens: [String] {
+            messages.compactMap { $0.request.value(forHTTPHeaderField: "Authorization") }
+        }
+        
+        var newUserPayloads: [NewUserPayload] {
+            messages.compactMap {
+                guard let data = $0.request.httpBody else { return nil }
+                return try? JSONDecoder().decode(NewUserPayload.self, from: data)
+            }
+        }
+
         private struct Message {
             let request:  URLRequest
             let completion: (HTTPClientResult) -> Void

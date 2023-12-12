@@ -8,6 +8,6 @@
 import Foundation
 
 public struct UserLoginInfo: Decodable, Equatable {
-    let user: String
-    let token: String
+    public let user: String
+    public let token: String
 }

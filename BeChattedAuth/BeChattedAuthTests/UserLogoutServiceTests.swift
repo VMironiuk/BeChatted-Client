@@ -51,12 +51,12 @@ final class UserLogoutServiceTests: XCTestCase {
         // given
         let (sut, client) = makeSUT()
         
-        var receivedError: UserLogoutService.Error?
+        var receivedError: UserLogoutServiceError?
         let exp = expectation(description: "Wait for completion")
         sut.logout() { result in
             switch result {
             case let .failure(error):
-                receivedError = error as? UserLogoutService.Error
+                receivedError = error
                 
             default:
                 XCTFail("Expected failure, got \(result) instead")
@@ -80,11 +80,11 @@ final class UserLogoutServiceTests: XCTestCase {
         let client = HTTPClientSpy()
         var sut: UserLogoutServiceProtocol? = UserLogoutService(url: url, client: client)
         
-        var receivedError: UserLogoutService.Error?
+        var receivedError: UserLogoutServiceError?
         sut?.logout() { result in
             switch result {
             case let .failure(error):
-                receivedError = error as? UserLogoutService.Error
+                receivedError = error
                 
             default:
                 XCTFail("Expected failure, got \(result) instead")
@@ -106,7 +106,7 @@ final class UserLogoutServiceTests: XCTestCase {
         let client = HTTPClientSpy()
         var sut: UserLogoutServiceProtocol? = UserLogoutService(url: url, client: client)
         
-        var receivedResult: Result<Void, Error>?
+        var receivedResult: Result<Void, UserLogoutServiceError>?
         sut?.logout() { result in
             receivedResult = result
         }
@@ -124,7 +124,7 @@ final class UserLogoutServiceTests: XCTestCase {
         // given
         let (sut, client) = makeSUT()
         
-        var receivedResult: Result<Void, Error>?
+        var receivedResult: Result<Void, UserLogoutServiceError>?
         sut.logout() { result in
             receivedResult = result
         }

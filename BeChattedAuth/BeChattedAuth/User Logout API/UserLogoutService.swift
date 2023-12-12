@@ -12,16 +12,12 @@ final class UserLogoutService: UserLogoutServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
-    enum Error: Swift.Error {
-        case connectivity
-    }
-    
     init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
-    func logout(completion: @escaping (Result<Void, Swift.Error>) -> Void) {
+    func logout(completion: @escaping (Result<Void, UserLogoutServiceError>) -> Void) {
         let request = URLRequest(url: url)
         
         client.perform(request: request) { [weak self] result in
@@ -31,7 +27,7 @@ final class UserLogoutService: UserLogoutServiceProtocol {
             case .success:
                 completion(.success(()))
             case .failure:
-                completion(.failure(Error.connectivity))
+                completion(.failure(.connectivity))
             }
         }
     }

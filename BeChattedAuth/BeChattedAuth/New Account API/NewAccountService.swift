@@ -11,22 +11,16 @@ final class NewAccountService: NewAccountServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
-    enum Error: Swift.Error {
-        case connectivity
-        case email
-        case server
-        case unknown
-    }
-    
     init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
-    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
+    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, NewAccountServiceError>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try? JSONEncoder().encode(newAccountPayload)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         client.perform(request: request) { [weak self] result in
             guard self != nil else { return }
@@ -35,7 +29,7 @@ final class NewAccountService: NewAccountServiceProtocol {
             case let .success(_, response):
                 completion(NewAccountServiceResultMapper.result(for: response))
             case .failure:
-                completion(.failure(Error.connectivity))
+                completion(.failure(.connectivity))
             }
         }
     }

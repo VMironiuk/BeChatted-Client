@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct BeChattedApp: App {
+    private let authModuleComposer = AuthModuleComposer(authServiceComposer: AuthServiceComposer())
+    private var appData = AppData()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(authModuleComposer: authModuleComposer)
+                .environmentObject(appData)
         }
     }
 }

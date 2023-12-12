@@ -11,18 +11,18 @@ import Foundation
 struct NewAccountServiceResultMapper {
     private init() {}
     
-    static func result(for response: HTTPURLResponse?) -> Result<Void, Error> {
-        guard let response = response else { return .failure(NewAccountService.Error.unknown) }
+    static func result(for response: HTTPURLResponse?) -> Result<Void, NewAccountServiceError> {
+        guard let response = response else { return .failure(.unknown) }
         
         switch response.statusCode {
         case 200:
             return .success(())
         case 300:
-            return .failure(NewAccountService.Error.email)
+            return .failure(.email)
         case 500...599:
-            return .failure(NewAccountService.Error.server)
+            return .failure(.server)
         default:
-            return .failure(NewAccountService.Error.unknown)
+            return .failure(.unknown)
         }
     }
 }

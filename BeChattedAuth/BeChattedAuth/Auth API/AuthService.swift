@@ -25,19 +25,27 @@ final class AuthService: AuthServiceProtocol {
         self.userLogoutService = userLogoutService
     }
     
-    func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, Error>) -> Void) {
-        newAccountService.send(newAccountPayload: payload, completion: completion)
+    func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
+        newAccountService.send(newAccountPayload: payload) { result in
+            completion(NewAccountResultMapper.result(for: result))
+        }
     }
     
-    func addUser(_ payload: NewUserPayload, completion: @escaping (Result<NewUserInfo, Error>) -> Void) {
-        addNewUserService.send(newUserPayload: payload, completion: completion)
+    func addUser(_ payload: NewUserPayload, authToken: String, completion: @escaping (Result<NewUserInfo, AuthServiceError>) -> Void) {
+        addNewUserService.send(newUserPayload: payload, authToken: authToken) { result in
+            completion(AddUserResultMapper.result(for: result))
+        }
     }
     
-    func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, Error>) -> Void) {
-        userLoginService.send(userLoginPayload: payload, completion: completion)
+    func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, AuthServiceError>) -> Void) {
+        userLoginService.send(userLoginPayload: payload) { result in
+            completion(LoginResultMapper.result(for: result))
+        }
     }
         
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        userLogoutService.logout(completion: completion)
+    func logout(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
+        userLogoutService.logout { result in
+            completion(LogoutResultMapper.result(for: result))
+        }
     }
 }

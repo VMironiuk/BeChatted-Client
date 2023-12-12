@@ -10,7 +10,7 @@ import XCTest
 
 final class UserLoginServiceTests: XCTestCase {
     
-    func test_init_doesNotSendUserLoginPayloadByURL() {
+    func test_init_doesNotSendUserLoginRequestByURL() {
         // given
         let client = HTTPClientSpy()
         
@@ -21,7 +21,7 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [])
     }
     
-    func test_send_sendsUserLoginPayloadByURL() {
+    func test_send_sendsUserLoginRequestByURL() {
         // given
         let url = anyURL()
         let client = HTTPClientSpy()
@@ -34,7 +34,7 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    func test_send_sendsUserLoginPayloadByURLTwice() {
+    func test_send_sendsUserLoginRequestByURLTwice() {
         // given
         let url = anyURL()
         let client = HTTPClientSpy()
@@ -48,6 +48,43 @@ final class UserLoginServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
+    func test_send_sendsUserLoginRequestAsPOSTMethod() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.send(userLoginPayload: anyUserLoginPayload()) { _ in }
+        
+        // then
+        XCTAssertEqual(client.httpMethods, ["POST"])
+    }
+
+    func test_send_sendsUserLoginRequestAsApplicationJSONContentType() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.send(userLoginPayload: anyUserLoginPayload()) { _ in }
+        
+        // then
+        XCTAssertEqual(client.contentTypes, ["application/json"])
+    }
+
+    func test_send_sendsUserLoginPayload() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        let userLoginPayload = UserLoginPayload(email: "user@example.com", password: "user password")
+        
+        // when
+        sut.send(userLoginPayload: userLoginPayload) { _ in }
+        
+        // then
+        XCTAssertEqual(client.userLoginPayloads, [userLoginPayload])
+    }
+
     func test_send_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         
@@ -165,18 +202,18 @@ final class UserLoginServiceTests: XCTestCase {
     
     private func expect(
         sut: UserLoginServiceProtocol,
-        toCompleteWithError expectedError: UserLoginService.Error,
+        toCompleteWithError expectedError: UserLoginServiceError,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         // given
         let exp = expectation(description: "Wait for completion")
-        var receivedError: UserLoginService.Error?
+        var receivedError: UserLoginServiceError?
         sut.send(userLoginPayload: anyUserLoginPayload()) { result in
             switch result {
             case let .failure(error):
-                receivedError = error as? UserLoginService.Error
+                receivedError = error
             default:
                 XCTFail("Expected connectivity error, got \(result) instead")
             }
@@ -200,7 +237,7 @@ final class UserLoginServiceTests: XCTestCase {
         line: UInt = #line
     ) {
         // given
-        var receivedResult: Result<UserLoginInfo, Error>?
+        var receivedResult: Result<UserLoginInfo, UserLoginServiceError>?
         sut?.send(userLoginPayload: anyUserLoginPayload()) { result in
             receivedResult = result
         }
@@ -248,18 +285,31 @@ final class UserLoginServiceTests: XCTestCase {
         private var messages = [Message]()
         
         private struct Message {
-            let url: URL
+            let request: URLRequest
             let completion: (HTTPClientResult) -> Void
         }
         
         var requestedURLs: [URL] {
-            messages.map { $0.url }
+            messages.compactMap { $0.request.url }
         }
         
-        func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            if let requestedUrl = request.url {
-                messages.append(Message(url: requestedUrl, completion: completion))
+        var httpMethods: [String] {
+            messages.compactMap { $0.request.httpMethod }
+        }
+
+        var contentTypes: [String] {
+            messages.compactMap { $0.request.value(forHTTPHeaderField: "Content-Type") }
+        }
+
+        var userLoginPayloads: [UserLoginPayload] {
+            messages.compactMap {
+                guard let data = $0.request.httpBody else { return nil }
+                return try? JSONDecoder().decode(UserLoginPayload.self, from: data)
             }
+        }
+
+        func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
+            messages.append(Message(request: request, completion: completion))
         }
         
         func complete(withError error: Error, at index: Int = 0) {
