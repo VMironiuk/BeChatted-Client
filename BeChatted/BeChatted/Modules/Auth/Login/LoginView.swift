@@ -11,6 +11,7 @@ import BeChattedUserInputValidation
 
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
+    @EnvironmentObject var appData: AppData
     @State private var showErrorAlert = false
     @State private var showLoadingView = false
     private let registerViewBuilder: () -> RegisterView
@@ -57,7 +58,9 @@ struct LoginView: View {
                         showLoadingView = false
                         switch result {
                         case .success:
-                            print("MYLOG: LOGIN SUCCESS!")
+                            DispatchQueue.main.async {
+                                appData.isUserLoggedIn = true
+                            }
                         case .failure:
                             showErrorAlert = true
                         }

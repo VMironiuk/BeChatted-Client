@@ -11,6 +11,7 @@ import BeChattedUserInputValidation
 
 struct ContentView: View {
     private let authModuleComposer: AuthModuleComposer
+    @EnvironmentObject var appData: AppData
     
     init(authModuleComposer: AuthModuleComposer) {
         self.authModuleComposer = authModuleComposer
@@ -18,7 +19,11 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            authModuleComposer.composeLoginView()
+            if appData.isUserLoggedIn {
+                DummyChatsView()
+            } else {
+                authModuleComposer.composeLoginView()
+            }
         }
     }
 }
