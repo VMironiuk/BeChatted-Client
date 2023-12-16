@@ -82,6 +82,7 @@ struct RegisterView: View {
                     }
                 }
                 .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
+                .disabled(!viewModel.isUserInputValid)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 32)
                 .alert(
