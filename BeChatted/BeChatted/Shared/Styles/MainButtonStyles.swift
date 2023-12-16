@@ -36,7 +36,6 @@ struct MainButtonStyle: ButtonStyle {
                         .fill(Color("Auth/MainButtonColor"))
                         .opacity(0.15)
                 )
-                .disabled(true)
         }
     }
 }
