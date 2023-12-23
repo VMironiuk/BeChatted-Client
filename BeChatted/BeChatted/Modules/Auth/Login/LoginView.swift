@@ -12,6 +12,7 @@ import BeChattedUserInputValidation
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
     @EnvironmentObject var appData: AppData
+    @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
     @State private var showLoadingView = false
     private let registerViewBuilder: () -> RegisterView
