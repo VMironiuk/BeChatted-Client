@@ -91,7 +91,6 @@ struct LoginView: View {
                 }
                 .padding(.bottom, 40)
             }
-            .ignoresSafeArea(.keyboard)
             .onTapGesture {
                 hideKeyboard()
             }
