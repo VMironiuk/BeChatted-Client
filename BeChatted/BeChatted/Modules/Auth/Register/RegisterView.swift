@@ -59,7 +59,7 @@ struct RegisterView: View {
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                 
-                TextInputView(title: "Email", text: $viewModel.email)
+                TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
