@@ -12,6 +12,7 @@ import BeChattedUserInputValidation
 struct RegisterView: View {
     @ObservedObject private var viewModel: RegisterViewModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
     @State private var showRegistrationSuccessAlert = false
     @State private var showLoadingView = false
@@ -48,26 +49,27 @@ struct RegisterView: View {
                         .offset(x: 20, y: 20)
                     }
                 }
+                .offset(y: isKeyboardShown ? -220 : 0)
+                .animation(.easeOut, value: isKeyboardShown)
                 .frame(height: 180)
                 
-                ScrollView {
-                    TextInputView(title: "Your Name", text: $viewModel.name)
-                        .frame(height: 50)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 64)
-                    
-                    TextInputView(title: "Email", text: $viewModel.email)
-                        .frame(height: 50)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 16)
-                    
-                    SecureInputView(title: "Password", text: $viewModel.password)
-                        .frame(height: 50)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 16)
-                }
-                
                 Spacer()
+                
+                TextInputView(title: "Your Name", text: $viewModel.name)
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                
+                TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 16)
+                
+                SecureInputView(title: "Password", text: $viewModel.password)
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 16)
+                
+                Spacer(minLength: 16)
                 
                 Button("Register") {
                     showLoadingView = true
@@ -117,7 +119,6 @@ struct RegisterView: View {
                 }
                 .padding(.bottom, 40)
             }
-            .ignoresSafeArea(.keyboard)
             .onTapGesture {
                 hideKeyboard()
             }

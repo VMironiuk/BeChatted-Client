@@ -12,6 +12,7 @@ import BeChattedUserInputValidation
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
     @EnvironmentObject var appData: AppData
+    @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
     @State private var showLoadingView = false
     private let registerViewBuilder: () -> RegisterView
@@ -36,21 +37,22 @@ struct LoginView: View {
                     title: "Sign in to your\nAccount",
                     subtitle: "Sign in to your Account"
                 )
+                .offset(y: isKeyboardShown ? -220 : 0)
+                .animation(.easeOut, value: isKeyboardShown)
                 .frame(height: 180)
-                                
-                ScrollView {
-                    TextInputView(title: "Email", text: $viewModel.email)
-                        .frame(height: 50)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 64)
-                    
-                    SecureInputView(title: "Password", text: $viewModel.password)
-                        .frame(height: 50)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 16)
-                }
                 
                 Spacer()
+                                
+                TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                
+                SecureInputView(title: "Password", text: $viewModel.password)
+                    .frame(height: 50)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 16)
+                
+                Spacer(minLength: 16)
                 
                 Button("Login") {
                     showLoadingView = true
@@ -91,14 +93,13 @@ struct LoginView: View {
                 }
                 .padding(.bottom, 40)
             }
-            .ignoresSafeArea(.keyboard)
-            .onTapGesture {
-                hideKeyboard()
-            }
             
             if showLoadingView {
                 ProgressView()
             }
+        }
+        .onTapGesture {
+            hideKeyboard()
         }
     }
     
