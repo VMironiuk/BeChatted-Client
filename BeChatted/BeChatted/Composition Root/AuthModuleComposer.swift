@@ -15,7 +15,7 @@ struct AuthModuleComposer {
         self.authServiceComposer = authServiceComposer
     }
     
-    func makeLoginView() -> LoginView {
+    var loginView: some View {
         LoginView(
             viewModel: LoginViewModel(
                 emailValidator: EmailValidator(),

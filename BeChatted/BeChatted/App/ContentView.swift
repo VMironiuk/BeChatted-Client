@@ -22,7 +22,7 @@ struct ContentView: View {
             if appData.isUserLoggedIn {
                 DummyChatsView()
             } else {
-                authModuleComposer.makeLoginView()
+                authModuleComposer.loginView
             }
         }
     }

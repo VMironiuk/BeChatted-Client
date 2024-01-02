@@ -114,8 +114,6 @@ struct LoginView: View {
 }
 
 #Preview {
-    AuthModuleComposer(
-        authServiceComposer: AuthServiceComposer()
-    )
-    .makeLoginView()
+    AuthModuleComposer(authServiceComposer: AuthServiceComposer())
+        .loginView
 }
