@@ -14,7 +14,7 @@ struct BeChattedApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(authModuleComposer: authModuleComposer)
+            ContentView()
                 .environment(authModuleComposer)
                 .environmentObject(appData)
                 .addKeyboardVisibilityToEnvironment()

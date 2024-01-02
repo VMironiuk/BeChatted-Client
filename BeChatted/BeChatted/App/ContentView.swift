@@ -10,12 +10,8 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct ContentView: View {
-    private let authModuleComposer: AuthModuleComposer
+    @Environment(AuthModuleComposer.self) private var authModuleComposer
     @EnvironmentObject var appData: AppData
-    
-    init(authModuleComposer: AuthModuleComposer) {
-        self.authModuleComposer = authModuleComposer
-    }
     
     var body: some View {
         NavigationStack {
@@ -29,9 +25,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(
-        authModuleComposer: AuthModuleComposer(
-            authServiceComposer: AuthServiceComposer()
-        )
-    )
+    ContentView()
 }
