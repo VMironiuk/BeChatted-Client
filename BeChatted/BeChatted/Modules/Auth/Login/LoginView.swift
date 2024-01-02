@@ -10,12 +10,16 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct LoginView: View {
+    @Environment(AuthModuleComposer.self) var authModuleComposer
     @ObservedObject private var viewModel: LoginViewModel
     @EnvironmentObject var appData: AppData
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
     @State private var showLoadingView = false
-    private let registerViewBuilder: () -> RegisterView
+    
+    private var registerView: some View {
+        authModuleComposer.makeRegisterView()
+    }
     
     private var errorTitle: String {
         viewModel.authError?.title ?? ""
@@ -25,9 +29,8 @@ struct LoginView: View {
         viewModel.authError?.description ?? ""
     }
     
-    init(viewModel: LoginViewModel, registerViewBuilder: @escaping () -> RegisterView) {
+    init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
-        self.registerViewBuilder = registerViewBuilder
     }
     
     var body: some View {
@@ -84,11 +87,10 @@ struct LoginView: View {
                         .font(.system(size: 14, weight: .regular))
                         .foregroundStyle(Color("Auth/BottomLabelColor"))
                     
-                    NavigationLink(destination: registerViewBuilder()) {
+                    NavigationLink(destination: registerView) {
                         Text("Register")
                             .font(.system(size: 14, weight: .regular))
                             .foregroundStyle(Color("Auth/MainButtonColor"))
-                        
                     }
                 }
                 .padding(.bottom, 40)

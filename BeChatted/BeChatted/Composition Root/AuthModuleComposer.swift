@@ -8,7 +8,7 @@
 import SwiftUI
 import BeChattedUserInputValidation
 
-struct AuthModuleComposer {
+@Observable final class AuthModuleComposer {
     private let authServiceComposer: AuthServiceComposer
     
     init(authServiceComposer: AuthServiceComposer) {
@@ -21,9 +21,7 @@ struct AuthModuleComposer {
                 emailValidator: EmailValidator(),
                 passwordValidator: PasswordValidator(),
                 authService: authServiceComposer.authService
-            ), registerViewBuilder: {
-                makeRegisterView()
-            }
+            )
         )
     }
     
