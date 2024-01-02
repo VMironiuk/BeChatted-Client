@@ -15,19 +15,19 @@ struct AuthModuleComposer {
         self.authServiceComposer = authServiceComposer
     }
     
-    func composeLoginView() -> LoginView {
+    func makeLoginView() -> LoginView {
         LoginView(
             viewModel: LoginViewModel(
                 emailValidator: EmailValidator(),
                 passwordValidator: PasswordValidator(),
                 authService: authServiceComposer.authService
             ), registerViewBuilder: {
-                composeRegisterView()
+                makeRegisterView()
             }
         )
     }
     
-    func composeRegisterView() -> RegisterView {
+    func makeRegisterView() -> RegisterView {
         RegisterView(
             viewModel: RegisterViewModel(
                 emailValidator: EmailValidator(),

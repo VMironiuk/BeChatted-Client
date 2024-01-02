@@ -144,5 +144,5 @@ struct RegisterView: View {
     AuthModuleComposer(
         authServiceComposer: AuthServiceComposer()
     )
-    .composeRegisterView()
+    .makeRegisterView()
 }

@@ -117,5 +117,5 @@ struct LoginView: View {
     AuthModuleComposer(
         authServiceComposer: AuthServiceComposer()
     )
-    .composeLoginView()
+    .makeLoginView()
 }
