@@ -25,7 +25,7 @@ import BeChattedUserInputValidation
         )
     }
     
-    func makeRegisterView() -> RegisterView {
+    var registerView: some View {
         RegisterView(
             viewModel: RegisterViewModel(
                 emailValidator: EmailValidator(),

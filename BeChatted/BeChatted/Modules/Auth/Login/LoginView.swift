@@ -18,7 +18,7 @@ struct LoginView: View {
     @State private var showLoadingView = false
     
     private var registerView: some View {
-        authModuleComposer.makeRegisterView()
+        authModuleComposer.registerView
     }
     
     private var errorTitle: String {
