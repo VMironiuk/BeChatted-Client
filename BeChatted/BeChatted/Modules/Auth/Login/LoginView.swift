@@ -11,7 +11,7 @@ import BeChattedUserInputValidation
 
 struct LoginView: View {
     @Environment(AuthModuleComposer.self) var authModuleComposer
-    @ObservedObject private var viewModel: LoginViewModel
+    @Bindable private var viewModel: LoginViewModel
     @EnvironmentObject var appData: AppData
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
