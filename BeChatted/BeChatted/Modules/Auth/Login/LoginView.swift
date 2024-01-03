@@ -10,15 +10,16 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct LoginView: View {
-    @Environment(AuthModuleComposer.self) var authModuleComposer
     @Bindable private var viewModel: LoginViewModel
+    private let destinationsFactory: LoginDestinationViewsFactoryProtocol
+    
     @EnvironmentObject var appData: AppData
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
     @State private var showLoadingView = false
     
     private var registerView: some View {
-        authModuleComposer.registerView
+        destinationsFactory.registerView
     }
     
     private var errorTitle: String {
@@ -29,8 +30,12 @@ struct LoginView: View {
         viewModel.authError?.description ?? ""
     }
     
-    init(viewModel: LoginViewModel) {
+    init(
+        viewModel: LoginViewModel,
+        destinationsFactory: LoginDestinationViewsFactoryProtocol
+    ) {
         self.viewModel = viewModel
+        self.destinationsFactory = destinationsFactory
     }
     
     var body: some View {
@@ -116,6 +121,6 @@ struct LoginView: View {
 }
 
 #Preview {
-    AuthModuleComposer(authServiceComposer: AuthServiceComposer())
+    LoginViewComposer()
         .loginView
 }

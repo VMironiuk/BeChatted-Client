@@ -10,7 +10,6 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct ContentView: View {
-    @Environment(AuthModuleComposer.self) private var authModuleComposer
     @EnvironmentObject var appData: AppData
     
     var body: some View {
@@ -18,7 +17,7 @@ struct ContentView: View {
             if appData.isUserLoggedIn {
                 DummyChatsView()
             } else {
-                authModuleComposer.loginView
+                LoginViewComposer().loginView
             }
         }
     }

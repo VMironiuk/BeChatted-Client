@@ -141,6 +141,6 @@ struct RegisterView: View {
 }
 
 #Preview {
-    AuthModuleComposer(authServiceComposer: AuthServiceComposer())
+    RegisterViewComposer()
         .registerView
 }
