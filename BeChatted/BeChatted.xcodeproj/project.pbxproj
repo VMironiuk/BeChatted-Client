@@ -301,11 +301,19 @@
 		2ED3A34A2B0FB27800E2987A /* Composition Root */ = {
 			isa = PBXGroup;
 			children = (
+				2EFD3D532B45B3A300FD699E /* Auth */,
+			);
+			path = "Composition Root";
+			sourceTree = "<group>";
+		};
+		2EFD3D532B45B3A300FD699E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
 				2ED3A3462B0FAAA700E2987A /* AuthServiceComposer.swift */,
 				2EFD3D512B45AE6700FD699E /* LoginViewComposer.swift */,
 				2EFD3D4F2B45ADA500FD699E /* RegisterViewComposer.swift */,
 			);
-			path = "Composition Root";
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
