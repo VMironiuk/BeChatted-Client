@@ -10,7 +10,8 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct RegisterView: View {
-    @ObservedObject private var viewModel: RegisterViewModel
+    @Bindable private var viewModel: RegisterViewModel
+    
     @Environment(\.dismiss) var dismiss
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
