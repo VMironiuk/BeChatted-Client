@@ -41,19 +41,19 @@ struct LoginView: View {
     var body: some View {
         ZStack {
             VStack {
-                AuthHeaderView(
-                    title: "Sign in to your\nAccount",
-                    subtitle: "Sign in to your Account"
-                )
-                .offset(y: isKeyboardShown ? -220 : 0)
-                .animation(.easeOut, value: isKeyboardShown)
-                .frame(height: 180)
-                
-                Spacer()
-                                
+                if !isKeyboardShown {
+                    AuthHeaderView(
+                        title: "Sign in to your\nAccount",
+                        subtitle: "Sign in to your Account"
+                    )
+                    .frame(height: 180)
+                    .transition(.offset(y: -260))
+                }
+                                                
                 TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
                     .frame(height: 50)
                     .padding(.horizontal, 20)
+                    .padding(.top, 32)
                 
                 SecureInputView(title: "Password", text: $viewModel.password)
                     .frame(height: 50)
