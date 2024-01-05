@@ -18,10 +18,6 @@ struct LoginView: View {
     @State private var showErrorAlert = false
     @State private var showLoadingView = false
     
-    private var registerView: some View {
-        destinationsFactory.registerView
-    }
-    
     private var errorTitle: String {
         viewModel.authError?.title ?? ""
     }
@@ -92,7 +88,7 @@ struct LoginView: View {
                         .font(.system(size: 14, weight: .regular))
                         .foregroundStyle(Color("Auth/BottomLabelColor"))
                     
-                    NavigationLink(destination: registerView) {
+                    NavigationLink(destination: destinationsFactory.registerView) {
                         Text("Register")
                             .font(.system(size: 14, weight: .regular))
                             .foregroundStyle(Color("Auth/MainButtonColor"))
