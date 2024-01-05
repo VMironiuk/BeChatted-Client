@@ -36,7 +36,7 @@ struct SecureInputView: View {
             HStack {
                 if isSecured {
                     SecureField("", text: $text)
-                        .textInputAutocapitalization(.none)
+                        .textInputAutocapitalization(.never)
                         .autocorrectionDisabled(true)
                 } else {
                     TextField("", text: $text)
