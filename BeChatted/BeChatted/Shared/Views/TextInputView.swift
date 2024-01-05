@@ -44,7 +44,7 @@ struct TextInputView: View {
             TextField("", text: $text)
                 .padding(.horizontal, 20)
                 .keyboardType(isEmail ? .emailAddress : .default)
-                .textInputAutocapitalization(.none)
+                .textInputAutocapitalization(.never)
                 .autocorrectionDisabled(true)
         }
     }

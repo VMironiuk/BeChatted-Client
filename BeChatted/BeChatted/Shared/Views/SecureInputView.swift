@@ -40,7 +40,7 @@ struct SecureInputView: View {
                         .autocorrectionDisabled(true)
                 } else {
                     TextField("", text: $text)
-                        .textInputAutocapitalization(.none)
+                        .textInputAutocapitalization(.never)
                         .autocorrectionDisabled(true)
                 }
                 Button(action: {
