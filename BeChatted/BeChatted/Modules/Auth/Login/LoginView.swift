@@ -90,6 +90,7 @@ extension LoginView {
     
     private var button: some View {
         Button("Login") {
+            hideKeyboard()
             showLoadingView = true
             viewModel.login { result in
                 showLoadingView = false
