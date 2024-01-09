@@ -35,17 +35,22 @@ struct LoginView: View {
     }
     
     var body: some View {
-        VStack {
-            headerView
-            inputView
+        ZStack {
             VStack {
-                Spacer()
-                button
-                footerView
+                headerView
+                inputView
+                VStack {
+                    Spacer()
+                    button
+                    footerView
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    hideKeyboard()
+                }
             }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                hideKeyboard()
+            if showLoadingView {
+                ProgressView()
             }
         }
     }
