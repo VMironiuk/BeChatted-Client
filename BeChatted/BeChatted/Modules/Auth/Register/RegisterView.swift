@@ -33,6 +33,39 @@ struct RegisterView: View {
     var body: some View {
         ZStack {
             VStack {
+                headerView
+                inputView
+                VStack {
+                    Spacer()
+                    button
+                    footerView
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    hideKeyboard()
+                }
+            }
+            if showLoadingView {
+                ProgressView()
+            }
+        }
+        .navigationBarBackButtonHidden()
+    }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+    }
+}
+
+extension RegisterView {
+    private var headerView: some View {
+        VStack {
+            if !isKeyboardShown {
                 ZStack {
                     AuthHeaderView(
                         title: "Register",
@@ -50,94 +83,81 @@ struct RegisterView: View {
                         .offset(x: 20, y: 20)
                     }
                 }
-                .offset(y: isKeyboardShown ? -220 : 0)
-                .animation(.easeOut, value: isKeyboardShown)
                 .frame(height: 180)
-                
-                Spacer()
-                
-                TextInputView(title: "Your Name", text: $viewModel.name)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                
-                TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 16)
-                
-                SecureInputView(title: "Password", text: $viewModel.password)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 16)
-                
-                Spacer(minLength: 16)
-                
-                Button("Register") {
-                    showLoadingView = true
-                    viewModel.register { result in
-                        switch result {
-                        case .success:
-                            showRegistrationSuccessAlert = true
-                        case .failure:
-                            showErrorAlert = true
-                        }
-                        showLoadingView = false
-                    }
-                }
-                .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
-                .disabled(!viewModel.isUserInputValid)
-                .padding(.horizontal, 20)
-                .padding(.bottom, 32)
-                .alert(
-                    errorTitle,
-                    isPresented: $showErrorAlert,
-                    actions: {},
-                    message: { Text(errorDescription) }
-                )
-                .alert(
-                    viewModel.successMessageTitle,
-                    isPresented: $showRegistrationSuccessAlert,
-                    actions: {
-                        Button("OK") {
-                            dismiss()
-                        }
-                    },
-                    message: { Text(viewModel.successMessageDescription) }
-                )
-                
-                HStack {
-                    Text("Already have an account?")
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundStyle(Color("Auth/BottomLabelColor"))
-                    
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Login")
-                            .font(.system(size: 14, weight: .regular))
-                            .foregroundStyle(Color("Auth/MainButtonColor"))
-                    }
-                }
-                .padding(.bottom, 40)
-            }
-            .onTapGesture {
-                hideKeyboard()
-            }
-            .navigationBarBackButtonHidden()
-            
-            if showLoadingView {
-                ProgressView()
+                .transition(.offset(y: -260))
             }
         }
     }
     
-    private func hideKeyboard() {
-        UIApplication.shared.sendAction(
-            #selector(UIResponder.resignFirstResponder),
-            to: nil,
-            from: nil,
-            for: nil
+    private var inputView: some View {
+        VStack {
+            TextInputView(title: "Your Name", text: $viewModel.name)
+                .frame(height: 50)
+                .padding(.horizontal, 20)
+                .padding(.top, 32)
+            
+            TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
+                .frame(height: 50)
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+            
+            SecureInputView(title: "Password", text: $viewModel.password)
+                .frame(height: 50)
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+        }
+    }
+    
+    private var button: some View {
+        Button("Register") {
+            showLoadingView = true
+            viewModel.register { result in
+                switch result {
+                case .success:
+                    showRegistrationSuccessAlert = true
+                case .failure:
+                    showErrorAlert = true
+                }
+                showLoadingView = false
+            }
+        }
+        .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
+        .disabled(!viewModel.isUserInputValid)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 32)
+        .alert(
+            errorTitle,
+            isPresented: $showErrorAlert,
+            actions: {},
+            message: { Text(errorDescription) }
         )
+        .alert(
+            viewModel.successMessageTitle,
+            isPresented: $showRegistrationSuccessAlert,
+            actions: {
+                Button("OK") {
+                    dismiss()
+                }
+            },
+            message: { Text(viewModel.successMessageDescription) }
+        )
+    }
+    
+    var footerView: some View {
+        HStack {
+            Text("Already have an account?")
+                .font(.system(size: 14, weight: .regular))
+                .foregroundStyle(Color("Auth/BottomLabelColor"))
+            
+            Button {
+                dismiss()
+            } label: {
+                Text("Login")
+                    .font(.system(size: 14, weight: .regular))
+                    .foregroundStyle(Color("Auth/MainButtonColor"))
+            }
+        }
+        .padding(.bottom, 40)
     }
 }
 
