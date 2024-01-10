@@ -110,6 +110,7 @@ extension RegisterView {
     
     private var button: some View {
         Button("Register") {
+            hideKeyboard()
             showLoadingView = true
             viewModel.register { result in
                 switch result {
