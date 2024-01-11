@@ -9,15 +9,15 @@ import Foundation
 import BeChattedAuth
 import BeChattedUserInputValidation
 
-public final class LoginViewModel: ObservableObject {
+@Observable public final class LoginViewModel {
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol
     
     private(set) var authError: AuthError?
     
-    @Published public var email: String = ""
-    @Published public var password: String = ""
+    public var email: String = ""
+    public var password: String = ""
     public var isUserInputValid: Bool {
         emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }

@@ -48,7 +48,7 @@ private struct KeyboardVisibility: ViewModifier {
         content
             .environment(\.isKeyboardShown, isKeyboardShown)
             .onReceive(keyboardPublisher) { value in
-                isKeyboardShown = value
+                withAnimation { isKeyboardShown = value }
             }
     }
 }

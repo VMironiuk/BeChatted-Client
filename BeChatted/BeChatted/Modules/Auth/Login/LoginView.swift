@@ -10,12 +10,17 @@ import BeChattedAuth
 import BeChattedUserInputValidation
 
 struct LoginView: View {
-    @ObservedObject private var viewModel: LoginViewModel
+    @Bindable private var viewModel: LoginViewModel
+    private let destinationsFactory: LoginDestinationViewsFactoryProtocol
+    
     @EnvironmentObject var appData: AppData
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
     @State private var showLoadingView = false
-    private let registerViewBuilder: () -> RegisterView
+    
+    private var registerView: some View {
+        destinationsFactory.registerView.addKeyboardVisibilityToEnvironment()
+    }
     
     private var errorTitle: String {
         viewModel.authError?.title ?? ""
@@ -25,81 +30,32 @@ struct LoginView: View {
         viewModel.authError?.description ?? ""
     }
     
-    init(viewModel: LoginViewModel, registerViewBuilder: @escaping () -> RegisterView) {
+    init(
+        viewModel: LoginViewModel,
+        destinationsFactory: LoginDestinationViewsFactoryProtocol
+    ) {
         self.viewModel = viewModel
-        self.registerViewBuilder = registerViewBuilder
+        self.destinationsFactory = destinationsFactory
     }
     
     var body: some View {
         ZStack {
             VStack {
-                AuthHeaderView(
-                    title: "Sign in to your\nAccount",
-                    subtitle: "Sign in to your Account"
-                )
-                .offset(y: isKeyboardShown ? -220 : 0)
-                .animation(.easeOut, value: isKeyboardShown)
-                .frame(height: 180)
-                
-                Spacer()
-                                
-                TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                
-                SecureInputView(title: "Password", text: $viewModel.password)
-                    .frame(height: 50)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 16)
-                
-                Spacer(minLength: 16)
-                
-                Button("Login") {
-                    showLoadingView = true
-                    viewModel.login { result in
-                        showLoadingView = false
-                        switch result {
-                        case .success:
-                            DispatchQueue.main.async {
-                                appData.isUserLoggedIn = true
-                            }
-                        case .failure:
-                            showErrorAlert = true
-                        }
-                    }
+                headerView
+                inputView
+                VStack {
+                    Spacer()
+                    button
+                    footerView
                 }
-                .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
-                .disabled(!viewModel.isUserInputValid)
-                .padding(.horizontal, 20)
-                .padding(.bottom, 32)
-                .alert(
-                    errorTitle,
-                    isPresented: $showErrorAlert,
-                    actions: {},
-                    message: { Text(errorDescription) }
-                )
-                
-                HStack {
-                    Text("Don’t have an account?")
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundStyle(Color("Auth/BottomLabelColor"))
-                    
-                    NavigationLink(destination: registerViewBuilder()) {
-                        Text("Register")
-                            .font(.system(size: 14, weight: .regular))
-                            .foregroundStyle(Color("Auth/MainButtonColor"))
-                        
-                    }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    hideKeyboard()
                 }
-                .padding(.bottom, 40)
             }
-            
             if showLoadingView {
                 ProgressView()
             }
-        }
-        .onTapGesture {
-            hideKeyboard()
         }
     }
     
@@ -113,9 +69,79 @@ struct LoginView: View {
     }
 }
 
+extension LoginView {
+    private var headerView: some View {
+        VStack {
+            if !isKeyboardShown {
+                AuthHeaderView(
+                    title: "Sign in to your\nAccount",
+                    subtitle: "Sign in to your Account"
+                )
+                .frame(height: 180)
+                .transition(.offset(y: -260))
+            }
+        }
+    }
+    
+    private var inputView: some View {
+        VStack {
+            TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
+                .frame(height: 50)
+                .padding(.horizontal, 20)
+                .padding(.top, 32)
+            
+            SecureInputView(title: "Password", text: $viewModel.password)
+                .frame(height: 50)
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+        }
+    }
+    
+    private var button: some View {
+        Button("Login") {
+            hideKeyboard()
+            showLoadingView = true
+            viewModel.login { result in
+                showLoadingView = false
+                switch result {
+                case .success:
+                    DispatchQueue.main.async {
+                        appData.isUserLoggedIn = true
+                    }
+                case .failure:
+                    showErrorAlert = true
+                }
+            }
+        }
+        .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
+        .disabled(!viewModel.isUserInputValid)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 32)
+        .alert(
+            errorTitle,
+            isPresented: $showErrorAlert,
+            actions: {},
+            message: { Text(errorDescription) }
+        )
+    }
+    
+    private var footerView: some View {
+        HStack {
+            Text("Don’t have an account?")
+                .font(.system(size: 14, weight: .regular))
+                .foregroundStyle(Color("Auth/BottomLabelColor"))
+            
+            NavigationLink(destination: registerView) {
+                Text("Register")
+                    .font(.system(size: 14, weight: .regular))
+                    .foregroundStyle(Color("Auth/MainButtonColor"))
+            }
+        }
+        .padding(.bottom, 40)
+    }
+}
+
 #Preview {
-    AuthModuleComposer(
-        authServiceComposer: AuthServiceComposer()
-    )
-    .composeLoginView()
+    LoginViewComposer()
+        .loginView
 }

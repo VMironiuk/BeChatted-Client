@@ -9,7 +9,7 @@ import Foundation
 import BeChattedAuth
 import BeChattedUserInputValidation
 
-public final class RegisterViewModel: ObservableObject {
+@Observable public final class RegisterViewModel {
     public typealias RegisterCompletion = (Result<Void, AuthError>) -> Void
     
     private let emailValidator: EmailValidatorProtocol
@@ -18,9 +18,9 @@ public final class RegisterViewModel: ObservableObject {
     
     private(set) var authError: AuthError?
     
-    @Published public var name: String = ""
-    @Published public var email: String = ""
-    @Published public var password: String = ""
+    public var name: String = ""
+    public var email: String = ""
+    public var password: String = ""
     public var isUserInputValid: Bool {
         !name.isEmpty && emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }

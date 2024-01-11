@@ -19,6 +19,15 @@ struct TextInputView: View {
     
     private var isEmail: Bool { inputType == .email }
     
+    private var textInputAutocapitalization: TextInputAutocapitalization {
+        switch inputType {
+        case .default:
+            return .words
+        case .email:
+            return .never
+        }
+    }
+    
     init(title: String = "", inputType: InputType = .default, text: Binding<String>) {
         self.title = title
         self.inputType = inputType
@@ -44,7 +53,7 @@ struct TextInputView: View {
             TextField("", text: $text)
                 .padding(.horizontal, 20)
                 .keyboardType(isEmail ? .emailAddress : .default)
-                .textInputAutocapitalization(.none)
+                .textInputAutocapitalization(textInputAutocapitalization)
                 .autocorrectionDisabled(true)
         }
     }

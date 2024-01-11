@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SecureInputView: View {
-    @State private var isSecured = true
     private let title: String
     @Binding private var text: String
     
@@ -33,26 +32,10 @@ struct SecureInputView: View {
                 }
             }
             
-            HStack {
-                if isSecured {
-                    SecureField("", text: $text)
-                        .textInputAutocapitalization(.none)
-                        .autocorrectionDisabled(true)
-                } else {
-                    TextField("", text: $text)
-                        .textInputAutocapitalization(.none)
-                        .autocorrectionDisabled(true)
-                }
-                Button(action: {
-                    isSecured.toggle()
-                }, label: {
-                    Image(isSecured
-                          ? "Auth/UserInput/HiddenPasswordIcon"
-                          : "Auth/UserInput/ShownPasswordIcon"
-                    )
-                })
-            }
-            .padding(.horizontal, 20)
+            SecureField("", text: $text)
+                .padding(.horizontal, 20)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled(true)
         }
     }
 }
