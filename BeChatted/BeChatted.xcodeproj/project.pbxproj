@@ -12,6 +12,7 @@
 		2E40B0612B0E64C2000D2A77 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */; };
 		2E40B0622B0E64C2000D2A77 /* BeChattedAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E55EC6D2B1F5A71002F0F5E /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55EC6C2B1F5A71002F0F5E /* AuthError.swift */; };
+		2E711D4D2B6A201B00C76CB6 /* AuthButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E711D4C2B6A201B00C76CB6 /* AuthButtonStyle.swift */; };
 		2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */; };
 		2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E16A2AF6013700DE8E68 /* ContentView.swift */; };
 		2E73E16D2AF6013900DE8E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E16C2AF6013900DE8E68 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		2E1616AA2B24549900A97D1E /* MessageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageProtocol.swift; sourceTree = "<group>"; };
 		2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E55EC6C2B1F5A71002F0F5E /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		2E711D4C2B6A201B00C76CB6 /* AuthButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButtonStyle.swift; sourceTree = "<group>"; };
 		2E73E1652AF6013700DE8E68 /* BeChatted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChatted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
 		2E73E16A2AF6013700DE8E68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				2E1616AA2B24549900A97D1E /* MessageProtocol.swift */,
 				2E55EC6C2B1F5A71002F0F5E /* AuthError.swift */,
+				2E711D4C2B6A201B00C76CB6 /* AuthButtonStyle.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				2EC03B712B274C9E003A0EB6 /* DummyChatsView.swift in Sources */,
 				2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */,
 				2EC7AB1B2AFA7A2100BFDB29 /* MainButtonStyles.swift in Sources */,
+				2E711D4D2B6A201B00C76CB6 /* AuthButtonStyle.swift in Sources */,
 				2ED3A3472B0FAAA700E2987A /* AuthServiceComposer.swift in Sources */,
 				2EC7AB1C2AFA7A2100BFDB29 /* RegisterView.swift in Sources */,
 				2E55EC6D2B1F5A71002F0F5E /* AuthError.swift in Sources */,
