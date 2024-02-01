@@ -17,6 +17,7 @@ struct RegisterView: View {
     @State private var showErrorAlert = false
     @State private var showRegistrationSuccessAlert = false
     @State private var showLoadingView = false
+    @State private var authButtonState: AuthButtonStyle.State = .normal
     
     private var errorTitle: String {
         viewModel.authError?.title ?? ""
@@ -44,9 +45,6 @@ struct RegisterView: View {
                 .onTapGesture {
                     hideKeyboard()
                 }
-            }
-            if showLoadingView {
-                ProgressView()
             }
         }
         .navigationBarBackButtonHidden()
@@ -108,30 +106,38 @@ extension RegisterView {
         }
     }
     
+    private var buttonTitle: String {
+        switch authButtonState {
+        case .normal:
+            return "Register"
+        case .loading:
+            return "Registering..."
+        case .failed:
+            return "Registration Failed"
+        }
+    }
+    
     private var button: some View {
-        Button("Register") {
+        Button(buttonTitle) {
             hideKeyboard()
-            showLoadingView = true
+            authButtonState = .loading
             viewModel.register { result in
                 switch result {
                 case .success:
                     showRegistrationSuccessAlert = true
+                    authButtonState = .normal
                 case .failure:
-                    showErrorAlert = true
+                    authButtonState = .failed
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        authButtonState = .normal
+                    }
                 }
-                showLoadingView = false
             }
         }
-        .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
+        .buttonStyle(AuthButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(!viewModel.isUserInputValid)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
-        .alert(
-            errorTitle,
-            isPresented: $showErrorAlert,
-            actions: {},
-            message: { Text(errorDescription) }
-        )
         .alert(
             viewModel.successMessageTitle,
             isPresented: $showRegistrationSuccessAlert,
@@ -141,7 +147,7 @@ extension RegisterView {
                 }
             },
             message: { Text(viewModel.successMessageDescription) }
-        )
+        ).animation(.easeIn(duration: 0.2), value: authButtonState)
     }
     
     var footerView: some View {
