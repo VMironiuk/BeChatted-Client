@@ -16,7 +16,7 @@ struct LoginView: View {
     @EnvironmentObject var appData: AppData
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var showErrorAlert = false
-    @State private var showLoadingView = false
+    @State private var authButtonState: AuthButtonStyle.State = .normal
     
     private var registerView: some View {
         destinationsFactory.registerView.addKeyboardVisibilityToEnvironment()
@@ -52,9 +52,6 @@ struct LoginView: View {
                 .onTapGesture {
                     hideKeyboard()
                 }
-            }
-            if showLoadingView {
-                ProgressView()
             }
         }
     }
@@ -97,32 +94,41 @@ extension LoginView {
         }
     }
     
+    private var buttonTitle: String {
+        switch authButtonState {
+        case .normal:
+            return "Login"
+        case .loading:
+            return "Logging In..."
+        case .failed:
+            return "Login Failed"
+        }
+    }
+
     private var button: some View {
-        Button("Login") {
+        Button(buttonTitle) {
             hideKeyboard()
-            showLoadingView = true
+            authButtonState = .loading
             viewModel.login { result in
-                showLoadingView = false
                 switch result {
                 case .success:
+                    authButtonState = .normal
                     DispatchQueue.main.async {
                         appData.isUserLoggedIn = true
                     }
                 case .failure:
-                    showErrorAlert = true
+                    authButtonState = .failed
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        authButtonState = .normal
+                    }
                 }
             }
         }
-        .buttonStyle(MainButtonStyle(isActive: viewModel.isUserInputValid))
+        .buttonStyle(AuthButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(!viewModel.isUserInputValid)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
-        .alert(
-            errorTitle,
-            isPresented: $showErrorAlert,
-            actions: {},
-            message: { Text(errorDescription) }
-        )
+        .animation(.easeIn(duration: 0.2), value: authButtonState)
     }
     
     private var footerView: some View {
