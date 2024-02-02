@@ -45,7 +45,9 @@ struct RegisterView: View {
     }
 }
 
-extension RegisterView {
+// MARK: - Header View
+
+private extension RegisterView {
     private var headerView: some View {
         VStack {
             if !isKeyboardShown {
@@ -71,7 +73,11 @@ extension RegisterView {
             }
         }
     }
-    
+}
+
+// MARK: - Input View
+
+private extension RegisterView {
     private var inputView: some View {
         VStack {
             TextInputView(title: "Your Name", text: $viewModel.name)
@@ -90,7 +96,11 @@ extension RegisterView {
                 .padding(.top, 16)
         }
     }
-    
+}
+
+// MARK: - Button
+
+private extension RegisterView {
     private var buttonTitle: String {
         switch authButtonState {
         case .normal:
@@ -134,7 +144,11 @@ extension RegisterView {
             message: { Text(viewModel.successMessageDescription) }
         ).animation(.easeIn(duration: 0.2), value: authButtonState)
     }
-    
+}
+
+// MARK: - Footer View
+
+private extension RegisterView {
     var footerView: some View {
         HStack {
             Text("Already have an account?")
