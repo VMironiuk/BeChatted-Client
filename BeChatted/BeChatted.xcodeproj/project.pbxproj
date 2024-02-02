@@ -21,6 +21,7 @@
 		2E8381AD2B6CBB8F00DC62D6 /* View+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381AC2B6CBB8F00DC62D6 /* View+HideKeyboard.swift */; };
 		2E8381AF2B6CBE3F00DC62D6 /* RegisterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */; };
 		2E8381B12B6CC0AD00DC62D6 /* RegisterInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */; };
+		2E8381B32B6CC73C00DC62D6 /* RegisterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381B22B6CC73C00DC62D6 /* RegisterFooterView.swift */; };
 		2E8CDE962B28C54E00E7C2B1 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8CDE952B28C54E00E7C2B1 /* AppData.swift */; };
 		2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */; };
 		2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; };
@@ -83,6 +84,7 @@
 		2E8381AC2B6CBB8F00DC62D6 /* View+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HideKeyboard.swift"; sourceTree = "<group>"; };
 		2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterHeaderView.swift; sourceTree = "<group>"; };
 		2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInputView.swift; sourceTree = "<group>"; };
+		2E8381B22B6CC73C00DC62D6 /* RegisterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFooterView.swift; sourceTree = "<group>"; };
 		2E8CDE952B28C54E00E7C2B1 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		2E9D05542AFF733F007547CD /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
 				2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */,
 				2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */,
+				2E8381B22B6CC73C00DC62D6 /* RegisterFooterView.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				2E8381AF2B6CBE3F00DC62D6 /* RegisterHeaderView.swift in Sources */,
 				2E1616AB2B24549900A97D1E /* MessageProtocol.swift in Sources */,
 				2E9D057A2AFF9793007547CD /* RegisterViewModel.swift in Sources */,
+				2E8381B32B6CC73C00DC62D6 /* RegisterFooterView.swift in Sources */,
 				2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */,
 				2EFD3D4E2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift in Sources */,
 				2E8381AD2B6CBB8F00DC62D6 /* View+HideKeyboard.swift in Sources */,

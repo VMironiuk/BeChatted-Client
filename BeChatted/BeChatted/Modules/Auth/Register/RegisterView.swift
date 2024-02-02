@@ -37,7 +37,7 @@ struct RegisterView: View {
                 VStack {
                     Spacer()
                     button
-                    footerView
+                    RegisterFooterView { dismiss() }
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
@@ -95,30 +95,4 @@ private extension RegisterView {
             message: { Text(viewModel.successMessageDescription) }
         ).animation(.easeIn(duration: 0.2), value: authButtonState)
     }
-}
-
-// MARK: - Footer View
-
-private extension RegisterView {
-    var footerView: some View {
-        HStack {
-            Text("Already have an account?")
-                .font(.system(size: 14, weight: .regular))
-                .foregroundStyle(Color("Auth/BottomLabelColor"))
-            
-            Button {
-                dismiss()
-            } label: {
-                Text("Login")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundStyle(Color("Auth/MainButtonColor"))
-            }
-        }
-        .padding(.bottom, 40)
-    }
-}
-
-#Preview {
-    RegisterViewComposer()
-        .registerView
 }
