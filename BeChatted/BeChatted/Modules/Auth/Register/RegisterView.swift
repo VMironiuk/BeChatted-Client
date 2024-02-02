@@ -28,7 +28,7 @@ struct RegisterView: View {
     var body: some View {
         ZStack {
             VStack {
-                headerView
+                RegisterHeaderView { dismiss() }
                 inputView
                 VStack {
                     Spacer()
@@ -42,36 +42,6 @@ struct RegisterView: View {
             }
         }
         .navigationBarBackButtonHidden()
-    }
-}
-
-// MARK: - Header View
-
-private extension RegisterView {
-    private var headerView: some View {
-        VStack {
-            if !isKeyboardShown {
-                ZStack {
-                    AuthHeaderView(
-                        title: "Register",
-                        subtitle: "Create your Account"
-                    )
-                    
-                    GeometryReader { geometry in
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "chevron.left")
-                                .font(.title)
-                                .foregroundStyle(Color("Auth/Header/TitleColor"))
-                        }
-                        .offset(x: 20, y: 20)
-                    }
-                }
-                .frame(height: 180)
-                .transition(.offset(y: -260))
-            }
-        }
     }
 }
 
