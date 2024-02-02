@@ -14,7 +14,6 @@ struct LoginView: View {
     private let destinationsFactory: LoginDestinationViewsFactoryProtocol
     
     @EnvironmentObject var appData: AppData
-    @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var authButtonState: AuthButtonStyle.State = .normal
     
     private var registerView: some View {
@@ -36,7 +35,7 @@ struct LoginView: View {
     var body: some View {
         ZStack {
             VStack {
-                headerView
+                LoginHeaderView()
                 inputView
                 VStack {
                     Spacer()
@@ -47,23 +46,6 @@ struct LoginView: View {
                 .onTapGesture {
                     hideKeyboard()
                 }
-            }
-        }
-    }
-}
-
-// MARK: - Header View
-
-private extension LoginView {
-    private var headerView: some View {
-        VStack {
-            if !isKeyboardShown {
-                AuthHeaderView(
-                    title: "Sign in to your\nAccount",
-                    subtitle: "Sign in to your Account"
-                )
-                .frame(height: 180)
-                .transition(.offset(y: -260))
             }
         }
     }

@@ -39,6 +39,7 @@
 		2EC7AB1D2AFA7A2100BFDB29 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */; };
 		2ED3A3472B0FAAA700E2987A /* AuthServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3A3462B0FAAA700E2987A /* AuthServiceComposer.swift */; };
 		2EDCFC4C2B109DEB003BE86A /* AuthServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDCFC4B2B109DEB003BE86A /* AuthServiceStub.swift */; };
+		2EE9954D2B6D2A7B00D20982 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE9954C2B6D2A7B00D20982 /* LoginHeaderView.swift */; };
 		2EFD3D4E2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD3D4D2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift */; };
 		2EFD3D502B45ADA500FD699E /* RegisterViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD3D4F2B45ADA500FD699E /* RegisterViewComposer.swift */; };
 		2EFD3D522B45AE6700FD699E /* LoginViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD3D512B45AE6700FD699E /* LoginViewComposer.swift */; };
@@ -102,6 +103,7 @@
 		2EC7AB172AFA7A2100BFDB29 /* SecureInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		2ED3A3462B0FAAA700E2987A /* AuthServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceComposer.swift; sourceTree = "<group>"; };
 		2EDCFC4B2B109DEB003BE86A /* AuthServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceStub.swift; sourceTree = "<group>"; };
+		2EE9954C2B6D2A7B00D20982 /* LoginHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHeaderView.swift; sourceTree = "<group>"; };
 		2EFD3D4D2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDestinationViewsFactoryProtocol.swift; sourceTree = "<group>"; };
 		2EFD3D4F2B45ADA500FD699E /* RegisterViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewComposer.swift; sourceTree = "<group>"; };
 		2EFD3D512B45AE6700FD699E /* LoginViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewComposer.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				2EFD3D4D2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift */,
 				2E9D05732AFF8349007547CD /* LoginViewModel.swift */,
 				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
+				2EE9954C2B6D2A7B00D20982 /* LoginHeaderView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				2E1616A92B244AD000A97D1E /* RegistrationSuccessMessage.swift in Sources */,
 				2E8381B12B6CC0AD00DC62D6 /* RegisterInputView.swift in Sources */,
 				2EFD3D522B45AE6700FD699E /* LoginViewComposer.swift in Sources */,
+				2EE9954D2B6D2A7B00D20982 /* LoginHeaderView.swift in Sources */,
 				2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */,
 				2E9D05742AFF8349007547CD /* LoginViewModel.swift in Sources */,
 				2EC03B6E2B2745B5003A0EB6 /* Bundle+DisplayName.swift in Sources */,
