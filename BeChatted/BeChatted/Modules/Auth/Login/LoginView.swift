@@ -15,7 +15,6 @@ struct LoginView: View {
     
     @EnvironmentObject var appData: AppData
     @Environment(\.isKeyboardShown) var isKeyboardShown
-    @State private var showErrorAlert = false
     @State private var authButtonState: AuthButtonStyle.State = .normal
     
     private var registerView: some View {
@@ -24,10 +23,6 @@ struct LoginView: View {
     
     private var errorTitle: String {
         viewModel.authError?.title ?? "Login Failed"
-    }
-    
-    private var errorDescription: String {
-        viewModel.authError?.description ?? ""
     }
     
     init(
