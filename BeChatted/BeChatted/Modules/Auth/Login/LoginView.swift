@@ -52,7 +52,9 @@ struct LoginView: View {
     }
 }
 
-extension LoginView {
+// MARK: - Header View
+
+private extension LoginView {
     private var headerView: some View {
         VStack {
             if !isKeyboardShown {
@@ -65,7 +67,11 @@ extension LoginView {
             }
         }
     }
-    
+}
+
+// MARK: - Input View
+
+private extension LoginView {
     private var inputView: some View {
         VStack {
             TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
@@ -79,7 +85,11 @@ extension LoginView {
                 .padding(.top, 16)
         }
     }
-    
+}
+
+// MARK: - Button
+
+private extension LoginView {
     private var buttonTitle: String {
         switch authButtonState {
         case .normal:
@@ -90,7 +100,7 @@ extension LoginView {
             return errorTitle
         }
     }
-
+    
     private var button: some View {
         Button(buttonTitle) {
             hideKeyboard()
@@ -116,7 +126,11 @@ extension LoginView {
         .padding(.bottom, 32)
         .animation(.easeIn(duration: 0.2), value: authButtonState)
     }
-    
+}
+
+// MARK: - Footer View
+
+private extension LoginView {
     private var footerView: some View {
         HStack {
             Text("Don’t have an account?")
