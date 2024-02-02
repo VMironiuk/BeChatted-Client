@@ -14,17 +14,11 @@ struct RegisterView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.isKeyboardShown) var isKeyboardShown
-    @State private var showErrorAlert = false
     @State private var showRegistrationSuccessAlert = false
-    @State private var showLoadingView = false
     @State private var authButtonState: AuthButtonStyle.State = .normal
     
     private var errorTitle: String {
         viewModel.authError?.title ?? "Registration Failed"
-    }
-    
-    private var errorDescription: String {
-        viewModel.authError?.description ?? ""
     }
     
     init(viewModel: RegisterViewModel) {
