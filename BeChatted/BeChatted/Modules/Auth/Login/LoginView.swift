@@ -36,7 +36,7 @@ struct LoginView: View {
         ZStack {
             VStack {
                 LoginHeaderView()
-                inputView
+                LoginInputView(email: $viewModel.email, password: $viewModel.password)
                 VStack {
                     Spacer()
                     button
@@ -47,24 +47,6 @@ struct LoginView: View {
                     hideKeyboard()
                 }
             }
-        }
-    }
-}
-
-// MARK: - Input View
-
-private extension LoginView {
-    private var inputView: some View {
-        VStack {
-            TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .padding(.top, 32)
-            
-            SecureInputView(title: "Password", text: $viewModel.password)
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .padding(.top, 16)
         }
     }
 }
