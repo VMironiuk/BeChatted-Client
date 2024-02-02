@@ -189,6 +189,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2E8381B52B6CC9B100DC62D6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E1616A82B244AD000A97D1E /* RegistrationSuccessMessage.swift */,
+				2E9D05792AFF9793007547CD /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2E8CDE942B28C53B00E7C2B1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,8 +238,7 @@
 		2E9D054A2AFF718F007547CD /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				2E1616A82B244AD000A97D1E /* RegistrationSuccessMessage.swift */,
-				2E9D05792AFF9793007547CD /* RegisterViewModel.swift */,
+				2E8381B52B6CC9B100DC62D6 /* ViewModel */,
 				2E8381B42B6CC95300DC62D6 /* Views */,
 			);
 			path = Register;
