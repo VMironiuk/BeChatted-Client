@@ -236,10 +236,7 @@
 			children = (
 				2EFD3D4D2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift */,
 				2E9D05732AFF8349007547CD /* LoginViewModel.swift */,
-				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
-				2EE9954C2B6D2A7B00D20982 /* LoginHeaderView.swift */,
-				2EE9954E2B6D2B7A00D20982 /* LoginInputView.swift */,
-				2EE995502B6D2CBB00D20982 /* LoginFooterView.swift */,
+				2EE995522B6D2F8D00D20982 /* Views */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -333,6 +330,17 @@
 				2EFD3D532B45B3A300FD699E /* Auth */,
 			);
 			path = "Composition Root";
+			sourceTree = "<group>";
+		};
+		2EE995522B6D2F8D00D20982 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EC7AB142AFA7A2100BFDB29 /* LoginView.swift */,
+				2EE9954C2B6D2A7B00D20982 /* LoginHeaderView.swift */,
+				2EE9954E2B6D2B7A00D20982 /* LoginInputView.swift */,
+				2EE995502B6D2CBB00D20982 /* LoginFooterView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		2EFD3D532B45B3A300FD699E /* Auth */ = {
