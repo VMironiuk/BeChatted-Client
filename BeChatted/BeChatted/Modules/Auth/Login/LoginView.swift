@@ -16,10 +16,6 @@ struct LoginView: View {
     @EnvironmentObject var appData: AppData
     @State private var authButtonState: AuthButtonStyle.State = .normal
     
-    private var registerView: some View {
-        destinationsFactory.registerView.addKeyboardVisibilityToEnvironment()
-    }
-    
     private var errorTitle: String {
         viewModel.authError?.title ?? "Login Failed"
     }
@@ -40,7 +36,7 @@ struct LoginView: View {
                 VStack {
                     Spacer()
                     button
-                    footerView
+                    LoginFooterView(destinationsFactory: destinationsFactory)
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
@@ -89,25 +85,6 @@ private extension LoginView {
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
         .animation(.easeIn(duration: 0.2), value: authButtonState)
-    }
-}
-
-// MARK: - Footer View
-
-private extension LoginView {
-    private var footerView: some View {
-        HStack {
-            Text("Don’t have an account?")
-                .font(.system(size: 14, weight: .regular))
-                .foregroundStyle(Color("Auth/BottomLabelColor"))
-            
-            NavigationLink(destination: registerView) {
-                Text("Register")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundStyle(Color("Auth/MainButtonColor"))
-            }
-        }
-        .padding(.bottom, 40)
     }
 }
 
