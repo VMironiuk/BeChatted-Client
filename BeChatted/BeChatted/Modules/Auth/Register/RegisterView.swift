@@ -36,7 +36,7 @@ struct RegisterView: View {
                 )
                 VStack {
                     Spacer()
-                    button
+                    registerButton
                     RegisterFooterView { dismiss() }
                 }
                 .contentShape(Rectangle())
@@ -49,10 +49,10 @@ struct RegisterView: View {
     }
 }
 
-// MARK: - Button
+// MARK: - Register Button
 
 private extension RegisterView {
-    private var buttonTitle: String {
+    private var registerButtonTitle: String {
         switch authButtonState {
         case .normal:
             return "Register"
@@ -63,8 +63,8 @@ private extension RegisterView {
         }
     }
     
-    private var button: some View {
-        Button(buttonTitle) {
+    private var registerButton: some View {
+        Button(registerButtonTitle) {
             hideKeyboard()
             authButtonState = .loading
             viewModel.register { result in
