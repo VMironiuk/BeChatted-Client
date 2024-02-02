@@ -235,7 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				2EFD3D4D2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift */,
-				2E9D05732AFF8349007547CD /* LoginViewModel.swift */,
+				2EE995532B6D2FDD00D20982 /* ViewModel */,
 				2EE995522B6D2F8D00D20982 /* Views */,
 			);
 			path = Login;
@@ -341,6 +341,14 @@
 				2EE995502B6D2CBB00D20982 /* LoginFooterView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2EE995532B6D2FDD00D20982 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E9D05732AFF8349007547CD /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2EFD3D532B45B3A300FD699E /* Auth */ = {
