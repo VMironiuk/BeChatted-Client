@@ -178,6 +178,17 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2E8381B42B6CC95300DC62D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
+				2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */,
+				2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */,
+				2E8381B22B6CC73C00DC62D6 /* RegisterFooterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2E8CDE942B28C53B00E7C2B1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,10 +231,7 @@
 			children = (
 				2E1616A82B244AD000A97D1E /* RegistrationSuccessMessage.swift */,
 				2E9D05792AFF9793007547CD /* RegisterViewModel.swift */,
-				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
-				2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */,
-				2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */,
-				2E8381B22B6CC73C00DC62D6 /* RegisterFooterView.swift */,
+				2E8381B42B6CC95300DC62D6 /* Views */,
 			);
 			path = Register;
 			sourceTree = "<group>";
