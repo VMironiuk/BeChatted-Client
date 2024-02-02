@@ -23,7 +23,7 @@ struct LoginView: View {
     }
     
     private var errorTitle: String {
-        viewModel.authError?.title ?? ""
+        viewModel.authError?.title ?? "Login Failed"
     }
     
     private var errorDescription: String {
@@ -101,7 +101,7 @@ extension LoginView {
         case .loading:
             return "Logging In..."
         case .failed:
-            return "Login Failed"
+            return errorTitle
         }
     }
 

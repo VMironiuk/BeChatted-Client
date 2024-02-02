@@ -20,7 +20,7 @@ struct RegisterView: View {
     @State private var authButtonState: AuthButtonStyle.State = .normal
     
     private var errorTitle: String {
-        viewModel.authError?.title ?? ""
+        viewModel.authError?.title ?? "Registration Failed"
     }
     
     private var errorDescription: String {
@@ -113,7 +113,7 @@ extension RegisterView {
         case .loading:
             return "Registering..."
         case .failed:
-            return "Registration Failed"
+            return errorTitle
         }
     }
     
