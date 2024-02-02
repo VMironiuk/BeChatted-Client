@@ -20,6 +20,7 @@
 		2E8378FB2B36F7E100CF9D82 /* View+KeyboardVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8378FA2B36F7E100CF9D82 /* View+KeyboardVisibility.swift */; };
 		2E8381AD2B6CBB8F00DC62D6 /* View+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381AC2B6CBB8F00DC62D6 /* View+HideKeyboard.swift */; };
 		2E8381AF2B6CBE3F00DC62D6 /* RegisterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */; };
+		2E8381B12B6CC0AD00DC62D6 /* RegisterInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */; };
 		2E8CDE962B28C54E00E7C2B1 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8CDE952B28C54E00E7C2B1 /* AppData.swift */; };
 		2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */; };
 		2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; };
@@ -81,6 +82,7 @@
 		2E8378FA2B36F7E100CF9D82 /* View+KeyboardVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+KeyboardVisibility.swift"; sourceTree = "<group>"; };
 		2E8381AC2B6CBB8F00DC62D6 /* View+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HideKeyboard.swift"; sourceTree = "<group>"; };
 		2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterHeaderView.swift; sourceTree = "<group>"; };
+		2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInputView.swift; sourceTree = "<group>"; };
 		2E8CDE952B28C54E00E7C2B1 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		2E9D05542AFF733F007547CD /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				2E9D05792AFF9793007547CD /* RegisterViewModel.swift */,
 				2EC7AB162AFA7A2100BFDB29 /* RegisterView.swift */,
 				2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */,
+				2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				2EC7AB1A2AFA7A2100BFDB29 /* LoginView.swift in Sources */,
 				2EFD3D502B45ADA500FD699E /* RegisterViewComposer.swift in Sources */,
 				2E1616A92B244AD000A97D1E /* RegistrationSuccessMessage.swift in Sources */,
+				2E8381B12B6CC0AD00DC62D6 /* RegisterInputView.swift in Sources */,
 				2EFD3D522B45AE6700FD699E /* LoginViewComposer.swift in Sources */,
 				2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */,
 				2E9D05742AFF8349007547CD /* LoginViewModel.swift in Sources */,

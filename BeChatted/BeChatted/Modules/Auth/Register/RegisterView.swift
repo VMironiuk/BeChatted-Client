@@ -29,7 +29,11 @@ struct RegisterView: View {
         ZStack {
             VStack {
                 RegisterHeaderView { dismiss() }
-                inputView
+                RegisterInputView(
+                    name: $viewModel.name,
+                    email: $viewModel.email,
+                    password: $viewModel.password
+                )
                 VStack {
                     Spacer()
                     button
@@ -42,29 +46,6 @@ struct RegisterView: View {
             }
         }
         .navigationBarBackButtonHidden()
-    }
-}
-
-// MARK: - Input View
-
-private extension RegisterView {
-    private var inputView: some View {
-        VStack {
-            TextInputView(title: "Your Name", text: $viewModel.name)
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .padding(.top, 32)
-            
-            TextInputView(title: "Email", inputType: .email, text: $viewModel.email)
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .padding(.top, 16)
-            
-            SecureInputView(title: "Password", text: $viewModel.password)
-                .frame(height: 50)
-                .padding(.horizontal, 20)
-                .padding(.top, 16)
-        }
     }
 }
 
