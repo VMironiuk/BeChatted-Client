@@ -47,7 +47,7 @@ struct LoginView: View {
     }
 }
 
-// MARK: - Button
+// MARK: - Login Button
 
 private extension LoginView {
     private var buttonTitle: String {
