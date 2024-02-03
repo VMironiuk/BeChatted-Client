@@ -14,7 +14,7 @@ struct RegisterView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.isKeyboardShown) var isKeyboardShown
-    @State private var showRegistrationSuccessAlert = false
+    @State private var isRegistrationSucceeded = false
     @State private var authButtonState: AuthButtonStyle.State = .normal
     
     private var errorTitle: String {
@@ -44,6 +44,15 @@ struct RegisterView: View {
                     hideKeyboard()
                 }
             }
+            
+            if isRegistrationSucceeded {
+                RegisterSuccessView {
+                    dismiss()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        isRegistrationSucceeded = false
+                    }
+                }
+            }
         }
         .navigationBarBackButtonHidden()
     }
@@ -70,8 +79,10 @@ private extension RegisterView {
             viewModel.register { result in
                 switch result {
                 case .success:
-                    showRegistrationSuccessAlert = true
                     authButtonState = .normal
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        isRegistrationSucceeded = true
+                    }
                 case .failure:
                     authButtonState = .failed
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -84,15 +95,6 @@ private extension RegisterView {
         .disabled(!viewModel.isUserInputValid)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
-        .alert(
-            viewModel.successMessageTitle,
-            isPresented: $showRegistrationSuccessAlert,
-            actions: {
-                Button("OK") {
-                    dismiss()
-                }
-            },
-            message: { Text(viewModel.successMessageDescription) }
-        ).animation(.easeIn(duration: 0.2), value: authButtonState)
+        .animation(.easeIn(duration: 0.2), value: authButtonState)
     }
 }
