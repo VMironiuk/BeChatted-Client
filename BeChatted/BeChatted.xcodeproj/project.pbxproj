@@ -12,6 +12,7 @@
 		2E40B0612B0E64C2000D2A77 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */; };
 		2E40B0622B0E64C2000D2A77 /* BeChattedAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E55EC6D2B1F5A71002F0F5E /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55EC6C2B1F5A71002F0F5E /* AuthError.swift */; };
+		2E62312B2B6E1FE0008C724F /* RegisterSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62312A2B6E1FE0008C724F /* RegisterSuccessView.swift */; };
 		2E711D4D2B6A201B00C76CB6 /* AuthButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E711D4C2B6A201B00C76CB6 /* AuthButtonStyle.swift */; };
 		2E73E1692AF6013700DE8E68 /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */; };
 		2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73E16A2AF6013700DE8E68 /* ContentView.swift */; };
@@ -77,6 +78,7 @@
 		2E1616AA2B24549900A97D1E /* MessageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageProtocol.swift; sourceTree = "<group>"; };
 		2E40B0602B0E64C2000D2A77 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E55EC6C2B1F5A71002F0F5E /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		2E62312A2B6E1FE0008C724F /* RegisterSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSuccessView.swift; sourceTree = "<group>"; };
 		2E711D4C2B6A201B00C76CB6 /* AuthButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButtonStyle.swift; sourceTree = "<group>"; };
 		2E73E1652AF6013700DE8E68 /* BeChatted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChatted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				2E8381AE2B6CBE3F00DC62D6 /* RegisterHeaderView.swift */,
 				2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */,
 				2E8381B22B6CC73C00DC62D6 /* RegisterFooterView.swift */,
+				2E62312A2B6E1FE0008C724F /* RegisterSuccessView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */,
 				2E8381AF2B6CBE3F00DC62D6 /* RegisterHeaderView.swift in Sources */,
 				2E1616AB2B24549900A97D1E /* MessageProtocol.swift in Sources */,
+				2E62312B2B6E1FE0008C724F /* RegisterSuccessView.swift in Sources */,
 				2E9D057A2AFF9793007547CD /* RegisterViewModel.swift in Sources */,
 				2E8381B32B6CC73C00DC62D6 /* RegisterFooterView.swift in Sources */,
 				2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */,
