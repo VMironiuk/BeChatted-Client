@@ -80,7 +80,9 @@ private extension RegisterView {
                 switch result {
                 case .success:
                     authButtonState = .normal
-                    isRegistrationSucceeded = true
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        isRegistrationSucceeded = true
+                    }
                 case .failure:
                     authButtonState = .failed
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

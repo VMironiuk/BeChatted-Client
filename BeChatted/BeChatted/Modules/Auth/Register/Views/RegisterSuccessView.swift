@@ -52,6 +52,7 @@ struct RegisterSuccessView: View {
             .padding(.vertical, 60)
         }
         .background(.white)
+        .transition(.asymmetric(insertion: .move(edge: .top), removal: .move(edge: .top)))
     }
 }
 
