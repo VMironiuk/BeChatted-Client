@@ -20,6 +20,10 @@ struct LoginView: View {
         viewModel.authError?.title ?? "Login Failed"
     }
     
+    private var isLoginButtonDisabled: Bool {
+        !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
+    }
+    
     init(
         viewModel: LoginViewModel,
         destinationsFactory: LoginDestinationViewsFactoryProtocol
@@ -81,7 +85,7 @@ private extension LoginView {
             }
         }
         .buttonStyle(AuthButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
-        .disabled(!viewModel.isUserInputValid)
+        .disabled(isLoginButtonDisabled)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
         .animation(.easeIn(duration: 0.2), value: authButtonState)
