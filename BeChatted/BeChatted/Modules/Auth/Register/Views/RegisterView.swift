@@ -21,6 +21,10 @@ struct RegisterView: View {
         viewModel.authError?.title ?? "Registration Failed"
     }
     
+    private var isRegisterButtonDisabled: Bool {
+        !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
+    }
+    
     init(viewModel: RegisterViewModel) {
         self.viewModel = viewModel
     }
@@ -92,7 +96,7 @@ private extension RegisterView {
             }
         }
         .buttonStyle(AuthButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
-        .disabled(!viewModel.isUserInputValid)
+        .disabled(isRegisterButtonDisabled)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
         .animation(.easeIn(duration: 0.2), value: authButtonState)
