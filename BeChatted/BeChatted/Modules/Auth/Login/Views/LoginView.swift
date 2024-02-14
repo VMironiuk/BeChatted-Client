@@ -11,7 +11,6 @@ import BeChattedUserInputValidation
 
 struct LoginView: View {
     @Bindable private var viewModel: LoginViewModel
-    private let destinationsFactory: LoginDestinationViewsFactoryProtocol
     
     @EnvironmentObject var appData: AppData
     @State private var authButtonState: AuthButtonStyle.State = .normal
@@ -24,12 +23,8 @@ struct LoginView: View {
         !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
     }
     
-    init(
-        viewModel: LoginViewModel,
-        destinationsFactory: LoginDestinationViewsFactoryProtocol
-    ) {
+    init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
-        self.destinationsFactory = destinationsFactory
     }
     
     var body: some View {
@@ -40,7 +35,7 @@ struct LoginView: View {
                 VStack {
                     Spacer()
                     button
-                    LoginFooterView(destinationsFactory: destinationsFactory)
+                    LoginFooterView()
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {

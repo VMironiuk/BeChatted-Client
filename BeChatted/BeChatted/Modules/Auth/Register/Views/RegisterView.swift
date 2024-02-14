@@ -12,7 +12,7 @@ import BeChattedUserInputValidation
 struct RegisterView: View {
     @Bindable private var viewModel: RegisterViewModel
     
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var mainNNavigationController: MainNavigationController
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var isRegistrationSucceeded = false
     @State private var authButtonState: AuthButtonStyle.State = .normal
@@ -32,7 +32,7 @@ struct RegisterView: View {
     var body: some View {
         ZStack {
             VStack {
-                RegisterHeaderView { dismiss() }
+                RegisterHeaderView()
                 RegisterInputView(
                     name: $viewModel.name,
                     email: $viewModel.email,
@@ -41,7 +41,7 @@ struct RegisterView: View {
                 VStack {
                     Spacer()
                     registerButton
-                    RegisterFooterView { dismiss() }
+                    RegisterFooterView()
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
@@ -51,7 +51,7 @@ struct RegisterView: View {
             
             if isRegistrationSucceeded {
                 RegisterSuccessView {
-                    dismiss()
+                    mainNNavigationController.pop()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                         isRegistrationSucceeded = false
                     }

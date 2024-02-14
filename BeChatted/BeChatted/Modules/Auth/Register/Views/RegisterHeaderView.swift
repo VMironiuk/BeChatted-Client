@@ -8,13 +8,8 @@
 import SwiftUI
 
 struct RegisterHeaderView: View {
-    private let backButtonAction: () -> Void
-    
     @Environment(\.isKeyboardShown) var isKeyboardShown
-    
-    init(_ backButtonAction: @escaping () -> Void) {
-        self.backButtonAction = backButtonAction
-    }
+    @EnvironmentObject var mainNavigationController: MainNavigationController
     
     var body: some View {
         VStack {
@@ -27,7 +22,7 @@ struct RegisterHeaderView: View {
                     
                     GeometryReader { geometry in
                         Button {
-                            backButtonAction()
+                            mainNavigationController.pop()
                         } label: {
                             Image(systemName: "chevron.left")
                                 .font(.title)
@@ -44,5 +39,5 @@ struct RegisterHeaderView: View {
 }
 
 #Preview {
-    RegisterHeaderView {}
+    RegisterHeaderView()
 }

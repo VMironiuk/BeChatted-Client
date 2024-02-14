@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct RegisterFooterView: View {
-    private let loginButtonAction: () -> Void
-    
-    init(_ loginButtonAction: @escaping () -> Void) {
-        self.loginButtonAction = loginButtonAction
-    }
+    @EnvironmentObject var mainNavigationController: MainNavigationController
     
     var body: some View {
         HStack {
@@ -21,7 +17,7 @@ struct RegisterFooterView: View {
                 .foregroundStyle(Color("Auth/BottomLabelColor"))
             
             Button {
-                loginButtonAction()
+                mainNavigationController.pop()
             } label: {
                 Text("Login")
                     .font(.system(size: 14, weight: .regular))
@@ -33,5 +29,5 @@ struct RegisterFooterView: View {
 }
 
 #Preview {
-    RegisterFooterView {}
+    RegisterFooterView()
 }

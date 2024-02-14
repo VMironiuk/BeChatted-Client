@@ -13,10 +13,6 @@ struct LoginViewComposer {
         AuthServiceComposer().authService
     }
     
-    private var destinationsFactory: LoginDestinationViewsFactoryProtocol {
-        RegisterViewComposer()
-    }
-    
     private var viewModel: LoginViewModel {
         LoginViewModel(
             emailValidator: EmailValidator(),
@@ -26,6 +22,6 @@ struct LoginViewComposer {
     }
     
     var loginView: LoginView {
-        LoginView(viewModel: viewModel, destinationsFactory: destinationsFactory)
+        LoginView(viewModel: viewModel)
     }
 }

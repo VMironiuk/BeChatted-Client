@@ -13,12 +13,10 @@ struct ContentView: View {
     @EnvironmentObject var appData: AppData
     
     var body: some View {
-        NavigationStack {
-            if appData.isUserLoggedIn {
-                DummyChatsView()
-            } else {
-                LoginViewComposer().loginView
-            }
+        if appData.isUserLoggedIn {
+            DummyChatsView()
+        } else {
+            LoginViewComposer().loginView
         }
     }
 }
