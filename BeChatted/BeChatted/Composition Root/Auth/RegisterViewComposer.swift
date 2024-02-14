@@ -8,7 +8,7 @@
 import BeChattedAuth
 import BeChattedUserInputValidation
 
-struct RegisterViewComposer: LoginDestinationViewsFactoryProtocol {
+struct RegisterViewComposer {
     private var authService: AuthServiceProtocol {
         AuthServiceComposer().authService
     }

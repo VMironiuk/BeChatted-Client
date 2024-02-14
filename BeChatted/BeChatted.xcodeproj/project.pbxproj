@@ -24,6 +24,7 @@
 		2E8381B12B6CC0AD00DC62D6 /* RegisterInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */; };
 		2E8381B32B6CC73C00DC62D6 /* RegisterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8381B22B6CC73C00DC62D6 /* RegisterFooterView.swift */; };
 		2E8CDE962B28C54E00E7C2B1 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8CDE952B28C54E00E7C2B1 /* AppData.swift */; };
+		2E9137E52B7C97DC001264D3 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9137E42B7C97DC001264D3 /* MainNavigationController.swift */; };
 		2E9D055E2AFF7372007547CD /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */; };
 		2E9D056D2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; };
 		2E9D056E2AFF7BA0007547CD /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -43,7 +44,6 @@
 		2EE9954D2B6D2A7B00D20982 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE9954C2B6D2A7B00D20982 /* LoginHeaderView.swift */; };
 		2EE9954F2B6D2B7A00D20982 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE9954E2B6D2B7A00D20982 /* LoginInputView.swift */; };
 		2EE995512B6D2CBB00D20982 /* LoginFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE995502B6D2CBB00D20982 /* LoginFooterView.swift */; };
-		2EFD3D4E2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD3D4D2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift */; };
 		2EFD3D502B45ADA500FD699E /* RegisterViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD3D4F2B45ADA500FD699E /* RegisterViewComposer.swift */; };
 		2EFD3D522B45AE6700FD699E /* LoginViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD3D512B45AE6700FD699E /* LoginViewComposer.swift */; };
 /* End PBXBuildFile section */
@@ -91,6 +91,7 @@
 		2E8381B02B6CC0AD00DC62D6 /* RegisterInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInputView.swift; sourceTree = "<group>"; };
 		2E8381B22B6CC73C00DC62D6 /* RegisterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFooterView.swift; sourceTree = "<group>"; };
 		2E8CDE952B28C54E00E7C2B1 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		2E9137E42B7C97DC001264D3 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		2E9D05542AFF733F007547CD /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9D055D2AFF7372007547CD /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2E9D056C2AFF7BA0007547CD /* BeChattedUserInputValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedUserInputValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +111,6 @@
 		2EE9954C2B6D2A7B00D20982 /* LoginHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHeaderView.swift; sourceTree = "<group>"; };
 		2EE9954E2B6D2B7A00D20982 /* LoginInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
 		2EE995502B6D2CBB00D20982 /* LoginFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFooterView.swift; sourceTree = "<group>"; };
-		2EFD3D4D2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDestinationViewsFactoryProtocol.swift; sourceTree = "<group>"; };
 		2EFD3D4F2B45ADA500FD699E /* RegisterViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewComposer.swift; sourceTree = "<group>"; };
 		2EFD3D512B45AE6700FD699E /* LoginViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,7 +237,6 @@
 		2E9D05492AFF7181007547CD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2EFD3D4D2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift */,
 				2EE995532B6D2FDD00D20982 /* ViewModel */,
 				2EE995522B6D2F8D00D20982 /* Views */,
 			);
@@ -277,6 +276,7 @@
 			children = (
 				2E73E1682AF6013700DE8E68 /* BeChattedApp.swift */,
 				2E73E16A2AF6013700DE8E68 /* ContentView.swift */,
+				2E9137E42B7C97DC001264D3 /* MainNavigationController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -466,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E9137E52B7C97DC001264D3 /* MainNavigationController.swift in Sources */,
 				2E73E16B2AF6013700DE8E68 /* ContentView.swift in Sources */,
 				2E8381AF2B6CBE3F00DC62D6 /* RegisterHeaderView.swift in Sources */,
 				2E1616AB2B24549900A97D1E /* MessageProtocol.swift in Sources */,
@@ -473,7 +474,6 @@
 				2E9D057A2AFF9793007547CD /* RegisterViewModel.swift in Sources */,
 				2E8381B32B6CC73C00DC62D6 /* RegisterFooterView.swift in Sources */,
 				2EC7AB182AFA7A2100BFDB29 /* AuthHeaderView.swift in Sources */,
-				2EFD3D4E2B45AD0500FD699E /* LoginDestinationViewsFactoryProtocol.swift in Sources */,
 				2EE995512B6D2CBB00D20982 /* LoginFooterView.swift in Sources */,
 				2E8381AD2B6CBB8F00DC62D6 /* View+HideKeyboard.swift in Sources */,
 				2E8378FB2B36F7E100CF9D82 /* View+KeyboardVisibility.swift in Sources */,

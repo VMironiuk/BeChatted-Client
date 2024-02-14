@@ -8,15 +8,7 @@
 import SwiftUI
 
 struct LoginFooterView: View {
-    private let destinationsFactory: LoginDestinationViewsFactoryProtocol
-    
-    private var registerView: some View {
-        destinationsFactory.registerView.addKeyboardVisibilityToEnvironment()
-    }
-    
-    init(destinationsFactory: LoginDestinationViewsFactoryProtocol) {
-        self.destinationsFactory = destinationsFactory
-    }
+    @EnvironmentObject var mainNavigationController: MainNavigationController
     
     var body: some View {
         HStack {
@@ -24,7 +16,9 @@ struct LoginFooterView: View {
                 .font(.system(size: 14, weight: .regular))
                 .foregroundStyle(Color("Auth/BottomLabelColor"))
             
-            NavigationLink(destination: registerView) {
+            Button {
+                mainNavigationController.goToRegister()
+            } label: {
                 Text("Register")
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(Color("Auth/MainButtonColor"))
@@ -34,10 +28,6 @@ struct LoginFooterView: View {
     }
 }
 
-private struct FakeRegisterView: LoginDestinationViewsFactoryProtocol {
-    var registerView: RegisterView { RegisterViewComposer().registerView }
-}
-
 #Preview {
-    LoginFooterView(destinationsFactory: FakeRegisterView())
+    LoginFooterView()
 }
