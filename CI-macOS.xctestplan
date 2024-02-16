@@ -1,0 +1,33 @@
+{
+  "configurations" : [
+    {
+      "id" : "70851703-F716-4554-88D0-CAD42C4E33F1",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChattedAuth\/BeChattedAuth.xcodeproj",
+        "identifier" : "2EDB71112AF2B52800243018",
+        "name" : "BeChattedAuthTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChattedUserInputValidation\/BeChattedUserInputValidation.xcodeproj",
+        "identifier" : "2E8A72552AF4002E0075FF43",
+        "name" : "BeChattedUserInputValidationTests"
+      }
+    }
+  ],
+  "version" : 1
+}
