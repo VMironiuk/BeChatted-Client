@@ -5,9 +5,6 @@
       location = "group:BeChattedApp/BeChattedApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:BeChatted/BeChatted.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:BeChattedAuth/BeChattedAuth.xcodeproj">
    </FileRef>
    <FileRef
