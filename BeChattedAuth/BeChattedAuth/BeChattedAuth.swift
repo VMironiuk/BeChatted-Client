@@ -21,7 +21,7 @@ public struct AuthServiceConfiguration {
     }
 }
 
-public func makeAuthService(configuration: AuthServiceConfiguration) -> AuthServiceProtocol {
+public func makeAuthService(configuration: AuthServiceConfiguration) -> AuthService {
     AuthService(
         newAccountService: NewAccountService(url: configuration.newAccountURL, client: URLSessionHTTPClient()),
         addNewUserService: AddNewUserService(url: configuration.newUserURL, client: URLSessionHTTPClient()),
