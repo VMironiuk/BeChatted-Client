@@ -7,11 +7,7 @@
 
 import Foundation
 
-public protocol PasswordValidatorProtocol {
-    func isValid(password: String) -> Bool
-}
-
-public struct PasswordValidator: PasswordValidatorProtocol {
+public struct PasswordValidator {
     public init() {}
     
     public func isValid(password: String) -> Bool {
