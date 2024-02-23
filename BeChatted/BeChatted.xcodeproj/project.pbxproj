@@ -30,6 +30,7 @@
 		2E82F2542B88AD3000802ED5 /* CreateAccountPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */; };
 		2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */; };
 		2E82F2562B88AD3900802ED5 /* AddUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */; };
+		2E82F2752B88C75A00802ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E82F23A2B889FE500802ED5 /* Assets.xcassets */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
 		2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */; };
 		2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -417,6 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E82F2752B88C75A00802ED5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
