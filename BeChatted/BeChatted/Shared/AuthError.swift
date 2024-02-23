@@ -15,6 +15,23 @@ public enum AuthError: Error {
     case unknown
 }
 
+extension AuthError {
+    var title: String {
+        switch self {
+        case .server:
+            return "Server Unreachable"
+        case .connectivity:
+            return "Connection Problem"
+        case .email:
+            return "Email Already in Use"
+        case .credentials:
+            return "Login Failed"
+        case .unknown:
+            return "Oops! Something Went Wrong"
+        }
+    }
+}
+
 //public struct AuthError: Error, Equatable, MessageProtocol {
 //    private let authServiceError: AuthServiceError
 //    
