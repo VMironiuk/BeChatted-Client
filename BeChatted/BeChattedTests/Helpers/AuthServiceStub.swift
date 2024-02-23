@@ -13,27 +13,27 @@ final class AuthServiceStub: AuthServiceProtocol {
     private(set) var addUserCallCount: Int = 0
     private(set) var loginCallCount: Int = 0
     private(set) var logoutCallCount: Int = 0
-//    
-//    private var createAccountCompletion: ((Result<Void, AuthServiceError>) -> Void)?
+
+    private var createAccountCompletion: ((Result<Void, AuthError>) -> Void)?
     private var loginCompletion: ((Result<LoginInfo, AuthError>) -> Void)?
-//    private var addUserCompletion: ((Result<NewUserInfo, AuthServiceError>) -> Void)?
-//    
-//    func createAccount(
-//        _ payload: NewAccountPayload,
-//        completion: @escaping (Result<Void, AuthServiceError>) -> Void
-//    ) {
-//        createAccountCallCount += 1
-//        createAccountCompletion = completion
-//    }
-//    
-//    func addUser(
-//        _ payload: NewUserPayload,
-//        authToken: String,
-//        completion: @escaping (Result<NewUserInfo, AuthServiceError>) -> Void
-//    ) {
-//        addUserCallCount += 1
-//        addUserCompletion = completion
-//    }
+    private var addUserCompletion: ((Result<AddedUserInfo, AuthError>) -> Void)?
+    
+    func createAccount(
+        _ payload: CreateAccountPayload,
+        completion: @escaping (Result<Void, AuthError>) -> Void
+    ) {
+        createAccountCallCount += 1
+        createAccountCompletion = completion
+    }
+    
+    func addUser(
+        _ payload: AddUserPayload,
+        authToken: String,
+        completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void
+    ) {
+        addUserCallCount += 1
+        addUserCompletion = completion
+    }
     
     func login(
         _ payload: LoginPayload,
@@ -43,17 +43,17 @@ final class AuthServiceStub: AuthServiceProtocol {
         loginCompletion = completion
     }
     
-//    func logout(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
-//        logoutCallCount += 1
-//    }
-//    
-//    func completeCreateAccount(with error: AuthServiceError) {
-//        createAccountCompletion?(.failure(error))
-//    }
-//    
-//    func completeCreateAccountSuccessfully() {
-//        createAccountCompletion?(.success(()))
-//    }
+    func logout(completion: @escaping (Result<Void, AuthError>) -> Void) {
+        logoutCallCount += 1
+    }
+    
+    func completeCreateAccountWithError(_ error: AuthError) {
+        createAccountCompletion?(.failure(error))
+    }
+    
+    func completeCreateAccountSuccessfully() {
+        createAccountCompletion?(.success(()))
+    }
     
     func completeLoginWithError(_ error: AuthError) {
         loginCompletion?(.failure(error))
@@ -70,20 +70,20 @@ final class AuthServiceStub: AuthServiceProtocol {
         loginCompletion?(.success(dummyLoginInfo))
     }
     
-//    func completeAddUser(with error: AuthServiceError) {
-//        addUserCompletion?(.failure(error))
-//    }
-//    
-//    func completeAddUserSuccessfully() {
-//        let dummyNewUserInfoData = """
-//        {
-//            "name": "new user",
-//            "email": "new-user@example.com",
-//            "avatarName": "avatarName",
-//            "avatarColor": "avatarColor"
-//        }
-//        """.data(using: .utf8)
-//        let dummyNewUserInfo = try! JSONDecoder().decode(NewUserInfo.self, from: dummyNewUserInfoData!)
-//        addUserCompletion?(.success(dummyNewUserInfo))
-//    }
+    func completeAddUserWithError(_ error: AuthError) {
+        addUserCompletion?(.failure(error))
+    }
+    
+    func completeAddUserSuccessfully() {
+        let dummyNewUserInfoData = """
+        {
+            "name": "new user",
+            "email": "new-user@example.com",
+            "avatarName": "avatarName",
+            "avatarColor": "avatarColor"
+        }
+        """.data(using: .utf8)
+        let dummyNewUserInfo = try! JSONDecoder().decode(AddedUserInfo.self, from: dummyNewUserInfoData!)
+        addUserCompletion?(.success(dummyNewUserInfo))
+    }
 }

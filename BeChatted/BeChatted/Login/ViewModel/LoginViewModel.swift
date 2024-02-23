@@ -30,6 +30,37 @@ public struct LoginInfo: Decodable, Equatable {
     public let token: String
 }
 
+public struct CreateAccountPayload: Encodable, Equatable {
+    private let email: String
+    private let password: String
+    
+    public init(email: String, password: String) {
+        self.email = email
+        self.password = password
+    }
+}
+
+public struct AddUserPayload: Encodable, Equatable {
+    private let name: String
+    private let email: String
+    private let avatarName: String
+    private let avatarColor: String
+    
+    public init(name: String, email: String, avatarName: String, avatarColor: String) {
+        self.name = name
+        self.email = email
+        self.avatarName = avatarName
+        self.avatarColor = avatarColor
+    }
+}
+
+public struct AddedUserInfo: Decodable, Equatable {
+    public let name: String
+    public let email: String
+    public let avatarName: String
+    public let avatarColor: String
+}
+
 public enum AuthError: Error {
     case server
     case connectivity
@@ -40,6 +71,8 @@ public enum AuthError: Error {
 
 public protocol AuthServiceProtocol {
     func login(_ payload: LoginPayload, completion: @escaping (Result<LoginInfo, AuthError>) -> Void)
+    func createAccount(_ payload: CreateAccountPayload, completion: @escaping (Result<Void, AuthError>) -> Void)
+    func addUser(_ payload: AddUserPayload, authToken: String, completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void)
 }
 
 @Observable public final class LoginViewModel {

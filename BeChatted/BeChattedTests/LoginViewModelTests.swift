@@ -120,20 +120,4 @@ final class LoginViewModelTests: XCTestCase {
         
         return (sut, authService)
     }
-    
-    private struct EmailValidatorStub: EmailValidatorProtocol {
-        let isValidStubbed: Bool
-        
-        func isValid(email: String) -> Bool {
-            isValidStubbed
-        }
-    }
-    
-    private struct PasswordValidatorStub: PasswordValidatorProtocol {
-        let isValidStubbed: Bool
-        
-        func isValid(password: String) -> Bool {
-            isValidStubbed
-        }
-    }
 }

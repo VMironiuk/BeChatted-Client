@@ -7,10 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E82F2292B8895EC00802ED5 /* RegistrationSuccessMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2282B8895EC00802ED5 /* RegistrationSuccessMessage.swift */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
 		2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */; };
 		2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */; };
 		2EB37CA22B8737E0003990B0 /* AuthServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9F2B8737E0003990B0 /* AuthServiceStub.swift */; };
+		2EB37CAE2B873E36003990B0 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CA62B873E36003990B0 /* RegisterViewModel.swift */; };
+		2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CA82B873E36003990B0 /* RegisterSuccessView.swift */; };
+		2EB37CB52B873E54003990B0 /* RegisterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CA92B873E36003990B0 /* RegisterFooterView.swift */; };
+		2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CAA2B873E36003990B0 /* RegisterInputView.swift */; };
+		2EB37CB72B873E5D003990B0 /* RegisterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CAB2B873E36003990B0 /* RegisterHeaderView.swift */; };
+		2EB37CB82B873E61003990B0 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CAC2B873E36003990B0 /* RegisterView.swift */; };
+		2EB37CBA2B874119003990B0 /* RegisterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CB92B874119003990B0 /* RegisterViewModelTests.swift */; };
+		2EB37CBC2B874240003990B0 /* EmailValidatorStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CBB2B874240003990B0 /* EmailValidatorStub.swift */; };
+		2EB37CBE2B87427B003990B0 /* PasswordValidatorStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CBD2B87427B003990B0 /* PasswordValidatorStub.swift */; };
+		2EB37CC02B87433D003990B0 /* Bundle+DisplayName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CBF2B87433D003990B0 /* Bundle+DisplayName.swift */; };
 		2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */; };
 		2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE982B85C520007B6D10 /* AuthError.swift */; };
 		2EC3EE9C2B85C520007B6D10 /* MessageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE992B85C520007B6D10 /* MessageProtocol.swift */; };
@@ -34,10 +45,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E82F2282B8895EC00802ED5 /* RegistrationSuccessMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSuccessMessage.swift; sourceTree = "<group>"; };
 		2EB37C922B873791003990B0 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2EB37C9F2B8737E0003990B0 /* AuthServiceStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthServiceStub.swift; sourceTree = "<group>"; };
+		2EB37CA62B873E36003990B0 /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		2EB37CA82B873E36003990B0 /* RegisterSuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterSuccessView.swift; sourceTree = "<group>"; };
+		2EB37CA92B873E36003990B0 /* RegisterFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterFooterView.swift; sourceTree = "<group>"; };
+		2EB37CAA2B873E36003990B0 /* RegisterInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterInputView.swift; sourceTree = "<group>"; };
+		2EB37CAB2B873E36003990B0 /* RegisterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterHeaderView.swift; sourceTree = "<group>"; };
+		2EB37CAC2B873E36003990B0 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		2EB37CB92B874119003990B0 /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
+		2EB37CBB2B874240003990B0 /* EmailValidatorStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidatorStub.swift; sourceTree = "<group>"; };
+		2EB37CBD2B87427B003990B0 /* PasswordValidatorStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidatorStub.swift; sourceTree = "<group>"; };
+		2EB37CBF2B87433D003990B0 /* Bundle+DisplayName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+DisplayName.swift"; sourceTree = "<group>"; };
 		2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2EC3EE8D2B85C515007B6D10 /* LoginFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFooterView.swift; sourceTree = "<group>"; };
 		2EC3EE8E2B85C515007B6D10 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -82,6 +104,7 @@
 			children = (
 				2EB37C9D2B8737E0003990B0 /* Helpers */,
 				2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */,
+				2EB37CB92B874119003990B0 /* RegisterViewModelTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -91,8 +114,40 @@
 			children = (
 				2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */,
 				2EB37C9F2B8737E0003990B0 /* AuthServiceStub.swift */,
+				2EB37CBB2B874240003990B0 /* EmailValidatorStub.swift */,
+				2EB37CBD2B87427B003990B0 /* PasswordValidatorStub.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2EB37CA32B873E36003990B0 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				2EB37CA42B873E36003990B0 /* ViewModel */,
+				2EB37CA72B873E36003990B0 /* Views */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		2EB37CA42B873E36003990B0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E82F2282B8895EC00802ED5 /* RegistrationSuccessMessage.swift */,
+				2EB37CA62B873E36003990B0 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2EB37CA72B873E36003990B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EB37CAC2B873E36003990B0 /* RegisterView.swift */,
+				2EB37CAB2B873E36003990B0 /* RegisterHeaderView.swift */,
+				2EB37CAA2B873E36003990B0 /* RegisterInputView.swift */,
+				2EB37CA92B873E36003990B0 /* RegisterFooterView.swift */,
+				2EB37CA82B873E36003990B0 /* RegisterSuccessView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		2EC3EE892B85C515007B6D10 /* Login */ = {
@@ -156,7 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				2EEADCA62B83346B009EE7CE /* BeChatted.h */,
+				2EB37CBF2B87433D003990B0 /* Bundle+DisplayName.swift */,
 				2EC3EE962B85C520007B6D10 /* Shared */,
+				2EB37CA32B873E36003990B0 /* Register */,
 				2EC3EE892B85C515007B6D10 /* Login */,
 			);
 			path = BeChatted;
@@ -306,8 +363,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */,
+				2EB37CBC2B874240003990B0 /* EmailValidatorStub.swift in Sources */,
 				2EB37CA22B8737E0003990B0 /* AuthServiceStub.swift in Sources */,
 				2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				2EB37CBA2B874119003990B0 /* RegisterViewModelTests.swift in Sources */,
+				2EB37CBE2B87427B003990B0 /* PasswordValidatorStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +375,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E82F2292B8895EC00802ED5 /* RegistrationSuccessMessage.swift in Sources */,
+				2EB37CC02B87433D003990B0 /* Bundle+DisplayName.swift in Sources */,
+				2EB37CAE2B873E36003990B0 /* RegisterViewModel.swift in Sources */,
 				2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */,
 				2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */,
 				2EC3EE9C2B85C520007B6D10 /* MessageProtocol.swift in Sources */,
@@ -326,6 +389,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */,
+				2EB37CB82B873E61003990B0 /* RegisterView.swift in Sources */,
+				2EB37CB72B873E5D003990B0 /* RegisterHeaderView.swift in Sources */,
+				2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */,
+				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
+				2EB37CB52B873E54003990B0 /* RegisterFooterView.swift in Sources */,
 				2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */,
 				2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */,
 				2EC3EE9E2B85C5AB007B6D10 /* LoginFooterView.swift in Sources */,
