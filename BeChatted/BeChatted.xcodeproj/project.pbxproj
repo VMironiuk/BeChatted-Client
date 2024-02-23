@@ -15,6 +15,7 @@
 		2E82F2332B8897C200802ED5 /* CreateAccountPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */; };
 		2E82F2352B8897DE00802ED5 /* AddUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */; };
 		2E82F2372B8897FA00802ED5 /* AddUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */; };
+		2E82F23B2B889FE500802ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E82F23A2B889FE500802ED5 /* Assets.xcassets */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
 		2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */; };
 		2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -60,6 +61,7 @@
 		2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountPayload.swift; sourceTree = "<group>"; };
 		2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserPayload.swift; sourceTree = "<group>"; };
 		2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserInfo.swift; sourceTree = "<group>"; };
+		2E82F23A2B889FE500802ED5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EB37C922B873791003990B0 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				2EC3EE962B85C520007B6D10 /* Shared */,
 				2EB37CA32B873E36003990B0 /* Register */,
 				2EC3EE892B85C515007B6D10 /* Login */,
+				2E82F23A2B889FE500802ED5 /* Assets.xcassets */,
 			);
 			path = BeChatted;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E82F23B2B889FE500802ED5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
