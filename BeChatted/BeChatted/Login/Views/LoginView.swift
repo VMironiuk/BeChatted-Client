@@ -12,7 +12,6 @@ struct LoginView: View {
     @Bindable private var viewModel: LoginViewModel
     private let footerView: LoginFooterView
     
-//    @EnvironmentObject var appData: AppData
     @State private var authButtonState: AuthButtonStyle.State = .normal
     
     private var errorTitle: String {
@@ -41,12 +40,10 @@ struct LoginView: View {
                 VStack {
                     Spacer()
                     button
-//                    LoginFooterView()
                     footerView
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
-//                    hideKeyboard()
                     onTapped?()
                 }
             }
@@ -70,7 +67,6 @@ private extension LoginView {
     
     private var button: some View {
         Button(buttonTitle) {
-//            hideKeyboard()
             onLoginButtonTapped?()
             authButtonState = .loading
             viewModel.login { result in

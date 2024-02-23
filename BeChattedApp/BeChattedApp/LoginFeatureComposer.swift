@@ -22,7 +22,7 @@ struct LoginFeatureComposer {
         return LoginViewComposer.composedLoginView(
             with: loginViewModel,
             onTapped: { UIApplication.shared.hideKeyboard() },
-            onLoginButtonTapped: { print("ON TAPPED LOGIN BUTTON") },
+            onLoginButtonTapped: { UIApplication.shared.hideKeyboard() },
             onRegisterButtonTapped: { print("ON TAPPED REGISTER BUTTON") },
             onLoginSuccessAction: { print("ON LOGIN SUCCES ACTION") })
     }
