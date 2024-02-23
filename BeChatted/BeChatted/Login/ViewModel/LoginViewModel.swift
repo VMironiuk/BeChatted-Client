@@ -7,52 +7,6 @@
 
 import Foundation
 
-public struct LoginPayload: Encodable, Equatable {
-    private let email: String
-    private let password: String
-    
-    public init(email: String, password: String) {
-        self.email = email
-        self.password = password
-    }
-}
-
-public struct LoginInfo: Decodable, Equatable {
-    public let user: String
-    public let token: String
-}
-
-public struct CreateAccountPayload: Encodable, Equatable {
-    private let email: String
-    private let password: String
-    
-    public init(email: String, password: String) {
-        self.email = email
-        self.password = password
-    }
-}
-
-public struct AddUserPayload: Encodable, Equatable {
-    private let name: String
-    private let email: String
-    private let avatarName: String
-    private let avatarColor: String
-    
-    public init(name: String, email: String, avatarName: String, avatarColor: String) {
-        self.name = name
-        self.email = email
-        self.avatarName = avatarName
-        self.avatarColor = avatarColor
-    }
-}
-
-public struct AddedUserInfo: Decodable, Equatable {
-    public let name: String
-    public let email: String
-    public let avatarName: String
-    public let avatarColor: String
-}
-
 @Observable public final class LoginViewModel {
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
