@@ -1,6 +1,6 @@
 //
 //  LoginView.swift
-//  Prototype
+//  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 23.10.2023.
 //

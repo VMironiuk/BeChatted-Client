@@ -21,6 +21,15 @@
 		2E82F2472B88A7AD00802ED5 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2432B88A79600802ED5 /* TextInputView.swift */; };
 		2E82F2482B88A7B100802ED5 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2402B88A78500802ED5 /* AuthHeaderView.swift */; };
 		2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2492B88AB9E00802ED5 /* View+KeyboardVisibility.swift */; };
+		2E82F24E2B88ACA800802ED5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */; };
+		2E82F24F2B88ACBD00802ED5 /* UserInputValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */; };
+		2E82F2502B88ACC900802ED5 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */; };
+		2E82F2512B88ACD500802ED5 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE982B85C520007B6D10 /* AuthError.swift */; };
+		2E82F2522B88ACE900802ED5 /* LoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22E2B88978100802ED5 /* LoginPayload.swift */; };
+		2E82F2532B88ACF100802ED5 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2302B8897A300802ED5 /* LoginInfo.swift */; };
+		2E82F2542B88AD3000802ED5 /* CreateAccountPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */; };
+		2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */; };
+		2E82F2562B88AD3900802ED5 /* AddUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
 		2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */; };
 		2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -451,18 +460,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E82F2522B88ACE900802ED5 /* LoginPayload.swift in Sources */,
 				2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */,
 				2EB37CB82B873E61003990B0 /* RegisterView.swift in Sources */,
+				2E82F24F2B88ACBD00802ED5 /* UserInputValidatorProtocol.swift in Sources */,
+				2E82F2542B88AD3000802ED5 /* CreateAccountPayload.swift in Sources */,
 				2EB37CB72B873E5D003990B0 /* RegisterHeaderView.swift in Sources */,
 				2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */,
+				2E82F2532B88ACF100802ED5 /* LoginInfo.swift in Sources */,
+				2E82F24E2B88ACA800802ED5 /* LoginViewModel.swift in Sources */,
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
+				2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */,
+				2E82F2502B88ACC900802ED5 /* AuthServiceProtocol.swift in Sources */,
 				2EB37CB52B873E54003990B0 /* RegisterFooterView.swift in Sources */,
 				2E82F2462B88A7A800802ED5 /* SecureInputView.swift in Sources */,
 				2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */,
 				2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */,
+				2E82F2562B88AD3900802ED5 /* AddUserInfo.swift in Sources */,
 				2E82F2472B88A7AD00802ED5 /* TextInputView.swift in Sources */,
 				2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */,
 				2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */,
+				2E82F2512B88ACD500802ED5 /* AuthError.swift in Sources */,
 				2EC3EE9E2B85C5AB007B6D10 /* LoginFooterView.swift in Sources */,
 				2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */,
 				2E82F2482B88A7B100802ED5 /* AuthHeaderView.swift in Sources */,

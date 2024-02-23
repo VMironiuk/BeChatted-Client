@@ -21,6 +21,15 @@ final class ColorProvider {
     static var authMainButtonColor: Color {
         assetColor(for: "Auth/MainButtonColor")
     }
+    static var authButtonNormalColor: Color {
+        assetColor(for: "Auth/Button/NormalColor")
+    }
+    static var authButtonLoadingColor: Color {
+        assetColor(for: "Auth/Button/LoadingColor")
+    }
+    static var authButtonFailedColor: Color {
+        assetColor(for: "Auth/Button/FailedColor")
+    }
     static var authBottomLabelColor: Color {
         assetColor(for: "Auth/BottomLabelColor")
     }
