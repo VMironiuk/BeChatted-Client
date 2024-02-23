@@ -16,6 +16,8 @@
 		2E82F2732B88BE4C00802ED5 /* BeChattediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2722B88BE4C00802ED5 /* BeChattediOS.framework */; };
 		2E82F2742B88BE4C00802ED5 /* BeChattediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2722B88BE4C00802ED5 /* BeChattediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */; };
+		2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */; };
+		2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */; };
 		2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */; };
 		2EEADC8E2B8327BF009EE7CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8D2B8327BF009EE7CE /* ContentView.swift */; };
 		2EEADC902B8327C1009EE7CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		2E82F26F2B88BE0E00802ED5 /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F2722B88BE4C00802ED5 /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceComposer.swift; sourceTree = "<group>"; };
+		2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFeatureComposer.swift; sourceTree = "<group>"; };
+		2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+HideKeyboard.swift"; sourceTree = "<group>"; };
 		2EEADC882B8327BF009EE7CE /* BeChattedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChattedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
 		2EEADC8D2B8327BF009EE7CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,7 +114,9 @@
 			children = (
 				2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */,
 				2EEADC8D2B8327BF009EE7CE /* ContentView.swift */,
+				2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */,
 				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
+				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
 				2EEADC912B8327C1009EE7CE /* Preview Content */,
 			);
@@ -198,7 +204,9 @@
 			files = (
 				2EEADC8E2B8327BF009EE7CE /* ContentView.swift in Sources */,
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
+				2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */,
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
+				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
