@@ -7,14 +7,6 @@
 
 import Foundation
 
-public protocol EmailValidatorProtocol {
-    func isValid(email: String) -> Bool
-}
-
-public protocol PasswordValidatorProtocol {
-    func isValid(password: String) -> Bool
-}
-
 public struct LoginPayload: Encodable, Equatable {
     private let email: String
     private let password: String
@@ -59,13 +51,6 @@ public struct AddedUserInfo: Decodable, Equatable {
     public let email: String
     public let avatarName: String
     public let avatarColor: String
-}
-
-
-public protocol AuthServiceProtocol {
-    func login(_ payload: LoginPayload, completion: @escaping (Result<LoginInfo, AuthError>) -> Void)
-    func createAccount(_ payload: CreateAccountPayload, completion: @escaping (Result<Void, AuthError>) -> Void)
-    func addUser(_ payload: AddUserPayload, authToken: String, completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void)
 }
 
 @Observable public final class LoginViewModel {
