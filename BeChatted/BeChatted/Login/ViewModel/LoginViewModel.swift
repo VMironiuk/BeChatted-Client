@@ -61,13 +61,6 @@ public struct AddedUserInfo: Decodable, Equatable {
     public let avatarColor: String
 }
 
-public enum AuthError: Error {
-    case server
-    case connectivity
-    case email
-    case credentials
-    case unknown
-}
 
 public protocol AuthServiceProtocol {
     func login(_ payload: LoginPayload, completion: @escaping (Result<LoginInfo, AuthError>) -> Void)

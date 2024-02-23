@@ -7,6 +7,14 @@
 
 import Foundation
 
+public enum AuthError: Error {
+    case server
+    case connectivity
+    case email
+    case credentials
+    case unknown
+}
+
 //public struct AuthError: Error, Equatable, MessageProtocol {
 //    private let authServiceError: AuthServiceError
 //    
