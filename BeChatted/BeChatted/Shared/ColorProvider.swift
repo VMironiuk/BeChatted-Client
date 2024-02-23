@@ -9,10 +9,31 @@ import SwiftUI
 
 final class ColorProvider {
     private init() {}
-    static var authMainButtonColor: Color {
-        Color("Auth/MainButtonColor", bundle: Bundle(for: self))
+    static var authHeaderColor: Color {
+        assetColor(for: "Auth/Header/HeaderColor")
     }
-    static  var authBottomLabelColor: Color {
-        Color("Auth/BottomLabelColor", bundle: Bundle(for: self))
+    static var authHeaderTitleColor: Color {
+        assetColor(for: "Auth/Header/TitleColor")
+    }
+    static var authHeaderSubtitleColor: Color {
+        assetColor(for: "Auth/Header/SubtitleColor")
+    }
+    static var authMainButtonColor: Color {
+        assetColor(for: "Auth/MainButtonColor")
+    }
+    static var authBottomLabelColor: Color {
+        assetColor(for: "Auth/BottomLabelColor")
+    }
+    static var authUserInputBorderColor: Color {
+        assetColor(for: "Auth/UserInput/BorderColor")
+    }
+    static var authUserInputTitleColor: Color {
+        assetColor(for: "Auth/UserInput/TitleColor")
+    }
+}
+
+extension ColorProvider {
+    private static func assetColor(for name: String) -> Color {
+        Color(name, bundle: Bundle(for: self))
     }
 }
