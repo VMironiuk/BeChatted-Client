@@ -16,6 +16,7 @@
 		2E82F2352B8897DE00802ED5 /* AddUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */; };
 		2E82F2372B8897FA00802ED5 /* AddUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */; };
 		2E82F23B2B889FE500802ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E82F23A2B889FE500802ED5 /* Assets.xcassets */; };
+		2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
 		2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */; };
 		2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -62,6 +63,7 @@
 		2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserPayload.swift; sourceTree = "<group>"; };
 		2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserInfo.swift; sourceTree = "<group>"; };
 		2E82F23A2B889FE500802ED5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProvider.swift; sourceTree = "<group>"; };
 		2EB37C922B873791003990B0 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				2E82F2382B88989100802ED5 /* RequestPayloads */,
 				2E82F2392B8898E000802ED5 /* ResponseInfos */,
+				2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */,
 				2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */,
 				2EC3EE982B85C520007B6D10 /* AuthError.swift */,
 				2EC3EE992B85C520007B6D10 /* MessageProtocol.swift */,
@@ -442,6 +445,7 @@
 				2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */,
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
 				2EB37CB52B873E54003990B0 /* RegisterFooterView.swift in Sources */,
+				2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */,
 				2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */,
 				2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */,
 				2EC3EE9E2B85C5AB007B6D10 /* LoginFooterView.swift in Sources */,

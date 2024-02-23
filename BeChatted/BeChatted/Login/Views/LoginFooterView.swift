@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-final class ColorProvider {
-    private init() {}
-    static var authMainButtonColor: Color {
-        Color("Auth/MainButtonColor", bundle: Bundle(for: self))
-    }
-    static  var authBottomLabelColor: Color {
-        Color("Auth/BottomLabelColor", bundle: Bundle(for: self))
-    }
-}
-
 struct LoginFooterViewComposer {
     private init() {}
     func composedFooterView(with registerAction: @escaping () -> Void) -> some View {
