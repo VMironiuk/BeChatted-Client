@@ -113,6 +113,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E82F2382B88989100802ED5 /* RequestPayloads */ = {
+			isa = PBXGroup;
+			children = (
+				2E82F22E2B88978100802ED5 /* LoginPayload.swift */,
+				2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */,
+				2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */,
+			);
+			path = RequestPayloads;
+			sourceTree = "<group>";
+		};
 		2EB37C932B873791003990B0 /* BeChattedTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,15 +205,13 @@
 		2EC3EE962B85C520007B6D10 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2E82F2382B88989100802ED5 /* RequestPayloads */,
 				2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */,
 				2EC3EE982B85C520007B6D10 /* AuthError.swift */,
 				2EC3EE992B85C520007B6D10 /* MessageProtocol.swift */,
 				2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */,
 				2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */,
-				2E82F22E2B88978100802ED5 /* LoginPayload.swift */,
 				2E82F2302B8897A300802ED5 /* LoginInfo.swift */,
-				2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */,
-				2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */,
 				2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */,
 			);
 			path = Shared;
