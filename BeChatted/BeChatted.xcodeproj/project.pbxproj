@@ -38,7 +38,6 @@
 		2EB37CA22B8737E0003990B0 /* AuthServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9F2B8737E0003990B0 /* AuthServiceStub.swift */; };
 		2EB37CAE2B873E36003990B0 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CA62B873E36003990B0 /* RegisterViewModel.swift */; };
 		2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CA82B873E36003990B0 /* RegisterSuccessView.swift */; };
-		2EB37CB52B873E54003990B0 /* RegisterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CA92B873E36003990B0 /* RegisterFooterView.swift */; };
 		2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CAA2B873E36003990B0 /* RegisterInputView.swift */; };
 		2EB37CB72B873E5D003990B0 /* RegisterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CAB2B873E36003990B0 /* RegisterHeaderView.swift */; };
 		2EB37CB82B873E61003990B0 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CAC2B873E36003990B0 /* RegisterView.swift */; };
@@ -91,7 +90,6 @@
 		2EB37C9F2B8737E0003990B0 /* AuthServiceStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthServiceStub.swift; sourceTree = "<group>"; };
 		2EB37CA62B873E36003990B0 /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		2EB37CA82B873E36003990B0 /* RegisterSuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterSuccessView.swift; sourceTree = "<group>"; };
-		2EB37CA92B873E36003990B0 /* RegisterFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterFooterView.swift; sourceTree = "<group>"; };
 		2EB37CAA2B873E36003990B0 /* RegisterInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterInputView.swift; sourceTree = "<group>"; };
 		2EB37CAB2B873E36003990B0 /* RegisterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterHeaderView.swift; sourceTree = "<group>"; };
 		2EB37CAC2B873E36003990B0 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 				2EB37CAC2B873E36003990B0 /* RegisterView.swift */,
 				2EB37CAB2B873E36003990B0 /* RegisterHeaderView.swift */,
 				2EB37CAA2B873E36003990B0 /* RegisterInputView.swift */,
-				2EB37CA92B873E36003990B0 /* RegisterFooterView.swift */,
 				2EB37CA82B873E36003990B0 /* RegisterSuccessView.swift */,
 			);
 			path = Views;
@@ -488,7 +485,6 @@
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
 				2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */,
 				2E82F2502B88ACC900802ED5 /* AuthServiceProtocol.swift in Sources */,
-				2EB37CB52B873E54003990B0 /* RegisterFooterView.swift in Sources */,
 				2E82F2462B88A7A800802ED5 /* SecureInputView.swift in Sources */,
 				2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */,
 				2E82F2772B88CA4900802ED5 /* LoginViewComposer.swift in Sources */,
