@@ -238,7 +238,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2EC3EE962B85C520007B6D10 /* Shared */ = {
+		2EC3EE962B85C520007B6D10 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				2E82F2382B88989100802ED5 /* RequestPayloads */,
@@ -254,7 +254,7 @@
 				2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */,
 				2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */,
 			);
-			path = Shared;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		2EEADC992B83346B009EE7CE = {
@@ -282,7 +282,7 @@
 				2EEADCA62B83346B009EE7CE /* BeChatted.h */,
 				2EB37CBF2B87433D003990B0 /* Bundle+DisplayName.swift */,
 				2E82F2492B88AB9E00802ED5 /* View+KeyboardVisibility.swift */,
-				2EC3EE962B85C520007B6D10 /* Shared */,
+				2EC3EE962B85C520007B6D10 /* Common */,
 				2EB37CA32B873E36003990B0 /* Register */,
 				2EC3EE892B85C515007B6D10 /* Login */,
 				2E82F23A2B889FE500802ED5 /* Assets.xcassets */,
