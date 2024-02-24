@@ -209,6 +209,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2EBE98102B89F3CC009EB16C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */,
+				2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */,
+				2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */,
+				2E82F2402B88A78500802ED5 /* AuthHeaderView.swift */,
+				2E82F2432B88A79600802ED5 /* TextInputView.swift */,
+				2E82F2422B88A79600802ED5 /* SecureInputView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		2EC3EE892B85C515007B6D10 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,12 +256,7 @@
 			children = (
 				2E82F2382B88989100802ED5 /* RequestPayloads */,
 				2E82F2392B8898E000802ED5 /* ResponseInfos */,
-				2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */,
-				2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */,
-				2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */,
-				2E82F2402B88A78500802ED5 /* AuthHeaderView.swift */,
-				2E82F2432B88A79600802ED5 /* TextInputView.swift */,
-				2E82F2422B88A79600802ED5 /* SecureInputView.swift */,
+				2EBE98102B89F3CC009EB16C /* UI */,
 				2EC3EE982B85C520007B6D10 /* AuthError.swift */,
 				2EC3EE992B85C520007B6D10 /* MessageProtocol.swift */,
 				2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */,
