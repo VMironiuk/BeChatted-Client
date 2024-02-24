@@ -52,7 +52,6 @@
 		2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE982B85C520007B6D10 /* AuthError.swift */; };
 		2EC3EE9C2B85C520007B6D10 /* MessageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE992B85C520007B6D10 /* MessageProtocol.swift */; };
 		2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */; };
-		2EC3EE9E2B85C5AB007B6D10 /* LoginFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8D2B85C515007B6D10 /* LoginFooterView.swift */; };
 		2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8E2B85C515007B6D10 /* LoginView.swift */; };
 		2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */; };
 		2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */; };
@@ -103,7 +102,6 @@
 		2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		2EBE98112B89F413009EB16C /* AuthFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFooterView.swift; sourceTree = "<group>"; };
 		2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		2EC3EE8D2B85C515007B6D10 /* LoginFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFooterView.swift; sourceTree = "<group>"; };
 		2EC3EE8E2B85C515007B6D10 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
 		2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginHeaderView.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 				2EC3EE8E2B85C515007B6D10 /* LoginView.swift */,
 				2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */,
 				2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */,
-				2EC3EE8D2B85C515007B6D10 /* LoginFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -502,7 +499,6 @@
 				2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */,
 				2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */,
 				2E82F2512B88ACD500802ED5 /* AuthError.swift in Sources */,
-				2EC3EE9E2B85C5AB007B6D10 /* LoginFooterView.swift in Sources */,
 				2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */,
 				2EBE980F2B89F1BD009EB16C /* ImageProvider.swift in Sources */,
 				2E82F2482B88A7B100802ED5 /* AuthHeaderView.swift in Sources */,

@@ -17,9 +17,14 @@ public struct LoginViewComposer {
         onRegisterButtonTapped: @escaping () -> Void,
         onLoginSuccessAction: @escaping () -> Void
     ) -> some View {
+        let footerView = AuthFooterView(
+            text: "Don’t have an account?",
+            buttonText: "Register",
+            onButtonTapped: onRegisterButtonTapped)
+        
         var loginView = LoginView(
             viewModel: viewModel,
-            footerView: LoginFooterView(onRegisterButtonTapped: onRegisterButtonTapped))
+            footerView: footerView)
         
         loginView.onTapped = onTapped
         loginView.onLoginButtonTapped = onLoginButtonTapped

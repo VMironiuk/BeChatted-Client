@@ -10,7 +10,7 @@ import BeChatted
 
 struct LoginView: View {
     @Bindable private var viewModel: LoginViewModel
-    private let footerView: LoginFooterView
+    private let footerView: AuthFooterView
     
     @State private var authButtonState: AuthButtonStyle.State = .normal
     
@@ -26,7 +26,7 @@ struct LoginView: View {
     var onLoginButtonTapped: (() -> Void)?
     var onLoginSuccessAction: (() -> Void)?
     
-    init(viewModel: LoginViewModel, footerView: LoginFooterView) {
+    init(viewModel: LoginViewModel, footerView: AuthFooterView) {
         self.viewModel = viewModel
         self.footerView = footerView
         
@@ -99,7 +99,7 @@ private extension LoginView {
             emailValidator: EmailValidator(),
             passwordValidator: PasswordValidator(),
             authService: AuthService()),
-        footerView: LoginFooterView(onRegisterButtonTapped: {}))
+        footerView: AuthFooterView(text: "Don't have an account?", buttonText: "Register") {})
 }
 
 private struct EmailValidator: EmailValidatorProtocol {
