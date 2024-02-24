@@ -48,6 +48,7 @@
 		2EBE980F2B89F1BD009EB16C /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */; };
 		2EBE98122B89F413009EB16C /* AuthFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98112B89F413009EB16C /* AuthFooterView.swift */; };
 		2EBE98132B89F915009EB16C /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37CA62B873E36003990B0 /* RegisterViewModel.swift */; };
+		2EBE98162B89FD1E009EB16C /* RegisterViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98142B89FD09009EB16C /* RegisterViewComposer.swift */; };
 		2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */; };
 		2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE982B85C520007B6D10 /* AuthError.swift */; };
 		2EC3EE9C2B85C520007B6D10 /* MessageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE992B85C520007B6D10 /* MessageProtocol.swift */; };
@@ -100,6 +101,7 @@
 		2EB37CBF2B87433D003990B0 /* Bundle+DisplayName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+DisplayName.swift"; sourceTree = "<group>"; };
 		2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		2EBE98112B89F413009EB16C /* AuthFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFooterView.swift; sourceTree = "<group>"; };
+		2EBE98142B89FD09009EB16C /* RegisterViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewComposer.swift; sourceTree = "<group>"; };
 		2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2EC3EE8E2B85C515007B6D10 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				2EB37CA42B873E36003990B0 /* ViewModel */,
 				2EB37CA72B873E36003990B0 /* Views */,
+				2EBE98142B89FD09009EB16C /* RegisterViewComposer.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */,
 				2EBE980F2B89F1BD009EB16C /* ImageProvider.swift in Sources */,
 				2E82F2482B88A7B100802ED5 /* AuthHeaderView.swift in Sources */,
+				2EBE98162B89FD1E009EB16C /* RegisterViewComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
