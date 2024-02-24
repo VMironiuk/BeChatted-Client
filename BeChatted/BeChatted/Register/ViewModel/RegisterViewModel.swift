@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import BeChatted
 
 @Observable public final class RegisterViewModel {
     public typealias RegisterCompletion = (Result<Void, AuthError>) -> Void
