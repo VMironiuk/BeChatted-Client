@@ -15,7 +15,7 @@ import SwiftUI
 struct BeChattedApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginFeatureComposer.loginView
+            RegisterFeatureComposer.registerView
         }
     }
 }

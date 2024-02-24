@@ -18,6 +18,8 @@
 		2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */; };
 		2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */; };
 		2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */; };
+		2EBE98182B89FD6F009EB16C /* RegisterFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */; };
+		2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */; };
 		2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */; };
 		2EEADC8E2B8327BF009EE7CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8D2B8327BF009EE7CE /* ContentView.swift */; };
 		2EEADC902B8327C1009EE7CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 		2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceComposer.swift; sourceTree = "<group>"; };
 		2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFeatureComposer.swift; sourceTree = "<group>"; };
 		2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+HideKeyboard.swift"; sourceTree = "<group>"; };
+		2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFeatureComposer.swift; sourceTree = "<group>"; };
+		2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+DisplayName.swift"; sourceTree = "<group>"; };
 		2EEADC882B8327BF009EE7CE /* BeChattedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChattedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
 		2EEADC8D2B8327BF009EE7CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,8 +121,10 @@
 				2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */,
 				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
 				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
+				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
 				2EEADC912B8327C1009EE7CE /* Preview Content */,
+				2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */,
 			);
 			path = BeChattedApp;
 			sourceTree = "<group>";
@@ -205,8 +211,10 @@
 				2EEADC8E2B8327BF009EE7CE /* ContentView.swift in Sources */,
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
 				2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */,
+				2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */,
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
 				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
+				2EBE98182B89FD6F009EB16C /* RegisterFeatureComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
