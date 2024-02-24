@@ -39,6 +39,9 @@ final class ColorProvider {
     static var authUserInputTitleColor: Color {
         assetColor(for: "Auth/UserInput/TitleColor")
     }
+    static var authRegistrationSuccessLabelColor: Color {
+        assetColor(for: "Auth/SuccessLabelColor")
+    }
 }
 
 extension ColorProvider {
