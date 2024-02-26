@@ -12,9 +12,9 @@ import BeChattediOS
 import SwiftUI
 
 struct RegisterFeatureComposer {
-    private init() {}
+    let navigationController: MainNavigationController
     
-    static var registerView: some View {
+    var registerView: some View {
         let viewModel = RegisterViewModel(
             emailValidator: EmailValidator(),
             passwordValidator: PasswordValidator(),
@@ -26,8 +26,8 @@ struct RegisterFeatureComposer {
             onViewTapped: { UIApplication.shared.hideKeyboard() },
             onRegisterButtonTapped: { UIApplication.shared.hideKeyboard() },
             onRegisterSuccessAction: { print("ON REGISTER SUCCESS ACTION") },
-            onBackButtonTapped: { print("ON BACK BUTTON TAPPED") },
-            onLoginButtonTapped: { print("ON LOGIN BUTTON TAPPED") })
+            onBackButtonTapped: { navigationController.pop() },
+            onLoginButtonTapped: { navigationController.pop() })
     }
 }
 

@@ -11,9 +11,9 @@ import BeChattedUserInputValidation
 import SwiftUI
 
 struct LoginFeatureComposer {
-    private init() {}
-        
-    static var loginView: some View {
+    let navigationController: MainNavigationController
+    
+    var loginView: some View {
         let loginViewModel = BeChattediOS.LoginViewModel(
             emailValidator: EmailValidator(),
             passwordValidator: PasswordValidator(),
@@ -23,7 +23,7 @@ struct LoginFeatureComposer {
             with: loginViewModel,
             onTapped: { UIApplication.shared.hideKeyboard() },
             onLoginButtonTapped: { UIApplication.shared.hideKeyboard() },
-            onRegisterButtonTapped: { print("ON TAPPED REGISTER BUTTON") },
+            onRegisterButtonTapped: { navigationController.goToRegister() },
             onLoginSuccessAction: { print("ON LOGIN SUCCES ACTION") })
     }
 }

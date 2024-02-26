@@ -13,9 +13,28 @@ import SwiftUI
 
 @main
 struct BeChattedApp: App {
+    @Bindable private var mainNavigationController = MainNavigationController()
+    
     var body: some Scene {
         WindowGroup {
-            RegisterFeatureComposer.registerView
+            NavigationStack(path: $mainNavigationController.path) {
+                loginView
+                    .navigationDestination(for: MainNavigationController.Destination.self) { destination in
+                        registerView
+                    }
+            }
         }
+    }
+}
+
+private extension BeChattedApp {
+    private var loginView: some View {
+        let loginComposer = LoginFeatureComposer(navigationController: mainNavigationController)
+        return loginComposer.loginView
+    }
+    
+    private var registerView: some View {
+        let registerComposer = RegisterFeatureComposer(navigationController: mainNavigationController)
+        return registerComposer.registerView
     }
 }
