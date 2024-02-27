@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */; };
+		2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */; };
+		2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */; };
 		2E82F2662B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; };
 		2E82F2672B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E82F26A2B88BDE200802ED5 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2692B88BDE200802ED5 /* BeChattedAuth.framework */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailValidator+EmailValidatorProtocol.swift"; sourceTree = "<group>"; };
+		2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordValidator+PasswordValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E82F2582B88BC8100802ED5 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F2592B88BC8100802ED5 /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F25A2B88BC8100802ED5 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,8 @@
 			children = (
 				2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */,
 				2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */,
+				2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */,
+				2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */,
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */,
@@ -247,6 +254,7 @@
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
 				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
 				2EBE98182B89FD6F009EB16C /* RegisterFeatureComposer.swift in Sources */,
+				2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,11 +28,6 @@ struct LoginFeatureComposer {
     }
 }
 
-
-extension EmailValidator: BeChattediOS.EmailValidatorProtocol {}
-
-extension PasswordValidator: BeChattediOS.PasswordValidatorProtocol {}
-
 extension AuthService: BeChattediOS.AuthServiceProtocol {
     public func addUser(
         _ payload: BeChattediOS.AddUserPayload,
