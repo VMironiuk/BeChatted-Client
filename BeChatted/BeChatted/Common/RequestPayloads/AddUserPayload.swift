@@ -8,10 +8,10 @@
 import Foundation
 
 public struct AddUserPayload: Encodable, Equatable {
-    private let name: String
-    private let email: String
-    private let avatarName: String
-    private let avatarColor: String
+    public let name: String
+    public let email: String
+    public let avatarName: String
+    public let avatarColor: String
     
     public init(name: String, email: String, avatarName: String, avatarColor: String) {
         self.name = name

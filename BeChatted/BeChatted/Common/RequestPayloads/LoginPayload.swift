@@ -8,8 +8,8 @@
 import Foundation
 
 public struct LoginPayload: Encodable, Equatable {
-    private let email: String
-    private let password: String
+    public let email: String
+    public let password: String
     
     public init(email: String, password: String) {
         self.email = email

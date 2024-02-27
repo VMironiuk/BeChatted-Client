@@ -14,7 +14,7 @@
 		2E82F2312B8897A300802ED5 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2302B8897A300802ED5 /* LoginInfo.swift */; };
 		2E82F2332B8897C200802ED5 /* CreateAccountPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */; };
 		2E82F2352B8897DE00802ED5 /* AddUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */; };
-		2E82F2372B8897FA00802ED5 /* AddUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */; };
+		2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddedUserInfo.swift */; };
 		2E82F23B2B889FE500802ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E82F23A2B889FE500802ED5 /* Assets.xcassets */; };
 		2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */; };
 		2E82F2462B88A7A800802ED5 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2422B88A79600802ED5 /* SecureInputView.swift */; };
@@ -29,7 +29,7 @@
 		2E82F2532B88ACF100802ED5 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2302B8897A300802ED5 /* LoginInfo.swift */; };
 		2E82F2542B88AD3000802ED5 /* CreateAccountPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */; };
 		2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */; };
-		2E82F2562B88AD3900802ED5 /* AddUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */; };
+		2E82F2562B88AD3900802ED5 /* AddedUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddedUserInfo.swift */; };
 		2E82F2752B88C75A00802ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E82F23A2B889FE500802ED5 /* Assets.xcassets */; };
 		2E82F2772B88CA4900802ED5 /* LoginViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2762B88CA4900802ED5 /* LoginViewComposer.swift */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
@@ -78,7 +78,7 @@
 		2E82F2302B8897A300802ED5 /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		2E82F2322B8897C200802ED5 /* CreateAccountPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountPayload.swift; sourceTree = "<group>"; };
 		2E82F2342B8897DE00802ED5 /* AddUserPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserPayload.swift; sourceTree = "<group>"; };
-		2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserInfo.swift; sourceTree = "<group>"; };
+		2E82F2362B8897FA00802ED5 /* AddedUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedUserInfo.swift; sourceTree = "<group>"; };
 		2E82F23A2B889FE500802ED5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProvider.swift; sourceTree = "<group>"; };
 		2E82F2402B88A78500802ED5 /* AuthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				2E82F2302B8897A300802ED5 /* LoginInfo.swift */,
-				2E82F2362B8897FA00802ED5 /* AddUserInfo.swift */,
+				2E82F2362B8897FA00802ED5 /* AddedUserInfo.swift */,
 			);
 			path = ResponseInfos;
 			sourceTree = "<group>";
@@ -463,7 +463,7 @@
 				2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */,
 				2E82F2332B8897C200802ED5 /* CreateAccountPayload.swift in Sources */,
 				2EB37CAE2B873E36003990B0 /* RegisterViewModel.swift in Sources */,
-				2E82F2372B8897FA00802ED5 /* AddUserInfo.swift in Sources */,
+				2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */,
 				2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */,
 				2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */,
 				2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */,
@@ -494,7 +494,7 @@
 				2E82F2772B88CA4900802ED5 /* LoginViewComposer.swift in Sources */,
 				2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */,
 				2EBE98122B89F413009EB16C /* AuthFooterView.swift in Sources */,
-				2E82F2562B88AD3900802ED5 /* AddUserInfo.swift in Sources */,
+				2E82F2562B88AD3900802ED5 /* AddedUserInfo.swift in Sources */,
 				2E82F2472B88A7AD00802ED5 /* TextInputView.swift in Sources */,
 				2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */,
 				2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */,
