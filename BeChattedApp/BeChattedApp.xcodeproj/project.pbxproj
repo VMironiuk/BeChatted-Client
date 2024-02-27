@@ -82,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E32BE822B8DF32100EEF27E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */,
+				2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2E82F2572B88BC8100802ED5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,13 +130,12 @@
 				2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */,
 				2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */,
 				2EEADC8D2B8327BF009EE7CE /* ContentView.swift */,
-				2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */,
+				2E32BE822B8DF32100EEF27E /* Extensions */,
 				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
 				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
 				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
 				2EEADC912B8327C1009EE7CE /* Preview Content */,
-				2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */,
 			);
 			path = BeChattedApp;
 			sourceTree = "<group>";
