@@ -107,6 +107,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		2E32BE852B8DF3AA00EEF27E /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */,
+			);
+			path = NavigationControllers;
+			sourceTree = "<group>";
+		};
 		2E82F2572B88BC8100802ED5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				2E32BE842B8DF38800EEF27E /* App */,
-				2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */,
+				2E32BE852B8DF3AA00EEF27E /* NavigationControllers */,
 				2E32BE832B8DF34900EEF27E /* Composers */,
 				2E32BE822B8DF32100EEF27E /* Extensions */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
