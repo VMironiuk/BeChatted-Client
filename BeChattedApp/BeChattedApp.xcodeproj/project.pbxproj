@@ -22,7 +22,6 @@
 		2EBE98182B89FD6F009EB16C /* RegisterFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */; };
 		2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */; };
 		2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */; };
-		2EEADC8E2B8327BF009EE7CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8D2B8327BF009EE7CE /* ContentView.swift */; };
 		2EEADC902B8327C1009EE7CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */; };
 		2EEADC932B8327C1009EE7CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -62,7 +61,6 @@
 		2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+DisplayName.swift"; sourceTree = "<group>"; };
 		2EEADC882B8327BF009EE7CE /* BeChattedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChattedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
-		2EEADC8D2B8327BF009EE7CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +99,14 @@
 			path = Composers;
 			sourceTree = "<group>";
 		};
+		2E32BE842B8DF38800EEF27E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		2E82F2572B88BC8100802ED5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,11 +143,10 @@
 		2EEADC8A2B8327BF009EE7CE /* BeChattedApp */ = {
 			isa = PBXGroup;
 			children = (
-				2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */,
+				2E32BE842B8DF38800EEF27E /* App */,
 				2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */,
-				2EEADC8D2B8327BF009EE7CE /* ContentView.swift */,
-				2E32BE822B8DF32100EEF27E /* Extensions */,
 				2E32BE832B8DF34900EEF27E /* Composers */,
+				2E32BE822B8DF32100EEF27E /* Extensions */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
 				2EEADC912B8327C1009EE7CE /* Preview Content */,
 			);
@@ -227,7 +232,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EEADC8E2B8327BF009EE7CE /* ContentView.swift in Sources */,
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */,
