@@ -15,22 +15,6 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertFalse(sut.isUserInputValid)
     }
     
-    func test_init_setsSuccessTitleCorrectly() {
-        let successTitle = "success title"
-        let successMessage = SuccessMessageStub(stubbedTitle: successTitle)
-        let (sut, _) = makeSUT(successMessage: successMessage)
-        
-        XCTAssertEqual(sut.successMessageTitle, successTitle)
-    }
-    
-    func test_init_setsSuccessDescriptionCorrectly() {
-        let successDescription = "success description"
-        let successMessage = SuccessMessageStub(stubbedDescription: successDescription)
-        let (sut, _) = makeSUT(successMessage: successMessage)
-        
-        XCTAssertEqual(sut.successMessageDescription, successDescription)
-    }
-    
     func test_isUserInputValid_returnsFalseOnEmptyName() {
         let (sut, _) = makeSUT(userName: "", isEmailValidStub: true, isPasswordValidStub: true)
         XCTAssertFalse(sut.isUserInputValid)
@@ -143,7 +127,6 @@ final class RegisterViewModelTests: XCTestCase {
         userName: String = "",
         isEmailValidStub: Bool = false,
         isPasswordValidStub: Bool = false,
-        successMessage: SuccessMessageStub = SuccessMessageStub(),
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (RegisterViewModel, AuthServiceStub) {
@@ -153,8 +136,7 @@ final class RegisterViewModelTests: XCTestCase {
         let sut = RegisterViewModel(
             emailValidator: emailValidator,
             passwordValidator: passwordValidator,
-            authService: authService,
-            successMessage: successMessage
+            authService: authService
         )
         
         sut.name = userName
@@ -225,13 +207,5 @@ final class RegisterViewModelTests: XCTestCase {
         
     private func unknownRegisterError() -> AuthError {
         .unknown
-    }
-    
-    private struct SuccessMessageStub: MessageProtocol {
-        var stubbedTitle: String = ""
-        var stubbedDescription: String = ""
-        
-        var title: String { stubbedTitle }
-        var description: String { stubbedDescription }
     }
 }

@@ -22,20 +22,15 @@ import Foundation
     public var isUserInputValid: Bool {
         !name.isEmpty && emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }
-    public let successMessageTitle: String
-    public let successMessageDescription: String
     
     public init(
         emailValidator: EmailValidatorProtocol,
         passwordValidator: PasswordValidatorProtocol,
-        authService: AuthServiceProtocol,
-        successMessage: MessageProtocol
+        authService: AuthServiceProtocol
     ) {
         self.emailValidator = emailValidator
         self.passwordValidator = passwordValidator
         self.authService = authService
-        self.successMessageTitle = successMessage.title
-        self.successMessageDescription = successMessage.description
     }
     
     public func register(completion: @escaping RegisterCompletion) {

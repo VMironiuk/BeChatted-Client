@@ -18,8 +18,7 @@ struct RegisterFeatureComposer {
         let viewModel = RegisterViewModel(
             emailValidator: EmailValidator(),
             passwordValidator: PasswordValidator(),
-            authService: AuthServiceComposer.authService, 
-            successMessage: RegistrationSuccessMessage())
+            authService: AuthServiceComposer.authService)
         
         return RegisterViewComposer.composedRegisterView(
             with: viewModel,
@@ -29,15 +28,4 @@ struct RegisterFeatureComposer {
             onBackButtonTapped: { navigationController.pop() },
             onLoginButtonTapped: { navigationController.pop() })
     }
-}
-
-private struct RegistrationSuccessMessage: MessageProtocol {
-    static private var appName: String {
-        Bundle.main.displayNameOrEmpty
-    }
-    let title = "Welcome to \(appName)!"
-    let description = "Congratulations, your registration is complete! "
-        + "To begin connecting, chatting, and sharing moments with friends and "
-        + "family, please log in to your new \(appName) account. Discover the "
-        + "world of \(appName) and make every conversation count."
 }
