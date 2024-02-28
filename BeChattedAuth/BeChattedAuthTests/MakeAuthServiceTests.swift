@@ -47,7 +47,7 @@ final class MakeAuthServiceTests: XCTestCase {
     // MARK: - Helpers
     
     
-    private func authService() -> AuthServiceProtocol {
+    private func authService() -> AuthService {
         makeAuthService(configuration: authServiceConfiguration())
     }
     

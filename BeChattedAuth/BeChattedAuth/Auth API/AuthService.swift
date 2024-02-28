@@ -7,7 +7,15 @@
 
 import Foundation
 
-final class AuthService: AuthServiceProtocol {
+public enum AuthServiceError: Error {
+    case server
+    case connectivity
+    case email
+    case credentials
+    case unknown
+}
+
+public final class AuthService {
     private let newAccountService: NewAccountServiceProtocol
     private let addNewUserService: AddNewUserServiceProtocol
     private let userLoginService: UserLoginServiceProtocol
@@ -25,25 +33,25 @@ final class AuthService: AuthServiceProtocol {
         self.userLogoutService = userLogoutService
     }
     
-    func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
+    public func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
         newAccountService.send(newAccountPayload: payload) { result in
             completion(NewAccountResultMapper.result(for: result))
         }
     }
     
-    func addUser(_ payload: NewUserPayload, authToken: String, completion: @escaping (Result<NewUserInfo, AuthServiceError>) -> Void) {
+    public func addUser(_ payload: NewUserPayload, authToken: String, completion: @escaping (Result<NewUserInfo, AuthServiceError>) -> Void) {
         addNewUserService.send(newUserPayload: payload, authToken: authToken) { result in
             completion(AddUserResultMapper.result(for: result))
         }
     }
     
-    func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, AuthServiceError>) -> Void) {
+    public func login(_ payload: UserLoginPayload, completion: @escaping (Result<UserLoginInfo, AuthServiceError>) -> Void) {
         userLoginService.send(userLoginPayload: payload) { result in
             completion(LoginResultMapper.result(for: result))
         }
     }
         
-    func logout(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
+    public func logout(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
         userLogoutService.logout { result in
             completion(LogoutResultMapper.result(for: result))
         }

@@ -6,48 +6,48 @@
 //
 
 import Foundation
-import BeChattedAuth
+import BeChatted
 
 final class AuthServiceStub: AuthServiceProtocol {
     private(set) var createAccountCallCount: Int = 0
     private(set) var addUserCallCount: Int = 0
     private(set) var loginCallCount: Int = 0
     private(set) var logoutCallCount: Int = 0
-    
-    private var createAccountCompletion: ((Result<Void, AuthServiceError>) -> Void)?
-    private var loginCompletion: ((Result<UserLoginInfo, AuthServiceError>) -> Void)?
-    private var addUserCompletion: ((Result<NewUserInfo, AuthServiceError>) -> Void)?
+
+    private var createAccountCompletion: ((Result<Void, AuthError>) -> Void)?
+    private var loginCompletion: ((Result<LoginInfo, AuthError>) -> Void)?
+    private var addUserCompletion: ((Result<AddedUserInfo, AuthError>) -> Void)?
     
     func createAccount(
-        _ payload: NewAccountPayload,
-        completion: @escaping (Result<Void, AuthServiceError>) -> Void
+        _ payload: CreateAccountPayload,
+        completion: @escaping (Result<Void, AuthError>) -> Void
     ) {
         createAccountCallCount += 1
         createAccountCompletion = completion
     }
     
     func addUser(
-        _ payload: NewUserPayload,
+        _ payload: AddUserPayload,
         authToken: String,
-        completion: @escaping (Result<NewUserInfo, AuthServiceError>) -> Void
+        completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void
     ) {
         addUserCallCount += 1
         addUserCompletion = completion
     }
     
     func login(
-        _ payload: UserLoginPayload,
-        completion: @escaping (Result<UserLoginInfo, AuthServiceError>) -> Void
+        _ payload: LoginPayload,
+        completion: @escaping (Result<LoginInfo, AuthError>) -> Void
     ) {
         loginCallCount += 1
         loginCompletion = completion
     }
     
-    func logout(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
+    func logout(completion: @escaping (Result<Void, AuthError>) -> Void) {
         logoutCallCount += 1
     }
     
-    func completeCreateAccount(with error: AuthServiceError) {
+    func completeCreateAccountWithError(_ error: AuthError) {
         createAccountCompletion?(.failure(error))
     }
     
@@ -55,7 +55,7 @@ final class AuthServiceStub: AuthServiceProtocol {
         createAccountCompletion?(.success(()))
     }
     
-    func completeLogin(with error: AuthServiceError) {
+    func completeLoginWithError(_ error: AuthError) {
         loginCompletion?(.failure(error))
     }
     
@@ -66,11 +66,11 @@ final class AuthServiceStub: AuthServiceProtocol {
             "token": "auth token"
         }
         """.data(using: .utf8)
-        let dummyUserLoginInfo = try! JSONDecoder().decode(UserLoginInfo.self, from: dummyLoginInfoData!)
-        loginCompletion?(.success(dummyUserLoginInfo))
+        let dummyLoginInfo = try! JSONDecoder().decode(LoginInfo.self, from: dummyLoginInfoData!)
+        loginCompletion?(.success(dummyLoginInfo))
     }
     
-    func completeAddUser(with error: AuthServiceError) {
+    func completeAddUserWithError(_ error: AuthError) {
         addUserCompletion?(.failure(error))
     }
     
@@ -83,7 +83,7 @@ final class AuthServiceStub: AuthServiceProtocol {
             "avatarColor": "avatarColor"
         }
         """.data(using: .utf8)
-        let dummyNewUserInfo = try! JSONDecoder().decode(NewUserInfo.self, from: dummyNewUserInfoData!)
+        let dummyNewUserInfo = try! JSONDecoder().decode(AddedUserInfo.self, from: dummyNewUserInfoData!)
         addUserCompletion?(.success(dummyNewUserInfo))
     }
 }

@@ -32,7 +32,6 @@
 		2EDB71582AF2B6EE00243018 /* UserLoginServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB713C2AF2B6EE00243018 /* UserLoginServiceProtocol.swift */; };
 		2EDB71592AF2B6EE00243018 /* UserLoginServiceResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB713E2AF2B6EE00243018 /* UserLoginServiceResultMapper.swift */; };
 		2EDB715A2AF2B6EE00243018 /* UserLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB713F2AF2B6EE00243018 /* UserLoginService.swift */; };
-		2EDB715B2AF2B6EE00243018 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71412AF2B6EE00243018 /* AuthServiceProtocol.swift */; };
 		2EDB715C2AF2B6EE00243018 /* NewUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71432AF2B6EE00243018 /* NewUserInfo.swift */; };
 		2EDB715D2AF2B6EE00243018 /* NewUserPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71442AF2B6EE00243018 /* NewUserPayload.swift */; };
 		2EDB715E2AF2B6EE00243018 /* AddNewUserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB71452AF2B6EE00243018 /* AddNewUserServiceProtocol.swift */; };
@@ -86,7 +85,6 @@
 		2EDB713C2AF2B6EE00243018 /* UserLoginServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginServiceProtocol.swift; sourceTree = "<group>"; };
 		2EDB713E2AF2B6EE00243018 /* UserLoginServiceResultMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginServiceResultMapper.swift; sourceTree = "<group>"; };
 		2EDB713F2AF2B6EE00243018 /* UserLoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginService.swift; sourceTree = "<group>"; };
-		2EDB71412AF2B6EE00243018 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
 		2EDB71432AF2B6EE00243018 /* NewUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserInfo.swift; sourceTree = "<group>"; };
 		2EDB71442AF2B6EE00243018 /* NewUserPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserPayload.swift; sourceTree = "<group>"; };
 		2EDB71452AF2B6EE00243018 /* AddNewUserServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewUserServiceProtocol.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 				2EDB710D2AF2B52800243018 /* BeChattedAuth.h */,
 				2EDB71662AF2B7F700243018 /* BeChattedAuth.swift */,
 				2EDB714B2AF2B6EE00243018 /* Shared */,
-				2EDB71402AF2B6EE00243018 /* Auth Feature */,
 				2EDB71492AF2B6EE00243018 /* Auth API */,
 				2EDB71362AF2B6EE00243018 /* New Account Feature */,
 				2EDB71332AF2B6EE00243018 /* New Account API */,
@@ -223,14 +220,6 @@
 				2EDB713F2AF2B6EE00243018 /* UserLoginService.swift */,
 			);
 			path = "User Login API";
-			sourceTree = "<group>";
-		};
-		2EDB71402AF2B6EE00243018 /* Auth Feature */ = {
-			isa = PBXGroup;
-			children = (
-				2EDB71412AF2B6EE00243018 /* AuthServiceProtocol.swift */,
-			);
-			path = "Auth Feature";
 			sourceTree = "<group>";
 		};
 		2EDB71422AF2B6EE00243018 /* Add New User Feature */ = {
@@ -412,7 +401,6 @@
 				2E8333B62B1B67FC002E67D5 /* LogoutResultMapper.swift in Sources */,
 				2EDB715F2AF2B6EE00243018 /* AddNewUserService.swift in Sources */,
 				2EDB71672AF2B7F700243018 /* BeChattedAuth.swift in Sources */,
-				2EDB715B2AF2B6EE00243018 /* AuthServiceProtocol.swift in Sources */,
 				2EDB71592AF2B6EE00243018 /* UserLoginServiceResultMapper.swift in Sources */,
 				2EDB71562AF2B6EE00243018 /* UserLoginPayload.swift in Sources */,
 				2EDB71542AF2B6EE00243018 /* NewAccountPayload.swift in Sources */,
@@ -602,7 +590,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
@@ -637,7 +625,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
@@ -661,7 +649,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8U849676MP;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedAuthTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -680,7 +668,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8U849676MP;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedAuthTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

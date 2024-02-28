@@ -7,56 +7,26 @@
 
 import XCTest
 import BeChatted
-import BeChattedAuth
-import BeChattedUserInputValidation
 
 final class LoginViewModelTests: XCTestCase {
 
     func test_init_containsNonValidUserInput() {
-        let (sut, _) = makeSUT()
+        let (sut, _) = makeSUT(isEmailValidStub: false, isPasswordValidStub: false)
         XCTAssertFalse(sut.isUserInputValid)
     }
     
-    func test_isUserInputValid_returnsFalseOnEmptyPassword() {
-        let (sut, _) = makeSUT()
-        
-        sut.email = "mail@example.com"
-        
+    func test_isUserInputValid_returnsFalseOnInvalidPassword() {
+        let (sut, _) = makeSUT(isEmailValidStub: true, isPasswordValidStub: false)
         XCTAssertFalse(sut.isUserInputValid)
     }
     
-    func test_isUserInputValid_returnsFalseOnEmptyEmail() {
-        let (sut, _) = makeSUT()
-        
-        sut.password = "0123456789"
-        
-        XCTAssertFalse(sut.isUserInputValid)
-    }
-    
-    func test_isUserInputValid_returnsFalseOnInvalidEmailFormat() {
-        let (sut, _) = makeSUT()
-        
-        sut.email = "emailexample.com"
-        sut.password = "0123456789"
-        
-        XCTAssertFalse(sut.isUserInputValid)
-    }
-    
-    func test_isUserInputValid_returnsFalseOnInvalidPasswordFormat() {
-        let (sut, _) = makeSUT()
-        
-        sut.email = "email@example.com"
-        sut.password = "1234"
-        
+    func test_isUserInputValid_returnsFalseOnInvalidEmail() {
+        let (sut, _) = makeSUT(isEmailValidStub: false, isPasswordValidStub: true)
         XCTAssertFalse(sut.isUserInputValid)
     }
     
     func test_isUserInputValid_returnsTrueOnValidCredentials() {
-        let (sut, _) = makeSUT()
-        
-        sut.email = "mail@example.com"
-        sut.password = "0123456789"
-        
+        let (sut, _) = makeSUT(isEmailValidStub: true, isPasswordValidStub: true)
         XCTAssertTrue(sut.isUserInputValid)
     }
     
@@ -94,7 +64,7 @@ final class LoginViewModelTests: XCTestCase {
     
     func test_login_failsIfAuthServiceLoginRequestFails() {
         let (sut, authService) = makeSUT()
-        let credentialsLoginError = AuthError(authServiceError: .credentials)
+        let unknownLoginError = AuthError.unknown
         let exp = expectation(description: "Wait for login request completion")
         
         sut.login { result in
@@ -102,12 +72,12 @@ final class LoginViewModelTests: XCTestCase {
             case .success:
                 XCTFail("Expected error, got \(result) instead")
             case let .failure(receivedError):
-                XCTAssertEqual(receivedError, credentialsLoginError)
+                XCTAssertEqual(receivedError, unknownLoginError)
             }
             exp.fulfill()
         }
         
-        authService.completeLogin(with: .credentials)
+        authService.completeLoginWithError(.unknown)
         wait(for: [exp], timeout: 1)
     }
 
@@ -131,9 +101,14 @@ final class LoginViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LoginViewModel, AuthServiceStub) {
-        let emailValidator = EmailValidator()
-        let passwordValidator = PasswordValidator()
+    private func makeSUT(
+        isEmailValidStub: Bool = false,
+        isPasswordValidStub: Bool = false,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (LoginViewModel, AuthServiceStub) {
+        let emailValidator = EmailValidatorStub(isValidStubbed: isEmailValidStub)
+        let passwordValidator = PasswordValidatorStub(isValidStubbed: isPasswordValidStub)
         let authService = AuthServiceStub()
         let sut = LoginViewModel(
             emailValidator: emailValidator,

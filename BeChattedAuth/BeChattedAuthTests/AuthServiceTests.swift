@@ -9,7 +9,7 @@ import XCTest
 @testable import BeChattedAuth
 
 final class AuthServiceTests: XCTestCase {
-    private var sut: AuthServiceProtocol!
+    private var sut: AuthService!
     private var newAccountService: NewAccountServiceSpy!
     private var addNewUserService: AddNewUserServiceSpy!
     private var userLoginService: UserLoginServiceSpy!
