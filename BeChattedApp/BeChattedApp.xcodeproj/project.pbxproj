@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E1F9D292B8F2E1700657F39 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1F9D282B8F2E1700657F39 /* AppData.swift */; };
 		2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */; };
 		2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */; };
 		2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E1F9D282B8F2E1700657F39 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailValidator+EmailValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordValidator+PasswordValidatorProtocol.swift"; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E1F9D2A2B8F2E2F00657F39 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E1F9D282B8F2E1700657F39 /* AppData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2E32BE822B8DF32100EEF27E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 				2E32BE852B8DF3AA00EEF27E /* NavigationControllers */,
 				2E32BE832B8DF34900EEF27E /* Composers */,
 				2E32BE822B8DF32100EEF27E /* Extensions */,
+				2E1F9D2A2B8F2E2F00657F39 /* Models */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
 				2EEADC912B8327C1009EE7CE /* Preview Content */,
 			);
@@ -253,6 +264,7 @@
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */,
+				2E1F9D292B8F2E1700657F39 /* AppData.swift in Sources */,
 				2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */,
 				2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */,
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
