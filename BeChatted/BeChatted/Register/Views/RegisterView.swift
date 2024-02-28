@@ -12,7 +12,6 @@ struct RegisterView: View {
     private let headerView: RegisterHeaderView
     private let footerView: AuthFooterView
     
-//    @EnvironmentObject var mainNNavigationController: MainNavigationController
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var isRegistrationSucceeded = false
     @State private var authButtonState: AuthButtonStyle.State = .normal
@@ -51,14 +50,12 @@ struct RegisterView: View {
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
-//                    hideKeyboard()
                     onTapped?()
                 }
             }
             
             if isRegistrationSucceeded {
                 RegisterSuccessView {
-//                    mainNNavigationController.pop()
                     onRegisterSuccessAction?()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                         isRegistrationSucceeded = false
@@ -86,7 +83,6 @@ private extension RegisterView {
     
     private var registerButton: some View {
         Button(registerButtonTitle) {
-//            hideKeyboard()
             onRegisterButtonTapped?()
             authButtonState = .loading
             viewModel.register { result in

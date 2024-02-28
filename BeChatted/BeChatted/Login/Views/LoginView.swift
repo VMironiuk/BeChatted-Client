@@ -74,7 +74,6 @@ private extension LoginView {
                 case .success:
                     authButtonState = .normal
                     DispatchQueue.main.async {
-//                        appData.isUserLoggedIn = true
                         onLoginSuccessAction?()
                     }
                 case .failure:
