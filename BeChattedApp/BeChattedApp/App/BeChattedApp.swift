@@ -11,17 +11,26 @@ import BeChattediOS
 import BeChattedUserInputValidation
 import SwiftUI
 
+@Observable final class AppData {
+    var isUserLoggedIn: Bool = false
+}
+
 @main
 struct BeChattedApp: App {
     @Bindable private var mainNavigationController = MainNavigationController()
+    @Bindable private var appData = AppData()
     
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $mainNavigationController.path) {
-                loginView
-                    .navigationDestination(for: MainNavigationController.Destination.self) { destination in
-                        registerView
-                    }
+                if appData.isUserLoggedIn {
+                    Text("Chat View is Under Construction...")
+                } else {
+                    loginView
+                        .navigationDestination(for: MainNavigationController.Destination.self) { destination in
+                            registerView
+                        }
+                }
             }
         }
     }
@@ -29,7 +38,7 @@ struct BeChattedApp: App {
 
 private extension BeChattedApp {
     private var loginView: some View {
-        let loginComposer = LoginFeatureComposer(navigationController: mainNavigationController)
+        let loginComposer = LoginFeatureComposer(navigationController: mainNavigationController, appData: appData)
         return loginComposer.loginView
     }
     

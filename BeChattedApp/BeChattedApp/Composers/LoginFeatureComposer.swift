@@ -12,6 +12,7 @@ import SwiftUI
 
 struct LoginFeatureComposer {
     let navigationController: MainNavigationController
+    let appData: AppData
     
     var loginView: some View {
         let loginViewModel = BeChattediOS.LoginViewModel(
@@ -24,6 +25,6 @@ struct LoginFeatureComposer {
             onTapped: { UIApplication.shared.hideKeyboard() },
             onLoginButtonTapped: { UIApplication.shared.hideKeyboard() },
             onRegisterButtonTapped: { navigationController.goToRegister() },
-            onLoginSuccessAction: { print("ON LOGIN SUCCES ACTION") })
+            onLoginSuccessAction: { appData.isUserLoggedIn = true })
     }
 }
