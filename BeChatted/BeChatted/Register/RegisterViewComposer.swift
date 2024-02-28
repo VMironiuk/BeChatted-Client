@@ -30,6 +30,6 @@ public struct RegisterViewComposer {
         view.onRegisterButtonTapped = onRegisterButtonTapped
         view.onRegisterSuccessAction = onRegisterSuccessAction
         
-        return view
+        return view.addKeyboardVisibilityToEnvironment()
     }
 }

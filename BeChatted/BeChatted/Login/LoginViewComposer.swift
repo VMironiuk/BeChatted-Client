@@ -30,6 +30,6 @@ public struct LoginViewComposer {
         loginView.onLoginButtonTapped = onLoginButtonTapped
         loginView.onLoginSuccessAction = onLoginSuccessAction
         
-        return loginView
+        return loginView.addKeyboardVisibilityToEnvironment()
     }
 }
