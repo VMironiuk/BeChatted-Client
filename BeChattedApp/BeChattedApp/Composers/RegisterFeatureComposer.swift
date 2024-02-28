@@ -25,7 +25,7 @@ struct RegisterFeatureComposer {
             with: viewModel,
             onViewTapped: { UIApplication.shared.hideKeyboard() },
             onRegisterButtonTapped: { UIApplication.shared.hideKeyboard() },
-            onRegisterSuccessAction: { print("ON REGISTER SUCCESS ACTION") },
+            onRegisterSuccessAction: { navigationController.pop() },
             onBackButtonTapped: { navigationController.pop() },
             onLoginButtonTapped: { navigationController.pop() })
     }
