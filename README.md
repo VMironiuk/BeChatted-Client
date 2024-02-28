@@ -1,5 +1,5 @@
 # BeChatted-Client 
-[![CI](https://github.com/VMironiuk/BeChatted-Client/actions/workflows/CI.yml/badge.svg)](https://github.com/VMironiuk/BeChatted-Client/actions/workflows/CI.yml)
+[![CI-macOS](https://github.com/VMironiuk/BeChatted-Client/actions/workflows/CI_macOS.yml/badge.svg)](https://github.com/VMironiuk/BeChatted-Client/actions/workflows/CI_macOS.yml)
 
 BeChatted app for iOS and macOS.
 
