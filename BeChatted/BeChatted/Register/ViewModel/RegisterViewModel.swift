@@ -67,9 +67,6 @@ import Foundation
             switch result {
             case .success:
                 completion(.success(()))
-                self?.name = ""
-                self?.email = ""
-                self?.password = ""
             case .failure(let error):
                 self?.authError = error
                 completion(.failure(error))
