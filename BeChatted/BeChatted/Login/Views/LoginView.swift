@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import BeChatted
 
 struct LoginView: View {
     @Bindable private var viewModel: LoginViewModel
