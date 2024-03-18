@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E5EFF652BA823BD00EA65E8 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */; };
+		2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */; };
+		2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */; };
 		2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */; };
 		2E82F22D2B88970E00802ED5 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */; };
 		2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22E2B88978100802ED5 /* LoginPayload.swift */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
+		2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewComposer.swift; sourceTree = "<group>"; };
 		2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputValidatorProtocol.swift; sourceTree = "<group>"; };
 		2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
 		2E82F22E2B88978100802ED5 /* LoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPayload.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */,
+				2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -470,7 +473,6 @@
 				2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */,
 				2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */,
 				2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */,
-				2E5EFF652BA823BD00EA65E8 /* ChannelsView.swift in Sources */,
 				2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */,
 				2E82F2352B8897DE00802ED5 /* AddUserPayload.swift in Sources */,
 				2E82F2312B8897A300802ED5 /* LoginInfo.swift in Sources */,
@@ -491,6 +493,7 @@
 				2E82F2532B88ACF100802ED5 /* LoginInfo.swift in Sources */,
 				2E82F24E2B88ACA800802ED5 /* LoginViewModel.swift in Sources */,
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
+				2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */,
 				2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */,
 				2E82F2502B88ACC900802ED5 /* AuthServiceProtocol.swift in Sources */,
 				2E82F2462B88A7A800802ED5 /* SecureInputView.swift in Sources */,
@@ -505,6 +508,7 @@
 				2EBE98132B89F915009EB16C /* RegisterViewModel.swift in Sources */,
 				2E82F2512B88ACD500802ED5 /* AuthError.swift in Sources */,
 				2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */,
+				2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */,
 				2EBE980F2B89F1BD009EB16C /* ImageProvider.swift in Sources */,
 				2E82F2482B88A7B100802ED5 /* AuthHeaderView.swift in Sources */,
 				2EBE98162B89FD1E009EB16C /* RegisterViewComposer.swift in Sources */,
