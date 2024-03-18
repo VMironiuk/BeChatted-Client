@@ -10,7 +10,7 @@ import SwiftUI
 public struct ChannelsViewComposer {
     private init() {}
     
-    public static func channelsViewComposed() -> some View {
+    public static func composedChannelsView() -> some View {
         ChannelsView()
     }
 }
