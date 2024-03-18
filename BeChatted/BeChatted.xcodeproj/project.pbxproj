@@ -143,10 +143,18 @@
 		2E5EFF662BA823CE00EA65E8 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
-				2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */,
+				2E5EFF6B2BA825B400EA65E8 /* Views */,
 				2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */,
 			);
 			path = Channels;
+			sourceTree = "<group>";
+		};
+		2E5EFF6B2BA825B400EA65E8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		2E82F2382B88989100802ED5 /* RequestPayloads */ = {
