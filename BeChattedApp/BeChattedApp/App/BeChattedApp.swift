@@ -20,7 +20,7 @@ struct BeChattedApp: App {
         WindowGroup {
             NavigationStack(path: $mainNavigationController.path) {
                 if appData.isUserLoggedIn {
-                    Text("Chat View is Under Construction...")
+                    channelsView
                 } else {
                     loginView
                         .navigationDestination(for: MainNavigationController.Destination.self) { destination in
@@ -41,5 +41,10 @@ private extension BeChattedApp {
     private var registerView: some View {
         let registerComposer = RegisterFeatureComposer(navigationController: mainNavigationController)
         return registerComposer.registerView
+    }
+    
+    private var channelsView: some View {
+        let channelsComposer = ChannelsFeatureComposer(navigationController: mainNavigationController)
+        return channelsComposer.channelsView
     }
 }
