@@ -12,6 +12,13 @@ struct ChannelsView: View {
         VStack {
         }
         .navigationTitle("Channels")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                RoundedRectangle(cornerRadius: 5)
+                    .foregroundStyle(Color.blue)
+                    .frame(width: 44, height: 44)
+            }
+        }
     }
 }
 
