@@ -13,6 +13,10 @@ final class ImageProvider {
     static var authRegistrationSuccessImage: Image {
         assetImage(for: "Auth/RegistrationSuccessIcon")
     }
+    
+    static var avatarPrototype: Image {
+        assetImage(for: "AvatarPrototype")
+    }
 }
 
 private extension ImageProvider {

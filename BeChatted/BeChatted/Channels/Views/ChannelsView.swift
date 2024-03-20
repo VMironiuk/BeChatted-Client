@@ -53,9 +53,11 @@ struct ChannelsView: View {
         .navigationTitle("Channels")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Image(systemName: "square.fill")
-                    .foregroundStyle(Color.blue)
-                    .frame(width: 44, height: 44)
+                Button {
+                } label: {
+                    ImageProvider.avatarPrototype
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
             }
         }
     }
