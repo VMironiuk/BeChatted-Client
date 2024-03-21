@@ -30,6 +30,12 @@ final class ColorProvider {
     static var authButtonFailedColor: Color {
         assetColor(for: "Auth/Button/FailedColor")
     }
+    static var createChannelButtonForegroundColor: Color {
+        assetColor(for: "Channels/CreateChannelButton/ForegroundColor")
+    }
+    static var createChannelButtonBorderColor: Color {
+        assetColor(for: "Channels/CreateChannelButton/BorderColor")
+    }
     static var authBottomLabelColor: Color {
         assetColor(for: "Auth/BottomLabelColor")
     }

@@ -39,10 +39,10 @@ struct ChannelsView: View {
                             .frame(height: 82)
                             .foregroundStyle(Color.white)
                         VStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundStyle(Color.green)
-                                .frame(height: 50)
-                                .padding(16)
+                            Button("Create Channel") {
+                            }
+                            .buttonStyle(CreateChanelButtonStyle())
+                            .padding(16)
                             Divider()
                                 .padding(.horizontal, 16)
                         }

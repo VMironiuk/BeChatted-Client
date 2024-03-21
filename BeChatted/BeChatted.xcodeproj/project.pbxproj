@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */; };
 		2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */; };
 		2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */; };
 		2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelButtonStyle.swift; sourceTree = "<group>"; };
 		2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
 		2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewComposer.swift; sourceTree = "<group>"; };
 		2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputValidatorProtocol.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */,
 				2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */,
 				2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */,
+				2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */,
 				2E82F2402B88A78500802ED5 /* AuthHeaderView.swift */,
 				2EBE98112B89F413009EB16C /* AuthFooterView.swift */,
 				2E82F2432B88A79600802ED5 /* TextInputView.swift */,
@@ -500,6 +503,7 @@
 				2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */,
 				2E82F2532B88ACF100802ED5 /* LoginInfo.swift in Sources */,
 				2E82F24E2B88ACA800802ED5 /* LoginViewModel.swift in Sources */,
+				2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */,
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
 				2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */,
 				2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */,
