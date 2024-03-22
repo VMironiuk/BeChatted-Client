@@ -8,30 +8,14 @@
 import SwiftUI
 
 struct ChannelsView: View {
+    let channelItems: [ChannelItem]
+    
     var body: some View {
         ScrollView {
             LazyVStack(pinnedViews: [.sectionHeaders]) {
                 Section {
-                    ForEach(0..<20) { item in
-                        if item == .zero {
-                            HStack {
-                                RoundedRectangle(cornerRadius: 3)
-                                    .foregroundStyle(Color.gray)
-                                    .frame(width: 180, height: 18)
-                                    .padding(.horizontal, 16)
-                                    .padding(.top, 64)
-                                    .padding(.bottom, 24)
-                                Spacer()
-                            }
-                        } else {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .foregroundStyle(Color.teal)
-                                    .frame(height: 52)
-                                    .padding(.horizontal, 16)
-                                    .padding(.top, 8)
-                            }
-                        }
+                    ForEach(channelItems) { channelItem in
+                        ChannelItemView(channelItem: channelItem)
                     }
                 } header: {
                     ZStack {
@@ -63,8 +47,54 @@ struct ChannelsView: View {
     }
 }
 
+struct ChannelItem: Identifiable {
+    let id = UUID()
+    let name: String?
+    var isListTitle: Bool {
+        name == nil
+    }
+}
+
+struct ChannelItemView: View {
+    let channelItem: ChannelItem
+    
+    var body: some View {
+        if channelItem.isListTitle {
+            HStack {
+                Text("Recommended channels")
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(ColorProvider.recommendedChannelsLabelColor)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 64)
+                    .padding(.bottom, 24)
+                Spacer()
+            }
+        } else {
+            ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundStyle(Color.teal)
+                    .frame(height: 52)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
+            }
+        }
+    }
+}
+
 #Preview {
     NavigationStack {
-        ChannelsView()
+        ChannelsView(
+            channelItems: [
+                ChannelItem(name: nil),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: "")])
     }
 }

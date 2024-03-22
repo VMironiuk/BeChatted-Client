@@ -48,6 +48,9 @@ final class ColorProvider {
     static var authRegistrationSuccessLabelColor: Color {
         assetColor(for: "Auth/SuccessLabelColor")
     }
+    static var recommendedChannelsLabelColor: Color {
+        assetColor(for: "Channels/RecommendedChannelsLabelColor")
+    }
 }
 
 extension ColorProvider {

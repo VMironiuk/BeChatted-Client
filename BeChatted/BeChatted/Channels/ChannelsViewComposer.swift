@@ -11,6 +11,18 @@ public struct ChannelsViewComposer {
     private init() {}
     
     public static func composedChannelsView() -> some View {
-        ChannelsView()
+        ChannelsView(
+            channelItems: [
+                ChannelItem(name: nil),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: ""),
+                ChannelItem(name: "")])
     }
 }
