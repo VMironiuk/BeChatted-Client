@@ -50,6 +50,7 @@ struct ChannelsView: View {
 struct ChannelItem: Identifiable {
     let id = UUID()
     let name: String?
+    let isUnread: Bool
     var isListTitle: Bool {
         name == nil
     }
@@ -72,10 +73,19 @@ struct ChannelItemView: View {
         } else {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(Color.teal)
+                    .foregroundStyle(ColorProvider.channelItemBackgroundColor)
                     .frame(height: 52)
                     .padding(.horizontal, 16)
                     .padding(.top, 8)
+                HStack {
+                    Text("#")
+                        .font(.system(size: 20, weight: channelItem.isUnread ? .black : .regular))
+                        .padding(.leading, 32)
+                        .padding(.trailing, 16)
+                    Text(channelItem.name ?? "")
+                        .font(.system(size: 16, weight: channelItem.isUnread ? .black : .regular))
+                    Spacer()
+                }
             }
         }
     }
@@ -85,16 +95,11 @@ struct ChannelItemView: View {
     NavigationStack {
         ChannelsView(
             channelItems: [
-                ChannelItem(name: nil),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: "")])
+                ChannelItem(name: nil, isUnread: false),
+                ChannelItem(name: "general", isUnread: false),
+                ChannelItem(name: "announcements", isUnread: true),
+                ChannelItem(name: "main", isUnread: false),
+                ChannelItem(name: "random", isUnread: true),
+                ChannelItem(name: "onboarding", isUnread: false)])
     }
 }

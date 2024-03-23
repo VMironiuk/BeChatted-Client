@@ -51,6 +51,9 @@ final class ColorProvider {
     static var recommendedChannelsLabelColor: Color {
         assetColor(for: "Channels/RecommendedChannelsLabelColor")
     }
+    static var channelItemBackgroundColor: Color {
+        assetColor(for: "Channels/ChannelItemBackgroundColor")
+    }
 }
 
 extension ColorProvider {

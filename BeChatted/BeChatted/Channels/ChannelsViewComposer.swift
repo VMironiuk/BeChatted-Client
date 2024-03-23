@@ -13,16 +13,11 @@ public struct ChannelsViewComposer {
     public static func composedChannelsView() -> some View {
         ChannelsView(
             channelItems: [
-                ChannelItem(name: nil),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: ""),
-                ChannelItem(name: "")])
+                ChannelItem(name: nil, isUnread: false),
+                ChannelItem(name: "general", isUnread: false),
+                ChannelItem(name: "announcements", isUnread: true),
+                ChannelItem(name: "main", isUnread: false),
+                ChannelItem(name: "random", isUnread: true),
+                ChannelItem(name: "onboarding", isUnread: false)])
     }
 }
