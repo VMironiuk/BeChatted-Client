@@ -24,7 +24,9 @@ struct ChannelsView: View {
                             Button("Create Channel") {
                             }
                             .buttonStyle(CreateChanelButtonStyle())
-                            .padding(16)
+                            .padding(.horizontal, 16)
+                            .padding(.top, 16)
+                            Spacer()
                             Divider()
                                 .padding(.horizontal, 16)
                         }
