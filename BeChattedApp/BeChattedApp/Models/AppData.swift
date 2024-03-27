@@ -8,5 +8,5 @@
 import Foundation
 
 @Observable final class AppData {
-    var isUserLoggedIn: Bool = true
+    var isUserLoggedIn: Bool = false
 }
