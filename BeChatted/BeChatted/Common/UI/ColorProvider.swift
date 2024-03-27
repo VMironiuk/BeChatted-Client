@@ -30,6 +30,12 @@ final class ColorProvider {
     static var authButtonFailedColor: Color {
         assetColor(for: "Auth/Button/FailedColor")
     }
+    static var createChannelButtonForegroundColor: Color {
+        assetColor(for: "Channels/CreateChannelButton/ForegroundColor")
+    }
+    static var createChannelButtonBorderColor: Color {
+        assetColor(for: "Channels/CreateChannelButton/BorderColor")
+    }
     static var authBottomLabelColor: Color {
         assetColor(for: "Auth/BottomLabelColor")
     }
@@ -41,6 +47,12 @@ final class ColorProvider {
     }
     static var authRegistrationSuccessLabelColor: Color {
         assetColor(for: "Auth/SuccessLabelColor")
+    }
+    static var recommendedChannelsLabelColor: Color {
+        assetColor(for: "Channels/RecommendedChannelsLabelColor")
+    }
+    static var channelItemBackgroundColor: Color {
+        assetColor(for: "Channels/ChannelItemBackgroundColor")
     }
 }
 
