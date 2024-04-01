@@ -30,7 +30,8 @@ struct AuthServiceComposer {
             newAccountURL: newAccountURL,
             newUserURL: newUserURL,
             userLoginURL: userLoginURL,
-            userLogoutURL: userLogoutURL
+            userLogoutURL: userLogoutURL,
+            httpClient: URLSessionHTTPClient()
         )
     )
 }
