@@ -161,10 +161,10 @@ final class UserLogoutServiceTests: XCTestCase {
         
         private struct Message {
             let request: URLRequest
-            let completion: (HTTPClientResult) -> Void
+            let completion: (Result<(Data?, HTTPURLResponse?), Error>) -> Void
         }
         
-        func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
+        func perform(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void) {
             messages.append(Message(request: request, completion: completion))
         }
         
@@ -173,7 +173,7 @@ final class UserLogoutServiceTests: XCTestCase {
         }
         
         func complete(at index: Int = 0) {
-            messages[index].completion(.success(nil, nil))
+            messages[index].completion(.success((nil, nil)))
         }
     }
 }
