@@ -57,6 +57,10 @@
 		2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8E2B85C515007B6D10 /* LoginView.swift */; };
 		2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */; };
 		2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */; };
+		2EC4CE672BBBDE4800B72903 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4CE662BBBDE4800B72903 /* URLSessionHTTPClient.swift */; };
+		2EC4CE692BBBDE5600B72903 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4CE682BBBDE5600B72903 /* URLSessionHTTPClientTests.swift */; };
+		2EC4CE6B2BBBDF0E00B72903 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4CE6A2BBBDF0E00B72903 /* URLProtocolStub.swift */; };
+		2EC4CE6D2BBBDFCF00B72903 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4CE6C2BBBDFCF00B72903 /* HelperFunctions.swift */; };
 		2EEADCA72B83346B009EE7CE /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEADCA62B83346B009EE7CE /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EEADCF32B833BD1009EE7CE /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEADCA62B83346B009EE7CE /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -111,6 +115,10 @@
 		2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginHeaderView.swift; sourceTree = "<group>"; };
 		2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthButtonStyle.swift; sourceTree = "<group>"; };
 		2EC3EE982B85C520007B6D10 /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		2EC4CE662BBBDE4800B72903 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		2EC4CE682BBBDE5600B72903 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		2EC4CE6A2BBBDF0E00B72903 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		2EC4CE6C2BBBDFCF00B72903 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		2EEADCA32B83346B009EE7CE /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEADCA62B83346B009EE7CE /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
 		2EEADCFA2B833BD1009EE7CE /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB37C9D2B8737E0003990B0 /* Helpers */,
+				2EC4CE682BBBDE5600B72903 /* URLSessionHTTPClientTests.swift */,
 				2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */,
 				2EB37CB92B874119003990B0 /* RegisterViewModelTests.swift */,
 			);
@@ -195,6 +204,8 @@
 				2EB37C9F2B8737E0003990B0 /* AuthServiceStub.swift */,
 				2EB37CBB2B874240003990B0 /* EmailValidatorStub.swift */,
 				2EB37CBD2B87427B003990B0 /* PasswordValidatorStub.swift */,
+				2EC4CE6A2BBBDF0E00B72903 /* URLProtocolStub.swift */,
+				2EC4CE6C2BBBDFCF00B72903 /* HelperFunctions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -284,6 +295,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		2EC4CE652BBBDE3900B72903 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2EC4CE662BBBDE4800B72903 /* URLSessionHTTPClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		2EEADC992B83346B009EE7CE = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +328,7 @@
 				2EEADCA62B83346B009EE7CE /* BeChatted.h */,
 				2EB37CBF2B87433D003990B0 /* Bundle+DisplayName.swift */,
 				2E82F2492B88AB9E00802ED5 /* View+KeyboardVisibility.swift */,
+				2EC4CE652BBBDE3900B72903 /* Networking */,
 				2EC3EE962B85C520007B6D10 /* Common */,
 				2EB37CA32B873E36003990B0 /* Register */,
 				2EC3EE892B85C515007B6D10 /* Login */,
@@ -463,12 +483,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EC4CE692BBBDE5600B72903 /* URLSessionHTTPClientTests.swift in Sources */,
 				2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */,
 				2EB37CBC2B874240003990B0 /* EmailValidatorStub.swift in Sources */,
+				2EC4CE6B2BBBDF0E00B72903 /* URLProtocolStub.swift in Sources */,
 				2EB37CA22B8737E0003990B0 /* AuthServiceStub.swift in Sources */,
 				2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2EB37CBA2B874119003990B0 /* RegisterViewModelTests.swift in Sources */,
 				2EB37CBE2B87427B003990B0 /* PasswordValidatorStub.swift in Sources */,
+				2EC4CE6D2BBBDFCF00B72903 /* HelperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +510,7 @@
 				2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */,
 				2E82F2352B8897DE00802ED5 /* AddUserPayload.swift in Sources */,
 				2E82F2312B8897A300802ED5 /* LoginInfo.swift in Sources */,
+				2EC4CE672BBBDE4800B72903 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

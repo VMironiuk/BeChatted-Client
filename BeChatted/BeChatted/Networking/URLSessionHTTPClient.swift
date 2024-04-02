@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class URLSessionHTTPClient: HTTPClientProtocol {
+public final class URLSessionHTTPClient {
     private struct UnexpectedValuesRepresentation: Error {}
     
     private let session: URLSession

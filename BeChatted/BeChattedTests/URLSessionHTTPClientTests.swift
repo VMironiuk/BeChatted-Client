@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import BeChattedAuth
+import BeChatted
 
 final class URLSessionHTTPClientTests: XCTestCase {
     
@@ -77,7 +77,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClientProtocol {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut

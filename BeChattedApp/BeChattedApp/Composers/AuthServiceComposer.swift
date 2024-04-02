@@ -5,6 +5,7 @@
 //  Created by Volodymyr Myroniuk on 23.02.2024.
 //
 
+import BeChatted
 import BeChattedAuth
 
 struct AuthServiceComposer {
@@ -35,3 +36,5 @@ struct AuthServiceComposer {
         )
     )
 }
+
+extension URLSessionHTTPClient: HTTPClientProtocol {}
