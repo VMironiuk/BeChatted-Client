@@ -11,6 +11,9 @@
       location = "group:BeChattedAuth/BeChattedAuth.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:BeChattedChannels/BeChattedChannels.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:BeChattedUserInputValidation/BeChattedUserInputValidation.xcodeproj">
    </FileRef>
 </Workspace>
