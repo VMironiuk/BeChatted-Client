@@ -38,6 +38,9 @@ final class ChannelsLoaderTests: XCTestCase {
         
         // then
         XCTAssertEqual(client.requestedURLs, [])
+        XCTAssertEqual(client.httpMethods, [])
+        XCTAssertEqual(client.contentTypes, [])
+        XCTAssertEqual(client.authTokens, [])
     }
     
     func test_load_sendsRequest() {
@@ -91,6 +94,10 @@ final class ChannelsLoaderTests: XCTestCase {
         
         var contentTypes: [String] {
             messages.compactMap { $0.request.value(forHTTPHeaderField: "Content-Type") }
+        }
+        
+        var authTokens: [String] {
+            messages.compactMap { $0.request.value(forHTTPHeaderField: "Authorization") }
         }
             
         func perform(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void) {
