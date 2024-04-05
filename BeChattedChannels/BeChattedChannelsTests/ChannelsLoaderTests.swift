@@ -55,6 +55,19 @@ final class ChannelsLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
+    func test_load_sendsRequestByURLTwice() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.load()
+        sut.load()
+        
+        // then
+        XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
