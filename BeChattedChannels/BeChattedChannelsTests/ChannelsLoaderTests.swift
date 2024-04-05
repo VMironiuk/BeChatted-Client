@@ -25,6 +25,7 @@ final class ChannelsLoader {
     func load() {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { _ in }
     }
 }
@@ -91,6 +92,18 @@ final class ChannelsLoaderTests: XCTestCase {
         
         // then
         XCTAssertEqual(client.contentTypes, ["application/json"])
+    }
+    
+    func test_load_sendsRequestWithAuthToken() {
+        // given
+        let anyAuthToken = anyAuthToken()
+        let (sut, client) = makeSUT(authToken: anyAuthToken)
+        
+        // when
+        sut.load()
+        
+        // then
+        XCTAssertEqual(client.authTokens, ["Bearer \(anyAuthToken)"])
     }
 
     // MARK: - Helpers
