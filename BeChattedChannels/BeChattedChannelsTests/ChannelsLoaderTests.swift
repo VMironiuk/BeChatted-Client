@@ -32,14 +32,13 @@ final class ChannelsLoaderTests: XCTestCase {
     
     func test_init_doesNotSendRequest() {
         let client  = HTTPClientSpy()
-        let url = URL(string: "http://any-url.com")!
-        _ = ChannelsLoader(url: url, authToken: "any token", client: client)
+        _ = ChannelsLoader(url: anyURL(), authToken: "any token", client: client)
         XCTAssertEqual(client.requestedURLs, [])
     }
     
     func test_load_sendsRequest() {
         let client  = HTTPClientSpy()
-        let url = URL(string: "http://any-url.com")!
+        let url = anyURL()
         let sut = ChannelsLoader(url: url, authToken: "any token", client: client)
         
         sut.load()
@@ -48,6 +47,10 @@ final class ChannelsLoaderTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func anyURL() -> URL {
+        URL(string: "http://any-url.com")!
+    }
     
     private class HTTPClientSpy: HTTPClientProtocol {
         private var messages = [(request: URLRequest, completion: (Result<(Data?, HTTPURLResponse?), Error>) -> Void)]()
