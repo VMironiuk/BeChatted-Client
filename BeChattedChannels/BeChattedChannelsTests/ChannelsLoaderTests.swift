@@ -43,7 +43,7 @@ final class ChannelsLoaderTests: XCTestCase {
         XCTAssertEqual(client.authTokens, [])
     }
     
-    func test_load_sendsRequest() {
+    func test_load_sendsRequestByURL() {
         // given
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
