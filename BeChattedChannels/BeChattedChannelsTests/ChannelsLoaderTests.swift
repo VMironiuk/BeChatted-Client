@@ -23,7 +23,8 @@ final class ChannelsLoader {
     }
     
     func load() {
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         client.perform(request: request) { _ in }
     }
 }
@@ -80,6 +81,18 @@ final class ChannelsLoaderTests: XCTestCase {
         XCTAssertEqual(client.httpMethods, ["GET"])
     }
     
+    func test_load_sendsRequestAsApplicationJSONContentType() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.load()
+        
+        // then
+        XCTAssertEqual(client.contentTypes, ["application/json"])
+    }
+
     // MARK: - Helpers
     
     private func makeSUT(
