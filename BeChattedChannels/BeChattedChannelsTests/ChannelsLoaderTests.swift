@@ -72,8 +72,7 @@ final class ChannelsLoaderTests: XCTestCase {
     
     func test_load_sendsRequestAsGETMethod() {
         // given
-        let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         
         // when
         sut.load()
@@ -84,8 +83,7 @@ final class ChannelsLoaderTests: XCTestCase {
     
     func test_load_sendsRequestAsApplicationJSONContentType() {
         // given
-        let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         
         // when
         sut.load()
