@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */; };
 		2EA048432BBE7CC4000525C9 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */; };
 		2EA048492BBE7CC4000525C9 /* BeChattedChannels.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EA048532BBE7D10000525C9 /* ChannelsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA048522BBE7D10000525C9 /* ChannelsLoaderTests.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedChannels.h; sourceTree = "<group>"; };
 		2EA048422BBE7CC4000525C9 /* BeChattedChannelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedChannelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +50,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E82772C2BBFD575007E1EC5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		2EA048302BBE7CC3000525C9 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +87,7 @@
 		2EA048462BBE7CC4000525C9 /* BeChattedChannelsTests */ = {
 			isa = PBXGroup;
 			children = (
+				2E82772C2BBFD575007E1EC5 /* Helpers */,
 				2EA048522BBE7D10000525C9 /* ChannelsLoaderTests.swift */,
 			);
 			path = BeChattedChannelsTests;
@@ -199,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EA048532BBE7D10000525C9 /* ChannelsLoaderTests.swift in Sources */,
+				2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

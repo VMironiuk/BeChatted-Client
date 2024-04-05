@@ -56,11 +56,16 @@ final class ChannelsLoaderTests: XCTestCase {
     
     private func makeSUT(
         url: URL = URL(string: "http://any-url.com")!,
-        authToken: String = "any token"
+        authToken: String = "any token",
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) -> (ChannelsLoader, HTTPClientSpy) {
         let client  = HTTPClientSpy()
         let url = anyURL()
         let sut = ChannelsLoader(url: url, authToken: anyAuthToken(), client: client)
+        
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, client)
     }
