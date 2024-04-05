@@ -31,22 +31,39 @@ final class ChannelsLoader {
 final class ChannelsLoaderTests: XCTestCase {
     
     func test_init_doesNotSendRequest() {
-        let client  = HTTPClientSpy()
-        _ = ChannelsLoader(url: anyURL(), authToken: anyAuthToken(), client: client)
+        // given
+        
+        // when
+        let (_, client) = makeSUT()
+        
+        // then
         XCTAssertEqual(client.requestedURLs, [])
     }
     
     func test_load_sendsRequest() {
-        let client  = HTTPClientSpy()
+        // given
         let url = anyURL()
-        let sut = ChannelsLoader(url: url, authToken: anyAuthToken(), client: client)
+        let (sut, client) = makeSUT(url: url)
         
+        // when
         sut.load()
         
+        // then
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(
+        url: URL = URL(string: "http://any-url.com")!,
+        authToken: String = "any token"
+    ) -> (ChannelsLoader, HTTPClientSpy) {
+        let client  = HTTPClientSpy()
+        let url = anyURL()
+        let sut = ChannelsLoader(url: url, authToken: anyAuthToken(), client: client)
+        
+        return (sut, client)
+    }
     
     private func anyURL() -> URL {
         URL(string: "http://any-url.com")!
