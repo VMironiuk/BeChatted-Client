@@ -68,6 +68,18 @@ final class ChannelsLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
+    func test_load_sendsRequestAsGETMethod() {
+        // given
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        // when
+        sut.load()
+        
+        // then
+        XCTAssertEqual(client.httpMethods, ["GET"])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
