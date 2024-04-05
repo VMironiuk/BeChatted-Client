@@ -12,10 +12,19 @@ public protocol HTTPClientProtocol {
 }
 
 final class ChannelsLoader {
-    private let httpClient: HTTPClientProtocol
+    private let url: URL
+    private let authToken: String
+    private let client: HTTPClientProtocol
     
-    init(httpClient: HTTPClientProtocol) {
-        self.httpClient = httpClient
+    init(url: URL, authToken: String, client: HTTPClientProtocol) {
+        self.url = url
+        self.authToken = authToken
+        self.client = client
+    }
+    
+    func load() {
+        let request = URLRequest(url: url)
+        client.perform(request: request) { _ in }
     }
 }
 
@@ -23,8 +32,19 @@ final class ChannelsLoaderTests: XCTestCase {
     
     func test_init_doesNotSendRequest() {
         let client  = HTTPClientSpy()
-        _ = ChannelsLoader(httpClient: client)
+        let url = URL(string: "http://any-url.com")!
+        _ = ChannelsLoader(url: url, authToken: "any token", client: client)
         XCTAssertEqual(client.requestedURLs, [])
+    }
+    
+    func test_load_sendsRequest() {
+        let client  = HTTPClientSpy()
+        let url = URL(string: "http://any-url.com")!
+        let sut = ChannelsLoader(url: url, authToken: "any token", client: client)
+        
+        sut.load()
+        
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     // MARK: - Helpers
