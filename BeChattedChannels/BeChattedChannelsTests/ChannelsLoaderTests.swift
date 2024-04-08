@@ -181,6 +181,30 @@ final class ChannelsLoaderTests: XCTestCase {
         
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_load_deliversInvalidDataErrorOnInvalidChannelsData() {
+        // given
+        let (sut, client) = makeSUT()
+        let channelsData = "{\"obj\": \"invalid\"}".data(using: .utf8)!
+        let exp = expectation(description: "Wait for channels loading completion")
+        
+        // when
+        sut.load { result in
+            // then
+            switch result {
+            case let .success(receivedChannels):
+                XCTFail("Expected invalid data error, got \(receivedChannels) instead")
+            case let .failure(error as ChannelsLoaderError):
+                XCTAssertEqual(error, ChannelsLoaderError.invalidData)
+            default:
+                XCTFail("Expected invalid data error, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        client.complete(with: channelsData)
+        
+        wait(for: [exp], timeout: 1)
+    }
 
     // MARK: - Helpers
     
