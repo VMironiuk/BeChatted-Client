@@ -222,6 +222,29 @@ final class ChannelsLoaderTests: XCTestCase {
         // then
         XCTAssertNil(expectedResult)
     }
+    
+    func test_load_deliversServerErrorOnNon200HTTPResponse() {
+        // given
+        let (sut, client) = makeSUT()
+        let exp = expectation(description: "Wait for channels loading completion")
+        
+        // when
+        sut.load { result in
+            // then
+            switch result {
+            case let .success(receivedChannels):
+                XCTFail("Expected server error, got \(receivedChannels) instead")
+            case let .failure(error as ChannelsLoaderError):
+                XCTAssertEqual(error, ChannelsLoaderError.server)
+            default:
+                XCTFail("Expected server error, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        client.complete(with: ChannelsLoaderError.server)
+        
+        wait(for: [exp], timeout: 1)
+    }
 
     // MARK: - Helpers
     
