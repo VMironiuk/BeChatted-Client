@@ -158,6 +158,29 @@ final class ChannelsLoaderTests: XCTestCase {
         
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_load_deliversNoChannelsOnValidButEmptyChannelsData() {
+        // given
+        let (sut, client) = makeSUT()
+        let expectedChannels = [ChannelInfo]()
+        let channelsData = try! JSONEncoder().encode(expectedChannels)
+        let exp = expectation(description: "Wait for channels loading completion")
+        
+        // when
+        sut.load { result in
+            // then
+            switch result {
+            case let .success(receivedChannels):
+                XCTAssertEqual(receivedChannels, expectedChannels)
+            case let .failure(error):
+                XCTFail("Expected channels, got \(error) instead")
+            }
+            exp.fulfill()
+        }
+        client.complete(with: channelsData)
+        
+        wait(for: [exp], timeout: 1)
+    }
 
     // MARK: - Helpers
     
