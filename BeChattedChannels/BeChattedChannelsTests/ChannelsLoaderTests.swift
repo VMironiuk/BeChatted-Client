@@ -245,6 +245,22 @@ final class ChannelsLoaderTests: XCTestCase {
         
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_load_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
+        // given
+        let client = HTTPClientSpy()
+        var sut: ChannelsLoader? = ChannelsLoader(url: anyURL(), authToken: anyAuthToken(), client: client)
+        
+        var expectedResult: Result<[ChannelInfo], Error>?
+        sut?.load { expectedResult = $0 }
+        
+        // when
+        sut = nil
+        client.complete(with: anyNSError())
+        
+        // then
+        XCTAssertNil(expectedResult)
+    }
 
     // MARK: - Helpers
     
@@ -270,6 +286,10 @@ final class ChannelsLoaderTests: XCTestCase {
     
     private func anyAuthToken() -> String {
         "any token"
+    }
+    
+    private func anyNSError() -> Error {
+        NSError(domain: "any domain", code: 1)
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
