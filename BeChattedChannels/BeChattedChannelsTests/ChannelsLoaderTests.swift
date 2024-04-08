@@ -44,7 +44,8 @@ final class ChannelsLoader {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         
-        client.perform(request: request) { result in
+        client.perform(request: request) { [weak self] result in
+            guard self != nil else { return }
             switch result {
             case let .success((data, response)):
                 guard let response, response.statusCode == 200 else {
@@ -204,6 +205,22 @@ final class ChannelsLoaderTests: XCTestCase {
         client.complete(with: channelsData)
         
         wait(for: [exp], timeout: 1)
+    }
+    
+    func test_load_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
+        // given
+        let client = HTTPClientSpy()
+        var sut: ChannelsLoader? = ChannelsLoader(url: anyURL(), authToken: anyAuthToken(), client: client)
+        
+        var expectedResult: Result<[ChannelInfo], Error>?
+        sut?.load { expectedResult = $0 }
+        
+        // when
+        sut = nil
+        client.complete(with: try! JSONEncoder().encode([ChannelInfo]()))
+        
+        // then
+        XCTAssertNil(expectedResult)
     }
 
     // MARK: - Helpers
