@@ -10,6 +10,7 @@ import Foundation
 public enum ChannelsLoaderError: Error {
     case server
     case invalidData
+    case unknown
 }
 
 public final class ChannelsLoader {
@@ -30,16 +31,10 @@ public final class ChannelsLoader {
         
         client.perform(request: request) { [weak self] result in
             guard self != nil else { return }
+            
             switch result {
             case let .success((data, response)):
-                guard let response, response.statusCode == 200 else {
-                    return completion(.failure(ChannelsLoaderError.server))
-                }
-                guard let data = data, let channels = try? JSONDecoder().decode([ChannelInfo].self, from: data) else {
-                    return completion(.failure(ChannelsLoaderError.invalidData))
-                }
-                completion(.success(channels))
-                
+                completion(ChannelsLoaderResultMapper.result(for: data, response: response))
             case let .failure(error):
                 completion(.failure(error))
             }

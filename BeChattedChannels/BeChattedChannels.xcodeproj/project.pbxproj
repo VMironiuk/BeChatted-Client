@@ -10,6 +10,7 @@
 		2E172DC02BC51DC60014A13B /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */; };
 		2E172DC22BC51E460014A13B /* ChannelsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC12BC51E460014A13B /* ChannelsLoader.swift */; };
 		2E172DC42BC51E950014A13B /* ChannelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC32BC51E950014A13B /* ChannelInfo.swift */; };
+		2E172DC62BC521230014A13B /* ChannelsLoaderResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC52BC521230014A13B /* ChannelsLoaderResultMapper.swift */; };
 		2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */; };
 		2EA048432BBE7CC4000525C9 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */; };
 		2EA048492BBE7CC4000525C9 /* BeChattedChannels.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +31,7 @@
 		2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
 		2E172DC12BC51E460014A13B /* ChannelsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoader.swift; sourceTree = "<group>"; };
 		2E172DC32BC51E950014A13B /* ChannelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelInfo.swift; sourceTree = "<group>"; };
+		2E172DC52BC521230014A13B /* ChannelsLoaderResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoaderResultMapper.swift; sourceTree = "<group>"; };
 		2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedChannels.h; sourceTree = "<group>"; };
@@ -86,9 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */,
+				2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */,
 				2E172DC32BC51E950014A13B /* ChannelInfo.swift */,
 				2E172DC12BC51E460014A13B /* ChannelsLoader.swift */,
-				2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */,
+				2E172DC52BC521230014A13B /* ChannelsLoaderResultMapper.swift */,
 			);
 			path = BeChattedChannels;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E172DC62BC521230014A13B /* ChannelsLoaderResultMapper.swift in Sources */,
 				2E172DC22BC51E460014A13B /* ChannelsLoader.swift in Sources */,
 				2E172DC42BC51E950014A13B /* ChannelInfo.swift in Sources */,
 				2E172DC02BC51DC60014A13B /* HTTPClientProtocol.swift in Sources */,
