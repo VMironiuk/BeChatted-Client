@@ -6,62 +6,7 @@
 //
 
 import XCTest
-
-enum ChannelsLoaderError: Error {
-    case server
-    case invalidData
-}
-
-struct ChannelInfo: Codable, Equatable {
-    let id: String
-    let name: String
-    let description: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case name
-        case description
-    }
-}
-
-public protocol HTTPClientProtocol {
-    func perform(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void)
-}
-
-final class ChannelsLoader {
-    private let url: URL
-    private let authToken: String
-    private let client: HTTPClientProtocol
-    
-    init(url: URL, authToken: String, client: HTTPClientProtocol) {
-        self.url = url
-        self.authToken = authToken
-        self.client = client
-    }
-    
-    func load(completion: @escaping (Result<[ChannelInfo], Error>) -> Void) {
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
-        
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            switch result {
-            case let .success((data, response)):
-                guard let response, response.statusCode == 200 else {
-                    return completion(.failure(ChannelsLoaderError.server))
-                }
-                guard let data = data, let channels = try? JSONDecoder().decode([ChannelInfo].self, from: data) else {
-                    return completion(.failure(ChannelsLoaderError.invalidData))
-                }
-                completion(.success(channels))
-                
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-}
+import BeChattedChannels
 
 final class ChannelsLoaderTests: XCTestCase {
     

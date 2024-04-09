@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E172DC02BC51DC60014A13B /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */; };
+		2E172DC22BC51E460014A13B /* ChannelsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC12BC51E460014A13B /* ChannelsLoader.swift */; };
+		2E172DC42BC51E950014A13B /* ChannelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC32BC51E950014A13B /* ChannelInfo.swift */; };
 		2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */; };
 		2EA048432BBE7CC4000525C9 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */; };
 		2EA048492BBE7CC4000525C9 /* BeChattedChannels.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
+		2E172DC12BC51E460014A13B /* ChannelsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoader.swift; sourceTree = "<group>"; };
+		2E172DC32BC51E950014A13B /* ChannelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelInfo.swift; sourceTree = "<group>"; };
 		2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedChannels.h; sourceTree = "<group>"; };
@@ -80,6 +86,9 @@
 			isa = PBXGroup;
 			children = (
 				2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */,
+				2E172DC32BC51E950014A13B /* ChannelInfo.swift */,
+				2E172DC12BC51E460014A13B /* ChannelsLoader.swift */,
+				2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */,
 			);
 			path = BeChattedChannels;
 			sourceTree = "<group>";
@@ -155,6 +164,7 @@
 				TargetAttributes = {
 					2EA048392BBE7CC4000525C9 = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
 					2EA048412BBE7CC4000525C9 = {
 						CreatedOnToolsVersion = 15.3;
@@ -202,6 +212,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E172DC22BC51E460014A13B /* ChannelsLoader.swift in Sources */,
+				2E172DC42BC51E950014A13B /* ChannelInfo.swift in Sources */,
+				2E172DC02BC51DC60014A13B /* HTTPClientProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +366,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -378,6 +392,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -386,6 +401,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -418,6 +434,7 @@
 		2EA048502BBE7CC4000525C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8U849676MP;
@@ -433,6 +450,7 @@
 		2EA048512BBE7CC4000525C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8U849676MP;
