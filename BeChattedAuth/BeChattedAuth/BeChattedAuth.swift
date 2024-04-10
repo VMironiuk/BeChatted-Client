@@ -12,20 +12,22 @@ public struct AuthServiceConfiguration {
     let newUserURL: URL
     let userLoginURL: URL
     let userLogoutURL: URL
+    let httpClient: HTTPClientProtocol
     
-    public init(newAccountURL: URL, newUserURL: URL, userLoginURL: URL, userLogoutURL: URL) {
+    public init(newAccountURL: URL, newUserURL: URL, userLoginURL: URL, userLogoutURL: URL, httpClient: HTTPClientProtocol) {
         self.newAccountURL = newAccountURL
         self.newUserURL = newUserURL
         self.userLoginURL = userLoginURL
         self.userLogoutURL = userLogoutURL
+        self.httpClient = httpClient
     }
 }
 
 public func makeAuthService(configuration: AuthServiceConfiguration) -> AuthService {
     AuthService(
-        newAccountService: NewAccountService(url: configuration.newAccountURL, client: URLSessionHTTPClient()),
-        addNewUserService: AddNewUserService(url: configuration.newUserURL, client: URLSessionHTTPClient()),
-        userLoginService: UserLoginService(url: configuration.userLoginURL, client: URLSessionHTTPClient()),
-        userLogoutService: UserLogoutService(url: configuration.userLogoutURL, client: URLSessionHTTPClient())
+        newAccountService: NewAccountService(url: configuration.newAccountURL, client: configuration.httpClient),
+        addNewUserService: AddNewUserService(url: configuration.newUserURL, client: configuration.httpClient),
+        userLoginService: UserLoginService(url: configuration.userLoginURL, client: configuration.httpClient),
+        userLogoutService: UserLogoutService(url: configuration.userLogoutURL, client: configuration.httpClient)
     )
 }

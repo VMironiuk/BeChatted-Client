@@ -260,7 +260,7 @@ final class NewAccountServiceTests: XCTestCase {
     }
 
     private class HTTPClientSpy: HTTPClientProtocol {
-        private var messages = [(request: URLRequest, completion: (HTTPClientResult) -> Void)]()
+        private var messages = [(request: URLRequest, completion: (Result<(Data?, HTTPURLResponse?), Error>) -> Void)]()
                 
         var requestedURLs: [URL] {
             messages.compactMap { $0.request.url }
@@ -281,7 +281,7 @@ final class NewAccountServiceTests: XCTestCase {
             }
         }
             
-        func perform(request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
+        func perform(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void) {
             messages.append((request, completion))
         }
                 
@@ -290,7 +290,7 @@ final class NewAccountServiceTests: XCTestCase {
         }
         
         func complete(with response: HTTPURLResponse, at index: Int = 0) {
-            messages[index].completion(.success(nil, response))
+            messages[index].completion(.success((nil, response)))
         }
     }
     

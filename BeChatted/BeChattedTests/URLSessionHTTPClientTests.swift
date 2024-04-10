@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import BeChattedAuth
+import BeChatted
 
 final class URLSessionHTTPClientTests: XCTestCase {
     
@@ -77,7 +77,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClientProtocol {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
@@ -111,7 +111,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let receivedResult = resultFor(data: data, response: response, error: error, file: file, line: line)
         
         switch receivedResult {
-        case let .success(data, response):
+        case let .success((data, response)):
             return (data, response)
         default:
             XCTFail("Expected success, got \(receivedResult) instead", file: file, line: line)
@@ -125,14 +125,14 @@ final class URLSessionHTTPClientTests: XCTestCase {
         error: Error?,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> HTTPClientResult {
+    ) -> (Result<(Data?, HTTPURLResponse?), Error>) {
         let request = URLRequest(url: anyURL())
         URLProtocolStub.stub(data: data, response: response, error: error)
         
         let sut = makeSUT(file: file, line: line)
         let exp = expectation(description: "Wait for completion")
         
-        var receivedResult: HTTPClientResult!
+        var receivedResult: (Result<(Data?, HTTPURLResponse?), Error>)!
         sut.perform(request: request) { result in
             receivedResult = result
             exp.fulfill()

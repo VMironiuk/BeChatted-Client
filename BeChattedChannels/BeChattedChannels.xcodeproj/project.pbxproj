@@ -7,161 +7,174 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E8A72572AF4002E0075FF43 /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8A724E2AF4002E0075FF43 /* BeChattedUserInputValidation.framework */; };
-		2E8A725D2AF4002E0075FF43 /* BeChattedUserInputValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E8A72512AF4002E0075FF43 /* BeChattedUserInputValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E8A72692AF4015F0075FF43 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A72662AF4015F0075FF43 /* PasswordValidator.swift */; };
-		2E8A726A2AF4015F0075FF43 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A72672AF4015F0075FF43 /* EmailValidator.swift */; };
-		2E8A726E2AF401880075FF43 /* PasswordUserInputValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A726C2AF401880075FF43 /* PasswordUserInputValidationTests.swift */; };
-		2E8A726F2AF401880075FF43 /* EmailUserInputValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A726D2AF401880075FF43 /* EmailUserInputValidationTests.swift */; };
+		2E172DC02BC51DC60014A13B /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */; };
+		2E172DC22BC51E460014A13B /* ChannelsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC12BC51E460014A13B /* ChannelsLoader.swift */; };
+		2E172DC42BC51E950014A13B /* ChannelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC32BC51E950014A13B /* ChannelInfo.swift */; };
+		2E172DC62BC521230014A13B /* ChannelsLoaderResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC52BC521230014A13B /* ChannelsLoaderResultMapper.swift */; };
+		2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */; };
+		2EA048432BBE7CC4000525C9 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */; };
+		2EA048492BBE7CC4000525C9 /* BeChattedChannels.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2EA048532BBE7D10000525C9 /* ChannelsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA048522BBE7D10000525C9 /* ChannelsLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2E8A72582AF4002E0075FF43 /* PBXContainerItemProxy */ = {
+		2EA048442BBE7CC4000525C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2E8A72452AF4002E0075FF43 /* Project object */;
+			containerPortal = 2EA048312BBE7CC3000525C9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2E8A724D2AF4002E0075FF43;
-			remoteInfo = BeChattedUserInputValidation;
+			remoteGlobalIDString = 2EA048392BBE7CC4000525C9;
+			remoteInfo = BeChattedChannels;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E8A724E2AF4002E0075FF43 /* BeChattedUserInputValidation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedUserInputValidation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E8A72512AF4002E0075FF43 /* BeChattedUserInputValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedUserInputValidation.h; sourceTree = "<group>"; };
-		2E8A72562AF4002E0075FF43 /* BeChattedUserInputValidationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedUserInputValidationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E8A72662AF4015F0075FF43 /* PasswordValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
-		2E8A72672AF4015F0075FF43 /* EmailValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
-		2E8A726C2AF401880075FF43 /* PasswordUserInputValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordUserInputValidationTests.swift; sourceTree = "<group>"; };
-		2E8A726D2AF401880075FF43 /* EmailUserInputValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailUserInputValidationTests.swift; sourceTree = "<group>"; };
+		2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
+		2E172DC12BC51E460014A13B /* ChannelsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoader.swift; sourceTree = "<group>"; };
+		2E172DC32BC51E950014A13B /* ChannelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelInfo.swift; sourceTree = "<group>"; };
+		2E172DC52BC521230014A13B /* ChannelsLoaderResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoaderResultMapper.swift; sourceTree = "<group>"; };
+		2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedChannels.h; sourceTree = "<group>"; };
+		2EA048422BBE7CC4000525C9 /* BeChattedChannelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedChannelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EA048522BBE7D10000525C9 /* ChannelsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2E8A724B2AF4002E0075FF43 /* Frameworks */ = {
+		2EA048372BBE7CC4000525C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2E8A72532AF4002E0075FF43 /* Frameworks */ = {
+		2EA0483F2BBE7CC4000525C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E8A72572AF4002E0075FF43 /* BeChattedUserInputValidation.framework in Frameworks */,
+				2EA048432BBE7CC4000525C9 /* BeChattedChannels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E8A72442AF4002E0075FF43 = {
+		2E82772C2BBFD575007E1EC5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				2E8A72502AF4002E0075FF43 /* BeChattedUserInputValidation */,
-				2E8A725A2AF4002E0075FF43 /* BeChattedUserInputValidationTests */,
-				2E8A724F2AF4002E0075FF43 /* Products */,
+				2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2EA048302BBE7CC3000525C9 = {
+			isa = PBXGroup;
+			children = (
+				2EA0483C2BBE7CC4000525C9 /* BeChattedChannels */,
+				2EA048462BBE7CC4000525C9 /* BeChattedChannelsTests */,
+				2EA0483B2BBE7CC4000525C9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		2E8A724F2AF4002E0075FF43 /* Products */ = {
+		2EA0483B2BBE7CC4000525C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2E8A724E2AF4002E0075FF43 /* BeChattedUserInputValidation.framework */,
-				2E8A72562AF4002E0075FF43 /* BeChattedUserInputValidationTests.xctest */,
+				2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */,
+				2EA048422BBE7CC4000525C9 /* BeChattedChannelsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2E8A72502AF4002E0075FF43 /* BeChattedUserInputValidation */ = {
+		2EA0483C2BBE7CC4000525C9 /* BeChattedChannels */ = {
 			isa = PBXGroup;
 			children = (
-				2E8A72512AF4002E0075FF43 /* BeChattedUserInputValidation.h */,
-				2E8A72672AF4015F0075FF43 /* EmailValidator.swift */,
-				2E8A72662AF4015F0075FF43 /* PasswordValidator.swift */,
+				2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */,
+				2E172DBF2BC51DC60014A13B /* HTTPClientProtocol.swift */,
+				2E172DC32BC51E950014A13B /* ChannelInfo.swift */,
+				2E172DC12BC51E460014A13B /* ChannelsLoader.swift */,
+				2E172DC52BC521230014A13B /* ChannelsLoaderResultMapper.swift */,
 			);
-			path = BeChattedUserInputValidation;
+			path = BeChattedChannels;
 			sourceTree = "<group>";
 		};
-		2E8A725A2AF4002E0075FF43 /* BeChattedUserInputValidationTests */ = {
+		2EA048462BBE7CC4000525C9 /* BeChattedChannelsTests */ = {
 			isa = PBXGroup;
 			children = (
-				2E8A726D2AF401880075FF43 /* EmailUserInputValidationTests.swift */,
-				2E8A726C2AF401880075FF43 /* PasswordUserInputValidationTests.swift */,
+				2E82772C2BBFD575007E1EC5 /* Helpers */,
+				2EA048522BBE7D10000525C9 /* ChannelsLoaderTests.swift */,
 			);
-			path = BeChattedUserInputValidationTests;
+			path = BeChattedChannelsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		2E8A72492AF4002E0075FF43 /* Headers */ = {
+		2EA048352BBE7CC4000525C9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E8A725D2AF4002E0075FF43 /* BeChattedUserInputValidation.h in Headers */,
+				2EA048492BBE7CC4000525C9 /* BeChattedChannels.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2E8A724D2AF4002E0075FF43 /* BeChattedUserInputValidation */ = {
+		2EA048392BBE7CC4000525C9 /* BeChattedChannels */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E8A72602AF4002E0075FF43 /* Build configuration list for PBXNativeTarget "BeChattedUserInputValidation" */;
+			buildConfigurationList = 2EA0484C2BBE7CC4000525C9 /* Build configuration list for PBXNativeTarget "BeChattedChannels" */;
 			buildPhases = (
-				2E8A72492AF4002E0075FF43 /* Headers */,
-				2E8A724A2AF4002E0075FF43 /* Sources */,
-				2E8A724B2AF4002E0075FF43 /* Frameworks */,
-				2E8A724C2AF4002E0075FF43 /* Resources */,
+				2EA048352BBE7CC4000525C9 /* Headers */,
+				2EA048362BBE7CC4000525C9 /* Sources */,
+				2EA048372BBE7CC4000525C9 /* Frameworks */,
+				2EA048382BBE7CC4000525C9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BeChattedUserInputValidation;
-			productName = BeChattedUserInputValidation;
-			productReference = 2E8A724E2AF4002E0075FF43 /* BeChattedUserInputValidation.framework */;
+			name = BeChattedChannels;
+			productName = BeChattedChannels;
+			productReference = 2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		2E8A72552AF4002E0075FF43 /* BeChattedUserInputValidationTests */ = {
+		2EA048412BBE7CC4000525C9 /* BeChattedChannelsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E8A72632AF4002E0075FF43 /* Build configuration list for PBXNativeTarget "BeChattedUserInputValidationTests" */;
+			buildConfigurationList = 2EA0484F2BBE7CC4000525C9 /* Build configuration list for PBXNativeTarget "BeChattedChannelsTests" */;
 			buildPhases = (
-				2E8A72522AF4002E0075FF43 /* Sources */,
-				2E8A72532AF4002E0075FF43 /* Frameworks */,
-				2E8A72542AF4002E0075FF43 /* Resources */,
+				2EA0483E2BBE7CC4000525C9 /* Sources */,
+				2EA0483F2BBE7CC4000525C9 /* Frameworks */,
+				2EA048402BBE7CC4000525C9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2E8A72592AF4002E0075FF43 /* PBXTargetDependency */,
+				2EA048452BBE7CC4000525C9 /* PBXTargetDependency */,
 			);
-			name = BeChattedUserInputValidationTests;
-			productName = BeChattedUserInputValidationTests;
-			productReference = 2E8A72562AF4002E0075FF43 /* BeChattedUserInputValidationTests.xctest */;
+			name = BeChattedChannelsTests;
+			productName = BeChattedChannelsTests;
+			productReference = 2EA048422BBE7CC4000525C9 /* BeChattedChannelsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2E8A72452AF4002E0075FF43 /* Project object */ = {
+		2EA048312BBE7CC3000525C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					2E8A724D2AF4002E0075FF43 = {
-						CreatedOnToolsVersion = 15.0.1;
-						LastSwiftMigration = 1500;
+					2EA048392BBE7CC4000525C9 = {
+						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
-					2E8A72552AF4002E0075FF43 = {
-						CreatedOnToolsVersion = 15.0.1;
-						LastSwiftMigration = 1500;
+					2EA048412BBE7CC4000525C9 = {
+						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
-			buildConfigurationList = 2E8A72482AF4002E0075FF43 /* Build configuration list for PBXProject "BeChattedUserInputValidation" */;
+			buildConfigurationList = 2EA048342BBE7CC3000525C9 /* Build configuration list for PBXProject "BeChattedChannels" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -169,26 +182,26 @@
 				en,
 				Base,
 			);
-			mainGroup = 2E8A72442AF4002E0075FF43;
-			productRefGroup = 2E8A724F2AF4002E0075FF43 /* Products */;
+			mainGroup = 2EA048302BBE7CC3000525C9;
+			productRefGroup = 2EA0483B2BBE7CC4000525C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2E8A724D2AF4002E0075FF43 /* BeChattedUserInputValidation */,
-				2E8A72552AF4002E0075FF43 /* BeChattedUserInputValidationTests */,
+				2EA048392BBE7CC4000525C9 /* BeChattedChannels */,
+				2EA048412BBE7CC4000525C9 /* BeChattedChannelsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2E8A724C2AF4002E0075FF43 /* Resources */ = {
+		2EA048382BBE7CC4000525C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2E8A72542AF4002E0075FF43 /* Resources */ = {
+		2EA048402BBE7CC4000525C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -198,36 +211,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2E8A724A2AF4002E0075FF43 /* Sources */ = {
+		2EA048362BBE7CC4000525C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E8A72692AF4015F0075FF43 /* PasswordValidator.swift in Sources */,
-				2E8A726A2AF4015F0075FF43 /* EmailValidator.swift in Sources */,
+				2E172DC62BC521230014A13B /* ChannelsLoaderResultMapper.swift in Sources */,
+				2E172DC22BC51E460014A13B /* ChannelsLoader.swift in Sources */,
+				2E172DC42BC51E950014A13B /* ChannelInfo.swift in Sources */,
+				2E172DC02BC51DC60014A13B /* HTTPClientProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2E8A72522AF4002E0075FF43 /* Sources */ = {
+		2EA0483E2BBE7CC4000525C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E8A726E2AF401880075FF43 /* PasswordUserInputValidationTests.swift in Sources */,
-				2E8A726F2AF401880075FF43 /* EmailUserInputValidationTests.swift in Sources */,
+				2EA048532BBE7D10000525C9 /* ChannelsLoaderTests.swift in Sources */,
+				2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2E8A72592AF4002E0075FF43 /* PBXTargetDependency */ = {
+		2EA048452BBE7CC4000525C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2E8A724D2AF4002E0075FF43 /* BeChattedUserInputValidation */;
-			targetProxy = 2E8A72582AF4002E0075FF43 /* PBXContainerItemProxy */;
+			target = 2EA048392BBE7CC4000525C9 /* BeChattedChannels */;
+			targetProxy = 2EA048442BBE7CC4000525C9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2E8A725E2AF4002E0075FF43 /* Debug */ = {
+		2EA0484A2BBE7CC4000525C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -262,7 +277,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -281,7 +295,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -295,7 +308,7 @@
 			};
 			name = Debug;
 		};
-		2E8A725F2AF4002E0075FF43 /* Release */ = {
+		2EA0484B2BBE7CC4000525C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -330,7 +343,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -343,7 +355,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -355,15 +366,14 @@
 			};
 			name = Release;
 		};
-		2E8A72612AF4002E0075FF43 /* Debug */ = {
+		2EA0484D2BBE7CC4000525C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8U849676MP;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -378,31 +388,27 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedUserInputValidation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedChannels;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		2E8A72622AF4002E0075FF43 /* Release */ = {
+		2EA0484E2BBE7CC4000525C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8U849676MP;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -417,54 +423,44 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedUserInputValidation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedChannels;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		2E8A72642AF4002E0075FF43 /* Debug */ = {
+		2EA048502BBE7CC4000525C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8U849676MP;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedUserInputValidationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedChannelsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		2E8A72652AF4002E0075FF43 /* Release */ = {
+		2EA048512BBE7CC4000525C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8U849676MP;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedUserInputValidationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedChannelsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -474,34 +470,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2E8A72482AF4002E0075FF43 /* Build configuration list for PBXProject "BeChattedUserInputValidation" */ = {
+		2EA048342BBE7CC3000525C9 /* Build configuration list for PBXProject "BeChattedChannels" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2E8A725E2AF4002E0075FF43 /* Debug */,
-				2E8A725F2AF4002E0075FF43 /* Release */,
+				2EA0484A2BBE7CC4000525C9 /* Debug */,
+				2EA0484B2BBE7CC4000525C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E8A72602AF4002E0075FF43 /* Build configuration list for PBXNativeTarget "BeChattedUserInputValidation" */ = {
+		2EA0484C2BBE7CC4000525C9 /* Build configuration list for PBXNativeTarget "BeChattedChannels" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2E8A72612AF4002E0075FF43 /* Debug */,
-				2E8A72622AF4002E0075FF43 /* Release */,
+				2EA0484D2BBE7CC4000525C9 /* Debug */,
+				2EA0484E2BBE7CC4000525C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E8A72632AF4002E0075FF43 /* Build configuration list for PBXNativeTarget "BeChattedUserInputValidationTests" */ = {
+		2EA0484F2BBE7CC4000525C9 /* Build configuration list for PBXNativeTarget "BeChattedChannelsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2E8A72642AF4002E0075FF43 /* Debug */,
-				2E8A72652AF4002E0075FF43 /* Release */,
+				2EA048502BBE7CC4000525C9 /* Debug */,
+				2EA048512BBE7CC4000525C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 2E8A72452AF4002E0075FF43 /* Project object */;
+	rootObject = 2EA048312BBE7CC3000525C9 /* Project object */;
 }

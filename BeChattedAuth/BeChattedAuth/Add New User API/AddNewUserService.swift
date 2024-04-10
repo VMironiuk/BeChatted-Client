@@ -31,7 +31,7 @@ final class AddNewUserService: AddNewUserServiceProtocol {
             guard self != nil else { return }
             
             switch result {
-            case let .success(data, response):
+            case let .success((data, response)):
                 completion(AddNewUserServiceResultMapper.result(for: data, response: response))
             case .failure:
                 completion(.failure(.connectivity))

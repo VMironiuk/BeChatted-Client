@@ -26,7 +26,7 @@ final class NewAccountService: NewAccountServiceProtocol {
             guard self != nil else { return }
             
             switch result {
-            case let .success(_, response):
+            case let .success((_, response)):
                 completion(NewAccountServiceResultMapper.result(for: response))
             case .failure:
                 completion(.failure(.connectivity))
