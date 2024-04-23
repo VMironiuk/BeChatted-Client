@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */; };
+		2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */; };
 		2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */; };
 		2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */; };
 		2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelButtonStyle.swift; sourceTree = "<group>"; };
+		2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModelTests.swift; sourceTree = "<group>"; };
 		2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
 		2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewComposer.swift; sourceTree = "<group>"; };
 		2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputValidatorProtocol.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				2EC4CE682BBBDE5600B72903 /* URLSessionHTTPClientTests.swift */,
 				2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */,
 				2EB37CB92B874119003990B0 /* RegisterViewModelTests.swift */,
+				2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */,
 				2EC4CE692BBBDE5600B72903 /* URLSessionHTTPClientTests.swift in Sources */,
 				2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */,
 				2EB37CBC2B874240003990B0 /* EmailValidatorStub.swift in Sources */,
