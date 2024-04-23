@@ -84,4 +84,30 @@ final class ChannelsViewModelTests: XCTestCase {
         default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
         }
     }
+    
+    func test_load_returnsChannelsIfThereAreChannels() {
+        // given
+        let expectedChannels = [makeChannel(with: "A", description: "AAA"), makeChannel(with: "B", description: "BBB")]
+        let loader = ChannelsLoaderStub()
+        let sut = ChannelsViewModel(loader: loader)
+        
+        // when
+        sut.loadChannels()
+        loader.complete(with: .success(expectedChannels))
+        
+        // then
+        switch sut.loadChannelsResult {
+        case .success(let gotChannels):
+            XCTAssertEqual(gotChannels, expectedChannels)
+        default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeChannel(with name: String, description: String) -> Channel {
+        .init(id: UUID().uuidString, name: name, description: description)
+    }
 }
+
+extension Channel: Equatable {}
