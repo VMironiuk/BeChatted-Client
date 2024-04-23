@@ -13,29 +13,45 @@ struct Channel {
     let description: String
 }
 
-enum ChannelsLoaderError: Error {
+enum LoadChannelsError: Error {
     case unknown
     case connectivity
     case invalidData
 }
 
 protocol ChannelsLoaderProtocol {
-    func load(completion: @escaping (Result<[Channel], ChannelsLoaderError>) -> Void)
+    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void)
 }
 
 final class ChannelsLoaderStub: ChannelsLoaderProtocol {
-    private(set) var loadCallCount = 0
+    private var completions = [(Result<[Channel], LoadChannelsError>) -> Void]()
     
-    func load(completion: @escaping (Result<[Channel], ChannelsLoaderError>) -> Void) {
-        loadCallCount += 1
+    var loadCallCount: Int {
+        completions.count
+    }
+    
+    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
+        completions.append(completion)
+    }
+    
+    func complete(with result: Result<[Channel], LoadChannelsError>, at index: Int = 0) {
+        completions[index](result)
     }
 }
 
 final class ChannelsViewModel {
     private let loader: ChannelsLoaderProtocol
     
+    var loadChannelsResult: Result<[Channel], LoadChannelsError> = .success([])
+    
     init(loader: ChannelsLoaderProtocol) {
         self.loader = loader
+    }
+    
+    func loadChannels() {
+        loader.load { [weak self] result in
+            self?.loadChannelsResult = result
+        }
     }
 }
 
@@ -50,5 +66,22 @@ final class ChannelsViewModelTests: XCTestCase {
         
         // then
         XCTAssertEqual(loader.loadCallCount, 0)
+    }
+    
+    func test_load_returnsEmptyIfThereAreNoChannels() {
+        // given
+        let loader = ChannelsLoaderStub()
+        let sut = ChannelsViewModel(loader: loader)
+        
+        // when
+        sut.loadChannels()
+        loader.complete(with: .success([]))
+        
+        // then
+        switch sut.loadChannelsResult {
+        case .success(let channels):
+            XCTAssertTrue(channels.isEmpty, "Expected empty channels, got \(channels) instead")
+        default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
+        }
     }
 }
