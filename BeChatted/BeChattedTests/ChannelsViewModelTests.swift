@@ -103,6 +103,23 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
+    func test_load_returnsUnknownErrorOnUnknownError() {
+        // given
+        let loader = ChannelsLoaderStub()
+        let sut = ChannelsViewModel(loader: loader)
+        
+        // when
+        sut.loadChannels()
+        loader.complete(with: .failure(.unknown))
+        
+        // then
+        switch sut.loadChannelsResult {
+        case .failure(let receivedError):
+            XCTAssertEqual(receivedError, .unknown, "Expected unknown error, got \(receivedError) instead")
+        default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeChannel(with name: String, description: String) -> Channel {
