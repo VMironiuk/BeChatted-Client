@@ -136,6 +136,23 @@ final class ChannelsViewModelTests: XCTestCase {
         default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
         }
     }
+    
+    func test_load_returnsInvalidDataErrorOnInvalidDataError() {
+        // given
+        let loader = ChannelsLoaderStub()
+        let sut = ChannelsViewModel(loader: loader)
+        
+        // when
+        sut.loadChannels()
+        loader.complete(with: .failure(.invalidData))
+        
+        // then
+        switch sut.loadChannelsResult {
+        case .failure(let receivedError):
+            XCTAssertEqual(receivedError, .invalidData, "Expected connectivity error, got \(receivedError) instead")
+        default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
+        }
+    }
 
     // MARK: - Helpers
     
