@@ -6,54 +6,7 @@
 //
 
 import XCTest
-
-struct Channel {
-    let id: String
-    let name: String
-    let description: String
-}
-
-enum LoadChannelsError: Error {
-    case unknown
-    case connectivity
-    case invalidData
-}
-
-protocol ChannelsLoaderProtocol {
-    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void)
-}
-
-final class ChannelsLoaderStub: ChannelsLoaderProtocol {
-    private var completions = [(Result<[Channel], LoadChannelsError>) -> Void]()
-    
-    var loadCallCount: Int {
-        completions.count
-    }
-    
-    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
-        completions.append(completion)
-    }
-    
-    func complete(with result: Result<[Channel], LoadChannelsError>, at index: Int = 0) {
-        completions[index](result)
-    }
-}
-
-final class ChannelsViewModel {
-    private let loader: ChannelsLoaderProtocol
-    
-    var loadChannelsResult: Result<[Channel], LoadChannelsError> = .success([])
-    
-    init(loader: ChannelsLoaderProtocol) {
-        self.loader = loader
-    }
-    
-    func loadChannels() {
-        loader.load { [weak self] result in
-            self?.loadChannelsResult = result
-        }
-    }
-}
+import BeChatted
 
 final class ChannelsViewModelTests: XCTestCase {
     
@@ -87,18 +40,19 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_load_returnsChannelsIfThereAreChannels() {
         // given
-        let expectedChannels = [makeChannel(with: "A", description: "AAA"), makeChannel(with: "B", description: "BBB")]
+        let loadedChannels = [makeChannel(with: "A", description: "AAA"), makeChannel(with: "B", description: "BBB")]
+        let expectedChannelItems = [.title, makeChannelItem(with: "A"), makeChannelItem(with: "B")]
         let loader = ChannelsLoaderStub()
         let sut = ChannelsViewModel(loader: loader)
         
         // when
         sut.loadChannels()
-        loader.complete(with: .success(expectedChannels))
+        loader.complete(with: .success(loadedChannels))
         
         // then
         switch sut.loadChannelsResult {
         case .success(let gotChannels):
-            XCTAssertEqual(gotChannels, expectedChannels)
+            XCTAssertEqual(gotChannels, expectedChannelItems)
         default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
         }
     }
@@ -159,6 +113,37 @@ final class ChannelsViewModelTests: XCTestCase {
     private func makeChannel(with name: String, description: String) -> Channel {
         .init(id: UUID().uuidString, name: name, description: description)
     }
+    
+    private func makeChannelItem(with name: String) -> ChannelItem {
+        .channel(name: name, isUnread: false)
+    }
+    
+    final class ChannelsLoaderStub: ChannelsLoaderProtocol {
+        private var completions = [(Result<[Channel], LoadChannelsError>) -> Void]()
+        
+        var loadCallCount: Int {
+            completions.count
+        }
+        
+        func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
+            completions.append(completion)
+        }
+        
+        func complete(with result: Result<[Channel], LoadChannelsError>, at index: Int = 0) {
+            completions[index](result)
+        }
+    }
 }
 
-extension Channel: Equatable {}
+extension ChannelItem: Equatable {
+    public static func == (lhs: ChannelItem, rhs: ChannelItem) -> Bool {
+        switch (lhs, rhs) {
+        case (.title, .title):
+            return true
+        case let (.channel(lhsName, lhsIsUnread), .channel(rhsName, rhsIsUnread)):
+            return lhsName == rhsName && lhsIsUnread == rhsIsUnread
+        default:
+            return false
+        }
+    }
+}

@@ -57,12 +57,6 @@ struct ChannelsView: View {
     }
 }
 
-enum ChannelItem: Identifiable {
-    var id: UUID { UUID() }
-    case title
-    case channel(name: String, isUnread: Bool)
-}
-
 struct ChannelTitleView: View {
     var body: some View {
         HStack {
