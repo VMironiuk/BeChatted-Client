@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ChannelsView: View {
-    let channelItems: [ChannelItem]
+    @Bindable private var viewModel: ChannelsViewModel
+    let channelItems = [ChannelItem]()
+    
+    init(viewModel: ChannelsViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         ScrollView {
             LazyVStack(pinnedViews: [.sectionHeaders]) {
                 Section {
-                    ForEach(channelItems) { channelItemView(for: $0) }
+//                    ForEach(channelItems) { channelItemView(for: $0) }
+                    contentView()
                 } header: {
                     ZStack {
                         Rectangle()
@@ -43,6 +49,40 @@ struct ChannelsView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }
+        }
+        .onAppear {
+            viewModel.loadChannels()
+        }
+    }
+    
+    @ViewBuilder
+    private func contentView() -> some View {
+        switch viewModel.loadChannelsResult {
+        case .success(let channels):
+            contentView(for: channels)
+        case .failure(let error):
+            contentView(for: error)
+        }
+    }
+    
+    @ViewBuilder
+    private func contentView(for channels: [ChannelItem]) -> some View {
+        if channels.isEmpty {
+            Text("There are no channels")
+        } else {
+            Text("There are some channels")
+        }
+    }
+    
+    @ViewBuilder
+    private func contentView(for error: LoadChannelsError) -> some View {
+        switch error {
+        case .unknown:
+            Text("Unknown error")
+        case .connectivity:
+            Text("Connectivity error")
+        case .invalidData:
+            Text("Invalid data error")
         }
     }
     
@@ -97,15 +137,11 @@ struct ChannelItemView: View {
 
 #Preview {
     NavigationStack {
-        ChannelsView(
-            channelItems: [
-                .title,
-                .channel(name: "general", isUnread: false),
-                .channel(name: "announcements", isUnread: true),
-                .channel(name: "main", isUnread: false),
-                .channel(name: "random", isUnread: true),
-                .channel(name: "onboarding", isUnread: false),
-                .channel(name: "off-topic", isUnread: false),
-                .channel(name: "books", isUnread: false)])
+        ChannelsView(viewModel: ChannelsViewModel(loader: FakeChannelsLoader()))
+    }
+}
+
+private class FakeChannelsLoader: ChannelsLoaderProtocol {
+    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
     }
 }

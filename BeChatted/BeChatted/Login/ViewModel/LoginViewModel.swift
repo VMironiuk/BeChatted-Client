@@ -30,11 +30,11 @@ import Foundation
         self.authService = authService
     }
     
-    public func login(completion: @escaping (Result<Void, AuthError>) -> Void) {
+    public func login(completion: @escaping (Result<LoginInfo, AuthError>) -> Void) {
         authService.login(LoginPayload(email: email, password: password)) { [weak self] result in
             switch result {
-            case .success:
-                completion(.success(()))
+            case .success(let loginInfo):
+                completion(.success(loginInfo))
             case .failure(let error):
                 self?.authError = error
                 completion(.failure(error))

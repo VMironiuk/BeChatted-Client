@@ -9,4 +9,5 @@ import Foundation
 
 @Observable final class AppData {
     var isUserLoggedIn: Bool = false
+    var authToken: String?
 }
