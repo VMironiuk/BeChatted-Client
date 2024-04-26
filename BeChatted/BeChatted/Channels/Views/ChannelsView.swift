@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChannelsView: View {
     @Bindable private var viewModel: ChannelsViewModel
-    let channelItems = [ChannelItem]()
     
     init(viewModel: ChannelsViewModel) {
         self.viewModel = viewModel
