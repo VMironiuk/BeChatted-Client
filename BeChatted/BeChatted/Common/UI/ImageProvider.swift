@@ -14,6 +14,10 @@ final class ImageProvider {
         assetImage(for: "Auth/RegistrationSuccessIcon")
     }
     
+    static var noChannelsImage: Image {
+        assetImage(for: "Channels/NoChannelsImage")
+    }
+    
     static var avatarPrototype: Image {
         assetImage(for: "AvatarPrototype")
     }

@@ -67,7 +67,7 @@ struct ChannelsView: View {
     @ViewBuilder
     private func contentView(for channels: [ChannelItem]) -> some View {
         if channels.isEmpty {
-            Text("There are no channels")
+            noChannelsContentView()
         } else {
             Text("There are some channels")
         }
@@ -82,6 +82,23 @@ struct ChannelsView: View {
             Text("Connectivity error")
         case .invalidData:
             Text("Invalid data error")
+        }
+    }
+    
+    @ViewBuilder
+    private func noChannelsContentView() -> some View {
+        VStack(alignment: .center) {
+            ImageProvider.noChannelsImage
+                .padding(.vertical, 64)
+            Text("No Channels Yet")
+                .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(ColorProvider.channelsIssueTitleColor)
+            Text("Kickstart the conversation by creating the first channel!")
+                .font(.system(size: 20, weight: .regular))
+                .foregroundStyle(ColorProvider.channelsIssueMessageColor)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 40)
+                .multilineTextAlignment(.center)
         }
     }
     
