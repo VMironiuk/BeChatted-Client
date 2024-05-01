@@ -18,7 +18,6 @@ struct ChannelsView: View {
         ScrollView {
             LazyVStack(pinnedViews: [.sectionHeaders]) {
                 Section {
-//                    ForEach(channelItems) { channelItemView(for: $0) }
                     contentView()
                 } header: {
                     ZStack {
@@ -50,6 +49,9 @@ struct ChannelsView: View {
             }
         }
         .onAppear {
+            viewModel.loadChannels()
+        }
+        .refreshable {
             viewModel.loadChannels()
         }
     }
