@@ -76,12 +76,10 @@ struct ChannelsView: View {
     @ViewBuilder
     private func contentView(for error: LoadChannelsError) -> some View {
         switch error {
-        case .unknown:
-            Text("Unknown error")
+        case .unknown, .invalidData:
+            unknownErrorContentView()
         case .connectivity:
             Text("Connectivity error")
-        case .invalidData:
-            Text("Invalid data error")
         }
     }
     
@@ -93,6 +91,7 @@ struct ChannelsView: View {
             Text("No Channels Yet")
                 .font(.system(size: 24, weight: .semibold))
                 .foregroundStyle(ColorProvider.channelsIssueTitleColor)
+                .multilineTextAlignment(.center)
             Text("Kickstart the conversation by creating the first channel!")
                 .font(.system(size: 20, weight: .regular))
                 .foregroundStyle(ColorProvider.channelsIssueMessageColor)
@@ -105,6 +104,24 @@ struct ChannelsView: View {
     @ViewBuilder
     private func channelsListContentView(for channels: [ChannelItem]) -> some View {
         ForEach(channels) { channelItemView(for: $0) }
+    }
+    
+    @ViewBuilder
+    private func unknownErrorContentView() -> some View {
+        VStack(alignment: .center) {
+            ImageProvider.unknownErrorOnChannelsImage
+                .padding(.vertical, 64)
+            Text("Oops, Something Went Wrong")
+                .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(ColorProvider.channelsIssueTitleColor)
+                .multilineTextAlignment(.center)
+            Text("Something unexpected happened. We're on it, but you might want to try again")
+                .font(.system(size: 20, weight: .regular))
+                .foregroundStyle(ColorProvider.channelsIssueMessageColor)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 40)
+                .multilineTextAlignment(.center)
+        }
     }
     
     @ViewBuilder

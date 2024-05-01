@@ -18,6 +18,10 @@ final class ImageProvider {
         assetImage(for: "Channels/NoChannelsImage")
     }
     
+    static var unknownErrorOnChannelsImage: Image {
+        assetImage(for: "Channels/UnknownErrorOnChannelsImage")
+    }
+    
     static var avatarPrototype: Image {
         assetImage(for: "AvatarPrototype")
     }
