@@ -81,7 +81,7 @@ struct ChannelsView: View {
         case .unknown, .invalidData:
             unknownErrorContentView()
         case .connectivity:
-            Text("Connectivity error")
+            connectivityErrorContentView()
         }
     }
     
@@ -118,6 +118,24 @@ struct ChannelsView: View {
                 .foregroundStyle(ColorProvider.channelsIssueTitleColor)
                 .multilineTextAlignment(.center)
             Text("Something unexpected happened. We're on it, but you might want to try again")
+                .font(.system(size: 20, weight: .regular))
+                .foregroundStyle(ColorProvider.channelsIssueMessageColor)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 40)
+                .multilineTextAlignment(.center)
+        }
+    }
+    
+    @ViewBuilder
+    private func connectivityErrorContentView() -> some View {
+        VStack(alignment: .center) {
+            ImageProvider.connectivityIssueOnChannelsImage
+                .padding(.vertical, 64)
+            Text("Oops, Connection Trouble!")
+                .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(ColorProvider.channelsIssueTitleColor)
+                .multilineTextAlignment(.center)
+            Text("We're having trouble connecting right now. Please check your internet connection or try again later")
                 .font(.system(size: 20, weight: .regular))
                 .foregroundStyle(ColorProvider.channelsIssueMessageColor)
                 .padding(.vertical, 8)

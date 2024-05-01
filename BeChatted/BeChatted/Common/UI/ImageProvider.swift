@@ -22,6 +22,10 @@ final class ImageProvider {
         assetImage(for: "Channels/UnknownErrorOnChannelsImage")
     }
     
+    static var connectivityIssueOnChannelsImage: Image {
+        assetImage(for: "Channels/ConnectionIssueImage")
+    }
+    
     static var avatarPrototype: Image {
         assetImage(for: "AvatarPrototype")
     }
