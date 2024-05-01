@@ -8,9 +8,9 @@
 import Foundation
 
 public struct ChannelInfo: Codable, Equatable {
-    let id: String
-    let name: String
-    let description: String
+    public let id: String
+    public let name: String
+    public let description: String
     
     public init(id: String, name: String, description: String) {
         self.id = id

@@ -23,7 +23,7 @@ struct LoginView: View {
     
     var onTapped: (() -> Void)?
     var onLoginButtonTapped: (() -> Void)?
-    var onLoginSuccessAction: (() -> Void)?
+    var onLoginSuccessAction: ((String) -> Void)?
     
     init(viewModel: LoginViewModel, footerView: AuthFooterView) {
         self.viewModel = viewModel
@@ -70,10 +70,10 @@ private extension LoginView {
             authButtonState = .loading
             viewModel.login { result in
                 switch result {
-                case .success:
+                case .success(let loginInfo):
                     authButtonState = .normal
                     DispatchQueue.main.async {
-                        onLoginSuccessAction?()
+                        onLoginSuccessAction?(loginInfo.token)
                     }
                 case .failure:
                     authButtonState = .failed

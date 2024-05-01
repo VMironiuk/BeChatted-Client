@@ -25,6 +25,10 @@ struct LoginFeatureComposer {
             onTapped: { UIApplication.shared.hideKeyboard() },
             onLoginButtonTapped: { UIApplication.shared.hideKeyboard() },
             onRegisterButtonTapped: { navigationController.goToRegister() },
-            onLoginSuccessAction: { appData.isUserLoggedIn = true })
+            onLoginSuccessAction: { authToken in
+                appData.authToken = authToken
+                appData.isUserLoggedIn = true
+            }
+        )
     }
 }

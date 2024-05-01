@@ -8,7 +8,7 @@
 import Foundation
 
 struct ChannelsLoaderResultMapper {
-    static func result(for data: Data?, response: HTTPURLResponse?) -> Result<[ChannelInfo], Error> {
+    static func result(for data: Data?, response: HTTPURLResponse?) -> Result<[ChannelInfo], ChannelsLoaderError> {
         guard let response = response else { return .failure(ChannelsLoaderError.unknown) }
         
         switch response.statusCode {
@@ -19,7 +19,7 @@ struct ChannelsLoaderResultMapper {
         }
     }
     
-    private static func result(for data: Data?) -> Result<[ChannelInfo], Error> {
+    private static func result(for data: Data?) -> Result<[ChannelInfo], ChannelsLoaderError> {
         guard let data = data, let channels = try? JSONDecoder().decode([ChannelInfo].self, from: data) else {
             return .failure(ChannelsLoaderError.invalidData)
         }

@@ -24,7 +24,7 @@ public final class ChannelsLoader {
         self.client = client
     }
     
-    public func load(completion: @escaping (Result<[ChannelInfo], Error>) -> Void) {
+    public func load(completion: @escaping (Result<[ChannelInfo], ChannelsLoaderError>) -> Void) {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
@@ -35,8 +35,8 @@ public final class ChannelsLoader {
             switch result {
             case let .success((data, response)):
                 completion(ChannelsLoaderResultMapper.result(for: data, response: response))
-            case let .failure(error):
-                completion(.failure(error))
+            case .failure:
+                completion(.failure(.server))
             }
         }
     }

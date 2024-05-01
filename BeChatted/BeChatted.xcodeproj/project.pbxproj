@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */; };
+		2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */; };
+		2E4F6C042BDA510500BBBCC5 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */; };
+		2E4F6C062BDA515A00BBBCC5 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */; };
+		2E4FC5842BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */; };
+		2E4FC5862BE2717400061DE6 /* ChannelTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */; };
+		2E4FC5882BE2719500061DE6 /* ChannelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5872BE2719500061DE6 /* ChannelItemView.swift */; };
+		2E4FC58A2BE273E600061DE6 /* ChannelsLoaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5892BE273E600061DE6 /* ChannelsLoaderProtocol.swift */; };
+		2E4FC58B2BE2744B00061DE6 /* ChannelsLoaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5892BE273E600061DE6 /* ChannelsLoaderProtocol.swift */; };
+		2E4FC58D2BE274A300061DE6 /* ChannelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */; };
+		2E4FC58E2BE274A300061DE6 /* ChannelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */; };
+		2E4FC5902BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58F2BE2751000061DE6 /* ChannelsViewModelResultMapper.swift */; };
+		2E4FC5912BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58F2BE2751000061DE6 /* ChannelsViewModelResultMapper.swift */; };
 		2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */; };
 		2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */; };
 		2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */; };
@@ -77,6 +89,14 @@
 
 /* Begin PBXFileReference section */
 		2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelButtonStyle.swift; sourceTree = "<group>"; };
+		2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModelTests.swift; sourceTree = "<group>"; };
+		2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
+		2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingIssueContentView.swift; sourceTree = "<group>"; };
+		2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTitleView.swift; sourceTree = "<group>"; };
+		2E4FC5872BE2719500061DE6 /* ChannelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItemView.swift; sourceTree = "<group>"; };
+		2E4FC5892BE273E600061DE6 /* ChannelsLoaderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoaderProtocol.swift; sourceTree = "<group>"; };
+		2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItem.swift; sourceTree = "<group>"; };
+		2E4FC58F2BE2751000061DE6 /* ChannelsViewModelResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModelResultMapper.swift; sourceTree = "<group>"; };
 		2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
 		2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewComposer.swift; sourceTree = "<group>"; };
 		2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputValidatorProtocol.swift; sourceTree = "<group>"; };
@@ -150,11 +170,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E4F6C052BDA510F00BBBCC5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */,
+				2E4FC58F2BE2751000061DE6 /* ChannelsViewModelResultMapper.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2E5EFF662BA823CE00EA65E8 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				2E4F6C052BDA510F00BBBCC5 /* ViewModel */,
 				2E5EFF6B2BA825B400EA65E8 /* Views */,
 				2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */,
+				2E4FC5892BE273E600061DE6 /* ChannelsLoaderProtocol.swift */,
+				2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -163,6 +195,9 @@
 			isa = PBXGroup;
 			children = (
 				2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */,
+				2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */,
+				2E4FC5872BE2719500061DE6 /* ChannelItemView.swift */,
+				2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,6 +228,7 @@
 				2EC4CE682BBBDE5600B72903 /* URLSessionHTTPClientTests.swift */,
 				2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */,
 				2EB37CB92B874119003990B0 /* RegisterViewModelTests.swift */,
+				2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -483,6 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */,
 				2EC4CE692BBBDE5600B72903 /* URLSessionHTTPClientTests.swift in Sources */,
 				2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */,
 				2EB37CBC2B874240003990B0 /* EmailValidatorStub.swift in Sources */,
@@ -499,13 +536,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E4FC58A2BE273E600061DE6 /* ChannelsLoaderProtocol.swift in Sources */,
 				2E82F22D2B88970E00802ED5 /* AuthServiceProtocol.swift in Sources */,
 				2EB37CC02B87433D003990B0 /* Bundle+DisplayName.swift in Sources */,
 				2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */,
+				2E4FC58D2BE274A300061DE6 /* ChannelItem.swift in Sources */,
+				2E4F6C042BDA510500BBBCC5 /* ChannelsViewModel.swift in Sources */,
 				2E82F2332B8897C200802ED5 /* CreateAccountPayload.swift in Sources */,
 				2EB37CAE2B873E36003990B0 /* RegisterViewModel.swift in Sources */,
 				2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */,
 				2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */,
+				2E4FC5902BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */,
 				2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */,
 				2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */,
 				2E82F2352B8897DE00802ED5 /* AddUserPayload.swift in Sources */,
@@ -522,6 +563,8 @@
 				2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */,
 				2EB37CB82B873E61003990B0 /* RegisterView.swift in Sources */,
 				2E82F24F2B88ACBD00802ED5 /* UserInputValidatorProtocol.swift in Sources */,
+				2E4FC5842BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift in Sources */,
+				2E4FC5882BE2719500061DE6 /* ChannelItemView.swift in Sources */,
 				2E82F2542B88AD3000802ED5 /* CreateAccountPayload.swift in Sources */,
 				2EB37CB72B873E5D003990B0 /* RegisterHeaderView.swift in Sources */,
 				2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */,
@@ -529,8 +572,12 @@
 				2E82F24E2B88ACA800802ED5 /* LoginViewModel.swift in Sources */,
 				2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */,
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
+				2E4FC5862BE2717400061DE6 /* ChannelTitleView.swift in Sources */,
+				2E4FC58B2BE2744B00061DE6 /* ChannelsLoaderProtocol.swift in Sources */,
 				2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */,
+				2E4FC58E2BE274A300061DE6 /* ChannelItem.swift in Sources */,
 				2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */,
+				2E4F6C062BDA515A00BBBCC5 /* ChannelsViewModel.swift in Sources */,
 				2E82F2502B88ACC900802ED5 /* AuthServiceProtocol.swift in Sources */,
 				2E82F2462B88A7A800802ED5 /* SecureInputView.swift in Sources */,
 				2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */,
@@ -540,6 +587,7 @@
 				2E82F2562B88AD3900802ED5 /* AddedUserInfo.swift in Sources */,
 				2E82F2472B88A7AD00802ED5 /* TextInputView.swift in Sources */,
 				2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */,
+				2E4FC5912BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */,
 				2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */,
 				2EBE98132B89F915009EB16C /* RegisterViewModel.swift in Sources */,
 				2E82F2512B88ACD500802ED5 /* AuthError.swift in Sources */,

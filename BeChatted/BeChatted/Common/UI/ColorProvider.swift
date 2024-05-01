@@ -54,6 +54,12 @@ final class ColorProvider {
     static var channelItemBackgroundColor: Color {
         assetColor(for: "Channels/ChannelItemBackgroundColor")
     }
+    static var channelsIssueTitleColor: Color {
+        assetColor(for: "Channels/ChannelsIssueTitleColor")
+    }
+    static var channelsIssueMessageColor: Color {
+        assetColor(for: "Channels/ChannelsIssueMessageColor")
+    }
 }
 
 extension ColorProvider {

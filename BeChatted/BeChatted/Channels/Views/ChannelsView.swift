@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ChannelsView: View {
-    let channelItems: [ChannelItem]
+    @Bindable private var viewModel: ChannelsViewModel
+    
+    init(viewModel: ChannelsViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         ScrollView {
             LazyVStack(pinnedViews: [.sectionHeaders]) {
                 Section {
-                    ForEach(channelItems) { channelItemView(for: $0) }
+                    contentView()
                 } header: {
                     ZStack {
                         Rectangle()
@@ -44,8 +48,44 @@ struct ChannelsView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.loadChannels()
+        }
+        .refreshable {
+            viewModel.loadChannels()
+        }
     }
     
+    @ViewBuilder
+    private func contentView() -> some View {
+        switch viewModel.loadChannelsResult {
+        case .success(let channels):
+            contentView(for: channels)
+        case .failure(let error):
+            contentView(for: error)
+        }
+    }
+    
+    @ViewBuilder
+    private func contentView(for channels: [ChannelItem]) -> some View {
+        if channels.isEmpty {
+            ChannelsLoadingIssueContentView(issue: .empty)
+        } else {
+            channelsListContentView(for: channels)
+        }
+    }
+    
+    private func contentView(for error: LoadChannelsError) -> some View {
+        switch error {
+        case .unknown, .invalidData: ChannelsLoadingIssueContentView(issue: .unknown)
+        case .connectivity: ChannelsLoadingIssueContentView(issue: .connectivity)
+        }
+    }
+        
+    private func channelsListContentView(for channels: [ChannelItem]) -> some View {
+        ForEach(channels) { channelItemView(for: $0) }
+    }
+        
     @ViewBuilder
     private func channelItemView(for channelItem: ChannelItem) -> some View {
         switch channelItem {
@@ -57,61 +97,13 @@ struct ChannelsView: View {
     }
 }
 
-enum ChannelItem: Identifiable {
-    var id: UUID { UUID() }
-    case title
-    case channel(name: String, isUnread: Bool)
-}
-
-struct ChannelTitleView: View {
-    var body: some View {
-        HStack {
-            Text("Recommended channels")
-                .font(.system(size: 15, weight: .semibold))
-                .foregroundStyle(ColorProvider.recommendedChannelsLabelColor)
-                .padding(.horizontal, 16)
-                .padding(.top, 64)
-                .padding(.bottom, 24)
-            Spacer()
-        }
-    }
-}
-
-struct ChannelItemView: View {
-    let channelName: String
-    let isUnread: Bool
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundStyle(ColorProvider.channelItemBackgroundColor)
-                .frame(height: 52)
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
-            HStack {
-                Text("#")
-                    .font(.system(size: 20, weight: isUnread ? .black : .regular))
-                    .padding(.leading, 32)
-                    .padding(.trailing, 16)
-                Text(channelName)
-                    .font(.system(size: 16, weight: isUnread ? .black : .regular))
-                Spacer()
-            }
-        }
-    }
-}
-
 #Preview {
     NavigationStack {
-        ChannelsView(
-            channelItems: [
-                .title,
-                .channel(name: "general", isUnread: false),
-                .channel(name: "announcements", isUnread: true),
-                .channel(name: "main", isUnread: false),
-                .channel(name: "random", isUnread: true),
-                .channel(name: "onboarding", isUnread: false),
-                .channel(name: "off-topic", isUnread: false),
-                .channel(name: "books", isUnread: false)])
+        ChannelsView(viewModel: ChannelsViewModel(loader: FakeChannelsLoader()))
+    }
+}
+
+private class FakeChannelsLoader: ChannelsLoaderProtocol {
+    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
     }
 }

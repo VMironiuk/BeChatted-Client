@@ -140,10 +140,8 @@ final class ChannelsLoaderTests: XCTestCase {
             switch result {
             case let .success(receivedChannels):
                 XCTFail("Expected invalid data error, got \(receivedChannels) instead")
-            case let .failure(error as ChannelsLoaderError):
+            case let .failure(error):
                 XCTAssertEqual(error, ChannelsLoaderError.invalidData)
-            default:
-                XCTFail("Expected invalid data error, got \(result) instead")
             }
             exp.fulfill()
         }
@@ -157,7 +155,7 @@ final class ChannelsLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         var sut: ChannelsLoader? = ChannelsLoader(url: anyURL(), authToken: anyAuthToken(), client: client)
         
-        var expectedResult: Result<[ChannelInfo], Error>?
+        var expectedResult: Result<[ChannelInfo], ChannelsLoaderError>?
         sut?.load { expectedResult = $0 }
         
         // when
@@ -179,10 +177,8 @@ final class ChannelsLoaderTests: XCTestCase {
             switch result {
             case let .success(receivedChannels):
                 XCTFail("Expected server error, got \(receivedChannels) instead")
-            case let .failure(error as ChannelsLoaderError):
+            case let .failure(error):
                 XCTAssertEqual(error, ChannelsLoaderError.server)
-            default:
-                XCTFail("Expected server error, got \(result) instead")
             }
             exp.fulfill()
         }
@@ -196,7 +192,7 @@ final class ChannelsLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         var sut: ChannelsLoader? = ChannelsLoader(url: anyURL(), authToken: anyAuthToken(), client: client)
         
-        var expectedResult: Result<[ChannelInfo], Error>?
+        var expectedResult: Result<[ChannelInfo], ChannelsLoaderError>?
         sut?.load { expectedResult = $0 }
         
         // when

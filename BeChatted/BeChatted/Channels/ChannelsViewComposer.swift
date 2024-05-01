@@ -10,14 +10,7 @@ import SwiftUI
 public struct ChannelsViewComposer {
     private init() {}
     
-    public static func composedChannelsView() -> some View {
-        ChannelsView(
-            channelItems: [
-                .title,
-                .channel(name: "general", isUnread: false),
-                .channel(name: "announcements", isUnread: true),
-                .channel(name: "main", isUnread: false),
-                .channel(name: "random", isUnread: true),
-                .channel(name: "onboarding", isUnread: false)])
+    public static func composedChannelsView(with viewModel: ChannelsViewModel) -> some View {
+        ChannelsView(viewModel: viewModel)
     }
 }

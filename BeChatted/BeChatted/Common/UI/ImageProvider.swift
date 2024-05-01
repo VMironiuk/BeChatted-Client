@@ -14,6 +14,18 @@ final class ImageProvider {
         assetImage(for: "Auth/RegistrationSuccessIcon")
     }
     
+    static var noChannelsImage: Image {
+        assetImage(for: "Channels/NoChannelsImage")
+    }
+    
+    static var unknownErrorOnChannelsImage: Image {
+        assetImage(for: "Channels/UnknownErrorOnChannelsImage")
+    }
+    
+    static var connectivityIssueOnChannelsImage: Image {
+        assetImage(for: "Channels/ConnectionIssueImage")
+    }
+    
     static var avatarPrototype: Image {
         assetImage(for: "AvatarPrototype")
     }

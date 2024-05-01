@@ -5,13 +5,20 @@
 //  Created by Volodymyr Myroniuk on 18.03.2024.
 //
 
+import BeChatted
+import BeChattedChannels
 import BeChattediOS
 import SwiftUI
 
 struct ChannelsFeatureComposer {
     let navigationController: MainNavigationController
+    let appData: AppData
     
     var channelsView: some View {
-        ChannelsViewComposer.composedChannelsView()
+        ChannelsViewComposer.composedChannelsView(
+            with: ChannelsViewModel(
+                loader: ChannelsLoaderComposer.channelsLoader(with: appData.authToken ?? "")
+            )
+        )
     }
 }
