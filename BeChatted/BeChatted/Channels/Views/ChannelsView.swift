@@ -69,7 +69,7 @@ struct ChannelsView: View {
         if channels.isEmpty {
             noChannelsContentView()
         } else {
-            Text("There are some channels")
+            channelsListContentView(for: channels)
         }
     }
     
@@ -100,6 +100,11 @@ struct ChannelsView: View {
                 .padding(.horizontal, 40)
                 .multilineTextAlignment(.center)
         }
+    }
+    
+    @ViewBuilder
+    private func channelsListContentView(for channels: [ChannelItem]) -> some View {
+        ForEach(channels) { channelItemView(for: $0) }
     }
     
     @ViewBuilder
