@@ -1,8 +1,8 @@
 //
 //  HelperFunctions.swift
-//  BeChattedTests
+//  BeChattedNetworkTests
 //
-//  Created by Volodymyr Myroniuk on 02.04.2024.
+//  Created by Volodymyr Myroniuk on 02.05.2024.
 //
 
 import Foundation

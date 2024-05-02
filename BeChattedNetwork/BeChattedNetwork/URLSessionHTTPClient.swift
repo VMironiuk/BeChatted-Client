@@ -1,8 +1,8 @@
 //
 //  URLSessionHTTPClient.swift
-//  BeChatted
+//  BeChattedNetwork
 //
-//  Created by Volodymyr Myroniuk on 25.04.2023.
+//  Created by Volodymyr Myroniuk on 02.05.2024.
 //
 
 import Foundation

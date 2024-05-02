@@ -1,8 +1,8 @@
 //
 //  URLProtocolStub.swift
-//  BeChattedAuthTests
+//  BeChattedNetworkTests
 //
-//  Created by Volodymyr Myroniuk on 01.11.2023.
+//  Created by Volodymyr Myroniuk on 02.05.2024.
 //
 
 import Foundation

@@ -1,12 +1,12 @@
 //
 //  URLSessionHTTPClientTests.swift
-//  BeChattedTests
+//  BeChattedNetworkTests
 //
-//  Created by Volodymyr Myroniuk on 13.04.2023.
+//  Created by Volodymyr Myroniuk on 02.05.2024.
 //
 
 import XCTest
-import BeChatted
+import BeChattedNetwork
 
 final class URLSessionHTTPClientTests: XCTestCase {
     

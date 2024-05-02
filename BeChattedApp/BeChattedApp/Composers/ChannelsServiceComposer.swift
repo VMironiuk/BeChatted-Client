@@ -8,6 +8,7 @@
 import BeChatted
 import BeChattedChannels
 import BeChattediOS
+import BeChattedNetwork
 
 struct ChannelsServiceComposer {
     private init() {}
@@ -51,5 +52,3 @@ extension ChannelsService: BeChattediOS.ChannelsServiceProtocol {
         }
     }
 }
-
-extension URLSessionHTTPClient: HTTPClientProtocol {}

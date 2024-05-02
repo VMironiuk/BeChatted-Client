@@ -7,6 +7,7 @@
 
 import BeChatted
 import BeChattedAuth
+import BeChattedNetwork
 
 struct AuthServiceComposer {
     private init() {}
@@ -36,5 +37,3 @@ struct AuthServiceComposer {
         )
     )
 }
-
-extension URLSessionHTTPClient: HTTPClientProtocol {}
