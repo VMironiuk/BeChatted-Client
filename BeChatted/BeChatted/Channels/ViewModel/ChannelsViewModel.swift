@@ -8,16 +8,16 @@
 import Foundation
 
 @Observable public final class ChannelsViewModel {
-    private let loader: ChannelsLoaderProtocol
+    private let channelsService: ChannelsServiceProtocol
     
     public var loadChannelsResult: Result<[ChannelItem], LoadChannelsError> = .success([])
     
-    public init(loader: ChannelsLoaderProtocol) {
-        self.loader = loader
+    public init(channelsService: ChannelsServiceProtocol) {
+        self.channelsService = channelsService
     }
     
     public func loadChannels() {
-        loader.load { [weak self] result in
+        channelsService.load { [weak self] result in
             self?.loadChannelsResult = ChannelsViewModelResultMapper.map(from: result)
         }
     }

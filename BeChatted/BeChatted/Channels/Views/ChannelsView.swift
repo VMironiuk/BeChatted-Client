@@ -99,11 +99,11 @@ struct ChannelsView: View {
 
 #Preview {
     NavigationStack {
-        ChannelsView(viewModel: ChannelsViewModel(loader: FakeChannelsLoader()))
+        ChannelsView(viewModel: ChannelsViewModel(channelsService: FakeChannelsService()))
     }
 }
 
-private class FakeChannelsLoader: ChannelsLoaderProtocol {
+private class FakeChannelsService: ChannelsServiceProtocol {
     func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
     }
 }

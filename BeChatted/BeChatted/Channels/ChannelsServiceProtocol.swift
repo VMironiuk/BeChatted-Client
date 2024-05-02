@@ -1,5 +1,5 @@
 //
-//  ChannelsLoaderProtocol.swift
+//  ChannelsServiceProtocol.swift
 //  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 01.05.2024.
@@ -25,6 +25,6 @@ public enum LoadChannelsError: Error {
     case invalidData
 }
 
-public protocol ChannelsLoaderProtocol {
+public protocol ChannelsServiceProtocol {
     func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void)
 }

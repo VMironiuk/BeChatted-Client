@@ -1,5 +1,5 @@
 //
-//  ChannelsLoaderComposer.swift
+//  ChannelsServiceComposer.swift
 //  BeChattedApp
 //
 //  Created by Volodymyr Myroniuk on 25.04.2024.
@@ -9,7 +9,7 @@ import BeChatted
 import BeChattedChannels
 import BeChattediOS
 
-struct ChannelsLoaderComposer {
+struct ChannelsServiceComposer {
     private init() {}
     
     private static let httpProtocol = "http"
@@ -21,25 +21,25 @@ struct ChannelsLoaderComposer {
     
     private static let channelsURL = URL(string: "\(baseURLString)\(channelsEndpoint)")!
     
-    static func channelsLoader(with authToken: String) -> ChannelsLoader {
-        ChannelsLoader(url: channelsURL, authToken: authToken, client: URLSessionHTTPClient())
+    static func channelsService(with authToken: String) -> ChannelsService {
+        ChannelsService(url: channelsURL, authToken: authToken, client: URLSessionHTTPClient())
     }
 }
 
-extension ChannelsLoader: BeChattediOS.ChannelsLoaderProtocol {
+extension ChannelsService: BeChattediOS.ChannelsServiceProtocol {
     public func load(completion: @escaping (Result<[BeChattediOS.Channel], BeChattediOS.LoadChannelsError>) -> Void) {
-        load { (result: Result<[ChannelInfo], ChannelsLoaderError>) in
+        load { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
             switch result {
             case .success(let channelInfos):
                 completion(.success(channelInfos.map { Channel(id: $0.id, name: $0.name, description: $0.description) }))
-            case .failure(let loaderError):
-                completion(.failure(Self.map(from: loaderError)))
+            case .failure(let error):
+                completion(.failure(Self.map(from: error)))
             }
         }
     }
     
-    static private func map(from loaderError: ChannelsLoaderError) -> BeChattediOS.LoadChannelsError {
-        switch loaderError {
+    static private func map(from channelsLoadingError: ChannelsLoadingError) -> BeChattediOS.LoadChannelsError {
+        switch channelsLoadingError {
         case .server:
             return .connectivity
         case .invalidData:

@@ -1,5 +1,5 @@
 //
-//  ChannelsLoaderTests.swift
+//  ChannelsServiceTests.swift
 //  BeChattedChannelsTests
 //
 //  Created by Volodymyr Myroniuk on 04.04.2024.
@@ -8,7 +8,7 @@
 import XCTest
 import BeChattedChannels
 
-final class ChannelsLoaderTests: XCTestCase {
+final class ChannelsServiceTests: XCTestCase {
     
     func test_init_doesNotSendRequest() {
         // given
@@ -141,7 +141,7 @@ final class ChannelsLoaderTests: XCTestCase {
             case let .success(receivedChannels):
                 XCTFail("Expected invalid data error, got \(receivedChannels) instead")
             case let .failure(error):
-                XCTAssertEqual(error, ChannelsLoaderError.invalidData)
+                XCTAssertEqual(error, ChannelsLoadingError.invalidData)
             }
             exp.fulfill()
         }
@@ -153,9 +153,9 @@ final class ChannelsLoaderTests: XCTestCase {
     func test_load_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsLoader? = ChannelsLoader(url: anyURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsService? = ChannelsService(url: anyURL(), authToken: anyAuthToken(), client: client)
         
-        var expectedResult: Result<[ChannelInfo], ChannelsLoaderError>?
+        var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.load { expectedResult = $0 }
         
         // when
@@ -178,11 +178,11 @@ final class ChannelsLoaderTests: XCTestCase {
             case let .success(receivedChannels):
                 XCTFail("Expected server error, got \(receivedChannels) instead")
             case let .failure(error):
-                XCTAssertEqual(error, ChannelsLoaderError.server)
+                XCTAssertEqual(error, ChannelsLoadingError.server)
             }
             exp.fulfill()
         }
-        client.complete(with: ChannelsLoaderError.server)
+        client.complete(with: ChannelsLoadingError.server)
         
         wait(for: [exp], timeout: 1)
     }
@@ -190,9 +190,9 @@ final class ChannelsLoaderTests: XCTestCase {
     func test_load_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsLoader? = ChannelsLoader(url: anyURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsService? = ChannelsService(url: anyURL(), authToken: anyAuthToken(), client: client)
         
-        var expectedResult: Result<[ChannelInfo], ChannelsLoaderError>?
+        var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.load { expectedResult = $0 }
         
         // when
@@ -210,10 +210,10 @@ final class ChannelsLoaderTests: XCTestCase {
         authToken: String = "any token",
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (ChannelsLoader, HTTPClientSpy) {
+    ) -> (ChannelsService, HTTPClientSpy) {
         let client  = HTTPClientSpy()
         let url = anyURL()
-        let sut = ChannelsLoader(url: url, authToken: anyAuthToken(), client: client)
+        let sut = ChannelsService(url: url, authToken: anyAuthToken(), client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

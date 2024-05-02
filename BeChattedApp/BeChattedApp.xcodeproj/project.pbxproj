@@ -14,7 +14,7 @@
 		2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */; };
 		2E4F6C082BDA608800BBBCC5 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; };
 		2E4F6C092BDA608800BBBCC5 /* BeChattedChannels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift */; };
+		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */; };
 		2E5EFF6D2BA826B800EA65E8 /* ChannelsFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */; };
 		2E82F2662B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; };
 		2E82F2672B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -59,7 +59,7 @@
 		2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordValidator+PasswordValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthService+AuthServiceProtocol.swift"; sourceTree = "<group>"; };
 		2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoaderComposer.swift; sourceTree = "<group>"; };
+		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsServiceComposer.swift; sourceTree = "<group>"; };
 		2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsFeatureComposer.swift; sourceTree = "<group>"; };
 		2E82F2582B88BC8100802ED5 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F2592B88BC8100802ED5 /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
-				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift */,
+				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */,
 				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
 				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
 				2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */,
@@ -277,7 +277,7 @@
 				2E5EFF6D2BA826B800EA65E8 /* ChannelsFeatureComposer.swift in Sources */,
 				2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */,
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
-				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift in Sources */,
+				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */,
 				2E1F9D292B8F2E1700657F39 /* AppData.swift in Sources */,
