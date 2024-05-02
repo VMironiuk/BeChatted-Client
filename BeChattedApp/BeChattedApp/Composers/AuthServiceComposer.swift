@@ -26,7 +26,7 @@ struct AuthServiceComposer {
     private static let userLoginURL = URL(string: "\(baseURLString)\(userLoginEndpoint)")!
     private static let userLogoutURL = URL(string: "\(baseURLString)\(userLogoutEndpoint)")!
     
-    static let authService = makeAuthService(
+    static let authService = AuthService(
         configuration: AuthServiceConfiguration(
             newAccountURL: newAccountURL,
             newUserURL: newUserURL,

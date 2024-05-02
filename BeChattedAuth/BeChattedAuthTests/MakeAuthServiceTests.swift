@@ -46,9 +46,8 @@ final class MakeAuthServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    
     private func authService() -> AuthService {
-        makeAuthService(configuration: authServiceConfiguration())
+        AuthService(configuration: authServiceConfiguration())
     }
     
     private func expect(_ expectedURL: URL, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {

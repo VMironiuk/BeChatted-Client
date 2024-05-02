@@ -7,6 +7,21 @@
 
 import Foundation
 
+public struct UserLoginPayload: Encodable, Equatable {
+    private let email: String
+    private let password: String
+    
+    public init(email: String, password: String) {
+        self.email = email
+        self.password = password
+    }
+}
+
+public struct UserLoginInfo: Decodable, Equatable {
+    public let user: String
+    public let token: String
+}
+
 enum UserLoginServiceError: Error {
     case connectivity
     case credentials

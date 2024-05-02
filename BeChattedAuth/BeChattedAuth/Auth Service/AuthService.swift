@@ -15,6 +15,22 @@ public enum AuthServiceError: Error {
     case unknown
 }
 
+public struct AuthServiceConfiguration {
+    let newAccountURL: URL
+    let newUserURL: URL
+    let userLoginURL: URL
+    let userLogoutURL: URL
+    let httpClient: HTTPClientProtocol
+    
+    public init(newAccountURL: URL, newUserURL: URL, userLoginURL: URL, userLogoutURL: URL, httpClient: HTTPClientProtocol) {
+        self.newAccountURL = newAccountURL
+        self.newUserURL = newUserURL
+        self.userLoginURL = userLoginURL
+        self.userLogoutURL = userLogoutURL
+        self.httpClient = httpClient
+    }
+}
+
 public final class AuthService {
     private let newAccountService: NewAccountServiceProtocol
     private let addNewUserService: AddNewUserServiceProtocol
@@ -31,6 +47,13 @@ public final class AuthService {
         self.addNewUserService = addNewUserService
         self.userLoginService = userLoginService
         self.userLogoutService = userLogoutService
+    }
+    
+    public init(configuration: AuthServiceConfiguration) {
+        newAccountService = NewAccountService(url: configuration.newAccountURL, client: configuration.httpClient)
+        addNewUserService = AddNewUserService(url: configuration.newUserURL, client: configuration.httpClient)
+        userLoginService = UserLoginService(url: configuration.userLoginURL, client: configuration.httpClient)
+        userLogoutService = UserLogoutService(url: configuration.userLogoutURL, client: configuration.httpClient)
     }
     
     public func createAccount(_ payload: NewAccountPayload, completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
