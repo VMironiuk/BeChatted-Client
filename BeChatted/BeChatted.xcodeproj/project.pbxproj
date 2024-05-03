@@ -10,16 +10,12 @@
 		2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */; };
 		2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */; };
 		2E4F6C042BDA510500BBBCC5 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */; };
-		2E4F6C062BDA515A00BBBCC5 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */; };
 		2E4FC5842BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */; };
 		2E4FC5862BE2717400061DE6 /* ChannelTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */; };
 		2E4FC5882BE2719500061DE6 /* ChannelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5872BE2719500061DE6 /* ChannelItemView.swift */; };
 		2E4FC58A2BE273E600061DE6 /* ChannelsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5892BE273E600061DE6 /* ChannelsServiceProtocol.swift */; };
-		2E4FC58B2BE2744B00061DE6 /* ChannelsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5892BE273E600061DE6 /* ChannelsServiceProtocol.swift */; };
 		2E4FC58D2BE274A300061DE6 /* ChannelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */; };
-		2E4FC58E2BE274A300061DE6 /* ChannelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */; };
 		2E4FC5902BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58F2BE2751000061DE6 /* ChannelsViewModelResultMapper.swift */; };
-		2E4FC5912BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58F2BE2751000061DE6 /* ChannelsViewModelResultMapper.swift */; };
 		2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */; };
 		2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */; };
 		2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */; };
@@ -174,11 +170,9 @@
 		2E5EFF662BA823CE00EA65E8 /* Channels Feature */ = {
 			isa = PBXGroup;
 			children = (
+				2EDE6D272BE4FFF5008DAA3C /* Models */,
 				2E4F6C052BDA510F00BBBCC5 /* ViewModel */,
 				2E5EFF6B2BA825B400EA65E8 /* Views */,
-				2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */,
-				2E4FC5892BE273E600061DE6 /* ChannelsServiceProtocol.swift */,
-				2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */,
 			);
 			path = "Channels Feature";
 			sourceTree = "<group>";
@@ -190,6 +184,7 @@
 				2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */,
 				2E4FC5872BE2719500061DE6 /* ChannelItemView.swift */,
 				2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */,
+				2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +322,15 @@
 				2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		2EDE6D272BE4FFF5008DAA3C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E4FC5892BE273E600061DE6 /* ChannelsServiceProtocol.swift */,
+				2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2EEADC992B83346B009EE7CE = {
@@ -557,11 +561,8 @@
 				2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */,
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
 				2E4FC5862BE2717400061DE6 /* ChannelTitleView.swift in Sources */,
-				2E4FC58B2BE2744B00061DE6 /* ChannelsServiceProtocol.swift in Sources */,
 				2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */,
-				2E4FC58E2BE274A300061DE6 /* ChannelItem.swift in Sources */,
 				2E82F2552B88AD3400802ED5 /* AddUserPayload.swift in Sources */,
-				2E4F6C062BDA515A00BBBCC5 /* ChannelsViewModel.swift in Sources */,
 				2E82F2502B88ACC900802ED5 /* AuthServiceProtocol.swift in Sources */,
 				2E82F2462B88A7A800802ED5 /* SecureInputView.swift in Sources */,
 				2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */,
@@ -571,7 +572,6 @@
 				2E82F2562B88AD3900802ED5 /* AddedUserInfo.swift in Sources */,
 				2E82F2472B88A7AD00802ED5 /* TextInputView.swift in Sources */,
 				2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */,
-				2E4FC5912BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */,
 				2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */,
 				2EBE98132B89F915009EB16C /* RegisterViewModel.swift in Sources */,
 				2E82F2512B88ACD500802ED5 /* AuthError.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BeChatted
 
 struct ChannelsView: View {
     @Bindable private var viewModel: ChannelsViewModel

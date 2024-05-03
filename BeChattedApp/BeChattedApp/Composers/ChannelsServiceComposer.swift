@@ -7,7 +7,6 @@
 
 import BeChatted
 import BeChattedChannels
-import BeChattediOS
 import BeChattedNetwork
 
 struct ChannelsServiceComposer {
@@ -27,8 +26,8 @@ struct ChannelsServiceComposer {
     }
 }
 
-extension ChannelsService: BeChattediOS.ChannelsServiceProtocol {
-    public func load(completion: @escaping (Result<[BeChattediOS.Channel], BeChattediOS.LoadChannelsError>) -> Void) {
+extension ChannelsService: ChannelsServiceProtocol {
+    public func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
         load { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
             switch result {
             case .success(let channelInfos):
@@ -39,7 +38,7 @@ extension ChannelsService: BeChattediOS.ChannelsServiceProtocol {
         }
     }
     
-    static private func map(from channelsLoadingError: ChannelsLoadingError) -> BeChattediOS.LoadChannelsError {
+    static private func map(from channelsLoadingError: ChannelsLoadingError) -> LoadChannelsError {
         switch channelsLoadingError {
         case .server:
             return .connectivity

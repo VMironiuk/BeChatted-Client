@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BeChatted
 
 public struct ChannelsViewComposer {
     private init() {}
