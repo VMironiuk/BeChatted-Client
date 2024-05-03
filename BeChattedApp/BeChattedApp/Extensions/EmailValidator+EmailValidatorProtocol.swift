@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import BeChattediOS
+import BeChatted
 import BeChattedUserInputValidation
 
-extension EmailValidator: BeChattediOS.EmailValidatorProtocol {}
+extension EmailValidator: EmailValidatorProtocol {}

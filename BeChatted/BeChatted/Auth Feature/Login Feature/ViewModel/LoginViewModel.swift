@@ -12,12 +12,15 @@ import Foundation
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol
     
-    private(set) var authError: AuthError?
+    private var authError: AuthError?
     
     public var email: String = ""
     public var password: String = ""
     public var isUserInputValid: Bool {
         emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
+    }
+    public var errorTitle: String {
+        authError?.title ?? "Login Failed"
     }
     
     public init(

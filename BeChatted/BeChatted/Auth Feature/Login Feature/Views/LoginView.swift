@@ -6,16 +6,13 @@
 //
 
 import SwiftUI
+import BeChatted
 
 struct LoginView: View {
     @Bindable private var viewModel: LoginViewModel
     private let footerView: AuthFooterView
     
     @State private var authButtonState: AuthButtonStyle.State = .normal
-    
-    private var errorTitle: String {
-        viewModel.authError?.title ?? "Login Failed"
-    }
     
     private var isLoginButtonDisabled: Bool {
         !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
@@ -60,7 +57,7 @@ private extension LoginView {
         case .loading:
             return "Logging In..."
         case .failed:
-            return errorTitle
+            return viewModel.errorTitle
         }
     }
     

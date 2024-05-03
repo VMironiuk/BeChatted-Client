@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BeChatted
 
 public struct RegisterViewComposer {
     private init() {}

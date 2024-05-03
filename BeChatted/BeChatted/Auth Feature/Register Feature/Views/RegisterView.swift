@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BeChatted
 
 struct RegisterView: View {
     @Bindable private var viewModel: RegisterViewModel
@@ -15,10 +16,6 @@ struct RegisterView: View {
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var isRegistrationSucceeded = false
     @State private var authButtonState: AuthButtonStyle.State = .normal
-    
-    private var errorTitle: String {
-        viewModel.authError?.title ?? "Registration Failed"
-    }
     
     private var isRegisterButtonDisabled: Bool {
         !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
@@ -77,7 +74,7 @@ private extension RegisterView {
         case .loading:
             return "Registering..."
         case .failed:
-            return errorTitle
+            return viewModel.errorTitle
         }
     }
     

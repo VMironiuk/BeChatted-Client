@@ -5,17 +5,18 @@
 //  Created by Volodymyr Myroniuk on 23.02.2024.
 //
 
+import SwiftUI
+import BeChatted
 import BeChattedAuth
 import BeChattediOS
 import BeChattedUserInputValidation
-import SwiftUI
 
 struct LoginFeatureComposer {
     let navigationController: MainNavigationController
     let appData: AppData
     
     var loginView: some View {
-        let loginViewModel = BeChattediOS.LoginViewModel(
+        let loginViewModel = LoginViewModel(
             emailValidator: EmailValidator(),
             passwordValidator: PasswordValidator(),
             authService: AuthServiceComposer.authService)

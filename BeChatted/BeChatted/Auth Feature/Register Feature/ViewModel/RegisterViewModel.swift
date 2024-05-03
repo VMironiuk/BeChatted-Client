@@ -14,13 +14,16 @@ import Foundation
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol
     
-    private(set) var authError: AuthError?
+    private var authError: AuthError?
     
     public var name: String = ""
     public var email: String = ""
     public var password: String = ""
     public var isUserInputValid: Bool {
         !name.isEmpty && emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
+    }
+    public var errorTitle: String {
+        authError?.title ?? "Registration Failed"
     }
     
     public init(
