@@ -132,11 +132,8 @@
 		2E32BE832B8DF34900EEF27E /* Composers */ = {
 			isa = PBXGroup;
 			children = (
-				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
-				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */,
-				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
-				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
-				2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */,
+				2EE9246D2BE51C1500DFC286 /* Service Composers */,
+				2EE9246E2BE51C2600DFC286 /* Feature Composers */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
@@ -173,6 +170,25 @@
 				2E82F25B2B88BC8100802ED5 /* BeChattedUserInputValidation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2EE9246D2BE51C1500DFC286 /* Service Composers */ = {
+			isa = PBXGroup;
+			children = (
+				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
+				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */,
+			);
+			path = "Service Composers";
+			sourceTree = "<group>";
+		};
+		2EE9246E2BE51C2600DFC286 /* Feature Composers */ = {
+			isa = PBXGroup;
+			children = (
+				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
+				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
+				2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */,
+			);
+			path = "Feature Composers";
 			sourceTree = "<group>";
 		};
 		2EEADC7F2B8327BF009EE7CE = {
