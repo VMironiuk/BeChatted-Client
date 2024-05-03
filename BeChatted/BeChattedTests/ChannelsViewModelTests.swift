@@ -14,21 +14,21 @@ final class ChannelsViewModelTests: XCTestCase {
         // given
         
         // when
-        let loader = ChannelsLoaderStub()
-        _ = ChannelsViewModel(loader: loader)
+        let service = ChannelsServiceStub()
+        _ = ChannelsViewModel(channelsService: service)
         
         // then
-        XCTAssertEqual(loader.loadCallCount, 0)
+        XCTAssertEqual(service.loadCallCount, 0)
     }
     
     func test_load_returnsEmptyIfThereAreNoChannels() {
         // given
-        let loader = ChannelsLoaderStub()
-        let sut = ChannelsViewModel(loader: loader)
+        let service = ChannelsServiceStub()
+        let sut = ChannelsViewModel(channelsService: service)
         
         // when
         sut.loadChannels()
-        loader.complete(with: .success([]))
+        service.complete(with: .success([]))
         
         // then
         switch sut.loadChannelsResult {
@@ -42,12 +42,12 @@ final class ChannelsViewModelTests: XCTestCase {
         // given
         let loadedChannels = [makeChannel(with: "A", description: "AAA"), makeChannel(with: "B", description: "BBB")]
         let expectedChannelItems = [.title, makeChannelItem(with: "A"), makeChannelItem(with: "B")]
-        let loader = ChannelsLoaderStub()
-        let sut = ChannelsViewModel(loader: loader)
+        let service = ChannelsServiceStub()
+        let sut = ChannelsViewModel(channelsService: service)
         
         // when
         sut.loadChannels()
-        loader.complete(with: .success(loadedChannels))
+        service.complete(with: .success(loadedChannels))
         
         // then
         switch sut.loadChannelsResult {
@@ -59,12 +59,12 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_load_returnsUnknownErrorOnUnknownError() {
         // given
-        let loader = ChannelsLoaderStub()
-        let sut = ChannelsViewModel(loader: loader)
+        let service = ChannelsServiceStub()
+        let sut = ChannelsViewModel(channelsService: service)
         
         // when
         sut.loadChannels()
-        loader.complete(with: .failure(.unknown))
+        service.complete(with: .failure(.unknown))
         
         // then
         switch sut.loadChannelsResult {
@@ -76,12 +76,12 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_load_returnsConnectivityErrorOnConnectivityError() {
         // given
-        let loader = ChannelsLoaderStub()
-        let sut = ChannelsViewModel(loader: loader)
+        let service = ChannelsServiceStub()
+        let sut = ChannelsViewModel(channelsService: service)
         
         // when
         sut.loadChannels()
-        loader.complete(with: .failure(.connectivity))
+        service.complete(with: .failure(.connectivity))
         
         // then
         switch sut.loadChannelsResult {
@@ -93,12 +93,12 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_load_returnsInvalidDataErrorOnInvalidDataError() {
         // given
-        let loader = ChannelsLoaderStub()
-        let sut = ChannelsViewModel(loader: loader)
+        let service = ChannelsServiceStub()
+        let sut = ChannelsViewModel(channelsService: service)
         
         // when
         sut.loadChannels()
-        loader.complete(with: .failure(.invalidData))
+        service.complete(with: .failure(.invalidData))
         
         // then
         switch sut.loadChannelsResult {
@@ -118,7 +118,7 @@ final class ChannelsViewModelTests: XCTestCase {
         .channel(name: name, isUnread: false)
     }
     
-    final class ChannelsLoaderStub: ChannelsLoaderProtocol {
+    final class ChannelsServiceStub: ChannelsServiceProtocol {
         private var completions = [(Result<[Channel], LoadChannelsError>) -> Void]()
         
         var loadCallCount: Int {

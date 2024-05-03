@@ -32,5 +32,8 @@ jobs:
     - name: Build and Test BeChattedChannels
       run: xcodebuild clean build test -project BeChattedChannels/BeChattedChannels.xcodeproj -scheme "BeChattedChannels" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -destination "platform=macOS" ONLY_ACTIVE_ARCH=YES
 
+    - name: Build and Test BeChattedNetwork
+      run: xcodebuild clean build test -project BeChattedNetwork/BeChattedNetwork.xcodeproj -scheme "BeChattedNetwork" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -destination "platform=macOS" ONLY_ACTIVE_ARCH=YES
+
     - name: Build and Test BeChatted
       run: xcodebuild clean build test -project BeChatted/BeChatted.xcodeproj -scheme "BeChatted" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -destination "platform=macOS" ONLY_ACTIVE_ARCH=YES

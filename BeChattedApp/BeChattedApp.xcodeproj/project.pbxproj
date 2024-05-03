@@ -14,7 +14,7 @@
 		2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */; };
 		2E4F6C082BDA608800BBBCC5 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; };
 		2E4F6C092BDA608800BBBCC5 /* BeChattedChannels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift */; };
+		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */; };
 		2E5EFF6D2BA826B800EA65E8 /* ChannelsFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */; };
 		2E82F2662B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; };
 		2E82F2672B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -27,6 +27,10 @@
 		2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */; };
 		2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */; };
 		2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */; };
+		2E9553972BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */; };
+		2E9553992BE3BBDF002E23B2 /* BeChattedNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */; };
+		2E95539A2BE3BBDF002E23B2 /* BeChattedNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E95539C2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */; };
 		2EBE98182B89FD6F009EB16C /* RegisterFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */; };
 		2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */; };
 		2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */; };
@@ -43,6 +47,7 @@
 			files = (
 				2E82F2672B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Embed Frameworks */,
 				2E82F2742B88BE4C00802ED5 /* BeChattediOS.framework in Embed Frameworks */,
+				2E95539A2BE3BBDF002E23B2 /* BeChattedNetwork.framework in Embed Frameworks */,
 				2E4F6C092BDA608800BBBCC5 /* BeChattedChannels.framework in Embed Frameworks */,
 				2E82F26B2B88BDE200802ED5 /* BeChattedAuth.framework in Embed Frameworks */,
 				2E82F26E2B88BDF800802ED5 /* BeChatted.framework in Embed Frameworks */,
@@ -59,7 +64,7 @@
 		2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordValidator+PasswordValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthService+AuthServiceProtocol.swift"; sourceTree = "<group>"; };
 		2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoaderComposer.swift; sourceTree = "<group>"; };
+		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsServiceComposer.swift; sourceTree = "<group>"; };
 		2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsFeatureComposer.swift; sourceTree = "<group>"; };
 		2E82F2582B88BC8100802ED5 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F2592B88BC8100802ED5 /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +78,9 @@
 		2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceComposer.swift; sourceTree = "<group>"; };
 		2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFeatureComposer.swift; sourceTree = "<group>"; };
 		2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+HideKeyboard.swift"; sourceTree = "<group>"; };
+		2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift"; sourceTree = "<group>"; };
+		2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift"; sourceTree = "<group>"; };
 		2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFeatureComposer.swift; sourceTree = "<group>"; };
 		2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+DisplayName.swift"; sourceTree = "<group>"; };
 		2EEADC882B8327BF009EE7CE /* BeChattedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChattedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +97,7 @@
 			files = (
 				2E82F2662B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Frameworks */,
 				2E82F2732B88BE4C00802ED5 /* BeChattediOS.framework in Frameworks */,
+				2E9553992BE3BBDF002E23B2 /* BeChattedNetwork.framework in Frameworks */,
 				2E4F6C082BDA608800BBBCC5 /* BeChattedChannels.framework in Frameworks */,
 				2E82F26A2B88BDE200802ED5 /* BeChattedAuth.framework in Frameworks */,
 				2E82F26D2B88BDF800802ED5 /* BeChatted.framework in Frameworks */,
@@ -109,11 +118,13 @@
 		2E32BE822B8DF32100EEF27E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */,
+				2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */,
 				2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */,
 				2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */,
 				2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */,
-				2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */,
+				2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */,
+				2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */,
+				2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -121,11 +132,8 @@
 		2E32BE832B8DF34900EEF27E /* Composers */ = {
 			isa = PBXGroup;
 			children = (
-				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
-				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift */,
-				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
-				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
-				2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */,
+				2EE9246D2BE51C1500DFC286 /* Service Composers */,
+				2EE9246E2BE51C2600DFC286 /* Feature Composers */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 		2E82F2572B88BC8100802ED5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */,
 				2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */,
 				2E82F2722B88BE4C00802ED5 /* BeChattediOS.framework */,
 				2E82F26F2B88BE0E00802ED5 /* BeChattediOS.framework */,
@@ -161,6 +170,25 @@
 				2E82F25B2B88BC8100802ED5 /* BeChattedUserInputValidation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2EE9246D2BE51C1500DFC286 /* Service Composers */ = {
+			isa = PBXGroup;
+			children = (
+				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
+				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */,
+			);
+			path = "Service Composers";
+			sourceTree = "<group>";
+		};
+		2EE9246E2BE51C2600DFC286 /* Feature Composers */ = {
+			isa = PBXGroup;
+			children = (
+				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
+				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
+				2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */,
+			);
+			path = "Feature Composers";
 			sourceTree = "<group>";
 		};
 		2EEADC7F2B8327BF009EE7CE = {
@@ -275,11 +303,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E5EFF6D2BA826B800EA65E8 /* ChannelsFeatureComposer.swift in Sources */,
+				2E9553972BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift in Sources */,
 				2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */,
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
-				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoaderComposer.swift in Sources */,
+				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */,
+				2E95539C2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift in Sources */,
 				2E1F9D292B8F2E1700657F39 /* AppData.swift in Sources */,
 				2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */,
 				2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */,

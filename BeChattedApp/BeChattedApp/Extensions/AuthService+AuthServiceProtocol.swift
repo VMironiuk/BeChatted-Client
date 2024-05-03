@@ -6,28 +6,28 @@
 //
 
 import Foundation
+import BeChatted
 import BeChattedAuth
-import BeChattediOS
 
-extension AuthService: BeChattediOS.AuthServiceProtocol {
+extension AuthService: AuthServiceProtocol {
     public func createAccount(
-        _ payload: BeChattediOS.CreateAccountPayload,
-        completion: @escaping (Result<Void, BeChattediOS.AuthError>) -> Void
+        _ payload: CreateAccountPayload,
+        completion: @escaping (Result<Void, AuthError>) -> Void
     ) {
         createAccount(payload.mapped) { completion($0.mapped) }
     }
 
     public func login(
-        _ payload: BeChattediOS.LoginPayload,
-        completion: @escaping (Result<BeChattediOS.LoginInfo, BeChattediOS.AuthError>) -> Void
+        _ payload: LoginPayload,
+        completion: @escaping (Result<LoginInfo, AuthError>) -> Void
     ) {
         login(payload.mapped) { completion($0.mapped) }
     }
 
     public func addUser(
-        _ payload: BeChattediOS.AddUserPayload,
+        _ payload: AddUserPayload,
         authToken: String,
-        completion: @escaping (Result<BeChattediOS.AddedUserInfo, BeChattediOS.AuthError>) -> Void
+        completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void
     ) {
         addUser(payload.mapped, authToken: authToken) { completion($0.mapped) }
     }
@@ -61,7 +61,7 @@ extension Result<NewUserInfo, AuthServiceError> {
 }
 
 extension AuthServiceError {
-    var mapped: BeChattediOS.AuthError {
+    var mapped: AuthError {
         switch self {
         case .connectivity: return .connectivity
         case .credentials: return .credentials
