@@ -235,6 +235,17 @@ final class ChannelsServiceTests: XCTestCase {
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
+    
+    func test_createChannel_sendsCreateChannelRequestAsPOSTMethod() {
+        // given
+        let (sut, client) = makeSUT()
+        
+        // when
+        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        
+        // then
+        XCTAssertEqual(client.httpMethods, ["POST"])
+    }
 
     // MARK: - Helpers
     
