@@ -37,13 +37,13 @@ public protocol HTTPClientProtocol {
 
 public final class ChannelsService {
     private let loadChannelsURL: URL
-    private let createURL: URL
+    private let createChannelURL: URL
     private let authToken: String
     private let client: HTTPClientProtocol
     
-    public init(loadChannelsURL: URL, createURL: URL, authToken: String, client: HTTPClientProtocol) {
+    public init(loadChannelsURL: URL, createChannelURL: URL, authToken: String, client: HTTPClientProtocol) {
         self.loadChannelsURL = loadChannelsURL
-        self.createURL = createURL
+        self.createChannelURL = createChannelURL
         self.authToken = authToken
         self.client = client
     }
@@ -65,8 +65,8 @@ public final class ChannelsService {
         }
     }
     
-    public func create(with name: String, description: String, completion: @escaping (Result<Void, ChannelsLoadingError>) -> Void) {
-        var request = URLRequest(url: createURL)
+    public func createChannel(with name: String, description: String, completion: @escaping (Result<Void, ChannelsLoadingError>) -> Void) {
+        var request = URLRequest(url: createChannelURL)
         
         client.perform(request: request) { _ in }
     }

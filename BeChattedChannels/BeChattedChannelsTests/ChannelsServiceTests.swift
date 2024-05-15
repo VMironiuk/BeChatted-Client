@@ -153,7 +153,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_loadChannels_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(loadChannelsURL: loadChannelsURL(), createURL: createURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsService? = ChannelsService(loadChannelsURL: loadChannelsURL(), createChannelURL: createChannelURL(), authToken: anyAuthToken(), client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.loadChannels { expectedResult = $0 }
@@ -190,7 +190,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_loadChannels_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(loadChannelsURL: loadChannelsURL(), createURL: createURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsService? = ChannelsService(loadChannelsURL: loadChannelsURL(), createChannelURL: createChannelURL(), authToken: anyAuthToken(), client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.loadChannels { expectedResult = $0 }
@@ -205,11 +205,11 @@ final class ChannelsServiceTests: XCTestCase {
     
     func test_create_sendsCreateRequestByURL() {
         // given
-        let url = createURL()
+        let url = createChannelURL()
         let (sut, client) = makeSUT(loadChannelsURL: url)
         
         // when
-        sut.create(with: "channel name", description: "channel description") { _ in }
+        sut.createChannel(with: "channel name", description: "channel description") { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
@@ -219,13 +219,13 @@ final class ChannelsServiceTests: XCTestCase {
     
     private func makeSUT(
         loadChannelsURL: URL = URL(string: "http://load-channels-url.com")!,
-        createURL: URL = URL(string: "http://create-channel-url.com")!,
+        createChannelURL: URL = URL(string: "http://create-channel-url.com")!,
         authToken: String = "any token",
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (ChannelsService, HTTPClientSpy) {
         let client  = HTTPClientSpy()
-        let sut = ChannelsService(loadChannelsURL: loadChannelsURL, createURL: createURL, authToken: anyAuthToken(), client: client)
+        let sut = ChannelsService(loadChannelsURL: loadChannelsURL, createChannelURL: createChannelURL, authToken: anyAuthToken(), client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -237,7 +237,7 @@ final class ChannelsServiceTests: XCTestCase {
         URL(string: "http://load-channels-url.com")!
     }
     
-    private func createURL() -> URL {
+    private func createChannelURL() -> URL {
         URL(string: "http://create-channel-url.com")!
     }
     
