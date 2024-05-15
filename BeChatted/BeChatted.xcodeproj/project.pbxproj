@@ -55,6 +55,8 @@
 		2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8E2B85C515007B6D10 /* LoginView.swift */; };
 		2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */; };
 		2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */; };
+		2EC7E5132BF482C50047FCD9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
+		2EC7E5142BF482C50047FCD9 /* BeChatted.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EEADCA72B83346B009EE7CE /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEADCA62B83346B009EE7CE /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EEADCF32B833BD1009EE7CE /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEADCA62B83346B009EE7CE /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -67,7 +69,28 @@
 			remoteGlobalIDString = 2EEADCA22B83346B009EE7CE;
 			remoteInfo = BeChatted;
 		};
+		2EC7E5152BF482C50047FCD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2EEADC9A2B83346B009EE7CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EEADCA22B83346B009EE7CE;
+			remoteInfo = BeChatted;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2EC7E5172BF482C50047FCD9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2EC7E5142BF482C50047FCD9 /* BeChatted.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelButtonStyle.swift; sourceTree = "<group>"; };
@@ -142,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EC7E5132BF482C50047FCD9 /* BeChatted.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +329,13 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		2EC7E5122BF482C50047FCD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2EDE6D272BE4FFF5008DAA3C /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +384,7 @@
 				2EEADCA52B83346B009EE7CE /* BeChatted */,
 				2EB37C932B873791003990B0 /* BeChattedTests */,
 				2EEADCA42B83346B009EE7CE /* Products */,
+				2EC7E5122BF482C50047FCD9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

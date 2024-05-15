@@ -17,12 +17,18 @@ struct ChannelsServiceComposer {
     private static let port = "3005"
     private static let baseURLString = "\(httpProtocol)://\(host):\(port)"
 
-    private static let channelsEndpoint = "/v1/channel"
+    private static let loadChannelsEndpoint = "/v1/channel"
+    private static let createChannelEndpoint = "/v1/channel/add"
     
-    private static let channelsURL = URL(string: "\(baseURLString)\(channelsEndpoint)")!
+    private static let loadChannelsURL = URL(string: "\(baseURLString)\(loadChannelsEndpoint)")!
+    private static let createChannelURL = URL(string: "\(baseURLString)\(createChannelEndpoint)")!
     
     static func channelsService(with authToken: String) -> ChannelsService {
-        ChannelsService(url: channelsURL, authToken: authToken, client: URLSessionHTTPClient())
+        let configuration = ChannelsServiceConfiguration(
+            loadChannelsURL: loadChannelsURL,
+            createChannelURL: createChannelURL,
+            authToken: authToken)
+        return ChannelsService(configuration: configuration, client: URLSessionHTTPClient())
     }
 }
 
