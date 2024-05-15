@@ -36,18 +36,20 @@ public protocol HTTPClientProtocol {
 }
 
 public final class ChannelsService {
-    private let url: URL
+    private let loadURL: URL
+    private let createURL: URL
     private let authToken: String
     private let client: HTTPClientProtocol
     
-    public init(url: URL, authToken: String, client: HTTPClientProtocol) {
-        self.url = url
+    public init(loadURL: URL, createURL: URL, authToken: String, client: HTTPClientProtocol) {
+        self.loadURL = loadURL
+        self.createURL = createURL
         self.authToken = authToken
         self.client = client
     }
     
     public func load(completion: @escaping (Result<[ChannelInfo], ChannelsLoadingError>) -> Void) {
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: loadURL)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         
@@ -61,5 +63,11 @@ public final class ChannelsService {
                 completion(.failure(.server))
             }
         }
+    }
+    
+    public func create(with name: String, description: String, completion: @escaping (Result<Void, ChannelsLoadingError>) -> Void) {
+        var request = URLRequest(url: createURL)
+        
+        client.perform(request: request) { _ in }
     }
 }
