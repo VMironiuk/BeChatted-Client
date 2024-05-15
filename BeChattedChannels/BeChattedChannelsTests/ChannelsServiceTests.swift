@@ -222,6 +222,19 @@ final class ChannelsServiceTests: XCTestCase {
         // then
         XCTAssertEqual(client.requestedURLs, [url])
     }
+    
+    func test_createChannel_sendsCreateChannelRequestByURLTwice() {
+        // given
+        let url = createChannelURL()
+        let (sut, client) = makeSUT(createChannelURL: url)
+        
+        // when
+        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        
+        // then
+        XCTAssertEqual(client.requestedURLs, [url, url])
+    }
 
     // MARK: - Helpers
     
