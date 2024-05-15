@@ -10,7 +10,7 @@ import BeChattedChannels
 
 final class ChannelsServiceTests: XCTestCase {
     
-    func test_init_doesNotSendRequest() {
+    func test_init_doesNotSendRequests() {
         // given
         
         // when
@@ -23,9 +23,9 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertEqual(client.authTokens, [])
     }
     
-    func test_load_sendsRequestByURL() {
+    func test_load_sendsLoadRequestByURL() {
         // given
-        let url = anyURL()
+        let url = loadURL()
         let (sut, client) = makeSUT(url: url)
         
         // when
@@ -35,9 +35,9 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    func test_load_sendsRequestByURLTwice() {
+    func test_load_sendsLoadRequestByURLTwice() {
         // given
-        let url = anyURL()
+        let url = loadURL()
         let (sut, client) = makeSUT(url: url)
         
         // when
@@ -48,7 +48,7 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
-    func test_load_sendsRequestAsGETMethod() {
+    func test_load_sendsLoadRequestAsGETMethod() {
         // given
         let (sut, client) = makeSUT()
         
@@ -59,7 +59,7 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertEqual(client.httpMethods, ["GET"])
     }
     
-    func test_load_sendsRequestAsApplicationJSONContentType() {
+    func test_load_sendsLoadsRequestAsApplicationJSONContentType() {
         // given
         let (sut, client) = makeSUT()
         
@@ -70,7 +70,7 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertEqual(client.contentTypes, ["application/json"])
     }
     
-    func test_load_sendsRequestWithAuthToken() {
+    func test_load_sendsLoadRequestWithAuthToken() {
         // given
         let anyAuthToken = anyAuthToken()
         let (sut, client) = makeSUT(authToken: anyAuthToken)
@@ -153,7 +153,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_load_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(url: anyURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsService? = ChannelsService(url: loadURL(), authToken: anyAuthToken(), client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.load { expectedResult = $0 }
@@ -190,7 +190,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_load_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(url: anyURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsService? = ChannelsService(url: loadURL(), authToken: anyAuthToken(), client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.load { expectedResult = $0 }
@@ -212,7 +212,7 @@ final class ChannelsServiceTests: XCTestCase {
         line: UInt = #line
     ) -> (ChannelsService, HTTPClientSpy) {
         let client  = HTTPClientSpy()
-        let url = anyURL()
+        let url = loadURL()
         let sut = ChannelsService(url: url, authToken: anyAuthToken(), client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
@@ -221,8 +221,8 @@ final class ChannelsServiceTests: XCTestCase {
         return (sut, client)
     }
     
-    private func anyURL() -> URL {
-        URL(string: "http://any-url.com")!
+    private func loadURL() -> URL {
+        URL(string: "http://load-channels-url.com")!
     }
     
     private func anyAuthToken() -> String {
