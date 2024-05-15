@@ -211,10 +211,10 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertNil(expectedResult)
     }
     
-    func test_create_sendsCreateRequestByURL() {
+    func test_createChannel_sendsCreateChannelRequestByURL() {
         // given
         let url = createChannelURL()
-        let (sut, client) = makeSUT(loadChannelsURL: url)
+        let (sut, client) = makeSUT(createChannelURL: url)
         
         // when
         sut.createChannel(with: "channel name", description: "channel description") { _ in }
