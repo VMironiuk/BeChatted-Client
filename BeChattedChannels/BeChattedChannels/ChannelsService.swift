@@ -36,20 +36,20 @@ public protocol HTTPClientProtocol {
 }
 
 public final class ChannelsService {
-    private let loadURL: URL
+    private let loadChannelsURL: URL
     private let createURL: URL
     private let authToken: String
     private let client: HTTPClientProtocol
     
-    public init(loadURL: URL, createURL: URL, authToken: String, client: HTTPClientProtocol) {
-        self.loadURL = loadURL
+    public init(loadChannelsURL: URL, createURL: URL, authToken: String, client: HTTPClientProtocol) {
+        self.loadChannelsURL = loadChannelsURL
         self.createURL = createURL
         self.authToken = authToken
         self.client = client
     }
     
-    public func load(completion: @escaping (Result<[ChannelInfo], ChannelsLoadingError>) -> Void) {
-        var request = URLRequest(url: loadURL)
+    public func loadChannels(completion: @escaping (Result<[ChannelInfo], ChannelsLoadingError>) -> Void) {
+        var request = URLRequest(url: loadChannelsURL)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         

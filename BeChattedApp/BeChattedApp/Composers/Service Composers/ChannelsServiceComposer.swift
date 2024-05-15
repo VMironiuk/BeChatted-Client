@@ -28,7 +28,7 @@ struct ChannelsServiceComposer {
 
 extension ChannelsService: ChannelsServiceProtocol {
     public func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
-        load { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
+        loadChannels { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
             switch result {
             case .success(let channelInfos):
                 completion(.success(channelInfos.map { Channel(id: $0.id, name: $0.name, description: $0.description) }))

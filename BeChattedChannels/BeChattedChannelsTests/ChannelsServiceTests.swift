@@ -23,66 +23,66 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertEqual(client.authTokens, [])
     }
     
-    func test_load_sendsLoadRequestByURL() {
+    func test_loadChannels_sendsLoadChannelsRequestByURL() {
         // given
-        let url = loadURL()
-        let (sut, client) = makeSUT(loadURL: url)
+        let url = loadChannelsURL()
+        let (sut, client) = makeSUT(loadChannelsURL: url)
         
         // when
-        sut.load { _ in }
+        sut.loadChannels { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    func test_load_sendsLoadRequestByURLTwice() {
+    func test_loadChannels_sendsLoadChannelsRequestByURLTwice() {
         // given
-        let url = loadURL()
-        let (sut, client) = makeSUT(loadURL: url)
+        let url = loadChannelsURL()
+        let (sut, client) = makeSUT(loadChannelsURL: url)
         
         // when
-        sut.load { _ in }
-        sut.load { _ in }
+        sut.loadChannels { _ in }
+        sut.loadChannels { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
-    func test_load_sendsLoadRequestAsGETMethod() {
+    func test_loadChannels_sendsLoadChannelsRequestAsGETMethod() {
         // given
         let (sut, client) = makeSUT()
         
         // when
-        sut.load { _ in }
+        sut.loadChannels { _ in }
         
         // then
         XCTAssertEqual(client.httpMethods, ["GET"])
     }
     
-    func test_load_sendsLoadsRequestAsApplicationJSONContentType() {
+    func test_loadChannels_sendsLoadChannelsRequestAsApplicationJSONContentType() {
         // given
         let (sut, client) = makeSUT()
         
         // when
-        sut.load { _ in }
+        sut.loadChannels { _ in }
         
         // then
         XCTAssertEqual(client.contentTypes, ["application/json"])
     }
     
-    func test_load_sendsLoadRequestWithAuthToken() {
+    func test_loadChannels_sendsLoadChannelsRequestWithAuthToken() {
         // given
         let anyAuthToken = anyAuthToken()
         let (sut, client) = makeSUT(authToken: anyAuthToken)
         
         // when
-        sut.load { _ in }
+        sut.loadChannels { _ in }
         
         // then
         XCTAssertEqual(client.authTokens, ["Bearer \(anyAuthToken)"])
     }
     
-    func test_load_deliversChannelsOnValidAndNonEmptyChannelsData() {
+    func test_loadChannels_deliversChannelsOnValidAndNonEmptyChannelsData() {
         // given
         let (sut, client) = makeSUT()
         let expectedChannels = [ChannelInfo(id: "1", name: "a channel", description: "a description")]
@@ -90,7 +90,7 @@ final class ChannelsServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for channels loading completion")
         
         // when
-        sut.load { result in
+        sut.loadChannels { result in
             // then
             switch result {
             case let .success(receivedChannels):
@@ -105,7 +105,7 @@ final class ChannelsServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_load_deliversNoChannelsOnValidButEmptyChannelsData() {
+    func test_loadChannels_deliversNoChannelsOnValidButEmptyChannelsData() {
         // given
         let (sut, client) = makeSUT()
         let expectedChannels = [ChannelInfo]()
@@ -113,7 +113,7 @@ final class ChannelsServiceTests: XCTestCase {
         let exp = expectation(description: "Wait for channels loading completion")
         
         // when
-        sut.load { result in
+        sut.loadChannels { result in
             // then
             switch result {
             case let .success(receivedChannels):
@@ -128,14 +128,14 @@ final class ChannelsServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_load_deliversInvalidDataErrorOnInvalidChannelsData() {
+    func test_loadChannels_deliversInvalidDataErrorOnInvalidChannelsData() {
         // given
         let (sut, client) = makeSUT()
         let channelsData = "{\"obj\": \"invalid\"}".data(using: .utf8)!
         let exp = expectation(description: "Wait for channels loading completion")
         
         // when
-        sut.load { result in
+        sut.loadChannels { result in
             // then
             switch result {
             case let .success(receivedChannels):
@@ -150,13 +150,13 @@ final class ChannelsServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_load_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
+    func test_loadChannels_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(loadURL: loadURL(), createURL: createURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsService? = ChannelsService(loadChannelsURL: loadChannelsURL(), createURL: createURL(), authToken: anyAuthToken(), client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
-        sut?.load { expectedResult = $0 }
+        sut?.loadChannels { expectedResult = $0 }
         
         // when
         sut = nil
@@ -166,13 +166,13 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertNil(expectedResult)
     }
     
-    func test_load_deliversServerErrorOnNon200HTTPResponse() {
+    func test_loadChannels_deliversServerErrorOnNon200HTTPResponse() {
         // given
         let (sut, client) = makeSUT()
         let exp = expectation(description: "Wait for channels loading completion")
         
         // when
-        sut.load { result in
+        sut.loadChannels { result in
             // then
             switch result {
             case let .success(receivedChannels):
@@ -187,13 +187,13 @@ final class ChannelsServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_load_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
+    func test_loadChannels_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(loadURL: loadURL(), createURL: createURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsService? = ChannelsService(loadChannelsURL: loadChannelsURL(), createURL: createURL(), authToken: anyAuthToken(), client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
-        sut?.load { expectedResult = $0 }
+        sut?.loadChannels { expectedResult = $0 }
         
         // when
         sut = nil
@@ -206,7 +206,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_create_sendsCreateRequestByURL() {
         // given
         let url = createURL()
-        let (sut, client) = makeSUT(loadURL: url)
+        let (sut, client) = makeSUT(loadChannelsURL: url)
         
         // when
         sut.create(with: "channel name", description: "channel description") { _ in }
@@ -218,14 +218,14 @@ final class ChannelsServiceTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(
-        loadURL: URL = URL(string: "http://load-channels-url.com")!,
+        loadChannelsURL: URL = URL(string: "http://load-channels-url.com")!,
         createURL: URL = URL(string: "http://create-channel-url.com")!,
         authToken: String = "any token",
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (ChannelsService, HTTPClientSpy) {
         let client  = HTTPClientSpy()
-        let sut = ChannelsService(loadURL: loadURL, createURL: createURL, authToken: anyAuthToken(), client: client)
+        let sut = ChannelsService(loadChannelsURL: loadChannelsURL, createURL: createURL, authToken: anyAuthToken(), client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -233,7 +233,7 @@ final class ChannelsServiceTests: XCTestCase {
         return (sut, client)
     }
     
-    private func loadURL() -> URL {
+    private func loadChannelsURL() -> URL {
         URL(string: "http://load-channels-url.com")!
     }
     
