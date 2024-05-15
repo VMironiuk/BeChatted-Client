@@ -478,10 +478,12 @@
 				2EEADCF42B833BD1009EE7CE /* Sources */,
 				2EEADCF52B833BD1009EE7CE /* Frameworks */,
 				2EEADCF62B833BD1009EE7CE /* Resources */,
+				2EC7E5172BF482C50047FCD9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2EC7E5162BF482C50047FCD9 /* PBXTargetDependency */,
 			);
 			name = BeChattediOS;
 			productName = BeChatted;
@@ -626,6 +628,11 @@
 			isa = PBXTargetDependency;
 			target = 2EEADCA22B83346B009EE7CE /* BeChatted */;
 			targetProxy = 2EB37C972B873791003990B0 /* PBXContainerItemProxy */;
+		};
+		2EC7E5162BF482C50047FCD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2EEADCA22B83346B009EE7CE /* BeChatted */;
+			targetProxy = 2EC7E5152BF482C50047FCD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
