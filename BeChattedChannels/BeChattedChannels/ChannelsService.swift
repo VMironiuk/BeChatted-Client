@@ -35,23 +35,31 @@ public protocol HTTPClientProtocol {
     func perform(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void)
 }
 
-public final class ChannelsService {
-    private let loadChannelsURL: URL
-    private let createChannelURL: URL
-    private let authToken: String
-    private let client: HTTPClientProtocol
+public struct ChannelsServiceConfiguration {
+    public let loadChannelsURL: URL
+    public let createChannelURL: URL
+    public let authToken: String
     
-    public init(loadChannelsURL: URL, createChannelURL: URL, authToken: String, client: HTTPClientProtocol) {
+    public init(loadChannelsURL: URL, createChannelURL: URL, authToken: String) {
         self.loadChannelsURL = loadChannelsURL
         self.createChannelURL = createChannelURL
         self.authToken = authToken
+    }
+}
+
+public final class ChannelsService {
+    private let configuration: ChannelsServiceConfiguration
+    private let client: HTTPClientProtocol
+    
+    public init(configuration: ChannelsServiceConfiguration, client: HTTPClientProtocol) {
+        self.configuration = configuration
         self.client = client
     }
     
     public func loadChannels(completion: @escaping (Result<[ChannelInfo], ChannelsLoadingError>) -> Void) {
-        var request = URLRequest(url: loadChannelsURL)
+        var request = URLRequest(url: configuration.loadChannelsURL)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(configuration.authToken)", forHTTPHeaderField: "Authorization")
         
         client.perform(request: request) { [weak self] result in
             guard self != nil else { return }
@@ -66,7 +74,7 @@ public final class ChannelsService {
     }
     
     public func createChannel(with name: String, description: String, completion: @escaping (Result<Void, ChannelsLoadingError>) -> Void) {
-        var request = URLRequest(url: createChannelURL)
+        var request = URLRequest(url: configuration.createChannelURL)
         
         client.perform(request: request) { _ in }
     }

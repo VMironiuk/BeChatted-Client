@@ -153,7 +153,11 @@ final class ChannelsServiceTests: XCTestCase {
     func test_loadChannels_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(loadChannelsURL: loadChannelsURL(), createChannelURL: createChannelURL(), authToken: anyAuthToken(), client: client)
+        let configuration = ChannelsServiceConfiguration(
+            loadChannelsURL: loadChannelsURL(),
+            createChannelURL: createChannelURL(),
+            authToken: anyAuthToken())
+        var sut: ChannelsService? = ChannelsService(configuration: configuration, client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.loadChannels { expectedResult = $0 }
@@ -190,8 +194,12 @@ final class ChannelsServiceTests: XCTestCase {
     func test_loadChannels_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(loadChannelsURL: loadChannelsURL(), createChannelURL: createChannelURL(), authToken: anyAuthToken(), client: client)
-        
+        let configuration = ChannelsServiceConfiguration(
+            loadChannelsURL: loadChannelsURL(),
+            createChannelURL: createChannelURL(),
+            authToken: anyAuthToken())
+        var sut: ChannelsService? = ChannelsService(configuration: configuration, client: client)
+
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.loadChannels { expectedResult = $0 }
         
@@ -225,7 +233,11 @@ final class ChannelsServiceTests: XCTestCase {
         line: UInt = #line
     ) -> (ChannelsService, HTTPClientSpy) {
         let client  = HTTPClientSpy()
-        let sut = ChannelsService(loadChannelsURL: loadChannelsURL, createChannelURL: createChannelURL, authToken: anyAuthToken(), client: client)
+        let configuration = ChannelsServiceConfiguration(
+            loadChannelsURL: loadChannelsURL,
+            createChannelURL: createChannelURL,
+            authToken: authToken)
+        let sut = ChannelsService(configuration: configuration, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
