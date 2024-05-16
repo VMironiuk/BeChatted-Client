@@ -47,6 +47,16 @@ public struct ChannelsServiceConfiguration {
     }
 }
 
+public struct CreateChanelPayload {
+    public let name: String
+    public let description: String
+    
+    public init(name: String, description: String) {
+        self.name = name
+        self.description = description
+    }
+}
+
 public final class ChannelsService {
     private let configuration: ChannelsServiceConfiguration
     private let client: HTTPClientProtocol
@@ -73,7 +83,7 @@ public final class ChannelsService {
         }
     }
     
-    public func createChannel(with name: String, description: String, completion: @escaping (Result<Void, ChannelsLoadingError>) -> Void) {
+    public func createChannel(payload: CreateChanelPayload, completion: @escaping (Result<Void, ChannelsLoadingError>) -> Void) {
         var request = URLRequest(url: configuration.createChannelURL)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

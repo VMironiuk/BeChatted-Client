@@ -217,7 +217,7 @@ final class ChannelsServiceTests: XCTestCase {
         let (sut, client) = makeSUT(createChannelURL: url)
         
         // when
-        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url])
@@ -229,8 +229,8 @@ final class ChannelsServiceTests: XCTestCase {
         let (sut, client) = makeSUT(createChannelURL: url)
         
         // when
-        sut.createChannel(with: "channel name", description: "channel description") { _ in }
-        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
+        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.requestedURLs, [url, url])
@@ -241,7 +241,7 @@ final class ChannelsServiceTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         // when
-        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.httpMethods, ["POST"])
@@ -252,7 +252,7 @@ final class ChannelsServiceTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         // when
-        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.contentTypes, ["application/json"])
@@ -264,7 +264,7 @@ final class ChannelsServiceTests: XCTestCase {
         let (sut, client) = makeSUT(authToken: anyAuthToken)
         
         // when
-        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
         
         // then
         XCTAssertEqual(client.authTokens, ["Bearer \(anyAuthToken)"])
@@ -306,6 +306,10 @@ final class ChannelsServiceTests: XCTestCase {
     
     private func anyNSError() -> Error {
         NSError(domain: "any domain", code: 1)
+    }
+    
+    private func anyCreateChannelPayload() -> CreateChanelPayload {
+        CreateChanelPayload(name: "any name", description: "any description")
     }
     
     private class HTTPClientSpy: HTTPClientProtocol {
