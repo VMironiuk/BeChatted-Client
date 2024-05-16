@@ -77,6 +77,7 @@ public final class ChannelsService {
         var request = URLRequest(url: configuration.createChannelURL)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(configuration.authToken)", forHTTPHeaderField: "Authorization")
         
         client.perform(request: request) { _ in }
     }

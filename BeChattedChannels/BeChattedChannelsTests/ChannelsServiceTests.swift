@@ -257,6 +257,18 @@ final class ChannelsServiceTests: XCTestCase {
         // then
         XCTAssertEqual(client.contentTypes, ["application/json"])
     }
+    
+    func test_createChannel_sendsCreateChannelRequestWithAuthToken() {
+        // given
+        let anyAuthToken = anyAuthToken()
+        let (sut, client) = makeSUT(authToken: anyAuthToken)
+        
+        // when
+        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        
+        // then
+        XCTAssertEqual(client.authTokens, ["Bearer \(anyAuthToken)"])
+    }
 
     // MARK: - Helpers
     
