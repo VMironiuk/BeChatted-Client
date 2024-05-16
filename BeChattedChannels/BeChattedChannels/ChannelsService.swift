@@ -90,6 +90,17 @@ public final class ChannelsService {
         request.setValue("Bearer \(configuration.authToken)", forHTTPHeaderField: "Authorization")
         request.httpBody = try? JSONEncoder().encode(payload)
         
-        client.perform(request: request) { _ in }
+        client.perform(request: request) { [weak self] result in
+            guard self != nil else { return }
+            
+            switch result {
+            case let .success((_, response)) where response?.statusCode == 200:
+                completion(.success(()))
+            case .failure:
+                completion(.failure(.server))
+            default:
+                completion(.failure(.server))
+            }
+        }
     }
 }

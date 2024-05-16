@@ -281,7 +281,27 @@ final class ChannelsServiceTests: XCTestCase {
         // then
         XCTAssertEqual(client.createChannelPayloads, [createChannelPayload])
     }
-
+    
+    func test_createChannel_deliversSuccessfulResultOn200HTTPResponse() {
+        // given
+        let (sut, client) = makeSUT()
+        let exp = expectation(description: "Wait for create channel request completion")
+        
+        // when
+        sut.createChannel(payload: anyCreateChannelPayload()) { result in
+            // then
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                XCTFail("Expected success, got \(error) instead")
+            }
+            exp.fulfill()
+        }
+        client.complete(with: httpResponse(with: 200))
+        wait(for: [exp], timeout: 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -318,6 +338,14 @@ final class ChannelsServiceTests: XCTestCase {
     
     private func anyNSError() -> Error {
         NSError(domain: "any domain", code: 1)
+    }
+    
+    private func httpResponse(with statusCode: Int) -> HTTPURLResponse {
+        HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+    }
+    
+    private func anyURL() -> URL {
+        URL(string: "http://any-url.com")!
     }
     
     private func anyCreateChannelPayload() -> CreateChanelPayload {
