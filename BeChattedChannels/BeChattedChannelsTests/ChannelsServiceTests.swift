@@ -302,6 +302,28 @@ final class ChannelsServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
+    func test_createChannel_deliversServerErrorOn500HTTPResponse() {
+        // given
+        let (sut, client) = makeSUT()
+        let exp = expectation(description: "Wait for create channel request completion")
+        
+        // when
+        sut.createChannel(payload: anyCreateChannelPayload()) { result in
+            // then
+            switch result {
+            case .success:
+                XCTFail("Expected failure, got \(result) instead")
+            case .failure(let error) where error == .server:
+                break
+            default:
+                XCTFail("Expected server error, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        client.complete(with: httpResponse(with: 500))
+        wait(for: [exp], timeout: 1)
+    }
+
     // MARK: - Helpers
     
     private func makeSUT(

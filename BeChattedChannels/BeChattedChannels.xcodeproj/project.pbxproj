@@ -15,6 +15,7 @@
 		2EA048532BBE7D10000525C9 /* ChannelsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA048522BBE7D10000525C9 /* ChannelsServiceTests.swift */; };
 		2ECEDDFA2BF5CD2700923681 /* CreateChannelPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */; };
 		2ECEDDFC2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */; };
+		2ECEDDFE2BF5D66500923681 /* ChannelCreatingResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDFD2BF5D66500923681 /* ChannelCreatingResultMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		2EA048522BBE7D10000525C9 /* ChannelsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsServiceTests.swift; sourceTree = "<group>"; };
 		2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChannelPayload+Decodable.swift"; sourceTree = "<group>"; };
 		2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChannelPayload+Equatable.swift"; sourceTree = "<group>"; };
+		2ECEDDFD2BF5D66500923681 /* ChannelCreatingResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreatingResultMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */,
 				2E172DC12BC51E460014A13B /* ChannelsService.swift */,
 				2E172DC52BC521230014A13B /* ChannelsLoadingResultMapper.swift */,
+				2ECEDDFD2BF5D66500923681 /* ChannelCreatingResultMapper.swift */,
 			);
 			path = BeChattedChannels;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E172DC62BC521230014A13B /* ChannelsLoadingResultMapper.swift in Sources */,
+				2ECEDDFE2BF5D66500923681 /* ChannelCreatingResultMapper.swift in Sources */,
 				2E172DC22BC51E460014A13B /* ChannelsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

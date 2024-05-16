@@ -28,6 +28,7 @@ public struct ChannelInfo: Codable, Equatable {
 public enum ChannelsLoadingError: Error {
     case server
     case invalidData
+    case connectivity
     case unknown
 }
 
@@ -94,12 +95,10 @@ public final class ChannelsService {
             guard self != nil else { return }
             
             switch result {
-            case let .success((_, response)) where response?.statusCode == 200:
-                completion(.success(()))
+            case let .success((_, response)):
+                completion(ChannelCreatingResultMapper.result(for: response))
             case .failure:
-                completion(.failure(.server))
-            default:
-                completion(.failure(.server))
+                completion(.failure(.connectivity))
             }
         }
     }
