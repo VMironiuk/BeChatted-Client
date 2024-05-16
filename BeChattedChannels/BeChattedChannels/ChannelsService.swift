@@ -76,6 +76,7 @@ public final class ChannelsService {
     public func createChannel(with name: String, description: String, completion: @escaping (Result<Void, ChannelsLoadingError>) -> Void) {
         var request = URLRequest(url: configuration.createChannelURL)
         request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         client.perform(request: request) { _ in }
     }

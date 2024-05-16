@@ -246,6 +246,17 @@ final class ChannelsServiceTests: XCTestCase {
         // then
         XCTAssertEqual(client.httpMethods, ["POST"])
     }
+    
+    func test_createChannel_sendsCreateChannelRequestAsApplicationJSONContentType() {
+        // given
+        let (sut, client) = makeSUT()
+        
+        // when
+        sut.createChannel(with: "channel name", description: "channel description") { _ in }
+        
+        // then
+        XCTAssertEqual(client.contentTypes, ["application/json"])
+    }
 
     // MARK: - Helpers
     
