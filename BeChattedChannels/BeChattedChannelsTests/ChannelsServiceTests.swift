@@ -323,6 +323,26 @@ final class ChannelsServiceTests: XCTestCase {
         client.complete(with: httpResponse(with: 500))
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_createChannel_doesNotDeliverResultAfterSUTInstanceDeallocated() {
+        // given
+        let client = HTTPClientSpy()
+        let configuration = ChannelsServiceConfiguration(
+            loadChannelsURL: loadChannelsURL(),
+            createChannelURL: createChannelURL(),
+            authToken: anyAuthToken())
+        var sut: ChannelsService? = ChannelsService(configuration: configuration, client: client)
+
+        var expectedResult: Result<Void, ChannelsLoadingError>?
+        sut?.createChannel(payload: anyCreateChannelPayload()) { expectedResult = $0 }
+        
+        // when
+        sut = nil
+        client.complete(with: httpResponse(with: 200))
+        
+        // then
+        XCTAssertNil(expectedResult)
+    }
 
     // MARK: - Helpers
     
