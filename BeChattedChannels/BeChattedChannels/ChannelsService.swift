@@ -47,7 +47,7 @@ public struct ChannelsServiceConfiguration {
     }
 }
 
-public struct CreateChanelPayload {
+public struct CreateChanelPayload: Encodable {
     public let name: String
     public let description: String
     
@@ -88,6 +88,7 @@ public final class ChannelsService {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(configuration.authToken)", forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(payload)
         
         client.perform(request: request) { _ in }
     }

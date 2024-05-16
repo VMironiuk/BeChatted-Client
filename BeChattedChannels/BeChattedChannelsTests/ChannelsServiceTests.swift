@@ -269,6 +269,18 @@ final class ChannelsServiceTests: XCTestCase {
         // then
         XCTAssertEqual(client.authTokens, ["Bearer \(anyAuthToken)"])
     }
+    
+    func test_createChannel_sendsCreateChannelPayload() {
+        // given
+        let (sut, client) = makeSUT()
+        let createChannelPayload = anyCreateChannelPayload()
+        
+        // when
+        sut.createChannel(payload: createChannelPayload) { _ in }
+        
+        // then
+        XCTAssertEqual(client.createChannelPayloads, [createChannelPayload])
+    }
 
     // MARK: - Helpers
     
@@ -329,6 +341,13 @@ final class ChannelsServiceTests: XCTestCase {
         
         var authTokens: [String] {
             messages.compactMap { $0.request.value(forHTTPHeaderField: "Authorization") }
+        }
+        
+        var createChannelPayloads: [CreateChanelPayload] {
+            messages.compactMap {
+                guard let data = $0.request.httpBody else { return nil }
+                return try? JSONDecoder().decode(CreateChanelPayload.self, from: data)
+            }
         }
             
         func perform(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void) {

@@ -13,6 +13,8 @@
 		2EA048432BBE7CC4000525C9 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */; };
 		2EA048492BBE7CC4000525C9 /* BeChattedChannels.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EA048532BBE7D10000525C9 /* ChannelsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA048522BBE7D10000525C9 /* ChannelsServiceTests.swift */; };
+		2ECEDDFA2BF5CD2700923681 /* CreateChannelPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */; };
+		2ECEDDFC2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,8 @@
 		2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedChannels.h; sourceTree = "<group>"; };
 		2EA048422BBE7CC4000525C9 /* BeChattedChannelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedChannelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA048522BBE7D10000525C9 /* ChannelsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsServiceTests.swift; sourceTree = "<group>"; };
+		2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChannelPayload+Decodable.swift"; sourceTree = "<group>"; };
+		2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChannelPayload+Equatable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			isa = PBXGroup;
 			children = (
 				2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */,
+				2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */,
+				2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -220,6 +226,8 @@
 			files = (
 				2EA048532BBE7D10000525C9 /* ChannelsServiceTests.swift in Sources */,
 				2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				2ECEDDFA2BF5CD2700923681 /* CreateChannelPayload+Decodable.swift in Sources */,
+				2ECEDDFC2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
