@@ -23,8 +23,7 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_loadChanels_returnsEmptyIfThereAreNoChannels() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
@@ -42,8 +41,7 @@ final class ChannelsViewModelTests: XCTestCase {
         // given
         let loadedChannels = [makeChannel(with: "A", description: "AAA"), makeChannel(with: "B", description: "BBB")]
         let expectedChannelItems = [.title, makeChannelItem(with: "A"), makeChannelItem(with: "B")]
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
@@ -59,8 +57,7 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_loadChanels_returnsUnknownErrorOnUnknownError() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
@@ -76,8 +73,7 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_loadChanels_returnsConnectivityErrorOnConnectivityError() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
@@ -93,8 +89,7 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_loadChanels_returnsInvalidDataErrorOnInvalidDataError() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
@@ -110,8 +105,7 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_createChannel_sendsLoadChannelsRequestOnSuccessfulChannelCreation() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.createChannel(withName: "channel name", description: "channel description")
@@ -124,8 +118,7 @@ final class ChannelsViewModelTests: XCTestCase {
     
     func test_createChannel_doesNotSendLoadChannelsRequestOnFailedChannelCreation() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.createChannel(withName: "channel name", description: "channel description")
@@ -137,6 +130,16 @@ final class ChannelsViewModelTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (ChannelsViewModel, ChannelsServiceStub) {
+        let service = ChannelsServiceStub()
+        let sut = ChannelsViewModel(channelsService: service)
+        
+        trackForMemoryLeaks(service, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        return (sut, service)
+    }
     
     private func makeChannel(with name: String, description: String) -> Channel {
         .init(id: UUID().uuidString, name: name, description: description)
