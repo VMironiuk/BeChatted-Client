@@ -33,7 +33,7 @@ struct ChannelsServiceComposer {
 }
 
 extension ChannelsService: ChannelsServiceProtocol {
-    public func load(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
+    public func loadChannels(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
         loadChannels { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
             switch result {
             case .success(let channelInfos):

@@ -17,7 +17,7 @@ import Foundation
     }
     
     public func loadChannels() {
-        channelsService.load { [weak self] result in
+        channelsService.loadChannels { [weak self] result in
             self?.loadChannelsResult = ChannelsViewModelResultMapper.map(from: result)
         }
     }

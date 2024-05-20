@@ -18,7 +18,7 @@ final class ChannelsViewModelTests: XCTestCase {
         _ = ChannelsViewModel(channelsService: service)
         
         // then
-        XCTAssertEqual(service.loadCallCount, 0)
+        XCTAssertEqual(service.loadChannelsCallCount, 0)
     }
     
     func test_loadChanels_returnsEmptyIfThereAreNoChannels() {
@@ -28,7 +28,7 @@ final class ChannelsViewModelTests: XCTestCase {
         
         // when
         sut.loadChannels()
-        service.complete(with: .success([]))
+        service.completeChannelsLoading(with: .success([]))
         
         // then
         switch sut.loadChannelsResult {
@@ -47,7 +47,7 @@ final class ChannelsViewModelTests: XCTestCase {
         
         // when
         sut.loadChannels()
-        service.complete(with: .success(loadedChannels))
+        service.completeChannelsLoading(with: .success(loadedChannels))
         
         // then
         switch sut.loadChannelsResult {
@@ -64,7 +64,7 @@ final class ChannelsViewModelTests: XCTestCase {
         
         // when
         sut.loadChannels()
-        service.complete(with: .failure(.unknown))
+        service.completeChannelsLoading(with: .failure(.unknown))
         
         // then
         switch sut.loadChannelsResult {
@@ -81,7 +81,7 @@ final class ChannelsViewModelTests: XCTestCase {
         
         // when
         sut.loadChannels()
-        service.complete(with: .failure(.connectivity))
+        service.completeChannelsLoading(with: .failure(.connectivity))
         
         // then
         switch sut.loadChannelsResult {
@@ -98,7 +98,7 @@ final class ChannelsViewModelTests: XCTestCase {
         
         // when
         sut.loadChannels()
-        service.complete(with: .failure(.invalidData))
+        service.completeChannelsLoading(with: .failure(.invalidData))
         
         // then
         switch sut.loadChannelsResult {
@@ -119,7 +119,7 @@ final class ChannelsViewModelTests: XCTestCase {
         
         // then
         XCTAssertEqual(service.createChannelCallCount, 1)
-        XCTAssertEqual(service.loadCallCount, 1)
+        XCTAssertEqual(service.loadChannelsCallCount, 1)
     }
     
     func test_createChannel_doesNotSendLoadChannelsRequestOnFailedChannelCreation() {
@@ -133,7 +133,7 @@ final class ChannelsViewModelTests: XCTestCase {
         
         // then
         XCTAssertEqual(service.createChannelCallCount, 1)
-        XCTAssertEqual(service.loadCallCount, 0)
+        XCTAssertEqual(service.loadChannelsCallCount, 0)
     }
     
     // MARK: - Helpers
@@ -147,27 +147,27 @@ final class ChannelsViewModelTests: XCTestCase {
     }
     
     final class ChannelsServiceStub: ChannelsServiceProtocol {
-        private var completions = [(Result<[Channel], ChannelsServiceError>) -> Void]()
+        private var loadChannelsCompletions = [(Result<[Channel], ChannelsServiceError>) -> Void]()
         private var createChannelCompletions = [(Result<Void, ChannelsServiceError>) -> Void]()
         
-        var loadCallCount: Int {
-            completions.count
+        var loadChannelsCallCount: Int {
+            loadChannelsCompletions.count
         }
         
         var createChannelCallCount: Int {
             createChannelCompletions.count
         }
         
-        func load(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
-            completions.append(completion)
+        func loadChannels(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
+            loadChannelsCompletions.append(completion)
         }
         
         func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, ChannelsServiceError>) -> Void) {
             createChannelCompletions.append(completion)
         }
         
-        func complete(with result: Result<[Channel], ChannelsServiceError>, at index: Int = 0) {
-            completions[index](result)
+        func completeChannelsLoading(with result: Result<[Channel], ChannelsServiceError>, at index: Int = 0) {
+            loadChannelsCompletions[index](result)
         }
         
         func completeChannelCreation(with result: Result<Void, ChannelsServiceError>, at index: Int = 0) {

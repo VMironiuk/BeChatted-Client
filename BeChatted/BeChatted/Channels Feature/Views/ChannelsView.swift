@@ -105,7 +105,7 @@ struct ChannelsView: View {
 }
 
 private class FakeChannelsService: ChannelsServiceProtocol {
-    func load(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
+    func loadChannels(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
     }
     func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, ChannelsServiceError>) -> Void) {
     }
