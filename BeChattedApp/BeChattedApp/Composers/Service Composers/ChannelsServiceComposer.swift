@@ -49,7 +49,7 @@ extension ChannelsService: ChannelsServiceProtocol {
     
     static private func map(from channelsLoadingError: ChannelsLoadingError) -> ChannelsServiceError {
         switch channelsLoadingError {
-        case .server:
+        case .server, .connectivity:
             return .connectivity
         case .invalidData:
             return .invalidData
