@@ -147,8 +147,8 @@ final class ChannelsViewModelTests: XCTestCase {
     }
     
     final class ChannelsServiceStub: ChannelsServiceProtocol {
-        private var completions = [(Result<[Channel], LoadChannelsError>) -> Void]()
-        private var createChannelCompletions = [(Result<Void, LoadChannelsError>) -> Void]()
+        private var completions = [(Result<[Channel], ChannelsServiceError>) -> Void]()
+        private var createChannelCompletions = [(Result<Void, ChannelsServiceError>) -> Void]()
         
         var loadCallCount: Int {
             completions.count
@@ -158,19 +158,19 @@ final class ChannelsViewModelTests: XCTestCase {
             createChannelCompletions.count
         }
         
-        func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
+        func load(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
             completions.append(completion)
         }
         
-        func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, LoadChannelsError>) -> Void) {
+        func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, ChannelsServiceError>) -> Void) {
             createChannelCompletions.append(completion)
         }
         
-        func complete(with result: Result<[Channel], LoadChannelsError>, at index: Int = 0) {
+        func complete(with result: Result<[Channel], ChannelsServiceError>, at index: Int = 0) {
             completions[index](result)
         }
         
-        func completeChannelCreation(with result: Result<Void, LoadChannelsError>, at index: Int = 0) {
+        func completeChannelCreation(with result: Result<Void, ChannelsServiceError>, at index: Int = 0) {
             createChannelCompletions[index](result)
         }
     }

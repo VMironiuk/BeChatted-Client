@@ -19,13 +19,13 @@ public struct Channel {
     }
 }
 
-public enum LoadChannelsError: Error {
+public enum ChannelsServiceError: Error {
     case unknown
     case connectivity
     case invalidData
 }
 
 public protocol ChannelsServiceProtocol {
-    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void)
-    func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, LoadChannelsError>) -> Void)
+    func load(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void)
+    func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, ChannelsServiceError>) -> Void)
 }

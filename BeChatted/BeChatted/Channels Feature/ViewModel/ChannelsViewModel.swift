@@ -10,7 +10,7 @@ import Foundation
 @Observable public final class ChannelsViewModel {
     private let channelsService: ChannelsServiceProtocol
     
-    public var loadChannelsResult: Result<[ChannelItem], LoadChannelsError> = .success([])
+    public var loadChannelsResult: Result<[ChannelItem], ChannelsServiceError> = .success([])
     
     public init(channelsService: ChannelsServiceProtocol) {
         self.channelsService = channelsService

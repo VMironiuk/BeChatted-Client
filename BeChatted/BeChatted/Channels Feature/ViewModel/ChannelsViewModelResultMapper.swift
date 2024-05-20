@@ -10,7 +10,7 @@ import Foundation
 struct ChannelsViewModelResultMapper {
     private init() {}
     
-    static func map(from result: Result<[Channel], LoadChannelsError>) -> Result<[ChannelItem], LoadChannelsError> {
+    static func map(from result: Result<[Channel], ChannelsServiceError>) -> Result<[ChannelItem], ChannelsServiceError> {
         switch result {
         case .success(let channels):
             guard !channels.isEmpty else { return .success([]) }
