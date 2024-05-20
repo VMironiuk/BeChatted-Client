@@ -122,6 +122,20 @@ final class ChannelsViewModelTests: XCTestCase {
         XCTAssertEqual(service.loadCallCount, 1)
     }
     
+    func test_createChannel_doesNotSendLoadChannelsRequestOnFailedChannelCreation() {
+        // given
+        let service = ChannelsServiceStub()
+        let sut = ChannelsViewModel(channelsService: service)
+        
+        // when
+        sut.createChannel(withName: "channel name", description: "channel description")
+        service.completeChannelCreation(with: .failure(.unknown))
+        
+        // then
+        XCTAssertEqual(service.createChannelCallCount, 1)
+        XCTAssertEqual(service.loadCallCount, 0)
+    }
+    
     // MARK: - Helpers
     
     private func makeChannel(with name: String, description: String) -> Channel {
