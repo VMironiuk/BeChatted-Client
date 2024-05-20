@@ -21,7 +21,7 @@ final class ChannelsViewModelTests: XCTestCase {
         XCTAssertEqual(service.loadCallCount, 0)
     }
     
-    func test_load_returnsEmptyIfThereAreNoChannels() {
+    func test_loadChanels_returnsEmptyIfThereAreNoChannels() {
         // given
         let service = ChannelsServiceStub()
         let sut = ChannelsViewModel(channelsService: service)
@@ -38,7 +38,7 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_load_returnsChannelsIfThereAreChannels() {
+    func test_loadChanels_returnsChannelsIfThereAreChannels() {
         // given
         let loadedChannels = [makeChannel(with: "A", description: "AAA"), makeChannel(with: "B", description: "BBB")]
         let expectedChannelItems = [.title, makeChannelItem(with: "A"), makeChannelItem(with: "B")]
@@ -57,7 +57,7 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_load_returnsUnknownErrorOnUnknownError() {
+    func test_loadChanels_returnsUnknownErrorOnUnknownError() {
         // given
         let service = ChannelsServiceStub()
         let sut = ChannelsViewModel(channelsService: service)
@@ -74,7 +74,7 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_load_returnsConnectivityErrorOnConnectivityError() {
+    func test_loadChanels_returnsConnectivityErrorOnConnectivityError() {
         // given
         let service = ChannelsServiceStub()
         let sut = ChannelsViewModel(channelsService: service)
@@ -91,7 +91,7 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_load_returnsInvalidDataErrorOnInvalidDataError() {
+    func test_loadChanels_returnsInvalidDataErrorOnInvalidDataError() {
         // given
         let service = ChannelsServiceStub()
         let sut = ChannelsViewModel(channelsService: service)
