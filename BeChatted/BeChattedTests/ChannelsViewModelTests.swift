@@ -107,7 +107,21 @@ final class ChannelsViewModelTests: XCTestCase {
         default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
         }
     }
-
+    
+    func test_createChannel_sendsLoadChannelsRequestOnSuccessfulChannelCreation() {
+        // given
+        let service = ChannelsServiceStub()
+        let sut = ChannelsViewModel(channelsService: service)
+        
+        // when
+        sut.createChannel(withName: "channel name", description: "channel description")
+        service.completeChannelCreation(with: .success(()))
+        
+        // then
+        XCTAssertEqual(service.createChannelCallCount, 1)
+        XCTAssertEqual(service.loadCallCount, 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeChannel(with name: String, description: String) -> Channel {
@@ -120,17 +134,30 @@ final class ChannelsViewModelTests: XCTestCase {
     
     final class ChannelsServiceStub: ChannelsServiceProtocol {
         private var completions = [(Result<[Channel], LoadChannelsError>) -> Void]()
+        private var createChannelCompletions = [(Result<Void, LoadChannelsError>) -> Void]()
         
         var loadCallCount: Int {
             completions.count
+        }
+        
+        var createChannelCallCount: Int {
+            createChannelCompletions.count
         }
         
         func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
             completions.append(completion)
         }
         
+        func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, LoadChannelsError>) -> Void) {
+            createChannelCompletions.append(completion)
+        }
+        
         func complete(with result: Result<[Channel], LoadChannelsError>, at index: Int = 0) {
             completions[index](result)
+        }
+        
+        func completeChannelCreation(with result: Result<Void, LoadChannelsError>, at index: Int = 0) {
+            createChannelCompletions[index](result)
         }
     }
 }

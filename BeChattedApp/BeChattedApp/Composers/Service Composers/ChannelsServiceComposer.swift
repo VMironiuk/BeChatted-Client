@@ -44,6 +44,9 @@ extension ChannelsService: ChannelsServiceProtocol {
         }
     }
     
+    public func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, LoadChannelsError>) -> Void) {
+    }
+    
     static private func map(from channelsLoadingError: ChannelsLoadingError) -> LoadChannelsError {
         switch channelsLoadingError {
         case .server:
