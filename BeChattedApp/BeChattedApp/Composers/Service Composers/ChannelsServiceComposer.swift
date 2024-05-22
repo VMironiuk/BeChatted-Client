@@ -17,18 +17,12 @@ struct ChannelsServiceComposer {
     private static let port = "3005"
     private static let baseURLString = "\(httpProtocol)://\(host):\(port)"
 
-    private static let loadChannelsEndpoint = "/v1/channel"
-    private static let createChannelEndpoint = "/v1/channel/add"
+    private static let endpoint = "/v1/channel"
     
-    private static let loadChannelsURL = URL(string: "\(baseURLString)\(loadChannelsEndpoint)")!
-    private static let createChannelURL = URL(string: "\(baseURLString)\(createChannelEndpoint)")!
+    private static let url = URL(string: "\(baseURLString)\(endpoint)")!
     
     static func channelsService(with authToken: String) -> ChannelsService {
-        let configuration = ChannelsServiceConfiguration(
-            loadChannelsURL: loadChannelsURL,
-            createChannelURL: createChannelURL,
-            authToken: authToken)
-        return ChannelsService(configuration: configuration, client: URLSessionHTTPClient())
+        return ChannelsService(url: url, authToken: authToken, client: URLSessionHTTPClient())
     }
 }
 
@@ -42,9 +36,6 @@ extension ChannelsService: ChannelsServiceProtocol {
                 completion(.failure(Self.map(from: error)))
             }
         }
-    }
-    
-    public func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, ChannelsServiceError>) -> Void) {
     }
     
     static private func map(from channelsLoadingError: ChannelsLoadingError) -> ChannelsServiceError {

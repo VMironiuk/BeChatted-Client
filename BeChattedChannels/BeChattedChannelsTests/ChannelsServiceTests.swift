@@ -25,8 +25,8 @@ final class ChannelsServiceTests: XCTestCase {
     
     func test_loadChannels_sendsLoadChannelsRequestByURL() {
         // given
-        let url = loadChannelsURL()
-        let (sut, client) = makeSUT(loadChannelsURL: url)
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
         
         // when
         sut.loadChannels { _ in }
@@ -37,8 +37,8 @@ final class ChannelsServiceTests: XCTestCase {
     
     func test_loadChannels_sendsLoadChannelsRequestByURLTwice() {
         // given
-        let url = loadChannelsURL()
-        let (sut, client) = makeSUT(loadChannelsURL: url)
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
         
         // when
         sut.loadChannels { _ in }
@@ -153,11 +153,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_loadChannels_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        let configuration = ChannelsServiceConfiguration(
-            loadChannelsURL: loadChannelsURL(),
-            createChannelURL: createChannelURL(),
-            authToken: anyAuthToken())
-        var sut: ChannelsService? = ChannelsService(configuration: configuration, client: client)
+        var sut: ChannelsService? = ChannelsService(url: anyURL(), authToken: anyAuthToken(), client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.loadChannels { expectedResult = $0 }
@@ -194,11 +190,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_loadChannels_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        let configuration = ChannelsServiceConfiguration(
-            loadChannelsURL: loadChannelsURL(),
-            createChannelURL: createChannelURL(),
-            authToken: anyAuthToken())
-        var sut: ChannelsService? = ChannelsService(configuration: configuration, client: client)
+        var sut: ChannelsService? = ChannelsService(url: anyURL(), authToken: anyAuthToken(), client: client)
 
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.loadChannels { expectedResult = $0 }
@@ -211,154 +203,16 @@ final class ChannelsServiceTests: XCTestCase {
         XCTAssertNil(expectedResult)
     }
     
-    func test_createChannel_sendsCreateChannelRequestByURL() {
-        // given
-        let url = createChannelURL()
-        let (sut, client) = makeSUT(createChannelURL: url)
-        
-        // when
-        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-        
-        // then
-        XCTAssertEqual(client.requestedURLs, [url])
-    }
-    
-    func test_createChannel_sendsCreateChannelRequestByURLTwice() {
-        // given
-        let url = createChannelURL()
-        let (sut, client) = makeSUT(createChannelURL: url)
-        
-        // when
-        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-        
-        // then
-        XCTAssertEqual(client.requestedURLs, [url, url])
-    }
-    
-    func test_createChannel_sendsCreateChannelRequestAsPOSTMethod() {
-        // given
-        let (sut, client) = makeSUT()
-        
-        // when
-        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-        
-        // then
-        XCTAssertEqual(client.httpMethods, ["POST"])
-    }
-    
-    func test_createChannel_sendsCreateChannelRequestAsApplicationJSONContentType() {
-        // given
-        let (sut, client) = makeSUT()
-        
-        // when
-        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-        
-        // then
-        XCTAssertEqual(client.contentTypes, ["application/json"])
-    }
-    
-    func test_createChannel_sendsCreateChannelRequestWithAuthToken() {
-        // given
-        let anyAuthToken = anyAuthToken()
-        let (sut, client) = makeSUT(authToken: anyAuthToken)
-        
-        // when
-        sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-        
-        // then
-        XCTAssertEqual(client.authTokens, ["Bearer \(anyAuthToken)"])
-    }
-    
-    func test_createChannel_sendsCreateChannelPayload() {
-        // given
-        let (sut, client) = makeSUT()
-        let createChannelPayload = anyCreateChannelPayload()
-        
-        // when
-        sut.createChannel(payload: createChannelPayload) { _ in }
-        
-        // then
-        XCTAssertEqual(client.createChannelPayloads, [createChannelPayload])
-    }
-    
-    func test_createChannel_deliversSuccessfulResultOn200HTTPResponse() {
-        // given
-        let (sut, client) = makeSUT()
-        let exp = expectation(description: "Wait for create channel request completion")
-        
-        // when
-        sut.createChannel(payload: anyCreateChannelPayload()) { result in
-            // then
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                XCTFail("Expected success, got \(error) instead")
-            }
-            exp.fulfill()
-        }
-        client.complete(with: httpResponse(with: 200))
-        wait(for: [exp], timeout: 1)
-    }
-    
-    func test_createChannel_deliversServerErrorOn500HTTPResponse() {
-        // given
-        let (sut, client) = makeSUT()
-        let exp = expectation(description: "Wait for create channel request completion")
-        
-        // when
-        sut.createChannel(payload: anyCreateChannelPayload()) { result in
-            // then
-            switch result {
-            case .success:
-                XCTFail("Expected failure, got \(result) instead")
-            case .failure(let error) where error == .server:
-                break
-            default:
-                XCTFail("Expected server error, got \(result) instead")
-            }
-            exp.fulfill()
-        }
-        client.complete(with: httpResponse(with: 500))
-        wait(for: [exp], timeout: 1)
-    }
-    
-    func test_createChannel_doesNotDeliverResultAfterSUTInstanceDeallocated() {
-        // given
-        let client = HTTPClientSpy()
-        let configuration = ChannelsServiceConfiguration(
-            loadChannelsURL: loadChannelsURL(),
-            createChannelURL: createChannelURL(),
-            authToken: anyAuthToken())
-        var sut: ChannelsService? = ChannelsService(configuration: configuration, client: client)
-
-        var expectedResult: Result<Void, ChannelsLoadingError>?
-        sut?.createChannel(payload: anyCreateChannelPayload()) { expectedResult = $0 }
-        
-        // when
-        sut = nil
-        client.complete(with: httpResponse(with: 200))
-        
-        // then
-        XCTAssertNil(expectedResult)
-    }
-
     // MARK: - Helpers
     
     private func makeSUT(
-        loadChannelsURL: URL = URL(string: "http://load-channels-url.com")!,
-        createChannelURL: URL = URL(string: "http://create-channel-url.com")!,
+        url: URL = URL(string: "http://any-url.com")!,
         authToken: String = "any token",
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (ChannelsService, HTTPClientSpy) {
         let client  = HTTPClientSpy()
-        let configuration = ChannelsServiceConfiguration(
-            loadChannelsURL: loadChannelsURL,
-            createChannelURL: createChannelURL,
-            authToken: authToken)
-        let sut = ChannelsService(configuration: configuration, client: client)
+        let sut = ChannelsService(url: url, authToken: authToken, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -366,75 +220,7 @@ final class ChannelsServiceTests: XCTestCase {
         return (sut, client)
     }
     
-    private func loadChannelsURL() -> URL {
-        URL(string: "http://load-channels-url.com")!
-    }
-    
-    private func createChannelURL() -> URL {
-        URL(string: "http://create-channel-url.com")!
-    }
-    
-    private func anyAuthToken() -> String {
-        "any token"
-    }
-    
     private func anyNSError() -> Error {
         NSError(domain: "any domain", code: 1)
-    }
-    
-    private func httpResponse(with statusCode: Int) -> HTTPURLResponse {
-        HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-    }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://any-url.com")!
-    }
-    
-    private func anyCreateChannelPayload() -> CreateChanelPayload {
-        CreateChanelPayload(name: "any name", description: "any description")
-    }
-    
-    private class HTTPClientSpy: HTTPClientProtocol {
-        private var messages = [(request: URLRequest, completion: (Result<(Data?, HTTPURLResponse?), Error>) -> Void)]()
-                
-        var requestedURLs: [URL] {
-            messages.compactMap { $0.request.url }
-        }
-        
-        var httpMethods: [String] {
-            messages.compactMap { $0.request.httpMethod }
-        }
-        
-        var contentTypes: [String] {
-            messages.compactMap { $0.request.value(forHTTPHeaderField: "Content-Type") }
-        }
-        
-        var authTokens: [String] {
-            messages.compactMap { $0.request.value(forHTTPHeaderField: "Authorization") }
-        }
-        
-        var createChannelPayloads: [CreateChanelPayload] {
-            messages.compactMap {
-                guard let data = $0.request.httpBody else { return nil }
-                return try? JSONDecoder().decode(CreateChanelPayload.self, from: data)
-            }
-        }
-            
-        func perform(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void) {
-            messages.append((request, completion))
-        }
-                
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-        
-        func complete(with response: HTTPURLResponse, at index: Int = 0) {
-            messages[index].completion(.success((nil, response)))
-        }
-        
-        func complete(with data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
-            messages[index].completion(.success((data, response)))
-        }
-    }
+    }    
 }

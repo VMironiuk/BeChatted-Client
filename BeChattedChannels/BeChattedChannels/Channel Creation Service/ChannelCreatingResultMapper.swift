@@ -8,7 +8,7 @@
 import Foundation
 
 struct ChannelCreatingResultMapper {
-    static func result(for response: HTTPURLResponse?) -> Result<Void, ChannelsLoadingError> {
+    static func result(for response: HTTPURLResponse?) -> Result<Void, ChannelCreatingError> {
         guard let response = response else { return .failure(.unknown) }
         
         switch response.statusCode {

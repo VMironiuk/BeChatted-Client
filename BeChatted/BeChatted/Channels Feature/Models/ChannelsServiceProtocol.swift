@@ -27,5 +27,4 @@ public enum ChannelsServiceError: Error {
 
 public protocol ChannelsServiceProtocol {
     func loadChannels(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void)
-    func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, ChannelsServiceError>) -> Void)
 }
