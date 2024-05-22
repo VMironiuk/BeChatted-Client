@@ -18,7 +18,7 @@ struct ChannelsFeatureComposer {
     var channelsView: some View {
         ChannelsViewComposer.composedChannelsView(
             with: ChannelsViewModel(
-                channelsService: ChannelsServiceComposer.channelsService(with: appData.authToken ?? "")
+                channelsLoadingService: ChannelsLoadingServiceComposer.channelsService(with: appData.authToken ?? "")
             )
         )
     }

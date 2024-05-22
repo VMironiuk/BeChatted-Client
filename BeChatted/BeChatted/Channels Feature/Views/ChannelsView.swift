@@ -76,7 +76,7 @@ struct ChannelsView: View {
         }
     }
     
-    private func contentView(for error: ChannelsServiceError) -> some View {
+    private func contentView(for error: ChannelsLoadingServiceError) -> some View {
         switch error {
         case .unknown, .invalidData: ChannelsLoadingIssueContentView(issue: .unknown)
         case .connectivity: ChannelsLoadingIssueContentView(issue: .connectivity)
@@ -100,13 +100,11 @@ struct ChannelsView: View {
 
 #Preview {
     NavigationStack {
-        ChannelsView(viewModel: ChannelsViewModel(channelsService: FakeChannelsService()))
+        ChannelsView(viewModel: ChannelsViewModel(channelsLoadingService: FakeChannelsLoadingService()))
     }
 }
 
-private class FakeChannelsService: ChannelsServiceProtocol {
-    func loadChannels(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
-    }
-    func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, ChannelsServiceError>) -> Void) {
+private class FakeChannelsLoadingService: ChannelsLoadingServiceProtocol {
+    func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
     }
 }

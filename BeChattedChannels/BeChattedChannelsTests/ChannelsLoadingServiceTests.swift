@@ -1,5 +1,5 @@
 //
-//  ChannelsServiceTests.swift
+//  ChannelsLoadingServiceTests.swift
 //  BeChattedChannelsTests
 //
 //  Created by Volodymyr Myroniuk on 04.04.2024.
@@ -8,7 +8,7 @@
 import XCTest
 import BeChattedChannels
 
-final class ChannelsServiceTests: XCTestCase {
+final class ChannelsLoadingServiceTests: XCTestCase {
     
     func test_init_doesNotSendRequests() {
         // given
@@ -153,7 +153,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_loadChannels_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(url: anyURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsLoadingService? = ChannelsLoadingService(url: anyURL(), authToken: anyAuthToken(), client: client)
         
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.loadChannels { expectedResult = $0 }
@@ -190,7 +190,7 @@ final class ChannelsServiceTests: XCTestCase {
     func test_loadChannels_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
         // given
         let client = HTTPClientSpy()
-        var sut: ChannelsService? = ChannelsService(url: anyURL(), authToken: anyAuthToken(), client: client)
+        var sut: ChannelsLoadingService? = ChannelsLoadingService(url: anyURL(), authToken: anyAuthToken(), client: client)
 
         var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
         sut?.loadChannels { expectedResult = $0 }
@@ -210,9 +210,9 @@ final class ChannelsServiceTests: XCTestCase {
         authToken: String = "any token",
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (ChannelsService, HTTPClientSpy) {
+    ) -> (ChannelsLoadingService, HTTPClientSpy) {
         let client  = HTTPClientSpy()
-        let sut = ChannelsService(url: url, authToken: authToken, client: client)
+        let sut = ChannelsLoadingService(url: url, authToken: authToken, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

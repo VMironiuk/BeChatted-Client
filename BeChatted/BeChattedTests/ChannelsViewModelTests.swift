@@ -14,8 +14,8 @@ final class ChannelsViewModelTests: XCTestCase {
         // given
         
         // when
-        let service = ChannelsServiceStub()
-        _ = ChannelsViewModel(channelsService: service)
+        let service = ChannelsLoadingServiceStub()
+        _ = ChannelsViewModel(channelsLoadingService: service)
         
         // then
         XCTAssertEqual(service.loadChannelsCallCount, 0)
@@ -103,37 +103,11 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_createChannel_sendsLoadChannelsRequestOnSuccessfulChannelCreation() {
-        // given
-        let (sut, service) = makeSUT()
-        
-        // when
-        sut.createChannel(withName: "channel name", description: "channel description")
-        service.completeChannelCreation(with: .success(()))
-        
-        // then
-        XCTAssertEqual(service.createChannelCallCount, 1)
-        XCTAssertEqual(service.loadChannelsCallCount, 1)
-    }
-    
-    func test_createChannel_doesNotSendLoadChannelsRequestOnFailedChannelCreation() {
-        // given
-        let (sut, service) = makeSUT()
-        
-        // when
-        sut.createChannel(withName: "channel name", description: "channel description")
-        service.completeChannelCreation(with: .failure(.unknown))
-        
-        // then
-        XCTAssertEqual(service.createChannelCallCount, 1)
-        XCTAssertEqual(service.loadChannelsCallCount, 0)
-    }
-    
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (ChannelsViewModel, ChannelsServiceStub) {
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (ChannelsViewModel, ChannelsLoadingServiceStub) {
+        let service = ChannelsLoadingServiceStub()
+        let sut = ChannelsViewModel(channelsLoadingService: service)
         
         trackForMemoryLeaks(service, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -149,32 +123,19 @@ final class ChannelsViewModelTests: XCTestCase {
         .channel(name: name, isUnread: false)
     }
     
-    final class ChannelsServiceStub: ChannelsServiceProtocol {
-        private var loadChannelsCompletions = [(Result<[Channel], ChannelsServiceError>) -> Void]()
-        private var createChannelCompletions = [(Result<Void, ChannelsServiceError>) -> Void]()
+    private final class ChannelsLoadingServiceStub: ChannelsLoadingServiceProtocol {
+        private var loadChannelsCompletions = [(Result<[Channel], ChannelsLoadingServiceError>) -> Void]()
         
         var loadChannelsCallCount: Int {
             loadChannelsCompletions.count
         }
         
-        var createChannelCallCount: Int {
-            createChannelCompletions.count
-        }
-        
-        func loadChannels(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
+        func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
             loadChannelsCompletions.append(completion)
         }
         
-        func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, ChannelsServiceError>) -> Void) {
-            createChannelCompletions.append(completion)
-        }
-        
-        func completeChannelsLoading(with result: Result<[Channel], ChannelsServiceError>, at index: Int = 0) {
+        func completeChannelsLoading(with result: Result<[Channel], ChannelsLoadingServiceError>, at index: Int = 0) {
             loadChannelsCompletions[index](result)
-        }
-        
-        func completeChannelCreation(with result: Result<Void, ChannelsServiceError>, at index: Int = 0) {
-            createChannelCompletions[index](result)
         }
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E172DC22BC51E460014A13B /* ChannelsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC12BC51E460014A13B /* ChannelsService.swift */; };
+		2E172DC22BC51E460014A13B /* ChannelsLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC12BC51E460014A13B /* ChannelsLoadingService.swift */; };
 		2E172DC62BC521230014A13B /* ChannelsLoadingResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC52BC521230014A13B /* ChannelsLoadingResultMapper.swift */; };
 		2E5B3D3C2BFDB1C100C5CCF0 /* ChannelCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B3D3B2BFDB1C100C5CCF0 /* ChannelCreationService.swift */; };
 		2E5B3D3F2BFDB22200C5CCF0 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B3D3E2BFDB22200C5CCF0 /* HTTPClientProtocol.swift */; };
@@ -17,7 +17,7 @@
 		2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */; };
 		2EA048432BBE7CC4000525C9 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */; };
 		2EA048492BBE7CC4000525C9 /* BeChattedChannels.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2EA048532BBE7D10000525C9 /* ChannelsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA048522BBE7D10000525C9 /* ChannelsServiceTests.swift */; };
+		2EA048532BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA048522BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift */; };
 		2ECEDDFA2BF5CD2700923681 /* CreateChannelPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */; };
 		2ECEDDFC2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */; };
 		2ECEDDFE2BF5D66500923681 /* ChannelCreatingResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDFD2BF5D66500923681 /* ChannelCreatingResultMapper.swift */; };
@@ -34,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E172DC12BC51E460014A13B /* ChannelsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsService.swift; sourceTree = "<group>"; };
+		2E172DC12BC51E460014A13B /* ChannelsLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingService.swift; sourceTree = "<group>"; };
 		2E172DC52BC521230014A13B /* ChannelsLoadingResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingResultMapper.swift; sourceTree = "<group>"; };
 		2E5B3D3B2BFDB1C100C5CCF0 /* ChannelCreationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationService.swift; sourceTree = "<group>"; };
 		2E5B3D3E2BFDB22200C5CCF0 /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		2EA0483A2BBE7CC4000525C9 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedChannels.h; sourceTree = "<group>"; };
 		2EA048422BBE7CC4000525C9 /* BeChattedChannelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedChannelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2EA048522BBE7D10000525C9 /* ChannelsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsServiceTests.swift; sourceTree = "<group>"; };
+		2EA048522BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingServiceTests.swift; sourceTree = "<group>"; };
 		2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChannelPayload+Decodable.swift"; sourceTree = "<group>"; };
 		2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChannelPayload+Equatable.swift"; sourceTree = "<group>"; };
 		2ECEDDFD2BF5D66500923681 /* ChannelCreatingResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreatingResultMapper.swift; sourceTree = "<group>"; };
@@ -70,13 +70,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E5B3D392BFDB15600C5CCF0 /* Channels Service */ = {
+		2E5B3D392BFDB15600C5CCF0 /* Channels Loading Service */ = {
 			isa = PBXGroup;
 			children = (
-				2E172DC12BC51E460014A13B /* ChannelsService.swift */,
+				2E172DC12BC51E460014A13B /* ChannelsLoadingService.swift */,
 				2E172DC52BC521230014A13B /* ChannelsLoadingResultMapper.swift */,
 			);
-			path = "Channels Service";
+			path = "Channels Loading Service";
 			sourceTree = "<group>";
 		};
 		2E5B3D3A2BFDB17F00C5CCF0 /* Channel Creation Service */ = {
@@ -131,7 +131,7 @@
 			children = (
 				2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */,
 				2E5B3D3D2BFDB20F00C5CCF0 /* Common */,
-				2E5B3D392BFDB15600C5CCF0 /* Channels Service */,
+				2E5B3D392BFDB15600C5CCF0 /* Channels Loading Service */,
 				2E5B3D3A2BFDB17F00C5CCF0 /* Channel Creation Service */,
 			);
 			path = BeChattedChannels;
@@ -141,7 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				2E82772C2BBFD575007E1EC5 /* Helpers */,
-				2EA048522BBE7D10000525C9 /* ChannelsServiceTests.swift */,
+				2EA048522BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift */,
 				2E5B3D402BFDB3B200C5CCF0 /* ChannelCreationServiceTests.swift */,
 			);
 			path = BeChattedChannelsTests;
@@ -261,7 +261,7 @@
 				2E172DC62BC521230014A13B /* ChannelsLoadingResultMapper.swift in Sources */,
 				2ECEDDFE2BF5D66500923681 /* ChannelCreatingResultMapper.swift in Sources */,
 				2E5B3D3C2BFDB1C100C5CCF0 /* ChannelCreationService.swift in Sources */,
-				2E172DC22BC51E460014A13B /* ChannelsService.swift in Sources */,
+				2E172DC22BC51E460014A13B /* ChannelsLoadingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +272,7 @@
 				2E5B3D452BFDB6C900C5CCF0 /* HelperFunctions.swift in Sources */,
 				2E5B3D412BFDB3B200C5CCF0 /* ChannelCreationServiceTests.swift in Sources */,
 				2E5B3D432BFDB62A00C5CCF0 /* HTTPClientSpy.swift in Sources */,
-				2EA048532BBE7D10000525C9 /* ChannelsServiceTests.swift in Sources */,
+				2EA048532BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift in Sources */,
 				2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2ECEDDFA2BF5CD2700923681 /* CreateChannelPayload+Decodable.swift in Sources */,
 				2ECEDDFC2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift in Sources */,

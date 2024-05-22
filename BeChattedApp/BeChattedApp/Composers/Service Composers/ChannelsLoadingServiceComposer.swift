@@ -1,5 +1,5 @@
 //
-//  ChannelsServiceComposer.swift
+//  ChannelsLoadingServiceComposer.swift
 //  BeChattedApp
 //
 //  Created by Volodymyr Myroniuk on 25.04.2024.
@@ -9,7 +9,7 @@ import BeChatted
 import BeChattedChannels
 import BeChattedNetwork
 
-struct ChannelsServiceComposer {
+struct ChannelsLoadingServiceComposer {
     private init() {}
     
     private static let httpProtocol = "http"
@@ -21,13 +21,13 @@ struct ChannelsServiceComposer {
     
     private static let url = URL(string: "\(baseURLString)\(endpoint)")!
     
-    static func channelsService(with authToken: String) -> ChannelsService {
-        return ChannelsService(url: url, authToken: authToken, client: URLSessionHTTPClient())
+    static func channelsService(with authToken: String) -> ChannelsLoadingService {
+        ChannelsLoadingService(url: url, authToken: authToken, client: URLSessionHTTPClient())
     }
 }
 
-extension ChannelsService: ChannelsServiceProtocol {
-    public func loadChannels(completion: @escaping (Result<[Channel], ChannelsServiceError>) -> Void) {
+extension ChannelsLoadingService: ChannelsLoadingServiceProtocol {
+    public func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
         loadChannels { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
             switch result {
             case .success(let channelInfos):
@@ -38,7 +38,7 @@ extension ChannelsService: ChannelsServiceProtocol {
         }
     }
     
-    static private func map(from channelsLoadingError: ChannelsLoadingError) -> ChannelsServiceError {
+    static private func map(from channelsLoadingError: ChannelsLoadingError) -> ChannelsLoadingServiceError {
         switch channelsLoadingError {
         case .server, .connectivity:
             return .connectivity

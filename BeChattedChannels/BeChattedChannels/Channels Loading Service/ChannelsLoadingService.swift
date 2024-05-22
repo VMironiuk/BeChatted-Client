@@ -1,5 +1,5 @@
 //
-//  ChannelsService.swift
+//  ChannelsLoadingService.swift
 //  BeChattedChannels
 //
 //  Created by Volodymyr Myroniuk on 09.04.2024.
@@ -32,7 +32,7 @@ public enum ChannelsLoadingError: Error {
     case unknown
 }
 
-public final class ChannelsService {
+public final class ChannelsLoadingService {
     private let url: URL
     private let authToken: String
     private let client: HTTPClientProtocol
