@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+public enum CreateChannelServiceError: Error {
+    case server
+    case connectivity
+    case unknown
+}
+
+public protocol CreateChannelServiceProtocol {
+    func createChannel(withName name: String, description: String, completion: @escaping (Result<Void, CreateChannelServiceError>) -> Void)
+}

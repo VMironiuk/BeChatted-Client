@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+public final class CreateChannelViewModel {
+    private let service: CreateChannelServiceProtocol
+    
+    public init(service: CreateChannelServiceProtocol) {
+        self.service = service
+    }
+    
+    public func createChannel(withName name: String, description: String) {
+    }
+}

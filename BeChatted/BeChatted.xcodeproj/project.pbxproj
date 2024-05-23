@@ -49,6 +49,10 @@
 		2EBE980F2B89F1BD009EB16C /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */; };
 		2EBE98122B89F413009EB16C /* AuthFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98112B89F413009EB16C /* AuthFooterView.swift */; };
 		2EBE98162B89FD1E009EB16C /* RegisterViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98142B89FD09009EB16C /* RegisterViewComposer.swift */; };
+		2EBF51412BFF00BE001EA238 /* CreateChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51402BFF00BE001EA238 /* CreateChannelViewModel.swift */; };
+		2EBF51432BFF00E9001EA238 /* CreateChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51422BFF00E9001EA238 /* CreateChannelView.swift */; };
+		2EBF51452BFF0109001EA238 /* CreateChannelViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */; };
+		2EBF51482BFF0144001EA238 /* CreateChannelServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51472BFF0144001EA238 /* CreateChannelServiceProtocol.swift */; };
 		2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */; };
 		2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE982B85C520007B6D10 /* AuthError.swift */; };
 		2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */; };
@@ -135,6 +139,10 @@
 		2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		2EBE98112B89F413009EB16C /* AuthFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFooterView.swift; sourceTree = "<group>"; };
 		2EBE98142B89FD09009EB16C /* RegisterViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewComposer.swift; sourceTree = "<group>"; };
+		2EBF51402BFF00BE001EA238 /* CreateChannelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewModel.swift; sourceTree = "<group>"; };
+		2EBF51422BFF00E9001EA238 /* CreateChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelView.swift; sourceTree = "<group>"; };
+		2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewModelTests.swift; sourceTree = "<group>"; };
+		2EBF51472BFF0144001EA238 /* CreateChannelServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelServiceProtocol.swift; sourceTree = "<group>"; };
 		2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2EC3EE8E2B85C515007B6D10 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
@@ -241,6 +249,7 @@
 				2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */,
 				2EB37CB92B874119003990B0 /* RegisterViewModelTests.swift */,
 				2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */,
+				2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -294,6 +303,40 @@
 				2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		2EBF513D2BFF005A001EA238 /* Create Channel Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2EBF51462BFF012C001EA238 /* Models */,
+				2EBF513F2BFF007F001EA238 /* ViewModel */,
+				2EBF513E2BFF0072001EA238 /* Views */,
+			);
+			path = "Create Channel Feature";
+			sourceTree = "<group>";
+		};
+		2EBF513E2BFF0072001EA238 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EBF51422BFF00E9001EA238 /* CreateChannelView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2EBF513F2BFF007F001EA238 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2EBF51402BFF00BE001EA238 /* CreateChannelViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2EBF51462BFF012C001EA238 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2EBF51472BFF0144001EA238 /* CreateChannelServiceProtocol.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2EC3EE892B85C515007B6D10 /* Login Feature */ = {
@@ -410,6 +453,7 @@
 				2EC3EE962B85C520007B6D10 /* Common */,
 				2E9553A02BE3C6D3002E23B2 /* Auth Feature */,
 				2E5EFF662BA823CE00EA65E8 /* Channels Feature */,
+				2EBF513D2BFF005A001EA238 /* Create Channel Feature */,
 				2E82F23A2B889FE500802ED5 /* Assets.xcassets */,
 			);
 			path = BeChatted;
@@ -565,6 +609,7 @@
 				2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */,
 				2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */,
 				2EB37CBC2B874240003990B0 /* EmailValidatorStub.swift in Sources */,
+				2EBF51452BFF0109001EA238 /* CreateChannelViewModelTests.swift in Sources */,
 				2EB37CA22B8737E0003990B0 /* AuthServiceStub.swift in Sources */,
 				2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2ED1A21A2BFB16CE00973571 /* ChannelItem+Equatable.swift in Sources */,
@@ -577,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EBF51412BFF00BE001EA238 /* CreateChannelViewModel.swift in Sources */,
 				2E4FC58A2BE273E600061DE6 /* ChannelsLoadingServiceProtocol.swift in Sources */,
 				2E82F22D2B88970E00802ED5 /* AuthServiceProtocol.swift in Sources */,
 				2EB37CC02B87433D003990B0 /* Bundle+DisplayName.swift in Sources */,
@@ -587,6 +633,7 @@
 				2EB37CAE2B873E36003990B0 /* RegisterViewModel.swift in Sources */,
 				2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */,
 				2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */,
+				2EBF51482BFF0144001EA238 /* CreateChannelServiceProtocol.swift in Sources */,
 				2E4FC5902BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */,
 				2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */,
 				2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */,
@@ -601,6 +648,7 @@
 			files = (
 				2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */,
 				2EB37CB82B873E61003990B0 /* RegisterView.swift in Sources */,
+				2EBF51432BFF00E9001EA238 /* CreateChannelView.swift in Sources */,
 				2E4FC5842BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift in Sources */,
 				2E4FC5882BE2719500061DE6 /* ChannelItemView.swift in Sources */,
 				2EB37CB72B873E5D003990B0 /* RegisterHeaderView.swift in Sources */,
