@@ -20,6 +20,17 @@ final class CreateChannelViewModelTests: XCTestCase {
         XCTAssertEqual(service.createChannelCallCount, 0)
     }
     
+    func test_createChannel_sendsCreateChannelRequest() {
+        // given
+        let (sut, service) = makeSUT()
+        
+        // when
+        sut.createChannel(withName: "name", description: "description")
+        
+        // then
+        XCTAssertEqual(service.createChannelCallCount, 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (CreateChannelViewModel, CreateChannelServiceSpy) {

@@ -15,5 +15,7 @@ public final class CreateChannelViewModel {
     }
     
     public func createChannel(withName name: String, description: String) {
+        service.createChannel(withName: name, description: description) { _ in
+        }
     }
 }
