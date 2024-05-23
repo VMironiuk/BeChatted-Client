@@ -67,6 +67,18 @@ final class CreateChannelViewModelTests: XCTestCase {
         XCTAssertEqual(sut.state, .failure(.server))
     }
     
+    func test_createChannel_deliversConnectivityErrorOnConnectivityErrorCreateChannelResponse() {
+        // given
+        let (sut, service) = makeSUT()
+        
+        // when
+        sut.createChannel(withName: "name", description: "description")
+        service.complete(with: .failure(.connectivity))
+        
+        // then
+        XCTAssertEqual(sut.state, .failure(.connectivity))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (CreateChannelViewModel, CreateChannelServiceSpy) {
