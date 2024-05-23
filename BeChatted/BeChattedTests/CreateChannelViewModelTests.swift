@@ -43,6 +43,18 @@ final class CreateChannelViewModelTests: XCTestCase {
         XCTAssertEqual(service.createChannelCallCount, 2)
     }
     
+    func test_createChannel_deliversSuccessOnSuccessfulCreateChannelResponse() {
+        // given
+        let (sut, service) = makeSUT()
+        
+        // when
+        sut.createChannel(withName: "name", description: "description")
+        service.complete(with: .success(()))
+        
+        // then
+        XCTAssertEqual(sut.state, .success)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (CreateChannelViewModel, CreateChannelServiceSpy) {
@@ -74,6 +86,28 @@ final class CreateChannelViewModelTests: XCTestCase {
             completion: @escaping (Result<Void, CreateChannelServiceError>) -> Void
         ) {
             messages.append(.init(name: name, description: description, completion: completion))
+        }
+        
+        func complete(with result: Result<Void, CreateChannelServiceError>, at index: Int = 0) {
+            messages[index].completion(result)
+        }
+    }
+}
+
+extension CreateChannelViewModelState: Equatable {
+    public static func == (lhs: CreateChannelViewModelState, rhs: CreateChannelViewModelState) -> Bool {
+        switch (lhs, rhs) {
+        case (.ready, .ready): true
+        case (.inProgress, .inProgress): true
+        case (.success, .success): true
+        case let (.failure(lhsError), .failure(rhsError)):
+            switch (lhsError, rhsError) {
+            case (.server, .server): true
+            case (.connectivity, .connectivity): true
+            case (.unknown, .unknown): true
+            default: false
+            }
+        default: false
         }
     }
 }

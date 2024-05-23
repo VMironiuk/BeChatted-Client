@@ -7,15 +7,31 @@
 
 import Foundation
 
-public final class CreateChannelViewModel {
+public enum CreateChannelViewModelState {
+    case ready
+    case inProgress
+    case failure(CreateChannelServiceError)
+    case success
+}
+
+@Observable public final class CreateChannelViewModel {
     private let service: CreateChannelServiceProtocol
+    
+    public private(set) var state: CreateChannelViewModelState = .ready
     
     public init(service: CreateChannelServiceProtocol) {
         self.service = service
     }
     
     public func createChannel(withName name: String, description: String) {
-        service.createChannel(withName: name, description: description) { _ in
+        service.createChannel(withName: name, description: description) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                state = .success
+            case .failure(let error):
+                state = .failure(error)
+            }
         }
     }
 }
