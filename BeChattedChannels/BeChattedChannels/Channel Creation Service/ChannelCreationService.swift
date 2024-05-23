@@ -9,7 +9,6 @@ import Foundation
 
 public enum ChannelCreatingError: Error {
     case server
-    case invalidData
     case connectivity
     case unknown
 }
