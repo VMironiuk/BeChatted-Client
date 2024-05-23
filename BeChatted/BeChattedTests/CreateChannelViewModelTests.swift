@@ -44,51 +44,31 @@ final class CreateChannelViewModelTests: XCTestCase {
     }
     
     func test_createChannel_deliversSuccessOnSuccessfulCreateChannelResponse() {
-        // given
         let (sut, service) = makeSUT()
-        
-        // when
-        sut.createChannel(withName: "name", description: "description")
-        service.complete(with: .success(()))
-        
-        // then
-        XCTAssertEqual(sut.state, .success)
+        expect(sut, toBeInState: .success, when: {
+            service.complete(with: .success(()))
+        })
     }
     
     func test_createChannel_deliversServerErrorOnServerErrorCreateChannelResponse() {
-        // given
         let (sut, service) = makeSUT()
-        
-        // when
-        sut.createChannel(withName: "name", description: "description")
-        service.complete(with: .failure(.server))
-        
-        // then
-        XCTAssertEqual(sut.state, .failure(.server))
+        expect(sut, toBeInState: .failure(.server), when: {
+            service.complete(with: .failure(.server))
+        })
     }
     
     func test_createChannel_deliversConnectivityErrorOnConnectivityErrorCreateChannelResponse() {
-        // given
         let (sut, service) = makeSUT()
-        
-        // when
-        sut.createChannel(withName: "name", description: "description")
-        service.complete(with: .failure(.connectivity))
-        
-        // then
-        XCTAssertEqual(sut.state, .failure(.connectivity))
+        expect(sut, toBeInState: .failure(.connectivity), when: {
+            service.complete(with: .failure(.connectivity))
+        })
     }
     
     func test_createChannel_deliversUnknownErrorOnUnknownErrorCreateChannelResponse() {
-        // given
         let (sut, service) = makeSUT()
-        
-        // when
-        sut.createChannel(withName: "name", description: "description")
-        service.complete(with: .failure(.unknown))
-        
-        // then
-        XCTAssertEqual(sut.state, .failure(.unknown))
+        expect(sut, toBeInState: .failure(.unknown), when: {
+            service.complete(with: .failure(.unknown))
+        })
     }
 
     // MARK: - Helpers
@@ -101,6 +81,24 @@ final class CreateChannelViewModelTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, service)
+    }
+    
+    private func expect(
+        _ sut: CreateChannelViewModel,
+        toBeInState state: CreateChannelViewModelState,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: Int = #line
+    ) {
+        // given
+        
+        // when
+        sut.createChannel(withName: "name", description: "description")
+        
+        action()
+        
+        // then
+        XCTAssertEqual(sut.state, state)
     }
     
     private final class CreateChannelServiceSpy: CreateChannelServiceProtocol {
