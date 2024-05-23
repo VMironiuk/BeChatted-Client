@@ -79,6 +79,18 @@ final class CreateChannelViewModelTests: XCTestCase {
         XCTAssertEqual(sut.state, .failure(.connectivity))
     }
     
+    func test_createChannel_deliversUnknownErrorOnUnknownErrorCreateChannelResponse() {
+        // given
+        let (sut, service) = makeSUT()
+        
+        // when
+        sut.createChannel(withName: "name", description: "description")
+        service.complete(with: .failure(.unknown))
+        
+        // then
+        XCTAssertEqual(sut.state, .failure(.unknown))
+    }
+
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (CreateChannelViewModel, CreateChannelServiceSpy) {
