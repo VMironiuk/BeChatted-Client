@@ -31,6 +31,18 @@ final class CreateChannelViewModelTests: XCTestCase {
         XCTAssertEqual(service.createChannelCallCount, 1)
     }
     
+    func test_createChannel_calledTwice_sendsCreateChannelRequestTwice() {
+        // given
+        let (sut, service) = makeSUT()
+        
+        // when
+        sut.createChannel(withName: "name", description: "description")
+        sut.createChannel(withName: "name", description: "description")
+        
+        // then
+        XCTAssertEqual(service.createChannelCallCount, 2)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (CreateChannelViewModel, CreateChannelServiceSpy) {
