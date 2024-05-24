@@ -28,7 +28,7 @@ struct ChannelsView: View {
                         VStack {
                             Button("Create Channel") {
                             }
-                            .buttonStyle(CreateChanelButtonStyle())
+                            .buttonStyle(SecondaryButtonStyle())
                             .padding(.horizontal, 16)
                             .padding(.top, 16)
                             Spacer()

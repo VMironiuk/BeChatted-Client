@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */; };
+		2E0792A12BAC161A004D7FD2 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */; };
 		2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */; };
 		2E4F6C042BDA510500BBBCC5 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */; };
 		2E4FC5842BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */; };
@@ -52,7 +52,7 @@
 		2EBF51452BFF0109001EA238 /* CreateChannelViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */; };
 		2EBF51482BFF0144001EA238 /* CreateChannelServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51472BFF0144001EA238 /* CreateChannelServiceProtocol.swift */; };
 		2EBF51512C005545001EA238 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF514E2C005545001EA238 /* TextInputView.swift */; };
-		2EBF51522C005545001EA238 /* AuthButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF514F2C005545001EA238 /* AuthButtonStyle.swift */; };
+		2EBF51522C005545001EA238 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF514F2C005545001EA238 /* PrimaryButtonStyle.swift */; };
 		2EBF51532C005545001EA238 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51502C005545001EA238 /* SecureInputView.swift */; };
 		2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */; };
 		2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE982B85C520007B6D10 /* AuthError.swift */; };
@@ -98,7 +98,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelButtonStyle.swift; sourceTree = "<group>"; };
+		2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModelTests.swift; sourceTree = "<group>"; };
 		2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
 		2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingIssueContentView.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewModelTests.swift; sourceTree = "<group>"; };
 		2EBF51472BFF0144001EA238 /* CreateChannelServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelServiceProtocol.swift; sourceTree = "<group>"; };
 		2EBF514E2C005545001EA238 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
-		2EBF514F2C005545001EA238 /* AuthButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthButtonStyle.swift; sourceTree = "<group>"; };
+		2EBF514F2C005545001EA238 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		2EBF51502C005545001EA238 /* SecureInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2EC3EE8E2B85C515007B6D10 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -300,8 +300,8 @@
 			children = (
 				2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */,
 				2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */,
-				2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */,
-				2EBF514F2C005545001EA238 /* AuthButtonStyle.swift */,
+				2EBF514F2C005545001EA238 /* PrimaryButtonStyle.swift */,
+				2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */,
 				2EBF51502C005545001EA238 /* SecureInputView.swift */,
 				2EBF514E2C005545001EA238 /* TextInputView.swift */,
 			);
@@ -654,9 +654,9 @@
 				2E4FC5882BE2719500061DE6 /* ChannelItemView.swift in Sources */,
 				2EB37CB72B873E5D003990B0 /* RegisterHeaderView.swift in Sources */,
 				2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */,
-				2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */,
+				2E0792A12BAC161A004D7FD2 /* SecondaryButtonStyle.swift in Sources */,
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
-				2EBF51522C005545001EA238 /* AuthButtonStyle.swift in Sources */,
+				2EBF51522C005545001EA238 /* PrimaryButtonStyle.swift in Sources */,
 				2E4FC5862BE2717400061DE6 /* ChannelTitleView.swift in Sources */,
 				2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */,
 				2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */,

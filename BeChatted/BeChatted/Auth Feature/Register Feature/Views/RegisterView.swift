@@ -15,7 +15,7 @@ struct RegisterView: View {
     
     @Environment(\.isKeyboardShown) var isKeyboardShown
     @State private var isRegistrationSucceeded = false
-    @State private var authButtonState: AuthButtonStyle.State = .normal
+    @State private var authButtonState: PrimaryButtonStyle.State = .normal
     
     private var isRegisterButtonDisabled: Bool {
         !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
@@ -97,7 +97,7 @@ private extension RegisterView {
                 }
             }
         }
-        .buttonStyle(AuthButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
+        .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isRegisterButtonDisabled)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)

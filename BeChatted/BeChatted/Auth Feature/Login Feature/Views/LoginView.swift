@@ -12,7 +12,7 @@ struct LoginView: View {
     @Bindable private var viewModel: LoginViewModel
     private let footerView: AuthFooterView
     
-    @State private var authButtonState: AuthButtonStyle.State = .normal
+    @State private var authButtonState: PrimaryButtonStyle.State = .normal
     
     private var isLoginButtonDisabled: Bool {
         !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
@@ -80,7 +80,7 @@ private extension LoginView {
                 }
             }
         }
-        .buttonStyle(AuthButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
+        .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isLoginButtonDisabled)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)

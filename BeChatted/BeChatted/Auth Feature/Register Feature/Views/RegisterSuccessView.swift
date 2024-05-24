@@ -47,7 +47,7 @@ struct RegisterSuccessView: View {
             Button("Proceed to Login") {
                 action()
             }
-            .buttonStyle(AuthButtonStyle(state: .normal, isEnabled: true))
+            .buttonStyle(PrimaryButtonStyle(state: .normal, isEnabled: true))
             .padding(.horizontal, 20)
             .padding(.vertical, 60)
         }
