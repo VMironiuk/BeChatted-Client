@@ -70,6 +70,17 @@ final class CreateChannelViewModelTests: XCTestCase {
             service.complete(with: .failure(.unknown))
         })
     }
+    
+    func test_stateTransitions_forHappyPath() {
+        let (sut, service) = makeSUT()
+        XCTAssertEqual(sut.state, .ready, "Expected sut state to be ready, got \(sut.state) instead")
+        
+        sut.createChannel(withName: "name", description: "description")
+        XCTAssertEqual(sut.state, .inProgress, "Expected sut state to be inProgress, got \(sut.state) instead")
+        
+        service.complete(with: .success(()))
+        XCTAssertEqual(sut.state, .success, "Expected sut state to be success, got \(sut.state) instead")
+    }
 
     // MARK: - Helpers
     

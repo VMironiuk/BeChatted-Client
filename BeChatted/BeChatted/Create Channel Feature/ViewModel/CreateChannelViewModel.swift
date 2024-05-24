@@ -24,6 +24,7 @@ public enum CreateChannelViewModelState {
     }
     
     public func createChannel(withName name: String, description: String) {
+        state = .inProgress
         service.createChannel(withName: name, description: description) { [weak self] result in
             guard let self = self else { return }
             switch result {
