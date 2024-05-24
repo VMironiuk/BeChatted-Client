@@ -25,7 +25,7 @@ final class CreateChannelViewModelTests: XCTestCase {
         let (sut, service) = makeSUT()
         
         // when
-        sut.createChannel(withName: "name", description: "description")
+        sut.createChannel()
         
         // then
         XCTAssertEqual(service.createChannelCallCount, 1)
@@ -36,8 +36,8 @@ final class CreateChannelViewModelTests: XCTestCase {
         let (sut, service) = makeSUT()
         
         // when
-        sut.createChannel(withName: "name", description: "description")
-        sut.createChannel(withName: "name", description: "description")
+        sut.createChannel()
+        sut.createChannel()
         
         // then
         XCTAssertEqual(service.createChannelCallCount, 2)
@@ -75,7 +75,7 @@ final class CreateChannelViewModelTests: XCTestCase {
         let (sut, service) = makeSUT()
         XCTAssertEqual(sut.state, .ready, "Expected sut state to be ready, got \(sut.state) instead")
         
-        sut.createChannel(withName: "name", description: "description")
+        sut.createChannel()
         XCTAssertEqual(sut.state, .inProgress, "Expected sut state to be inProgress, got \(sut.state) instead")
         
         service.complete(with: .success(()))
@@ -86,7 +86,7 @@ final class CreateChannelViewModelTests: XCTestCase {
         let (sut, service) = makeSUT()
         XCTAssertEqual(sut.state, .ready, "Expected sut state to be ready, got \(sut.state) instead")
         
-        sut.createChannel(withName: "name", description: "description")
+        sut.createChannel()
         XCTAssertEqual(sut.state, .inProgress, "Expected sut state to be inProgress, got \(sut.state) instead")
         
         service.complete(with: .failure(.unknown))
@@ -115,7 +115,7 @@ final class CreateChannelViewModelTests: XCTestCase {
         // given
         
         // when
-        sut.createChannel(withName: "name", description: "description")
+        sut.createChannel()
         
         action()
         
