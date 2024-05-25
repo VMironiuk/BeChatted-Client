@@ -8,11 +8,15 @@
 import SwiftUI
 import BeChatted
 
-struct ChannelsView: View {
+struct ChannelsView<Content: View>: View {
     @Bindable private var viewModel: ChannelsViewModel
+    private let createChannelContent: Content
     
-    init(viewModel: ChannelsViewModel) {
+    @State private var isCreateChannelContentPresented = false
+    
+    init(viewModel: ChannelsViewModel, createChannelContent: Content) {
         self.viewModel = viewModel
+        self.createChannelContent = createChannelContent
     }
     
     var body: some View {
@@ -27,6 +31,7 @@ struct ChannelsView: View {
                             .foregroundStyle(Color.white)
                         VStack {
                             Button("Create Channel") {
+                                isCreateChannelContentPresented = true
                             }
                             .buttonStyle(SecondaryButtonStyle())
                             .padding(.horizontal, 16)
@@ -54,6 +59,9 @@ struct ChannelsView: View {
         }
         .refreshable {
             viewModel.loadChannels()
+        }
+        .sheet(isPresented: $isCreateChannelContentPresented) {
+            createChannelContent
         }
     }
     
@@ -100,7 +108,12 @@ struct ChannelsView: View {
 
 #Preview {
     NavigationStack {
-        ChannelsView(viewModel: ChannelsViewModel(channelsLoadingService: FakeChannelsLoadingService()))
+        ChannelsView(
+            viewModel: ChannelsViewModel(
+                channelsLoadingService: FakeChannelsLoadingService()
+            ),
+            createChannelContent: Text("Hello")
+        )
     }
 }
 

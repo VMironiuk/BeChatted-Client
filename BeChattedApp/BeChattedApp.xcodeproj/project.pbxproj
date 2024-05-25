@@ -36,6 +36,8 @@
 		2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */; };
 		2EEADC902B8327C1009EE7CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */; };
 		2EEADC932B8327C1009EE7CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */; };
+		2EF8CDF52C01A593000404D0 /* CreateChanelServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */; };
+		2EF8CDF72C01A83D000404D0 /* CreateChannelFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF8CDF62C01A83D000404D0 /* CreateChannelFeatureComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,6 +90,8 @@
 		2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2EF211632B934BC5008BB1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChanelServiceComposer.swift; sourceTree = "<group>"; };
+		2EF8CDF62C01A83D000404D0 /* CreateChannelFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelFeatureComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,7 @@
 			children = (
 				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
 				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */,
+				2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */,
 			);
 			path = "Service Composers";
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
 				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
 				2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */,
+				2EF8CDF62C01A83D000404D0 /* CreateChannelFeatureComposer.swift */,
 			);
 			path = "Feature Composers";
 			sourceTree = "<group>";
@@ -314,7 +320,9 @@
 				2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */,
 				2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */,
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
+				2EF8CDF52C01A593000404D0 /* CreateChanelServiceComposer.swift in Sources */,
 				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
+				2EF8CDF72C01A83D000404D0 /* CreateChannelFeatureComposer.swift in Sources */,
 				2EBE98182B89FD6F009EB16C /* RegisterFeatureComposer.swift in Sources */,
 				2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */,
 			);

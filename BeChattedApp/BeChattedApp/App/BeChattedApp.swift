@@ -44,7 +44,16 @@ private extension BeChattedApp {
     }
     
     private var channelsView: some View {
-        let channelsComposer = ChannelsFeatureComposer(navigationController: mainNavigationController, appData: appData)
+        let channelsComposer = ChannelsFeatureComposer(
+            navigationController: mainNavigationController,
+            appData: appData,
+            createChannelContent: createChannelView
+        )
         return channelsComposer.channelsView
+    }
+    
+    private var createChannelView: some View {
+        let createChannelComposer = CreateChannelFeatureComposer(appData: appData)
+        return createChannelComposer.createChannelView
     }
 }
