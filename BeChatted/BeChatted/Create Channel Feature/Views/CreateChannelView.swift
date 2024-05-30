@@ -57,7 +57,6 @@ struct CreateChannelView: View {
             .disabled(isButtonDisabled)
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
-            .animation(.easeInOut(duration: 0.2), value: buttonState)
         }
     }
 }
@@ -68,6 +67,9 @@ private struct FakeCreateChannelService: CreateChannelServiceProtocol {
         description: String,
         completion: @escaping (Result<Void, BeChatted.CreateChannelServiceError>) -> Void
     ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            completion(.failure(.connectivity))
+        }
     }
 }
 #Preview {

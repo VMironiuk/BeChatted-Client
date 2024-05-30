@@ -5,7 +5,7 @@
 //  Created by Volodymyr Myroniuk on 23.05.2024.
 //
 
-import Foundation
+import SwiftUI
 
 public enum CreateChannelViewModelState {
     case ready
@@ -34,9 +34,21 @@ public enum CreateChannelViewModelState {
             guard let self = self else { return }
             switch result {
             case .success:
-                state = .success
+                self.updateStateWithAnimation(to: .success)
             case .failure(let error):
-                state = .failure(error)
+                self.updateStateWithAnimation(to: .failure(error))
+            }
+        }
+    }
+    
+    private func updateStateWithAnimation(to newState: CreateChannelViewModelState) {
+        withAnimation {
+            state = newState
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            withAnimation {
+                self?.state = .ready
             }
         }
     }
