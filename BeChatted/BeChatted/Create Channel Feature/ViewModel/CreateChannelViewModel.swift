@@ -16,6 +16,7 @@ public enum CreateChannelViewModelState {
 
 @Observable public final class CreateChannelViewModel {
     private let service: CreateChannelServiceProtocol
+    private let animator: AnimatorProtocol
     
     public private(set) var state: CreateChannelViewModelState = .ready
     public var channelName = ""
@@ -24,8 +25,12 @@ public enum CreateChannelViewModelState {
         !channelName.isEmpty && !channelDescription.isEmpty
     }
     
-    public init(service: CreateChannelServiceProtocol) {
+    public init(
+        service: CreateChannelServiceProtocol,
+        animator: AnimatorProtocol = ViewModelAnimator()
+    ) {
         self.service = service
+        self.animator = animator
     }
     
     public func createChannel() {
@@ -42,14 +47,10 @@ public enum CreateChannelViewModelState {
     }
     
     private func updateStateWithAnimation(to newState: CreateChannelViewModelState) {
-        withAnimation {
+        animator.perform {
             state = newState
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            withAnimation {
-                self?.state = .ready
-            }
+        } completion: { [weak self] in
+            self?.state = .ready
         }
     }
 }
