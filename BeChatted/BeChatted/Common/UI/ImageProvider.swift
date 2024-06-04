@@ -29,6 +29,10 @@ final class ImageProvider {
     static var avatarPrototype: Image {
         assetImage(for: "AvatarPrototype")
     }
+    
+    static var createChannelSuccessImage: Image {
+        assetImage(for: "Channels/CreateChannelSuccessIcon")
+    }
 }
 
 private extension ImageProvider {

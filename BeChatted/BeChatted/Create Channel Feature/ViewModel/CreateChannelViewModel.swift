@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public enum CreateChannelViewModelState {
+public enum CreateChannelViewModelState: Equatable {
     case ready
     case inProgress
     case failure(CreateChannelServiceError)

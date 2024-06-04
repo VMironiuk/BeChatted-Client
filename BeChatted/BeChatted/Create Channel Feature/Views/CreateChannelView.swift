@@ -11,6 +11,8 @@ import BeChatted
 struct CreateChannelView: View {
     @Bindable private var viewModel: CreateChannelViewModel
     private let onCreateChannelButtonTapped: () -> Void
+    
+    @State private var imageScale: CGFloat = 0.0
 
     private var isButtonDisabled: Bool {
         !viewModel.isUserInputValid || buttonState == .loading
@@ -52,6 +54,12 @@ struct CreateChannelView: View {
             
             Spacer()
             
+            if viewModel.state == .success {
+                successView
+            }
+            
+            Spacer()
+            
             Button(buttonTitle) {
                 onCreateChannelButtonTapped()
                 viewModel.createChannel()
@@ -60,6 +68,28 @@ struct CreateChannelView: View {
             .disabled(isButtonDisabled)
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
+        }
+    }
+}
+
+extension CreateChannelView {
+    private var successView: some View {
+        VStack {
+            ImageProvider.createChannelSuccessImage
+                .resizable()
+                .frame(width: 100, height: 100)
+            
+            Text("Channel Created!")
+                .padding(.top, 20)
+                .padding(.bottom)
+                .padding(.horizontal, 20)
+                .font(.system(size: 24, weight: .semibold))
+        }
+        .scaleEffect(imageScale)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 0.3).delay(0.3)) {
+                imageScale = 1.0
+            }
         }
     }
 }
