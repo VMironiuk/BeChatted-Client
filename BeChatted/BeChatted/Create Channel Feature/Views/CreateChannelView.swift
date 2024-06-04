@@ -10,6 +10,7 @@ import BeChatted
 
 struct CreateChannelView: View {
     @Bindable private var viewModel: CreateChannelViewModel
+    private let onCreateChannelButtonTapped: () -> Void
 
     private var isButtonDisabled: Bool {
         !viewModel.isUserInputValid || buttonState == .loading
@@ -29,8 +30,9 @@ struct CreateChannelView: View {
         }
     }
     
-    init(viewModel: CreateChannelViewModel) {
+    init(viewModel: CreateChannelViewModel, onCreateChannelButtonTapped: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.onCreateChannelButtonTapped = onCreateChannelButtonTapped
     }
     
     var body: some View {
@@ -51,6 +53,7 @@ struct CreateChannelView: View {
             Spacer()
             
             Button(buttonTitle) {
+                onCreateChannelButtonTapped()
                 viewModel.createChannel()
             }
             .buttonStyle(PrimaryButtonStyle(state: buttonState, isEnabled: viewModel.isUserInputValid))
@@ -76,6 +79,7 @@ private struct FakeCreateChannelService: CreateChannelServiceProtocol {
     CreateChannelView(
         viewModel: CreateChannelViewModel(
             service: FakeCreateChannelService()
-        )
+        ), 
+        onCreateChannelButtonTapped: {}
     )
 }

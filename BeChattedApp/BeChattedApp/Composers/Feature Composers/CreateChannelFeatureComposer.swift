@@ -18,7 +18,8 @@ struct CreateChannelFeatureComposer {
             with: CreateChannelViewModel(
                 service: CreateChanelServiceComposer.createChannelService(
                     with: appData.authToken ?? "")
-            )
+            ), 
+            onCreateChannelButtonTapped: { UIApplication.shared.hideKeyboard() }
         )
     }
 }

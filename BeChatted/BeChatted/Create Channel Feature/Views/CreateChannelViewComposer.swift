@@ -11,7 +11,10 @@ import BeChatted
 public struct CreateChannelViewComposer {
     private init() {}
     
-    public static func composedCreateChannelView(with viewModel: CreateChannelViewModel) -> some View {
-        CreateChannelView(viewModel: viewModel)
+    public static func composedCreateChannelView(
+        with viewModel: CreateChannelViewModel,
+        onCreateChannelButtonTapped: @escaping () -> Void
+    ) -> some View {
+        CreateChannelView(viewModel: viewModel, onCreateChannelButtonTapped: onCreateChannelButtonTapped)
     }
 }
