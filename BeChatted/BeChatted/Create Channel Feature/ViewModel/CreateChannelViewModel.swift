@@ -40,6 +40,8 @@ public enum CreateChannelViewModelState {
             switch result {
             case .success:
                 self.updateStateWithAnimation(to: .success)
+                channelName = ""
+                channelDescription = ""
             case .failure(let error):
                 self.updateStateWithAnimation(to: .failure(error))
             }
