@@ -17,6 +17,7 @@ public enum CreateChannelViewModelState: Equatable {
 @Observable public final class CreateChannelViewModel {
     private let service: CreateChannelServiceProtocol
     private let animator: AnimatorProtocol
+    private let onSuccess: () -> Void
     
     public private(set) var state: CreateChannelViewModelState = .ready
     public var channelName = ""
@@ -27,10 +28,12 @@ public enum CreateChannelViewModelState: Equatable {
     
     public init(
         service: CreateChannelServiceProtocol,
-        animator: AnimatorProtocol = ViewModelAnimator()
+        animator: AnimatorProtocol = ViewModelAnimator(),
+        onSuccess: @escaping () -> Void = {}
     ) {
         self.service = service
         self.animator = animator
+        self.onSuccess = onSuccess
     }
     
     public func createChannel() {
@@ -42,6 +45,7 @@ public enum CreateChannelViewModelState: Equatable {
                 self.updateStateWithAnimation(to: .success)
                 channelName = ""
                 channelDescription = ""
+                onSuccess()
             case .failure(let error):
                 self.updateStateWithAnimation(to: .failure(error))
             }
