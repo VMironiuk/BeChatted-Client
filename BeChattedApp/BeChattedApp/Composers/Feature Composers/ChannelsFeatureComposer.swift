@@ -13,14 +13,12 @@ import BeChattediOS
 
 struct ChannelsFeatureComposer<Content: View> {
     let navigationController: MainNavigationController
-    let appData: AppData
+    let viewModel: ChannelsViewModel
     let createChannelContent: Content
     
     var channelsView: some View {
         ChannelsViewComposer.composedChannelsView(
-            with: ChannelsViewModel(
-                channelsLoadingService: ChannelsLoadingServiceComposer.channelsService(with: appData.authToken ?? "")
-            ),
+            with: viewModel,
             createChannelContent: createChannelContent
         )
     }
