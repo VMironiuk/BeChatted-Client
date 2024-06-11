@@ -1,5 +1,5 @@
 //
-//  AuthButtonStyle.swift
+//  PrimaryButtonStyle.swift
 //  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 31.01.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AuthButtonStyle: ButtonStyle {
+struct PrimaryButtonStyle: ButtonStyle {
     enum State {
         case normal, loading, failed
     }
@@ -62,6 +62,6 @@ struct AuthButtonStyle: ButtonStyle {
     Button("Button") {
         
     }
-    .buttonStyle(AuthButtonStyle(state: .normal, isEnabled: true))
+    .buttonStyle(PrimaryButtonStyle(state: .normal, isEnabled: true))
     .padding(.horizontal, 20)
 }

@@ -5,6 +5,7 @@
 //  Created by Volodymyr Myroniuk on 19.02.2024.
 //
 
+import AVFoundation
 import BeChatted
 import BeChattedAuth
 import BeChattediOS
@@ -44,7 +45,23 @@ private extension BeChattedApp {
     }
     
     private var channelsView: some View {
-        let channelsComposer = ChannelsFeatureComposer(navigationController: mainNavigationController, appData: appData)
+        let channelsComposer = ChannelsFeatureComposer(
+            navigationController: mainNavigationController,
+            viewModel: channelsViewModel,
+            createChannelContent: createChannelView
+        )
         return channelsComposer.channelsView
+    }
+    
+    private var createChannelView: some View {
+        let createChannelComposer = CreateChannelFeatureComposer(appData: appData) {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            channelsViewModel.loadChannels()
+        }
+        return createChannelComposer.createChannelView
+    }
+    
+    private var channelsViewModel: ChannelsViewModel {
+        ChannelsViewModel(channelsLoadingService: ChannelsLoadingServiceComposer.channelsService(with: appData.authToken ?? ""))
     }
 }

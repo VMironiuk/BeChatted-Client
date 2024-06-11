@@ -14,7 +14,7 @@
 		2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */; };
 		2E4F6C082BDA608800BBBCC5 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; };
 		2E4F6C092BDA608800BBBCC5 /* BeChattedChannels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */; };
+		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */; };
 		2E5EFF6D2BA826B800EA65E8 /* ChannelsFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */; };
 		2E82F2662B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; };
 		2E82F2672B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -36,6 +36,8 @@
 		2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */; };
 		2EEADC902B8327C1009EE7CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */; };
 		2EEADC932B8327C1009EE7CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */; };
+		2EF8CDF52C01A593000404D0 /* CreateChanelServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */; };
+		2EF8CDF72C01A83D000404D0 /* CreateChannelFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF8CDF62C01A83D000404D0 /* CreateChannelFeatureComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,7 +66,7 @@
 		2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordValidator+PasswordValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthService+AuthServiceProtocol.swift"; sourceTree = "<group>"; };
 		2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsServiceComposer.swift; sourceTree = "<group>"; };
+		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingServiceComposer.swift; sourceTree = "<group>"; };
 		2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsFeatureComposer.swift; sourceTree = "<group>"; };
 		2E82F2582B88BC8100802ED5 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F2592B88BC8100802ED5 /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,8 @@
 		2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2EF211632B934BC5008BB1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChanelServiceComposer.swift; sourceTree = "<group>"; };
+		2EF8CDF62C01A83D000404D0 /* CreateChannelFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelFeatureComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
-				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift */,
+				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */,
+				2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */,
 			);
 			path = "Service Composers";
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				2E82F27A2B88CE9500802ED5 /* LoginFeatureComposer.swift */,
 				2EBE98172B89FD6F009EB16C /* RegisterFeatureComposer.swift */,
 				2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */,
+				2EF8CDF62C01A83D000404D0 /* CreateChannelFeatureComposer.swift */,
 			);
 			path = "Feature Composers";
 			sourceTree = "<group>";
@@ -306,7 +312,7 @@
 				2E9553972BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift in Sources */,
 				2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */,
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
-				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsServiceComposer.swift in Sources */,
+				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */,
 				2E95539C2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift in Sources */,
@@ -314,7 +320,9 @@
 				2E82F27B2B88CE9500802ED5 /* LoginFeatureComposer.swift in Sources */,
 				2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */,
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
+				2EF8CDF52C01A593000404D0 /* CreateChanelServiceComposer.swift in Sources */,
 				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
+				2EF8CDF72C01A83D000404D0 /* CreateChannelFeatureComposer.swift in Sources */,
 				2EBE98182B89FD6F009EB16C /* RegisterFeatureComposer.swift in Sources */,
 				2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */,
 			);
@@ -375,7 +383,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -432,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -462,7 +470,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -496,7 +504,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

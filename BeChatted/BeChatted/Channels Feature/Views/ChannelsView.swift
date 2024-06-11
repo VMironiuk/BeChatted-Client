@@ -8,11 +8,15 @@
 import SwiftUI
 import BeChatted
 
-struct ChannelsView: View {
+struct ChannelsView<Content: View>: View {
     @Bindable private var viewModel: ChannelsViewModel
+    private let createChannelContent: Content
     
-    init(viewModel: ChannelsViewModel) {
+    @State private var isCreateChannelContentPresented = false
+    
+    init(viewModel: ChannelsViewModel, createChannelContent: Content) {
         self.viewModel = viewModel
+        self.createChannelContent = createChannelContent
     }
     
     var body: some View {
@@ -27,8 +31,9 @@ struct ChannelsView: View {
                             .foregroundStyle(Color.white)
                         VStack {
                             Button("Create Channel") {
+                                isCreateChannelContentPresented = true
                             }
-                            .buttonStyle(CreateChanelButtonStyle())
+                            .buttonStyle(SecondaryButtonStyle())
                             .padding(.horizontal, 16)
                             .padding(.top, 16)
                             Spacer()
@@ -55,6 +60,9 @@ struct ChannelsView: View {
         .refreshable {
             viewModel.loadChannels()
         }
+        .sheet(isPresented: $isCreateChannelContentPresented) {
+            createChannelContent
+        }
     }
     
     @ViewBuilder
@@ -76,7 +84,7 @@ struct ChannelsView: View {
         }
     }
     
-    private func contentView(for error: LoadChannelsError) -> some View {
+    private func contentView(for error: ChannelsLoadingServiceError) -> some View {
         switch error {
         case .unknown, .invalidData: ChannelsLoadingIssueContentView(issue: .unknown)
         case .connectivity: ChannelsLoadingIssueContentView(issue: .connectivity)
@@ -100,11 +108,16 @@ struct ChannelsView: View {
 
 #Preview {
     NavigationStack {
-        ChannelsView(viewModel: ChannelsViewModel(channelsService: FakeChannelsService()))
+        ChannelsView(
+            viewModel: ChannelsViewModel(
+                channelsLoadingService: FakeChannelsLoadingService()
+            ),
+            createChannelContent: Text("Hello")
+        )
     }
 }
 
-private class FakeChannelsService: ChannelsServiceProtocol {
-    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
+private class FakeChannelsLoadingService: ChannelsLoadingServiceProtocol {
+    func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
     }
 }

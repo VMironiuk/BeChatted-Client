@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */; };
+		2E0792A12BAC161A004D7FD2 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */; };
 		2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */; };
 		2E4F6C042BDA510500BBBCC5 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */; };
 		2E4FC5842BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */; };
 		2E4FC5862BE2717400061DE6 /* ChannelTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */; };
 		2E4FC5882BE2719500061DE6 /* ChannelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5872BE2719500061DE6 /* ChannelItemView.swift */; };
-		2E4FC58A2BE273E600061DE6 /* ChannelsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5892BE273E600061DE6 /* ChannelsServiceProtocol.swift */; };
+		2E4FC58A2BE273E600061DE6 /* ChannelsLoadingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5892BE273E600061DE6 /* ChannelsLoadingServiceProtocol.swift */; };
 		2E4FC58D2BE274A300061DE6 /* ChannelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */; };
 		2E4FC5902BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC58F2BE2751000061DE6 /* ChannelsViewModelResultMapper.swift */; };
 		2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */; };
@@ -27,8 +27,6 @@
 		2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2362B8897FA00802ED5 /* AddedUserInfo.swift */; };
 		2E82F23B2B889FE500802ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E82F23A2B889FE500802ED5 /* Assets.xcassets */; };
 		2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */; };
-		2E82F2462B88A7A800802ED5 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2422B88A79600802ED5 /* SecureInputView.swift */; };
-		2E82F2472B88A7AD00802ED5 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2432B88A79600802ED5 /* TextInputView.swift */; };
 		2E82F2482B88A7B100802ED5 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2402B88A78500802ED5 /* AuthHeaderView.swift */; };
 		2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2492B88AB9E00802ED5 /* View+KeyboardVisibility.swift */; };
 		2E82F2752B88C75A00802ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E82F23A2B889FE500802ED5 /* Assets.xcassets */; };
@@ -49,14 +47,28 @@
 		2EBE980F2B89F1BD009EB16C /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */; };
 		2EBE98122B89F413009EB16C /* AuthFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98112B89F413009EB16C /* AuthFooterView.swift */; };
 		2EBE98162B89FD1E009EB16C /* RegisterViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98142B89FD09009EB16C /* RegisterViewComposer.swift */; };
+		2EBF51412BFF00BE001EA238 /* CreateChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51402BFF00BE001EA238 /* CreateChannelViewModel.swift */; };
+		2EBF51432BFF00E9001EA238 /* CreateChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51422BFF00E9001EA238 /* CreateChannelView.swift */; };
+		2EBF51452BFF0109001EA238 /* CreateChannelViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */; };
+		2EBF51482BFF0144001EA238 /* CreateChannelServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51472BFF0144001EA238 /* CreateChannelServiceProtocol.swift */; };
+		2EBF51512C005545001EA238 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF514E2C005545001EA238 /* TextInputView.swift */; };
+		2EBF51522C005545001EA238 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF514F2C005545001EA238 /* PrimaryButtonStyle.swift */; };
+		2EBF51532C005545001EA238 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF51502C005545001EA238 /* SecureInputView.swift */; };
 		2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */; };
 		2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE982B85C520007B6D10 /* AuthError.swift */; };
-		2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */; };
 		2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8E2B85C515007B6D10 /* LoginView.swift */; };
 		2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */; };
 		2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */; };
+		2EC7E5132BF482C50047FCD9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
+		2EC7E5142BF482C50047FCD9 /* BeChatted.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2ECCE3FF2C099C480064A4DC /* AnimatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCE3FE2C099C480064A4DC /* AnimatorProtocol.swift */; };
+		2ECCE4002C099C480064A4DC /* AnimatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCE3FE2C099C480064A4DC /* AnimatorProtocol.swift */; };
+		2ECCE4022C099C920064A4DC /* ViewModelAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCE4012C099C920064A4DC /* ViewModelAnimator.swift */; };
+		2ECCE4032C099C920064A4DC /* ViewModelAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCE4012C099C920064A4DC /* ViewModelAnimator.swift */; };
+		2ED1A21A2BFB16CE00973571 /* ChannelItem+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1A2192BFB16CE00973571 /* ChannelItem+Equatable.swift */; };
 		2EEADCA72B83346B009EE7CE /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEADCA62B83346B009EE7CE /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EEADCF32B833BD1009EE7CE /* BeChatted.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEADCA62B83346B009EE7CE /* BeChatted.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2EF8CDF92C01A8D6000404D0 /* CreateChannelViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF8CDF82C01A8D6000404D0 /* CreateChannelViewComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,16 +79,37 @@
 			remoteGlobalIDString = 2EEADCA22B83346B009EE7CE;
 			remoteInfo = BeChatted;
 		};
+		2EC7E5152BF482C50047FCD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2EEADC9A2B83346B009EE7CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EEADCA22B83346B009EE7CE;
+			remoteInfo = BeChatted;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2EC7E5172BF482C50047FCD9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2EC7E5142BF482C50047FCD9 /* BeChatted.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelButtonStyle.swift; sourceTree = "<group>"; };
+		2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModelTests.swift; sourceTree = "<group>"; };
 		2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
 		2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingIssueContentView.swift; sourceTree = "<group>"; };
 		2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTitleView.swift; sourceTree = "<group>"; };
 		2E4FC5872BE2719500061DE6 /* ChannelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItemView.swift; sourceTree = "<group>"; };
-		2E4FC5892BE273E600061DE6 /* ChannelsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsServiceProtocol.swift; sourceTree = "<group>"; };
+		2E4FC5892BE273E600061DE6 /* ChannelsLoadingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingServiceProtocol.swift; sourceTree = "<group>"; };
 		2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItem.swift; sourceTree = "<group>"; };
 		2E4FC58F2BE2751000061DE6 /* ChannelsViewModelResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModelResultMapper.swift; sourceTree = "<group>"; };
 		2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
@@ -91,8 +124,6 @@
 		2E82F23A2B889FE500802ED5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProvider.swift; sourceTree = "<group>"; };
 		2E82F2402B88A78500802ED5 /* AuthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
-		2E82F2422B88A79600802ED5 /* SecureInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
-		2E82F2432B88A79600802ED5 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		2E82F2492B88AB9E00802ED5 /* View+KeyboardVisibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+KeyboardVisibility.swift"; sourceTree = "<group>"; };
 		2E82F2762B88CA4900802ED5 /* LoginViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewComposer.swift; sourceTree = "<group>"; };
 		2EB37C922B873791003990B0 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,15 +142,25 @@
 		2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		2EBE98112B89F413009EB16C /* AuthFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFooterView.swift; sourceTree = "<group>"; };
 		2EBE98142B89FD09009EB16C /* RegisterViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewComposer.swift; sourceTree = "<group>"; };
+		2EBF51402BFF00BE001EA238 /* CreateChannelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewModel.swift; sourceTree = "<group>"; };
+		2EBF51422BFF00E9001EA238 /* CreateChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelView.swift; sourceTree = "<group>"; };
+		2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewModelTests.swift; sourceTree = "<group>"; };
+		2EBF51472BFF0144001EA238 /* CreateChannelServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelServiceProtocol.swift; sourceTree = "<group>"; };
+		2EBF514E2C005545001EA238 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
+		2EBF514F2C005545001EA238 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		2EBF51502C005545001EA238 /* SecureInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		2EC3EE8B2B85C515007B6D10 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2EC3EE8E2B85C515007B6D10 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
 		2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginHeaderView.swift; sourceTree = "<group>"; };
-		2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthButtonStyle.swift; sourceTree = "<group>"; };
 		2EC3EE982B85C520007B6D10 /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		2ECCE3FE2C099C480064A4DC /* AnimatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorProtocol.swift; sourceTree = "<group>"; };
+		2ECCE4012C099C920064A4DC /* ViewModelAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelAnimator.swift; sourceTree = "<group>"; };
+		2ED1A2192BFB16CE00973571 /* ChannelItem+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelItem+Equatable.swift"; sourceTree = "<group>"; };
 		2EEADCA32B83346B009EE7CE /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEADCA62B83346B009EE7CE /* BeChatted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChatted.h; sourceTree = "<group>"; };
 		2EEADCFA2B833BD1009EE7CE /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EF8CDF82C01A8D6000404D0 /* CreateChannelViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EC7E5132BF482C50047FCD9 /* BeChatted.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +257,7 @@
 				2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */,
 				2EB37CB92B874119003990B0 /* RegisterViewModelTests.swift */,
 				2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */,
+				2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -226,6 +269,7 @@
 				2EB37C9F2B8737E0003990B0 /* AuthServiceStub.swift */,
 				2EB37CBB2B874240003990B0 /* EmailValidatorStub.swift */,
 				2EB37CBD2B87427B003990B0 /* PasswordValidatorStub.swift */,
+				2ED1A2192BFB16CE00973571 /* ChannelItem+Equatable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -264,9 +308,47 @@
 			children = (
 				2E82F23D2B88A62F00802ED5 /* ColorProvider.swift */,
 				2EBE980E2B89F1BD009EB16C /* ImageProvider.swift */,
-				2E07929F2BAC1606004D7FD2 /* CreateChannelButtonStyle.swift */,
+				2EBF514F2C005545001EA238 /* PrimaryButtonStyle.swift */,
+				2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */,
+				2EBF51502C005545001EA238 /* SecureInputView.swift */,
+				2EBF514E2C005545001EA238 /* TextInputView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		2EBF513D2BFF005A001EA238 /* Create Channel Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2EBF51462BFF012C001EA238 /* Models */,
+				2EBF513F2BFF007F001EA238 /* ViewModel */,
+				2EBF513E2BFF0072001EA238 /* Views */,
+			);
+			path = "Create Channel Feature";
+			sourceTree = "<group>";
+		};
+		2EBF513E2BFF0072001EA238 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EBF51422BFF00E9001EA238 /* CreateChannelView.swift */,
+				2EF8CDF82C01A8D6000404D0 /* CreateChannelViewComposer.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2EBF513F2BFF007F001EA238 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2EBF51402BFF00BE001EA238 /* CreateChannelViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2EBF51462BFF012C001EA238 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2EBF51472BFF0144001EA238 /* CreateChannelServiceProtocol.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2EC3EE892B85C515007B6D10 /* Login Feature */ = {
@@ -301,14 +383,32 @@
 			isa = PBXGroup;
 			children = (
 				2EBE98102B89F3CC009EB16C /* UI */,
+				2ECCE3FE2C099C480064A4DC /* AnimatorProtocol.swift */,
+				2ECCE4012C099C920064A4DC /* ViewModelAnimator.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		2EC7E5122BF482C50047FCD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2ECCE3FD2C099BE60064A4DC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2EB37CBF2B87433D003990B0 /* Bundle+DisplayName.swift */,
+				2E82F2492B88AB9E00802ED5 /* View+KeyboardVisibility.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2EDE6D272BE4FFF5008DAA3C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2E4FC5892BE273E600061DE6 /* ChannelsServiceProtocol.swift */,
+				2E4FC5892BE273E600061DE6 /* ChannelsLoadingServiceProtocol.swift */,
 				2E4FC58C2BE274A300061DE6 /* ChannelItem.swift */,
 			);
 			path = Models;
@@ -317,6 +417,7 @@
 		2EE9246A2BE5131100DFC286 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2EE9246C2BE5199500DFC286 /* UI */,
 				2EE9246B2BE5132100DFC286 /* Models */,
 			);
 			path = Common;
@@ -330,7 +431,6 @@
 				2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */,
 				2E82F2382B88989100802ED5 /* RequestPayloads */,
 				2E82F2392B8898E000802ED5 /* ResponseInfos */,
-				2EE9246C2BE5199500DFC286 /* UI */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -338,11 +438,8 @@
 		2EE9246C2BE5199500DFC286 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2EC3EE972B85C520007B6D10 /* AuthButtonStyle.swift */,
 				2E82F2402B88A78500802ED5 /* AuthHeaderView.swift */,
 				2EBE98112B89F413009EB16C /* AuthFooterView.swift */,
-				2E82F2432B88A79600802ED5 /* TextInputView.swift */,
-				2E82F2422B88A79600802ED5 /* SecureInputView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -353,6 +450,7 @@
 				2EEADCA52B83346B009EE7CE /* BeChatted */,
 				2EB37C932B873791003990B0 /* BeChattedTests */,
 				2EEADCA42B83346B009EE7CE /* Products */,
+				2EC7E5122BF482C50047FCD9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -370,11 +468,11 @@
 			isa = PBXGroup;
 			children = (
 				2EEADCA62B83346B009EE7CE /* BeChatted.h */,
-				2EB37CBF2B87433D003990B0 /* Bundle+DisplayName.swift */,
-				2E82F2492B88AB9E00802ED5 /* View+KeyboardVisibility.swift */,
+				2ECCE3FD2C099BE60064A4DC /* Extensions */,
 				2EC3EE962B85C520007B6D10 /* Common */,
 				2E9553A02BE3C6D3002E23B2 /* Auth Feature */,
 				2E5EFF662BA823CE00EA65E8 /* Channels Feature */,
+				2EBF513D2BFF005A001EA238 /* Create Channel Feature */,
 				2E82F23A2B889FE500802ED5 /* Assets.xcassets */,
 			);
 			path = BeChatted;
@@ -446,10 +544,12 @@
 				2EEADCF42B833BD1009EE7CE /* Sources */,
 				2EEADCF52B833BD1009EE7CE /* Frameworks */,
 				2EEADCF62B833BD1009EE7CE /* Resources */,
+				2EC7E5172BF482C50047FCD9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2EC7E5162BF482C50047FCD9 /* PBXTargetDependency */,
 			);
 			name = BeChattediOS;
 			productName = BeChatted;
@@ -528,8 +628,10 @@
 				2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */,
 				2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */,
 				2EB37CBC2B874240003990B0 /* EmailValidatorStub.swift in Sources */,
+				2EBF51452BFF0109001EA238 /* CreateChannelViewModelTests.swift in Sources */,
 				2EB37CA22B8737E0003990B0 /* AuthServiceStub.swift in Sources */,
 				2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				2ED1A21A2BFB16CE00973571 /* ChannelItem+Equatable.swift in Sources */,
 				2EB37CBA2B874119003990B0 /* RegisterViewModelTests.swift in Sources */,
 				2EB37CBE2B87427B003990B0 /* PasswordValidatorStub.swift in Sources */,
 			);
@@ -539,7 +641,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E4FC58A2BE273E600061DE6 /* ChannelsServiceProtocol.swift in Sources */,
+				2EBF51412BFF00BE001EA238 /* CreateChannelViewModel.swift in Sources */,
+				2E4FC58A2BE273E600061DE6 /* ChannelsLoadingServiceProtocol.swift in Sources */,
 				2E82F22D2B88970E00802ED5 /* AuthServiceProtocol.swift in Sources */,
 				2EB37CC02B87433D003990B0 /* Bundle+DisplayName.swift in Sources */,
 				2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */,
@@ -549,9 +652,12 @@
 				2EB37CAE2B873E36003990B0 /* RegisterViewModel.swift in Sources */,
 				2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */,
 				2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */,
+				2EBF51482BFF0144001EA238 /* CreateChannelServiceProtocol.swift in Sources */,
 				2E4FC5902BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */,
 				2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */,
+				2ECCE3FF2C099C480064A4DC /* AnimatorProtocol.swift in Sources */,
 				2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */,
+				2ECCE4022C099C920064A4DC /* ViewModelAnimator.swift in Sources */,
 				2E82F2352B8897DE00802ED5 /* AddUserPayload.swift in Sources */,
 				2E82F2312B8897A300802ED5 /* LoginInfo.swift in Sources */,
 			);
@@ -561,25 +667,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EBF51532C005545001EA238 /* SecureInputView.swift in Sources */,
 				2EC3EE9F2B85C5B0007B6D10 /* LoginView.swift in Sources */,
 				2EB37CB82B873E61003990B0 /* RegisterView.swift in Sources */,
+				2EBF51432BFF00E9001EA238 /* CreateChannelView.swift in Sources */,
+				2EF8CDF92C01A8D6000404D0 /* CreateChannelViewComposer.swift in Sources */,
 				2E4FC5842BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift in Sources */,
+				2ECCE4032C099C920064A4DC /* ViewModelAnimator.swift in Sources */,
 				2E4FC5882BE2719500061DE6 /* ChannelItemView.swift in Sources */,
 				2EB37CB72B873E5D003990B0 /* RegisterHeaderView.swift in Sources */,
 				2EB37CB42B873E50003990B0 /* RegisterSuccessView.swift in Sources */,
-				2E0792A12BAC161A004D7FD2 /* CreateChannelButtonStyle.swift in Sources */,
+				2E0792A12BAC161A004D7FD2 /* SecondaryButtonStyle.swift in Sources */,
 				2EB37CB62B873E58003990B0 /* RegisterInputView.swift in Sources */,
+				2EBF51522C005545001EA238 /* PrimaryButtonStyle.swift in Sources */,
 				2E4FC5862BE2717400061DE6 /* ChannelTitleView.swift in Sources */,
 				2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */,
-				2E82F2462B88A7A800802ED5 /* SecureInputView.swift in Sources */,
 				2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */,
 				2E82F2772B88CA4900802ED5 /* LoginViewComposer.swift in Sources */,
 				2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */,
 				2EBE98122B89F413009EB16C /* AuthFooterView.swift in Sources */,
-				2E82F2472B88A7AD00802ED5 /* TextInputView.swift in Sources */,
 				2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */,
-				2EC3EE9D2B85C531007B6D10 /* AuthButtonStyle.swift in Sources */,
 				2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */,
+				2ECCE4002C099C480064A4DC /* AnimatorProtocol.swift in Sources */,
+				2EBF51512C005545001EA238 /* TextInputView.swift in Sources */,
 				2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */,
 				2EBE980F2B89F1BD009EB16C /* ImageProvider.swift in Sources */,
 				2E82F2482B88A7B100802ED5 /* AuthHeaderView.swift in Sources */,
@@ -595,6 +705,11 @@
 			target = 2EEADCA22B83346B009EE7CE /* BeChatted */;
 			targetProxy = 2EB37C972B873791003990B0 /* PBXContainerItemProxy */;
 		};
+		2EC7E5162BF482C50047FCD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2EEADCA22B83346B009EE7CE /* BeChatted */;
+			targetProxy = 2EC7E5152BF482C50047FCD9 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -606,7 +721,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8U849676MP;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -624,7 +739,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8U849676MP;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volodymyroniuk.BeChattedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -688,9 +803,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -749,9 +864,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -776,7 +891,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
@@ -785,7 +900,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
@@ -816,7 +931,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
@@ -825,7 +940,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
@@ -856,7 +971,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
@@ -897,7 +1012,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",

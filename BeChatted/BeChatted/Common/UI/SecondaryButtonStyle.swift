@@ -1,5 +1,5 @@
 //
-//  CreateChannelButtonStyle.swift
+//  SecondaryButtonStyle.swift
 //  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 21.03.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateChanelButtonStyle: ButtonStyle {
+struct SecondaryButtonStyle: ButtonStyle {
     private var foregroundColor: Color {
         ColorProvider.createChannelButtonForegroundColor
     }
@@ -34,6 +34,6 @@ struct CreateChanelButtonStyle: ButtonStyle {
     Button("Button") {
         
     }
-    .buttonStyle(CreateChanelButtonStyle())
+    .buttonStyle(SecondaryButtonStyle())
     .padding(.horizontal, 20)
 }

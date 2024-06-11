@@ -1,5 +1,5 @@
 //
-//  ChannelsServiceProtocol.swift
+//  ChannelsLoadingServiceProtocol.swift
 //  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 01.05.2024.
@@ -19,12 +19,12 @@ public struct Channel {
     }
 }
 
-public enum LoadChannelsError: Error {
+public enum ChannelsLoadingServiceError: Error {
     case unknown
     case connectivity
     case invalidData
 }
 
-public protocol ChannelsServiceProtocol {
-    func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void)
+public protocol ChannelsLoadingServiceProtocol {
+    func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void)
 }

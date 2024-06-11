@@ -14,21 +14,20 @@ final class ChannelsViewModelTests: XCTestCase {
         // given
         
         // when
-        let service = ChannelsServiceStub()
-        _ = ChannelsViewModel(channelsService: service)
+        let service = ChannelsLoadingServiceStub()
+        _ = ChannelsViewModel(channelsLoadingService: service)
         
         // then
-        XCTAssertEqual(service.loadCallCount, 0)
+        XCTAssertEqual(service.loadChannelsCallCount, 0)
     }
     
-    func test_load_returnsEmptyIfThereAreNoChannels() {
+    func test_loadChanels_returnsEmptyIfThereAreNoChannels() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
-        service.complete(with: .success([]))
+        service.completeChannelsLoading(with: .success([]))
         
         // then
         switch sut.loadChannelsResult {
@@ -38,16 +37,15 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_load_returnsChannelsIfThereAreChannels() {
+    func test_loadChanels_returnsChannelsIfThereAreChannels() {
         // given
         let loadedChannels = [makeChannel(with: "A", description: "AAA"), makeChannel(with: "B", description: "BBB")]
         let expectedChannelItems = [.title, makeChannelItem(with: "A"), makeChannelItem(with: "B")]
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
-        service.complete(with: .success(loadedChannels))
+        service.completeChannelsLoading(with: .success(loadedChannels))
         
         // then
         switch sut.loadChannelsResult {
@@ -57,14 +55,13 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_load_returnsUnknownErrorOnUnknownError() {
+    func test_loadChanels_returnsUnknownErrorOnUnknownError() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
-        service.complete(with: .failure(.unknown))
+        service.completeChannelsLoading(with: .failure(.unknown))
         
         // then
         switch sut.loadChannelsResult {
@@ -74,14 +71,13 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_load_returnsConnectivityErrorOnConnectivityError() {
+    func test_loadChanels_returnsConnectivityErrorOnConnectivityError() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
-        service.complete(with: .failure(.connectivity))
+        service.completeChannelsLoading(with: .failure(.connectivity))
         
         // then
         switch sut.loadChannelsResult {
@@ -91,14 +87,13 @@ final class ChannelsViewModelTests: XCTestCase {
         }
     }
     
-    func test_load_returnsInvalidDataErrorOnInvalidDataError() {
+    func test_loadChanels_returnsInvalidDataErrorOnInvalidDataError() {
         // given
-        let service = ChannelsServiceStub()
-        let sut = ChannelsViewModel(channelsService: service)
+        let (sut, service) = makeSUT()
         
         // when
         sut.loadChannels()
-        service.complete(with: .failure(.invalidData))
+        service.completeChannelsLoading(with: .failure(.invalidData))
         
         // then
         switch sut.loadChannelsResult {
@@ -107,8 +102,18 @@ final class ChannelsViewModelTests: XCTestCase {
         default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
         }
     }
-
+    
     // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (ChannelsViewModel, ChannelsLoadingServiceStub) {
+        let service = ChannelsLoadingServiceStub()
+        let sut = ChannelsViewModel(channelsLoadingService: service)
+        
+        trackForMemoryLeaks(service, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        return (sut, service)
+    }
     
     private func makeChannel(with name: String, description: String) -> Channel {
         .init(id: UUID().uuidString, name: name, description: description)
@@ -118,32 +123,19 @@ final class ChannelsViewModelTests: XCTestCase {
         .channel(name: name, isUnread: false)
     }
     
-    final class ChannelsServiceStub: ChannelsServiceProtocol {
-        private var completions = [(Result<[Channel], LoadChannelsError>) -> Void]()
+    private final class ChannelsLoadingServiceStub: ChannelsLoadingServiceProtocol {
+        private var loadChannelsCompletions = [(Result<[Channel], ChannelsLoadingServiceError>) -> Void]()
         
-        var loadCallCount: Int {
-            completions.count
+        var loadChannelsCallCount: Int {
+            loadChannelsCompletions.count
         }
         
-        func load(completion: @escaping (Result<[Channel], LoadChannelsError>) -> Void) {
-            completions.append(completion)
+        func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
+            loadChannelsCompletions.append(completion)
         }
         
-        func complete(with result: Result<[Channel], LoadChannelsError>, at index: Int = 0) {
-            completions[index](result)
-        }
-    }
-}
-
-extension ChannelItem: Equatable {
-    public static func == (lhs: ChannelItem, rhs: ChannelItem) -> Bool {
-        switch (lhs, rhs) {
-        case (.title, .title):
-            return true
-        case let (.channel(lhsName, lhsIsUnread), .channel(rhsName, rhsIsUnread)):
-            return lhsName == rhsName && lhsIsUnread == rhsIsUnread
-        default:
-            return false
+        func completeChannelsLoading(with result: Result<[Channel], ChannelsLoadingServiceError>, at index: Int = 0) {
+            loadChannelsCompletions[index](result)
         }
     }
 }

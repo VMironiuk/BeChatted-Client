@@ -1,5 +1,5 @@
 //
-//  ChannelsService.swift
+//  ChannelsLoadingService.swift
 //  BeChattedChannels
 //
 //  Created by Volodymyr Myroniuk on 09.04.2024.
@@ -28,25 +28,22 @@ public struct ChannelInfo: Codable, Equatable {
 public enum ChannelsLoadingError: Error {
     case server
     case invalidData
+    case connectivity
     case unknown
 }
 
-public protocol HTTPClientProtocol {
-    func perform(request: URLRequest, completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void)
-}
-
-public final class ChannelsService {
+public final class ChannelsLoadingService {
     private let url: URL
     private let authToken: String
     private let client: HTTPClientProtocol
-    
+
     public init(url: URL, authToken: String, client: HTTPClientProtocol) {
         self.url = url
         self.authToken = authToken
         self.client = client
     }
     
-    public func load(completion: @escaping (Result<[ChannelInfo], ChannelsLoadingError>) -> Void) {
+    public func loadChannels(completion: @escaping (Result<[ChannelInfo], ChannelsLoadingError>) -> Void) {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
@@ -61,5 +58,5 @@ public final class ChannelsService {
                 completion(.failure(.server))
             }
         }
-    }
+    }    
 }
