@@ -9,13 +9,13 @@ import SwiftUI
 import BeChatted
 
 struct ChannelsView<Content: View>: View {
-    @Bindable private var viewModel: ChannelsViewModel
+//    @Bindable private var viewModel: ChannelsViewModel
     private let createChannelContent: Content
     
     @State private var isCreateChannelContentPresented = false
     
-    init(viewModel: ChannelsViewModel, createChannelContent: Content) {
-        self.viewModel = viewModel
+    init(/*viewModel: ChannelsViewModel, */createChannelContent: Content) {
+//        self.viewModel = viewModel
         self.createChannelContent = createChannelContent
     }
     
@@ -55,10 +55,10 @@ struct ChannelsView<Content: View>: View {
             }
         }
         .onAppear {
-            viewModel.loadChannels()
+//            viewModel.loadChannels()
         }
         .refreshable {
-            viewModel.loadChannels()
+//            viewModel.loadChannels()
         }
         .sheet(isPresented: $isCreateChannelContentPresented) {
             createChannelContent
@@ -67,12 +67,13 @@ struct ChannelsView<Content: View>: View {
     
     @ViewBuilder
     private func contentView() -> some View {
-        switch viewModel.loadChannelsResult {
-        case .success(let channels):
-            contentView(for: channels)
-        case .failure(let error):
-            contentView(for: error)
-        }
+//        switch viewModel.loadChannelsResult {
+//        case .success(let channels):
+//            contentView(for: channels)
+//        case .failure(let error):
+//            contentView(for: error)
+//        }
+        contentView(for: [])
     }
     
     @ViewBuilder
@@ -109,9 +110,9 @@ struct ChannelsView<Content: View>: View {
 #Preview {
     NavigationStack {
         ChannelsView(
-            viewModel: ChannelsViewModel(
-                channelsLoadingService: FakeChannelsLoadingService()
-            ),
+//            viewModel: ChannelsViewModel(
+//                channelsLoadingService: FakeChannelsLoadingService()
+//            ),
             createChannelContent: Text("Hello")
         )
     }

@@ -15,6 +15,6 @@ public struct CreateChannelViewComposer {
         with viewModel: CreateChannelViewModel,
         onCreateChannelButtonTapped: @escaping () -> Void
     ) -> some View {
-        CreateChannelView(viewModel: viewModel, onCreateChannelButtonTapped: onCreateChannelButtonTapped)
+        CreateChannelView(/*viewModel: viewModel, */onCreateChannelButtonTapped: onCreateChannelButtonTapped)
     }
 }

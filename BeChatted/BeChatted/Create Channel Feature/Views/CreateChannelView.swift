@@ -9,20 +9,23 @@ import SwiftUI
 import BeChatted
 
 struct CreateChannelView: View {
-    @Bindable private var viewModel: CreateChannelViewModel
+//    @Bindable private var viewModel: CreateChannelViewModel
+    @State private var channelName = ""
+    @State private var channelDescription = ""
     private let onCreateChannelButtonTapped: () -> Void
     
     @State private var imageScale: CGFloat = 0.0
 
     private var isButtonDisabled: Bool {
-        !viewModel.isUserInputValid || buttonState == .loading
+        false /*!viewModel.isUserInputValid || buttonState == .loading*/
     }
     private var buttonState: PrimaryButtonStyle.State {
-        switch viewModel.state {
-        case .ready, .success: .normal
-        case .inProgress: .loading
-        case .failure: .failed
-        }
+//        switch viewModel.state {
+//        case .ready, .success: .normal
+//        case .inProgress: .loading
+//        case .failure: .failed
+//        }
+        .normal
     }
     private var buttonTitle: String {
         switch buttonState {
@@ -32,21 +35,21 @@ struct CreateChannelView: View {
         }
     }
     
-    init(viewModel: CreateChannelViewModel, onCreateChannelButtonTapped: @escaping () -> Void) {
-        self.viewModel = viewModel
+    init(/*viewModel: CreateChannelViewModel, */onCreateChannelButtonTapped: @escaping () -> Void) {
+//        self.viewModel = viewModel
         self.onCreateChannelButtonTapped = onCreateChannelButtonTapped
     }
     
     var body: some View {
         VStack {
-            TextInputView(title: "Channel Name", text: $viewModel.channelName)
+            TextInputView(title: "Channel Name", text: $channelName /*$viewModel.channelName*/)
                 .frame(height: 50)
                 .padding(.horizontal, 20)
                 .padding(.top, 52)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
             
-            TextInputView(title: "Channel Description", text: $viewModel.channelDescription)
+            TextInputView(title: "Channel Description", text: $channelDescription /*$viewModel.channelDescription*/)
                 .frame(height: 50)
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
@@ -54,17 +57,17 @@ struct CreateChannelView: View {
             
             Spacer()
             
-            if viewModel.state == .success {
-                successView
-            }
+//            if viewModel.state == .success {
+//                successView
+//            }
             
             Spacer()
             
             Button(buttonTitle) {
                 onCreateChannelButtonTapped()
-                viewModel.createChannel()
+//                viewModel.createChannel()
             }
-            .buttonStyle(PrimaryButtonStyle(state: buttonState, isEnabled: viewModel.isUserInputValid))
+            .buttonStyle(PrimaryButtonStyle(state: buttonState, isEnabled: true /*viewModel.isUserInputValid*/))
             .disabled(isButtonDisabled)
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
@@ -107,9 +110,9 @@ private struct FakeCreateChannelService: CreateChannelServiceProtocol {
 }
 #Preview {
     CreateChannelView(
-        viewModel: CreateChannelViewModel(
-            service: FakeCreateChannelService()
-        ), 
+//        viewModel: CreateChannelViewModel(
+//            service: FakeCreateChannelService()
+//        ), 
         onCreateChannelButtonTapped: {}
     )
 }

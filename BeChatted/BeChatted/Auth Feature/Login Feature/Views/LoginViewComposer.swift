@@ -24,7 +24,7 @@ public struct LoginViewComposer {
             onButtonTapped: onRegisterButtonTapped)
         
         var loginView = LoginView(
-            viewModel: viewModel,
+//            viewModel: viewModel,
             footerView: footerView)
         
         loginView.onTapped = onTapped

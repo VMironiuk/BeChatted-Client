@@ -24,7 +24,10 @@ struct LoginFeatureComposer {
         return LoginViewComposer.composedLoginView(
             with: loginViewModel,
             onTapped: { UIApplication.shared.hideKeyboard() },
-            onLoginButtonTapped: { UIApplication.shared.hideKeyboard() },
+            onLoginButtonTapped: {
+                UIApplication.shared.hideKeyboard()
+                appData.isUserLoggedIn = true
+            },
             onRegisterButtonTapped: { navigationController.goToRegister() },
             onLoginSuccessAction: { authToken in
                 appData.authToken = authToken

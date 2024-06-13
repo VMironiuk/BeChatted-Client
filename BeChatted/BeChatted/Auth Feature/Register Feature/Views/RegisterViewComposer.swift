@@ -25,7 +25,7 @@ public struct RegisterViewComposer {
             buttonText: "Log in",
             onButtonTapped: onLoginButtonTapped)
         
-        var view = RegisterView(viewModel: viewModel, headerView: headerView, footerView: footerView)
+        var view = RegisterView(/*viewModel: viewModel, */headerView: headerView, footerView: footerView)
         
         view.onTapped = onViewTapped
         view.onRegisterButtonTapped = onRegisterButtonTapped
