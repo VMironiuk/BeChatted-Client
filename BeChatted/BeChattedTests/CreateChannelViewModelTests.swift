@@ -149,21 +149,3 @@ final class CreateChannelViewModelTests: XCTestCase {
         }
     }
 }
-
-extension CreateChannelViewModelState: Equatable {
-    public static func == (lhs: CreateChannelViewModelState, rhs: CreateChannelViewModelState) -> Bool {
-        switch (lhs, rhs) {
-        case (.ready, .ready): true
-        case (.inProgress, .inProgress): true
-        case (.success, .success): true
-        case let (.failure(lhsError), .failure(rhsError)):
-            switch (lhsError, rhsError) {
-            case (.server, .server): true
-            case (.connectivity, .connectivity): true
-            case (.unknown, .unknown): true
-            default: false
-            }
-        default: false
-        }
-    }
-}
