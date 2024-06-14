@@ -7,15 +7,15 @@
 
 import Foundation
 
-@Observable public final class LoginViewModel {
+public final class LoginViewModel: ObservableObject {
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol
     
-    private var authError: AuthError?
+    @Published private var authError: AuthError?
     
-    public var email: String = ""
-    public var password: String = ""
+    @Published public var email: String = ""
+    @Published public var password: String = ""
     public var isUserInputValid: Bool {
         emailValidator.isValid(email: email) && passwordValidator.isValid(password: password)
     }

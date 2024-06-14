@@ -7,10 +7,10 @@
 
 import Foundation
 
-@Observable public final class ChannelsViewModel {
+public final class ChannelsViewModel: ObservableObject {
     private let channelsLoadingService: ChannelsLoadingServiceProtocol
     
-    public var loadChannelsResult: Result<[ChannelItem], ChannelsLoadingServiceError> = .success([])
+    @Published public var loadChannelsResult: Result<[ChannelItem], ChannelsLoadingServiceError> = .success([])
     
     public init(channelsLoadingService: ChannelsLoadingServiceProtocol) {
         self.channelsLoadingService = channelsLoadingService

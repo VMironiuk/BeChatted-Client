@@ -5,7 +5,7 @@
 //  Created by Volodymyr Myroniuk on 23.05.2024.
 //
 
-import SwiftUI
+import Foundation
 
 public enum CreateChannelViewModelState: Equatable {
     case ready
@@ -14,14 +14,14 @@ public enum CreateChannelViewModelState: Equatable {
     case success
 }
 
-@Observable public final class CreateChannelViewModel {
+public final class CreateChannelViewModel: ObservableObject {
     private let service: CreateChannelServiceProtocol
     private let animator: AnimatorProtocol
     private let onSuccess: () -> Void
     
-    public private(set) var state: CreateChannelViewModelState = .ready
-    public var channelName = ""
-    public var channelDescription = ""
+    @Published public private(set) var state: CreateChannelViewModelState = .ready
+    @Published public var channelName = ""
+    @Published public var channelDescription = ""
     public var isUserInputValid: Bool {
         !channelName.isEmpty && !channelDescription.isEmpty
     }
