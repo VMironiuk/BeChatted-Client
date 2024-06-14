@@ -9,13 +9,13 @@ import SwiftUI
 import BeChatted
 
 struct ChannelsView<Content: View>: View {
-//    @Bindable private var viewModel: ChannelsViewModel
+    @ObservedObject private var viewModel: ChannelsViewModel
     private let createChannelContent: Content
     
     @State private var isCreateChannelContentPresented = false
     
-    init(/*viewModel: ChannelsViewModel, */createChannelContent: Content) {
-//        self.viewModel = viewModel
+    init(viewModel: ChannelsViewModel, createChannelContent: Content) {
+        self.viewModel = viewModel
         self.createChannelContent = createChannelContent
     }
     
@@ -110,9 +110,9 @@ struct ChannelsView<Content: View>: View {
 #Preview {
     NavigationStack {
         ChannelsView(
-//            viewModel: ChannelsViewModel(
-//                channelsLoadingService: FakeChannelsLoadingService()
-//            ),
+            viewModel: ChannelsViewModel(
+                channelsLoadingService: FakeChannelsLoadingService()
+            ),
             createChannelContent: Text("Hello")
         )
     }

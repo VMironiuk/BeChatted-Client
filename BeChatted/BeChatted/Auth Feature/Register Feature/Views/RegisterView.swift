@@ -9,10 +9,7 @@ import SwiftUI
 import BeChatted
 
 struct RegisterView: View {
-//    @Bindable private var viewModel: RegisterViewModel
-    @State private var name = ""
-    @State private var email = ""
-    @State private var password = ""
+    @ObservedObject private var viewModel: RegisterViewModel
     private let headerView: RegisterHeaderView
     private let footerView: AuthFooterView
     
@@ -21,15 +18,15 @@ struct RegisterView: View {
     @State private var authButtonState: PrimaryButtonStyle.State = .normal
     
     private var isRegisterButtonDisabled: Bool {
-        false /*!viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed*/
+        !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
     }
     
     var onTapped: (() -> Void)?
     var onRegisterButtonTapped: (() -> Void)?
     var onRegisterSuccessAction: (() -> Void)?
     
-    init(/*viewModel: RegisterViewModel, */headerView: RegisterHeaderView, footerView: AuthFooterView) {
-//        self.viewModel = viewModel
+    init(viewModel: RegisterViewModel, headerView: RegisterHeaderView, footerView: AuthFooterView) {
+        self.viewModel = viewModel
         self.headerView = headerView
         self.footerView = footerView
     }
@@ -39,9 +36,9 @@ struct RegisterView: View {
             VStack {
                 headerView
                 RegisterInputView(
-                    name: $name /*$viewModel.name*/,
-                    email: $email /*$viewModel.email*/,
-                    password: $password /*$viewModel.password*/
+                    name: $viewModel.name,
+                    email: $viewModel.email,
+                    password: $viewModel.password
                 )
                 VStack {
                     Spacer()
@@ -77,7 +74,7 @@ private extension RegisterView {
         case .loading:
             return "Registering..."
         case .failed:
-            return "Some Registration Error" /*viewModel.errorTitle*/
+            return viewModel.errorTitle
         }
     }
     
@@ -100,7 +97,7 @@ private extension RegisterView {
 //                }
 //            }
         }
-        .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: true /*viewModel.isUserInputValid*/))
+        .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isRegisterButtonDisabled)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)

@@ -9,15 +9,13 @@ import SwiftUI
 import BeChatted
 
 struct CreateChannelView: View {
-//    @Bindable private var viewModel: CreateChannelViewModel
-    @State private var channelName = ""
-    @State private var channelDescription = ""
+    @ObservedObject private var viewModel: CreateChannelViewModel
     private let onCreateChannelButtonTapped: () -> Void
     
     @State private var imageScale: CGFloat = 0.0
 
     private var isButtonDisabled: Bool {
-        false /*!viewModel.isUserInputValid || buttonState == .loading*/
+        !viewModel.isUserInputValid || buttonState == .loading
     }
     private var buttonState: PrimaryButtonStyle.State {
 //        switch viewModel.state {
@@ -35,21 +33,21 @@ struct CreateChannelView: View {
         }
     }
     
-    init(/*viewModel: CreateChannelViewModel, */onCreateChannelButtonTapped: @escaping () -> Void) {
-//        self.viewModel = viewModel
+    init(viewModel: CreateChannelViewModel, onCreateChannelButtonTapped: @escaping () -> Void) {
+        self.viewModel = viewModel
         self.onCreateChannelButtonTapped = onCreateChannelButtonTapped
     }
     
     var body: some View {
         VStack {
-            TextInputView(title: "Channel Name", text: $channelName /*$viewModel.channelName*/)
+            TextInputView(title: "Channel Name", text: $viewModel.channelName)
                 .frame(height: 50)
                 .padding(.horizontal, 20)
                 .padding(.top, 52)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
             
-            TextInputView(title: "Channel Description", text: $channelDescription /*$viewModel.channelDescription*/)
+            TextInputView(title: "Channel Description", text: $viewModel.channelDescription)
                 .frame(height: 50)
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
@@ -67,7 +65,7 @@ struct CreateChannelView: View {
                 onCreateChannelButtonTapped()
 //                viewModel.createChannel()
             }
-            .buttonStyle(PrimaryButtonStyle(state: buttonState, isEnabled: true /*viewModel.isUserInputValid*/))
+            .buttonStyle(PrimaryButtonStyle(state: buttonState, isEnabled: viewModel.isUserInputValid))
             .disabled(isButtonDisabled)
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
@@ -110,9 +108,9 @@ private struct FakeCreateChannelService: CreateChannelServiceProtocol {
 }
 #Preview {
     CreateChannelView(
-//        viewModel: CreateChannelViewModel(
-//            service: FakeCreateChannelService()
-//        ), 
+        viewModel: CreateChannelViewModel(
+            service: FakeCreateChannelService()
+        ), 
         onCreateChannelButtonTapped: {}
     )
 }

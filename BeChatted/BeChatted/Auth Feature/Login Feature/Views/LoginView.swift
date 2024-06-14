@@ -9,23 +9,21 @@ import SwiftUI
 import BeChatted
 
 struct LoginView: View {
-//    @Bindable private var viewModel: LoginViewModel
-    @State private var email = ""
-    @State private var password = ""
+    @ObservedObject private var viewModel: LoginViewModel
     private let footerView: AuthFooterView
     
     @State private var authButtonState: PrimaryButtonStyle.State = .normal
     
     private var isLoginButtonDisabled: Bool {
-        false /*!viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed*/
+        !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
     }
     
     var onTapped: (() -> Void)?
     var onLoginButtonTapped: (() -> Void)?
     var onLoginSuccessAction: ((String) -> Void)?
     
-    init(/*viewModel: LoginViewModel, */footerView: AuthFooterView) {
-//        self.viewModel = viewModel
+    init(viewModel: LoginViewModel, footerView: AuthFooterView) {
+        self.viewModel = viewModel
         self.footerView = footerView
         
     }
@@ -34,7 +32,7 @@ struct LoginView: View {
         ZStack {
             VStack {
                 LoginHeaderView()
-                LoginInputView(email: $email /*$viewModel.email*/, password: $password /*$viewModel.password*/)
+                LoginInputView(email: $viewModel.email, password: $viewModel.password)
                 VStack {
                     Spacer()
                     button
@@ -59,7 +57,7 @@ private extension LoginView {
         case .loading:
             return "Logging In..."
         case .failed:
-            return "Some Login Error" /*viewModel.errorTitle*/
+            return viewModel.errorTitle
         }
     }
     
@@ -82,7 +80,7 @@ private extension LoginView {
 //                }
 //            }
         }
-        .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: true /*viewModel.isUserInputValid*/))
+        .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isLoginButtonDisabled)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
@@ -92,10 +90,10 @@ private extension LoginView {
 
 #Preview {
     LoginView(
-//        viewModel: LoginViewModel(
-//            emailValidator: EmailValidator(),
-//            passwordValidator: PasswordValidator(),
-//            authService: AuthService()),
+        viewModel: LoginViewModel(
+            emailValidator: EmailValidator(),
+            passwordValidator: PasswordValidator(),
+            authService: AuthService()),
         footerView: AuthFooterView(text: "Don't have an account?", buttonText: "Register") {})
 }
 

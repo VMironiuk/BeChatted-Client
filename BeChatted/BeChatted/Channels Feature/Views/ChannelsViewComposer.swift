@@ -12,6 +12,6 @@ public struct ChannelsViewComposer {
     private init() {}
     
     public static func composedChannelsView(with viewModel: ChannelsViewModel, createChannelContent: some View) -> some View {
-        ChannelsView(/*viewModel: viewModel, */createChannelContent: createChannelContent)
+        ChannelsView(viewModel: viewModel, createChannelContent: createChannelContent)
     }
 }

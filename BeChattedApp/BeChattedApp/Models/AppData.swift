@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable final class AppData {
-    var isUserLoggedIn: Bool = false
-    var authToken: String?
+final class AppData: ObservableObject {
+    @Published var isUserLoggedIn: Bool = false
+    @Published var authToken: String?
 }
