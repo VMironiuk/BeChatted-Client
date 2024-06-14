@@ -16,6 +16,7 @@
 		2E4F6C092BDA608800BBBCC5 /* BeChattedChannels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */; };
 		2E5EFF6D2BA826B800EA65E8 /* ChannelsFeatureComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */; };
+		2E79C3DF2C1C114900377063 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E79C3DE2C1C114900377063 /* ContentView.swift */; };
 		2E82F2662B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; };
 		2E82F2672B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E82F26A2B88BDE200802ED5 /* BeChattedAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2692B88BDE200802ED5 /* BeChattedAuth.framework */; };
@@ -68,6 +69,7 @@
 		2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingServiceComposer.swift; sourceTree = "<group>"; };
 		2E5EFF6C2BA826B800EA65E8 /* ChannelsFeatureComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsFeatureComposer.swift; sourceTree = "<group>"; };
+		2E79C3DE2C1C114900377063 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E82F2582B88BC8100802ED5 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F2592B88BC8100802ED5 /* BeChattediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F25A2B88BC8100802ED5 /* BeChattedAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */,
+				2E79C3DE2C1C114900377063 /* ContentView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
 				2EF8CDF52C01A593000404D0 /* CreateChanelServiceComposer.swift in Sources */,
 				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
+				2E79C3DF2C1C114900377063 /* ContentView.swift in Sources */,
 				2EF8CDF72C01A83D000404D0 /* CreateChannelFeatureComposer.swift in Sources */,
 				2EBE98182B89FD6F009EB16C /* RegisterFeatureComposer.swift in Sources */,
 				2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */,
