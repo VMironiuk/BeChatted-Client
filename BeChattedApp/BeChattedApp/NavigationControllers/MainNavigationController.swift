@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-@Observable final class MainNavigationController {
+final class MainNavigationController: ObservableObject {
     enum Destination {
         case register
     }
     
-    var path = NavigationPath()
+    @Published var path = NavigationPath()
     
     func popToRoot() {
         path = NavigationPath()

@@ -14,7 +14,7 @@ import SwiftUI
 
 @main
 struct BeChattedApp: App {
-    @Bindable private var mainNavigationController = MainNavigationController()
+    @StateObject private var mainNavigationController = MainNavigationController()
     @StateObject private var appData = AppData()
     
     var body: some Scene {
