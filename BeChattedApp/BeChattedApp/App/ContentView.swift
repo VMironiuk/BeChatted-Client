@@ -19,26 +19,13 @@ struct ContentView: View {
             if appData.isUserLoggedIn {
                 channelsView
             } else {
-                loginView
-                    .navigationDestination(for: MainNavigationController.Destination.self) { destination in
-                        registerView
-                    }
+                AuthView()
             }
         }
     }
 }
 
 private extension ContentView {
-    private var loginView: some View {
-        let loginComposer = LoginFeatureComposer(navigationController: mainNavigationController, appData: appData)
-        return loginComposer.loginView
-    }
-    
-    private var registerView: some View {
-        let registerComposer = RegisterFeatureComposer(navigationController: mainNavigationController)
-        return registerComposer.registerView
-    }
-    
     private var channelsView: some View {
         let channelsComposer = ChannelsFeatureComposer(
             navigationController: mainNavigationController,

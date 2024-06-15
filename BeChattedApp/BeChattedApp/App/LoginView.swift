@@ -1,27 +1,28 @@
 //
-//  LoginFeatureComposer.swift
+//  LoginView.swift
 //  BeChattedApp
 //
-//  Created by Volodymyr Myroniuk on 23.02.2024.
+//  Created by Volodymyr Myroniuk on 15.06.2024.
 //
 
 import SwiftUI
 import BeChatted
-import BeChattedAuth
 import BeChattediOS
 import BeChattedUserInputValidation
 
-struct LoginFeatureComposer {
-    let navigationController: MainNavigationController
-    let appData: AppData
+struct LoginView: View {
+    @EnvironmentObject private var navigationController: MainNavigationController
+    @EnvironmentObject private var appData: AppData
     
-    var loginView: some View {
-        let loginViewModel = LoginViewModel(
-            emailValidator: EmailValidator(),
-            passwordValidator: PasswordValidator(),
-            authService: AuthServiceComposer.authService)
+    @StateObject private var loginViewModel = LoginViewModel(
+        emailValidator: EmailValidator(),
+        passwordValidator: PasswordValidator(),
+        authService: AuthServiceComposer.authService
+    )
 
-        return LoginViewComposer.composedLoginView(
+    
+    var body: some View {
+        LoginViewComposer.composedLoginView(
             with: loginViewModel,
             onTapped: { UIApplication.shared.hideKeyboard() },
             onLoginButtonTapped: {
@@ -35,4 +36,8 @@ struct LoginFeatureComposer {
             }
         )
     }
+}
+
+#Preview {
+    LoginView()
 }
