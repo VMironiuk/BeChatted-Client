@@ -65,20 +65,20 @@ private extension LoginView {
         Button(buttonTitle) {
             onLoginButtonTapped?()
             authButtonState = .loading
-//            viewModel.login { result in
-//                switch result {
-//                case .success(let loginInfo):
-//                    authButtonState = .normal
-//                    DispatchQueue.main.async {
-//                        onLoginSuccessAction?(loginInfo.token)
-//                    }
-//                case .failure:
-//                    authButtonState = .failed
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                        authButtonState = .normal
-//                    }
-//                }
-//            }
+            viewModel.login { result in
+                switch result {
+                case .success(let loginInfo):
+                    authButtonState = .normal
+                    DispatchQueue.main.async {
+                        onLoginSuccessAction?(loginInfo.token)
+                    }
+                case .failure:
+                    authButtonState = .failed
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        authButtonState = .normal
+                    }
+                }
+            }
         }
         .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isLoginButtonDisabled)

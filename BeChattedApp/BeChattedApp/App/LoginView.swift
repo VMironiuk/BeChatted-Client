@@ -25,10 +25,7 @@ struct LoginView: View {
         LoginViewComposer.composedLoginView(
             with: loginViewModel,
             onTapped: { UIApplication.shared.hideKeyboard() },
-            onLoginButtonTapped: {
-                UIApplication.shared.hideKeyboard()
-                appData.isUserLoggedIn = true
-            },
+            onLoginButtonTapped: { UIApplication.shared.hideKeyboard() },
             onRegisterButtonTapped: { navigationController.goToRegister() },
             onLoginSuccessAction: { authToken in
                 appData.authToken = authToken

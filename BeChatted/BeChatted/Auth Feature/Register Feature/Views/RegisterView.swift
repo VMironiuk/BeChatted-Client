@@ -82,20 +82,20 @@ private extension RegisterView {
         Button(registerButtonTitle) {
             onRegisterButtonTapped?()
             authButtonState = .loading
-//            viewModel.register { result in
-//                switch result {
-//                case .success:
-//                    authButtonState = .normal
-//                    withAnimation(.easeInOut(duration: 0.3)) {
-//                        isRegistrationSucceeded = true
-//                    }
-//                case .failure:
-//                    authButtonState = .failed
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                        authButtonState = .normal
-//                    }
-//                }
-//            }
+            viewModel.register { result in
+                switch result {
+                case .success:
+                    authButtonState = .normal
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        isRegistrationSucceeded = true
+                    }
+                case .failure:
+                    authButtonState = .failed
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        authButtonState = .normal
+                    }
+                }
+            }
         }
         .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isRegisterButtonDisabled)
