@@ -17,37 +17,13 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $mainNavigationController.path) {
             if appData.isUserLoggedIn {
-                channelsView
+                ChannelsView(appData: appData)
             } else {
                 AuthView()
             }
         }
     }
 }
-
-private extension ContentView {
-    private var channelsView: some View {
-        let channelsComposer = ChannelsFeatureComposer(
-            navigationController: mainNavigationController,
-            viewModel: channelsViewModel,
-            createChannelContent: createChannelView
-        )
-        return channelsComposer.channelsView
-    }
-    
-    private var createChannelView: some View {
-        let createChannelComposer = CreateChannelFeatureComposer(appData: appData) {
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            channelsViewModel.loadChannels()
-        }
-        return createChannelComposer.createChannelView
-    }
-    
-    private var channelsViewModel: ChannelsViewModel {
-        ChannelsViewModel(channelsLoadingService: ChannelsLoadingServiceComposer.channelsService(with: appData.authToken ?? ""))
-    }
-}
-
 
 #Preview {
     ContentView()
