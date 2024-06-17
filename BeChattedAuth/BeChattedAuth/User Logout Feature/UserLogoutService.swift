@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class UserLogoutService: UserLogoutServiceProtocol {
+struct UserLogoutService: UserLogoutServiceProtocol {
     
     private let url: URL
     private let client: HTTPClientProtocol
@@ -20,9 +20,7 @@ final class UserLogoutService: UserLogoutServiceProtocol {
     func logout(completion: @escaping (Result<Void, UserLogoutServiceError>) -> Void) {
         let request = URLRequest(url: url)
         
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            
+        client.perform(request: request) { result in
             switch result {
             case .success:
                 completion(.success(()))

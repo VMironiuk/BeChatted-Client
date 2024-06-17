@@ -73,52 +73,6 @@ final class UserLogoutServiceTests: XCTestCase {
         // then
         XCTAssertEqual(receivedError, .connectivity)
     }
-    
-    func test_logout_doesNotDeliverErrorAfterInstanceHasBeenDeallocated() {
-        // given
-        let url = anyURL()
-        let client = HTTPClientSpy()
-        var sut: UserLogoutServiceProtocol? = UserLogoutService(url: url, client: client)
-        
-        var receivedError: UserLogoutServiceError?
-        sut?.logout() { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error
-                
-            default:
-                XCTFail("Expected failure, got \(result) instead")
-            }
-        }
-        
-        // when
-        sut = nil
-        
-        client.complete(withError: NSError(domain: "any error", code: 0))
-        
-        // then
-        XCTAssertNil(receivedError)
-    }
-    
-    func test_logout_doesNotDeliverResultAfterInstanceHasBeenDeallocated() {
-        // given
-        let url = anyURL()
-        let client = HTTPClientSpy()
-        var sut: UserLogoutServiceProtocol? = UserLogoutService(url: url, client: client)
-        
-        var receivedResult: Result<Void, UserLogoutServiceError>?
-        sut?.logout() { result in
-            receivedResult = result
-        }
-        
-        // when
-        sut = nil
-        
-        client.complete()
-        
-        // then
-        XCTAssertNil(receivedResult)
-    }
 
     func test_logout_deliversSuccessfulResultOnAnyResponse() {
         // given
@@ -147,7 +101,6 @@ final class UserLogoutServiceTests: XCTestCase {
         let sut = UserLogoutService(url: url, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
-        trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, client)
     }

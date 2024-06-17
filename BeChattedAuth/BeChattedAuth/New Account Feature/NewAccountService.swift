@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class NewAccountService: NewAccountServiceProtocol {
+struct NewAccountService: NewAccountServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
@@ -22,9 +22,7 @@ final class NewAccountService: NewAccountServiceProtocol {
         request.httpBody = try? JSONEncoder().encode(newAccountPayload)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            
+        client.perform(request: request) { result in
             switch result {
             case let .success((_, response)):
                 completion(NewAccountServiceResultMapper.result(for: response))

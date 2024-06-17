@@ -31,7 +31,7 @@ public struct AuthServiceConfiguration {
     }
 }
 
-public final class AuthService {
+public struct AuthService {
     private let newAccountService: NewAccountServiceProtocol
     private let addNewUserService: AddNewUserServiceProtocol
     private let userLoginService: UserLoginServiceProtocol

@@ -133,42 +133,6 @@ final class UserLoginServiceTests: XCTestCase {
         })
     }
 
-    func test_send_doesNotDeliverResultOnClientErrorAfterInstanceHasBeenDeallocated() {
-        let client = HTTPClientSpy()
-        var sut: UserLoginServiceProtocol? = UserLoginService(url: anyURL(), client: client)
-
-        expect(sut: &sut, deliversNoResultWhen: {
-            client.complete(withError: anyNSError())
-        })
-    }
-
-    func test_send_doesNotDeliverResultOn401HTTPResponseAfterInstanceHasBeenDeallocated() {
-        let client = HTTPClientSpy()
-        var sut: UserLoginServiceProtocol? = UserLoginService(url: anyURL(), client: client)
-        
-        expect(sut: &sut, deliversNoResultWhen: {
-            client.complete(withHTTPResponse: httpResponse(withStatusCode: 401))
-        })
-    }
-    
-    func test_send_doesNotDeliverResultOn500HTTPResponseAfterInstanceHasBeenDeallocated() {
-        let client = HTTPClientSpy()
-        var sut: UserLoginServiceProtocol? = UserLoginService(url: anyURL(), client: client)
-        
-        expect(sut: &sut, deliversNoResultWhen: {
-            client.complete(withHTTPResponse: httpResponse(withStatusCode: 500))
-        })
-    }
-    
-    func test_send_doesNotDeliverResultOn200HTTPResponseAfterInstanceHasBeenDeallocated() {
-        let client = HTTPClientSpy()
-        var sut: UserLoginServiceProtocol? = UserLoginService(url: anyURL(), client: client)
-        
-        expect(sut: &sut, deliversNoResultWhen: {
-            client.complete(withHTTPResponse: httpResponse(withStatusCode: 200))
-        })
-    }
-
     func test_send_deliversUserLoginInfoOn200HTTPResponse() {
         let expectedUserLoginInfoData = """
         {
@@ -194,7 +158,6 @@ final class UserLoginServiceTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = UserLoginService(url: url, client: client)
         
-        trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
         
         return (sut, client)
@@ -228,27 +191,6 @@ final class UserLoginServiceTests: XCTestCase {
         
         // then
         XCTAssertEqual(receivedError, expectedError)
-    }
-    
-    private func expect(
-        sut: inout UserLoginServiceProtocol?,
-        deliversNoResultWhen action: () -> Void,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        // given
-        var receivedResult: Result<UserLoginInfo, UserLoginServiceError>?
-        sut?.send(userLoginPayload: anyUserLoginPayload()) { result in
-            receivedResult = result
-        }
-        
-        // when
-        sut = nil
-        
-        action()
-                
-        // then
-        XCTAssertNil(receivedResult, file: file, line: line)
     }
     
     private func expect(
