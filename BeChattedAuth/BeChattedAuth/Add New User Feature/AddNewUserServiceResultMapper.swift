@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct AddNewUserServiceResultMapper {
-    private init() {}
-    
+enum AddNewUserServiceResultMapper {
     static func result(for data: Data?, response: HTTPURLResponse?) -> Result<NewUserInfo, AddNewUserServiceError> {
         guard let response = response else { return .failure(.unknown) }
         
