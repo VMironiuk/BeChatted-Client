@@ -18,7 +18,9 @@ public final class ChannelsViewModel: ObservableObject {
     
     public func loadChannels() {
         channelsLoadingService.loadChannels { [weak self] result in
-            self?.loadChannelsResult = ChannelsViewModelResultMapper.map(from: result)
+            DispatchQueue.main.async {
+                self?.loadChannelsResult = ChannelsViewModelResultMapper.map(from: result)
+            }
         }
     }
 }

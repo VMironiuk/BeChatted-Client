@@ -7,16 +7,11 @@
 
 import Foundation
 
-struct ChannelsViewModelResultMapper {
-    private init() {}
-    
+enum ChannelsViewModelResultMapper {
     static func map(from result: Result<[Channel], ChannelsLoadingServiceError>) -> Result<[ChannelItem], ChannelsLoadingServiceError> {
         switch result {
-        case .success(let channels):
-            guard !channels.isEmpty else { return .success([]) }
-            return .success([.title] + channels.map { .channel(name: $0.name, isUnread: false) })
-        case .failure(let error):
-            return .failure(error)
+        case .success(let channels): .success(channels.map { .init(id: $0.id, name: $0.name) })
+        case .failure(let error): .failure(error)
         }
     }
 }
