@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChannelCreatingResultMapper {
+enum ChannelCreatingResultMapper {
     static func result(for response: HTTPURLResponse?) -> Result<Void, ChannelCreatingError> {
         guard let response = response else { return .failure(.unknown) }
         

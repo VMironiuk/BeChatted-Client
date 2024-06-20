@@ -136,22 +136,6 @@ final class ChannelCreationServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_createChannel_doesNotDeliverResultAfterSUTInstanceDeallocated() {
-        // given
-        let client = HTTPClientSpy()
-        var sut: ChannelCreationService? = ChannelCreationService(url: anyURL(), authToken: anyAuthToken(), client: client)
-
-        var expectedResult: Result<Void, ChannelCreatingError>?
-        sut?.createChannel(payload: anyCreateChannelPayload()) { expectedResult = $0 }
-        
-        // when
-        sut = nil
-        client.complete(with: httpResponse(with: 200))
-        
-        // then
-        XCTAssertNil(expectedResult)
-    }
-    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -164,7 +148,6 @@ final class ChannelCreationServiceTests: XCTestCase {
         let sut = ChannelCreationService(url: url, authToken: authToken, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
-        trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, client)
     }

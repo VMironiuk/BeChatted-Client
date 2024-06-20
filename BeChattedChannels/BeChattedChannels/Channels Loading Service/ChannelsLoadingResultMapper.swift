@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChannelsLoadingResultMapper {
+enum ChannelsLoadingResultMapper {
     static func result(for data: Data?, response: HTTPURLResponse?) -> Result<[ChannelInfo], ChannelsLoadingError> {
         guard let response = response else { return .failure(.unknown) }
         

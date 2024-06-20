@@ -32,7 +32,7 @@ public enum ChannelsLoadingError: Error {
     case unknown
 }
 
-public final class ChannelsLoadingService {
+public struct ChannelsLoadingService {
     private let url: URL
     private let authToken: String
     private let client: HTTPClientProtocol
@@ -48,9 +48,7 @@ public final class ChannelsLoadingService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            
+        client.perform(request: request) { result in
             switch result {
             case let .success((data, response)):
                 completion(ChannelsLoadingResultMapper.result(for: data, response: response))
