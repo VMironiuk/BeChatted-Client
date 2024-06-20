@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AddNewUserService: AddNewUserServiceProtocol {
+struct AddNewUserService: AddNewUserServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
@@ -27,9 +27,7 @@ final class AddNewUserService: AddNewUserServiceProtocol {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            
+        client.perform(request: request) { result in
             switch result {
             case let .success((data, response)):
                 completion(AddNewUserServiceResultMapper.result(for: data, response: response))

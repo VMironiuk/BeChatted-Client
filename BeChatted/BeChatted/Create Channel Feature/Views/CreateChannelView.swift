@@ -9,7 +9,7 @@ import SwiftUI
 import BeChatted
 
 struct CreateChannelView: View {
-    @Bindable private var viewModel: CreateChannelViewModel
+    @ObservedObject private var viewModel: CreateChannelViewModel
     private let onCreateChannelButtonTapped: () -> Void
     
     @State private var imageScale: CGFloat = 0.0

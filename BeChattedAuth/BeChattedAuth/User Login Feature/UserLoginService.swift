@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class UserLoginService: UserLoginServiceProtocol {
+struct UserLoginService: UserLoginServiceProtocol {
     private let url: URL
     private let client: HTTPClientProtocol
     
@@ -25,9 +25,7 @@ final class UserLoginService: UserLoginServiceProtocol {
         request.httpBody = try? JSONEncoder().encode(userLoginPayload)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            
+        client.perform(request: request) { result in
             switch result {
             case let .success((data, response)):
                 completion(UserLoginServiceResultMapper.result(for: data, response: response))

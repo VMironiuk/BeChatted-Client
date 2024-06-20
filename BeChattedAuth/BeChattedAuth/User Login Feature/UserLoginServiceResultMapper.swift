@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct UserLoginServiceResultMapper {
-    private init() {}
-    
+enum UserLoginServiceResultMapper {
     static func result(for data: Data?, response: HTTPURLResponse?) -> Result<UserLoginInfo, UserLoginServiceError> {
         guard let response = response else { return .failure(.unknown) }
         

@@ -9,7 +9,7 @@ import SwiftUI
 import BeChatted
 
 struct LoginView: View {
-    @Bindable private var viewModel: LoginViewModel
+    @ObservedObject private var viewModel: LoginViewModel
     private let footerView: AuthFooterView
     
     @State private var authButtonState: PrimaryButtonStyle.State = .normal

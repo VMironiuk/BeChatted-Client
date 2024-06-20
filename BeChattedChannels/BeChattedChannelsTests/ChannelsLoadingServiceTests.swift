@@ -150,22 +150,6 @@ final class ChannelsLoadingServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_loadChannels_doesNotDeliverChannelsAfterSUTInstanceDeallocated() {
-        // given
-        let client = HTTPClientSpy()
-        var sut: ChannelsLoadingService? = ChannelsLoadingService(url: anyURL(), authToken: anyAuthToken(), client: client)
-        
-        var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
-        sut?.loadChannels { expectedResult = $0 }
-        
-        // when
-        sut = nil
-        client.complete(with: try! JSONEncoder().encode([ChannelInfo]()))
-        
-        // then
-        XCTAssertNil(expectedResult)
-    }
-    
     func test_loadChannels_deliversServerErrorOnNon200HTTPResponse() {
         // given
         let (sut, client) = makeSUT()
@@ -187,22 +171,6 @@ final class ChannelsLoadingServiceTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_loadChannels_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
-        // given
-        let client = HTTPClientSpy()
-        var sut: ChannelsLoadingService? = ChannelsLoadingService(url: anyURL(), authToken: anyAuthToken(), client: client)
-
-        var expectedResult: Result<[ChannelInfo], ChannelsLoadingError>?
-        sut?.loadChannels { expectedResult = $0 }
-        
-        // when
-        sut = nil
-        client.complete(with: anyNSError())
-        
-        // then
-        XCTAssertNil(expectedResult)
-    }
-    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -215,7 +183,6 @@ final class ChannelsLoadingServiceTests: XCTestCase {
         let sut = ChannelsLoadingService(url: url, authToken: authToken, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
-        trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, client)
     }

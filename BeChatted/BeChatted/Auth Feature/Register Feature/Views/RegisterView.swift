@@ -9,7 +9,7 @@ import SwiftUI
 import BeChatted
 
 struct RegisterView: View {
-    @Bindable private var viewModel: RegisterViewModel
+    @ObservedObject private var viewModel: RegisterViewModel
     private let headerView: RegisterHeaderView
     private let footerView: AuthFooterView
     

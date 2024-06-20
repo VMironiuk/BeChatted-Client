@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct LoginResultMapper {
-    private init() {}
-    
+enum LoginResultMapper {
     static func result(for result: Result<UserLoginInfo, UserLoginServiceError>) -> Result<UserLoginInfo, AuthServiceError> {
         switch result {
         case .success(let userLoginInfo):

@@ -23,7 +23,7 @@ public struct CreateChanelPayload: Encodable {
     }
 }
 
-public final class ChannelCreationService {
+public struct ChannelCreationService {
     private let url: URL
     private let authToken: String
     private let client: HTTPClientProtocol
@@ -41,9 +41,7 @@ public final class ChannelCreationService {
         request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         request.httpBody = try? JSONEncoder().encode(payload)
         
-        client.perform(request: request) { [weak self] result in
-            guard self != nil else { return }
-            
+        client.perform(request: request) { result in
             switch result {
             case let .success((_, response)):
                 completion(ChannelCreatingResultMapper.result(for: response))

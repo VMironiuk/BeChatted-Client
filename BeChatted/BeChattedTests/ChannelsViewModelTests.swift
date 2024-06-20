@@ -36,71 +36,114 @@ final class ChannelsViewModelTests: XCTestCase {
         default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
         }
     }
-    
-    func test_loadChanels_returnsChannelsIfThereAreChannels() {
+
+    func test_loadChannels_returnsChannelsIfThereAreChannels() {
         // given
-        let loadedChannels = [makeChannel(with: "A", description: "AAA"), makeChannel(with: "B", description: "BBB")]
-        let expectedChannelItems = [.title, makeChannelItem(with: "A"), makeChannelItem(with: "B")]
+        let loadedChannels = [
+            makeChannel(withId: "id=a", name: "A", description: "AAA"),
+            makeChannel(withId: "id=b", name: "B", description: "BBB")
+        ]
+        let expectedChannelItems = [makeChannelItem(withId: "id=a", name: "A"), makeChannelItem(withId: "id=b", name: "B")]
         let (sut, service) = makeSUT()
         
+        let exp = expectation(description: "Wait for channels loading completion")
+        let sub = sut.$loadChannelsResult
+            .sink { result in
+                switch result {
+                case .success(let gotChannels):
+                    if gotChannels == expectedChannelItems {
+                        exp.fulfill()
+                    }
+                case .failure(let error):
+                    XCTFail("Expected success, got \(error) instead")
+                }
+            }
+
         // when
         sut.loadChannels()
         service.completeChannelsLoading(with: .success(loadedChannels))
-        
+
         // then
-        switch sut.loadChannelsResult {
-        case .success(let gotChannels):
-            XCTAssertEqual(gotChannels, expectedChannelItems)
-        default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
-        }
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
     
     func test_loadChanels_returnsUnknownErrorOnUnknownError() {
         // given
         let (sut, service) = makeSUT()
         
+        let exp = expectation(description: "Wait for channels loading completion")
+        let sub = sut.$loadChannelsResult
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    if error == .unknown {
+                        exp.fulfill()
+                    }
+                default:
+                    break
+                }
+            }
+        
         // when
         sut.loadChannels()
         service.completeChannelsLoading(with: .failure(.unknown))
         
         // then
-        switch sut.loadChannelsResult {
-        case .failure(let receivedError):
-            XCTAssertEqual(receivedError, .unknown, "Expected unknown error, got \(receivedError) instead")
-        default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
-        }
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
     
     func test_loadChanels_returnsConnectivityErrorOnConnectivityError() {
         // given
         let (sut, service) = makeSUT()
         
+        let exp = expectation(description: "Wait for channels loading completion")
+        let sub = sut.$loadChannelsResult
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    if error == .connectivity {
+                        exp.fulfill()
+                    }
+                default:
+                    break
+                }
+            }
+        
         // when
         sut.loadChannels()
         service.completeChannelsLoading(with: .failure(.connectivity))
         
         // then
-        switch sut.loadChannelsResult {
-        case .failure(let receivedError):
-            XCTAssertEqual(receivedError, .connectivity, "Expected connectivity error, got \(receivedError) instead")
-        default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
-        }
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
     
     func test_loadChanels_returnsInvalidDataErrorOnInvalidDataError() {
         // given
         let (sut, service) = makeSUT()
         
+        let exp = expectation(description: "Wait for channels loading completion")
+        let sub = sut.$loadChannelsResult
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    if error == .invalidData {
+                        exp.fulfill()
+                    }
+                default:
+                    break
+                }
+            }
+        
         // when
         sut.loadChannels()
         service.completeChannelsLoading(with: .failure(.invalidData))
         
         // then
-        switch sut.loadChannelsResult {
-        case .failure(let receivedError):
-            XCTAssertEqual(receivedError, .invalidData, "Expected connectivity error, got \(receivedError) instead")
-        default: XCTFail("Expected empty result, got \(sut.loadChannelsResult) instead")
-        }
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
     
     // MARK: - Helpers
@@ -115,12 +158,12 @@ final class ChannelsViewModelTests: XCTestCase {
         return (sut, service)
     }
     
-    private func makeChannel(with name: String, description: String) -> Channel {
-        .init(id: UUID().uuidString, name: name, description: description)
+    private func makeChannel(withId id: String, name: String, description: String) -> Channel {
+        .init(id: id, name: name, description: description)
     }
     
-    private func makeChannelItem(with name: String) -> ChannelItem {
-        .channel(name: name, isUnread: false)
+    private func makeChannelItem(withId id: String, name: String) -> ChannelItem {
+        .init(id: id, name: name)
     }
     
     private final class ChannelsLoadingServiceStub: ChannelsLoadingServiceProtocol {

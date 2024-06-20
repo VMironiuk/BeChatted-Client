@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct LogoutResultMapper {
-    private init() {}
-    
+enum LogoutResultMapper {
     static func result(for result: Result<Void, UserLogoutServiceError>) -> Result<Void, AuthServiceError> {
         switch result {
         case .success:

@@ -136,33 +136,6 @@ final class NewAccountServiceTests: XCTestCase {
         })
     }
     
-    func test_send_doesNotDeliverErrorAfterSUTInstanceDeallocated() {
-        let client = HTTPClientSpy()
-        var sut: NewAccountServiceProtocol? = NewAccountService(url: anyURL(), client: client)
-        
-        expect(&sut, deliversNoResultWhen: {
-            client.complete(with: anyNSError())
-        })
-    }
-    
-    func test_send_doesNotDeliverErrorOnNon200HTTPResponseAfterSUTInstanceDeallocated() {
-        let client = HTTPClientSpy()
-        var sut: NewAccountServiceProtocol? = NewAccountService(url: anyURL(), client: client)
-        
-        expect(&sut, deliversNoResultWhen: {
-            client.complete(with: httpResponse(withStatusCode: 300))
-        })
-    }
-    
-    func test_send_doesNotDeliverSuccessAfterSUTInstanceDeallocated() {
-        let client = HTTPClientSpy()
-        var sut: NewAccountServiceProtocol? = NewAccountService(url: anyURL(), client: client)
-        
-        expect(&sut, deliversNoResultWhen: {
-            client.complete(with: httpResponse(withStatusCode: 200))
-        })
-    }
-
     // MARK: - Helpers
     
     private func makeSUT(
@@ -173,7 +146,6 @@ final class NewAccountServiceTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = NewAccountService(url: url, client: client)
         
-        trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
 
         return (sut, client)
@@ -238,27 +210,6 @@ final class NewAccountServiceTests: XCTestCase {
         XCTAssertNotNil(receivedResult, file: file, line: line)
     }
     
-    private func expect(
-        _ sut: inout NewAccountServiceProtocol?,
-        deliversNoResultWhen action: () -> Void,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        // given
-        var receivedResult: Result<Void, NewAccountServiceError>?
-        sut?.send(newAccountPayload: anyNewAccountPayload()) { result in
-            receivedResult = result
-        }
-        
-        // when
-        sut = nil
-        
-        action()
-        
-        // then
-        XCTAssertNil(receivedResult, file: file, line: line)
-    }
-
     private class HTTPClientSpy: HTTPClientProtocol {
         private var messages = [(request: URLRequest, completion: (Result<(Data?, HTTPURLResponse?), Error>) -> Void)]()
                 

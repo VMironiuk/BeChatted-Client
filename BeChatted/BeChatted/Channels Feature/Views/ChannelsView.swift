@@ -9,7 +9,7 @@ import SwiftUI
 import BeChatted
 
 struct ChannelsView<Content: View>: View {
-    @Bindable private var viewModel: ChannelsViewModel
+    @ObservedObject private var viewModel: ChannelsViewModel
     private let createChannelContent: Content
     
     @State private var isCreateChannelContentPresented = false
@@ -90,19 +90,15 @@ struct ChannelsView<Content: View>: View {
         case .connectivity: ChannelsLoadingIssueContentView(issue: .connectivity)
         }
     }
-        
+    
+    @ViewBuilder
     private func channelsListContentView(for channels: [ChannelItem]) -> some View {
+        ChannelTitleView()
         ForEach(channels) { channelItemView(for: $0) }
     }
         
-    @ViewBuilder
     private func channelItemView(for channelItem: ChannelItem) -> some View {
-        switch channelItem {
-        case .title:
-            ChannelTitleView()
-        case let .channel(channelName, isUnread):
-            ChannelItemView(channelName: channelName, isUnread: isUnread)
-        }
+        ChannelItemView(channelName: channelItem.name, isUnread: false)
     }
 }
 
