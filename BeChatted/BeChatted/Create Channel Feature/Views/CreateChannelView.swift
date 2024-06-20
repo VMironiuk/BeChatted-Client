@@ -18,12 +18,11 @@ struct CreateChannelView: View {
         !viewModel.isUserInputValid || buttonState == .loading
     }
     private var buttonState: PrimaryButtonStyle.State {
-//        switch viewModel.state {
-//        case .ready, .success: .normal
-//        case .inProgress: .loading
-//        case .failure: .failed
-//        }
-        .normal
+        switch viewModel.state {
+        case .ready, .success: .normal
+        case .inProgress: .loading
+        case .failure: .failed
+        }
     }
     private var buttonTitle: String {
         switch buttonState {
@@ -55,15 +54,15 @@ struct CreateChannelView: View {
             
             Spacer()
             
-//            if viewModel.state == .success {
-//                successView
-//            }
+            if viewModel.state == .success {
+                successView
+            }
             
             Spacer()
             
             Button(buttonTitle) {
                 onCreateChannelButtonTapped()
-//                viewModel.createChannel()
+                viewModel.createChannel()
             }
             .buttonStyle(PrimaryButtonStyle(state: buttonState, isEnabled: viewModel.isUserInputValid))
             .disabled(isButtonDisabled)

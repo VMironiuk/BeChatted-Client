@@ -39,15 +39,17 @@ public final class CreateChannelViewModel: ObservableObject {
     public func createChannel() {
         state = .inProgress
         service.createChannel(withName: channelName, description: channelDescription) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success:
-                self.updateStateWithAnimation(to: .success)
-                channelName = ""
-                channelDescription = ""
-                onSuccess()
-            case .failure(let error):
-                self.updateStateWithAnimation(to: .failure(error))
+            DispatchQueue.main.async {
+                guard let self else { return }
+                switch result {
+                case .success:
+                    self.updateStateWithAnimation(to: .success)
+                    self.channelName = ""
+                    self.channelDescription = ""
+                    self.onSuccess()
+                case .failure(let error):
+                    self.updateStateWithAnimation(to: .failure(error))
+                }
             }
         }
     }

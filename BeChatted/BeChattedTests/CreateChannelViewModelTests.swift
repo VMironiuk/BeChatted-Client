@@ -78,8 +78,18 @@ final class CreateChannelViewModelTests: XCTestCase {
         sut.createChannel()
         XCTAssertEqual(sut.state, .inProgress, "Expected sut state to be inProgress, got \(sut.state) instead")
         
+        let exp = expectation(description: "Wait for channel creation completion")
+        let sub = sut.$state
+            .sink { result in
+                if result == .success {
+                    exp.fulfill()
+                }
+            }
+        
         service.complete(with: .success(()))
-        XCTAssertEqual(sut.state, .success, "Expected sut state to be success, got \(sut.state) instead")
+        
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
     
     func test_stateTransitions_forSadPath() {
@@ -89,8 +99,18 @@ final class CreateChannelViewModelTests: XCTestCase {
         sut.createChannel()
         XCTAssertEqual(sut.state, .inProgress, "Expected sut state to be inProgress, got \(sut.state) instead")
         
+        let exp = expectation(description: "Wait for channel creation completion")
+        let sub = sut.$state
+            .sink { result in
+                if result == .failure(.unknown) {
+                    exp.fulfill()
+                }
+            }
+        
         service.complete(with: .failure(.unknown))
-        XCTAssertEqual(sut.state, .failure(.unknown), "Expected sut state to be failure(unknown), got \(sut.state) instead")
+        
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
 
     // MARK: - Helpers
@@ -113,6 +133,13 @@ final class CreateChannelViewModelTests: XCTestCase {
         line: Int = #line
     ) {
         // given
+        let exp = expectation(description: "Wait for channel creation completion")
+        let sub = sut.$state
+            .sink { result in
+                if result == state {
+                    exp.fulfill()
+                }
+            }
         
         // when
         sut.createChannel()
@@ -120,7 +147,8 @@ final class CreateChannelViewModelTests: XCTestCase {
         action()
         
         // then
-        XCTAssertEqual(sut.state, state)
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
     
     private final class CreateChannelServiceSpy: CreateChannelServiceProtocol {
