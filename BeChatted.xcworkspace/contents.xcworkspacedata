@@ -19,4 +19,7 @@
    <FileRef
       location = "group:BeChattedUserInputValidation/BeChattedUserInputValidation.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:macOS-CI.xctestplan">
+   </FileRef>
 </Workspace>

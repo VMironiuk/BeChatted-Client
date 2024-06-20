@@ -1,0 +1,57 @@
+{
+  "configurations" : [
+    {
+      "id" : "DB8C6058-C836-4F13-AB17-EF5897DA499B",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChatted\/BeChatted.xcodeproj",
+        "identifier" : "2EB37C912B873791003990B0",
+        "name" : "BeChattedTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChattedAuth\/BeChattedAuth.xcodeproj",
+        "identifier" : "2EDB71112AF2B52800243018",
+        "name" : "BeChattedAuthTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChattedChannels\/BeChattedChannels.xcodeproj",
+        "identifier" : "2EA048412BBE7CC4000525C9",
+        "name" : "BeChattedChannelsTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChattedNetwork\/BeChattedNetwork.xcodeproj",
+        "identifier" : "2E95537A2BE3B8D0002E23B2",
+        "name" : "BeChattedNetworkTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChattedUserInputValidation\/BeChattedUserInputValidation.xcodeproj",
+        "identifier" : "2E8A72552AF4002E0075FF43",
+        "name" : "BeChattedUserInputValidationTests"
+      }
+    }
+  ],
+  "version" : 1
+}
