@@ -8,29 +8,11 @@
 import SwiftUI
 
 struct TextInputView: View {
-    enum InputType {
-        case `default`
-        case email
-    }
-    
     private let title: String
-    private let inputType: InputType
     @Binding private var text: String
     
-    private var isEmail: Bool { inputType == .email }
-    
-    private var textInputAutocapitalization: TextInputAutocapitalization {
-        switch inputType {
-        case .default:
-            return .words
-        case .email:
-            return .never
-        }
-    }
-    
-    init(title: String = "", inputType: InputType = .default, text: Binding<String>) {
+    init(title: String = "", text: Binding<String>) {
         self.title = title
-        self.inputType = inputType
         self._text = text
     }
     
@@ -52,9 +34,6 @@ struct TextInputView: View {
             
             TextField("", text: $text)
                 .padding(.horizontal, 20)
-                .keyboardType(isEmail ? .emailAddress : .default)
-                .textInputAutocapitalization(textInputAutocapitalization)
-                .autocorrectionDisabled(true)
         }
     }
 }
