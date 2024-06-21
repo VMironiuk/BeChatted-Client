@@ -112,6 +112,15 @@ final class CreateChannelViewModelTests: XCTestCase {
         wait(for: [exp], timeout: 1)
         sub.cancel()
     }
+    
+    func test_createChannel_validatesChannelName() {
+        let (sut, service) = makeSUT()
+        sut.channelName = " First Channel "
+        
+        sut.createChannel()
+        
+        XCTAssertEqual(service.messages[0].name, "first-channel")
+    }
 
     // MARK: - Helpers
     
@@ -158,7 +167,7 @@ final class CreateChannelViewModelTests: XCTestCase {
             let completion: (Result<Void, CreateChannelServiceError>) -> Void
         }
         
-        private var messages = [Message]()
+        private(set) var messages = [Message]()
         
         var createChannelCallCount: Int {
             messages.count

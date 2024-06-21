@@ -38,7 +38,13 @@ public final class CreateChannelViewModel: ObservableObject {
     
     public func createChannel() {
         state = .inProgress
-        service.createChannel(withName: channelName, description: channelDescription) { [weak self] result in
+        
+        let channelNameValidated = self.channelName
+            .trimmingCharacters(in: CharacterSet(charactersIn: " "))
+            .lowercased()
+            .replacingOccurrences(of: " ", with: "-")
+        
+        service.createChannel(withName: channelNameValidated, description: channelDescription) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self else { return }
                 switch result {

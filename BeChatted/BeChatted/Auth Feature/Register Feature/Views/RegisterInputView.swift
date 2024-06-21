@@ -24,11 +24,14 @@ struct RegisterInputView: View {
                 .frame(height: 50)
                 .padding(.horizontal, 20)
                 .padding(.top, 32)
+                .autocorrectionDisabled()
             
-            TextInputView(title: "Email", inputType: .email, text: email)
+            TextInputView(title: "Email", text: email)
                 .frame(height: 50)
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
+                .keyboardType(.emailAddress)
+                .textInputAutocapitalization(.never)
             
             SecureInputView(title: "Password", text: password)
                 .frame(height: 50)
