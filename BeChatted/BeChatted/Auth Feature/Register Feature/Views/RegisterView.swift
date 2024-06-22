@@ -101,6 +101,54 @@ private extension RegisterView {
         .disabled(isRegisterButtonDisabled)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
-        .animation(.easeIn(duration: 0.2), value: authButtonState)
     }
+}
+
+private struct FakeEmailValidator: EmailValidatorProtocol {
+    func isValid(email: String) -> Bool {
+        true
+    }
+}
+
+private struct FakePasswordValidator: PasswordValidatorProtocol {
+    func isValid(password: String) -> Bool {
+        true
+    }
+}
+
+private struct FakeAuthService: AuthServiceProtocol {
+    func login(
+        _ payload: LoginPayload,
+        completion: @escaping (Result<LoginInfo, AuthError>) -> Void
+    ) {
+    }
+    
+    func createAccount(
+        _ payload: CreateAccountPayload, 
+        completion: @escaping (Result<Void, AuthError>) -> Void
+    ) {
+    }
+    
+    func addUser(
+        _ payload: AddUserPayload,
+        authToken: String,
+        completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void
+    ) {
+    }
+}
+
+#Preview {
+    RegisterView(
+        viewModel: RegisterViewModel(
+            emailValidator: FakeEmailValidator(),
+            passwordValidator: FakePasswordValidator(),
+            authService: FakeAuthService()),
+        headerView: RegisterHeaderView(
+            onBackButtonTapped: {}
+        ), footerView: AuthFooterView(
+            text: "",
+            buttonText: "",
+            onButtonTapped: {}
+        )
+    )
 }

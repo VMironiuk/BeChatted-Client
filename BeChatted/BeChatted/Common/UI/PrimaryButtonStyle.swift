@@ -55,6 +55,7 @@ struct PrimaryButtonStyle: ButtonStyle {
                     .fill(backgroundColor)
                     .opacity(backgroundOpacity)
             )
+            .animation(.easeInOut(duration: 0.2), value: state)
     }
 }
 
