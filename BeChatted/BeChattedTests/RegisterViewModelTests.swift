@@ -51,7 +51,7 @@ final class RegisterViewModelTests: XCTestCase {
         expect(
             sut,
             authService: authService,
-            toCompleteWithError: unknownCreateAccountError,
+            toCompleteWithState: .failure(unknownCreateAccountError),
             expectedCreateAccountCallCount: 1,
             expectedAddUserCallCount: 0,
             expectedLoginCallCount: 0,
@@ -60,6 +60,16 @@ final class RegisterViewModelTests: XCTestCase {
                 authService.completeCreateAccountWithError(.unknown)
             }
         )
+        
+        let exp = expectation(description: "Wait for moving state back to idle")
+        let sub = sut.$state.sink { result in
+            if result == .idle {
+                exp.fulfill()
+            }
+        }
+        
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
     
     func test_register_failsIfAuthServiceLoginRequestFails() {
@@ -69,7 +79,7 @@ final class RegisterViewModelTests: XCTestCase {
         expect(
             sut,
             authService: authService,
-            toCompleteWithError: unknownLoginError,
+            toCompleteWithState: .failure(unknownLoginError),
             expectedCreateAccountCallCount: 1,
             expectedAddUserCallCount: 0,
             expectedLoginCallCount: 1,
@@ -79,6 +89,16 @@ final class RegisterViewModelTests: XCTestCase {
                 authService.completeLoginWithError(.unknown)
             }
         )
+        
+        let exp = expectation(description: "Wait for moving state back to idle")
+        let sub = sut.$state.sink { result in
+            if result == .idle {
+                exp.fulfill()
+            }
+        }
+        
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
 
     func test_register_failsIfAuthServiceAddUserRequestFails() {
@@ -88,7 +108,7 @@ final class RegisterViewModelTests: XCTestCase {
         expect(
             sut,
             authService: authService,
-            toCompleteWithError: unknownAddUserError,
+            toCompleteWithState: .failure(unknownAddUserError),
             expectedCreateAccountCallCount: 1,
             expectedAddUserCallCount: 1,
             expectedLoginCallCount: 1,
@@ -99,16 +119,25 @@ final class RegisterViewModelTests: XCTestCase {
                 authService.completeAddUserWithError(.unknown)
             }
         )
+        
+        let exp = expectation(description: "Wait for moving state back to idle")
+        let sub = sut.$state.sink { result in
+            if result == .idle {
+                exp.fulfill()
+            }
+        }
+        
+        wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
 
     func test_register_succeedsIfAllAuthServiceRequestsSucceed() {
         let (sut, authService) = makeSUT()
-        let noError: AuthError? = nil
         
         expect(
             sut,
             authService: authService,
-            toCompleteWithError: noError,
+            toCompleteWithState: .success,
             expectedCreateAccountCallCount: 1,
             expectedAddUserCallCount: 1,
             expectedLoginCallCount: 1,
@@ -145,11 +174,11 @@ final class RegisterViewModelTests: XCTestCase {
         
         return (sut, authService)
     }
-        
+
     private func expect(
         _ sut: RegisterViewModel,
         authService: AuthServiceStub,
-        toCompleteWithError expectedError: AuthError?,
+        toCompleteWithState expectedState: RegisterViewModel.State,
         expectedCreateAccountCallCount: Int,
         expectedAddUserCallCount: Int,
         expectedLoginCallCount: Int,
@@ -159,22 +188,18 @@ final class RegisterViewModelTests: XCTestCase {
         line: UInt = #line
     ) {
         let exp = expectation(description: "Wait for registration completion")
-        var receivedError: AuthError?
-        sut.register { result in
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                receivedError = error
+        let sub = sut.$state.sink { result in
+            if result == expectedState {
+                exp.fulfill()
             }
-            exp.fulfill()
         }
-        
+
+        sut.register()
         action()
         
         wait(for: [exp], timeout: 1.0)
+        sub.cancel()
         
-        XCTAssertEqual(receivedError, expectedError, file: file, line: line)
         XCTAssertEqual(
             authService.createAccountCallCount,
             expectedCreateAccountCallCount,
@@ -204,7 +229,7 @@ final class RegisterViewModelTests: XCTestCase {
             line: line
         )
     }
-        
+
     private func unknownRegisterError() -> AuthError {
         .unknown
     }

@@ -14,11 +14,19 @@ struct RegisterView: View {
     private let footerView: AuthFooterView
     
     @Environment(\.isKeyboardShown) var isKeyboardShown
-    @State private var isRegistrationSucceeded = false
-    @State private var authButtonState: PrimaryButtonStyle.State = .normal
+    
+    private var authButtonState: PrimaryButtonStyle.State {
+        switch viewModel.state {
+        case .idle, .success: .normal
+        case .inProgress: .loading
+        case .failure: .failed
+        }
+    }
     
     private var isRegisterButtonDisabled: Bool {
-        !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
+        if case .failure = viewModel.state { return true }
+        if case .inProgress = viewModel.state { return true }
+        return !viewModel.isUserInputValid
     }
     
     var onTapped: (() -> Void)?
@@ -51,16 +59,14 @@ struct RegisterView: View {
                 }
             }
             
-            if isRegistrationSucceeded {
+            if viewModel.state == .success {
                 RegisterSuccessView {
                     onRegisterSuccessAction?()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        isRegistrationSucceeded = false
-                    }
                 }
             }
         }
         .navigationBarBackButtonHidden()
+        .animation(.easeInOut(duration: 0.3), value: viewModel.state)
     }
 }
 
@@ -81,21 +87,7 @@ private extension RegisterView {
     private var registerButton: some View {
         Button(registerButtonTitle) {
             onRegisterButtonTapped?()
-            authButtonState = .loading
-            viewModel.register { result in
-                switch result {
-                case .success:
-                    authButtonState = .normal
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        isRegistrationSucceeded = true
-                    }
-                case .failure:
-                    authButtonState = .failed
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        authButtonState = .normal
-                    }
-                }
-            }
+            viewModel.register()
         }
         .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isRegisterButtonDisabled)
