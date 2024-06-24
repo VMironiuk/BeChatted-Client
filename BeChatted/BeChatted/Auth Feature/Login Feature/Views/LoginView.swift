@@ -12,15 +12,22 @@ struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
     private let footerView: AuthFooterView
     
-    @State private var authButtonState: PrimaryButtonStyle.State = .normal
+    private var authButtonState: PrimaryButtonStyle.State {
+        switch viewModel.state {
+        case .idle, .success: .normal
+        case .inProgress: .loading
+        case .failure: .failed
+        }
+    }
     
     private var isLoginButtonDisabled: Bool {
-        !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
+        if case .failure = viewModel.state { return true }
+        if case .inProgress = viewModel.state { return true }
+        return !viewModel.isUserInputValid
     }
     
     var onTapped: (() -> Void)?
     var onLoginButtonTapped: (() -> Void)?
-    var onLoginSuccessAction: ((String) -> Void)?
     
     init(viewModel: LoginViewModel, footerView: AuthFooterView) {
         self.viewModel = viewModel
@@ -64,21 +71,7 @@ private extension LoginView {
     private var button: some View {
         Button(buttonTitle) {
             onLoginButtonTapped?()
-            authButtonState = .loading
-            viewModel.login { result in
-                switch result {
-                case .success(let loginInfo):
-                    authButtonState = .normal
-                    DispatchQueue.main.async {
-                        onLoginSuccessAction?(loginInfo.token)
-                    }
-                case .failure:
-                    authButtonState = .failed
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        authButtonState = .normal
-                    }
-                }
-            }
+            viewModel.login()
         }
         .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isLoginButtonDisabled)
@@ -93,7 +86,8 @@ private extension LoginView {
         viewModel: LoginViewModel(
             emailValidator: EmailValidator(),
             passwordValidator: PasswordValidator(),
-            authService: AuthService()),
+            authService: AuthService(), 
+            onLoginSuccessAction: { _ in }),
         footerView: AuthFooterView(text: "Don't have an account?", buttonText: "Register") {})
 }
 

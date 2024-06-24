@@ -42,7 +42,7 @@ final class LoginViewModelTests: XCTestCase {
     func test_login_sendsOnlyOneLoginMessageToAuthServiceOnOneCall() {
         let (sut, authService) = makeSUT()
         
-        sut.login { _ in }
+        sut.login()
         
         XCTAssertEqual(authService.createAccountCallCount, 0)
         XCTAssertEqual(authService.addUserCallCount, 0)
@@ -53,8 +53,8 @@ final class LoginViewModelTests: XCTestCase {
     func test_login_sendsOnlyTwoLoginMessagesToAuthServiceOnTwoCalls() {
         let (sut, authService) = makeSUT()
         
-        sut.login { _ in }
-        sut.login { _ in }
+        sut.login()
+        sut.login()
         
         XCTAssertEqual(authService.createAccountCallCount, 0)
         XCTAssertEqual(authService.addUserCallCount, 0)
@@ -64,39 +64,34 @@ final class LoginViewModelTests: XCTestCase {
     
     func test_login_failsIfAuthServiceLoginRequestFails() {
         let (sut, authService) = makeSUT()
-        let unknownLoginError = AuthError.unknown
         let exp = expectation(description: "Wait for login request completion")
-        
-        sut.login { result in
-            switch result {
-            case .success:
-                XCTFail("Expected error, got \(result) instead")
-            case let .failure(receivedError):
-                XCTAssertEqual(receivedError, unknownLoginError)
+        let sub = sut.$state.sink { result in
+            if result == .failure(AuthError.unknown) {
+                exp.fulfill()
             }
-            exp.fulfill()
         }
         
+        sut.login()
         authService.completeLoginWithError(.unknown)
+        
         wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
 
     func test_login_succeedsIfAuthServiceLoginRequestSucceeds() {
         let (sut, authService) = makeSUT()
         let exp = expectation(description: "Wait for login request completion")
-        
-        sut.login { result in
-            switch result {
-            case .success:
-                break
-            case .failure:
-                XCTFail("Expected success, got \(result) instead")
+        let sub = sut.$state.sink { result in
+            if result == .success {
+                exp.fulfill()
             }
-            exp.fulfill()
         }
         
+        sut.login()
         authService.completeLoginSuccessfully()
+        
         wait(for: [exp], timeout: 1)
+        sub.cancel()
     }
     
     // MARK: - Helpers
@@ -113,7 +108,8 @@ final class LoginViewModelTests: XCTestCase {
         let sut = LoginViewModel(
             emailValidator: emailValidator,
             passwordValidator: passwordValidator,
-            authService: authService
+            authService: authService,
+            onLoginSuccessAction: { _ in }
         )
         
         trackForMemoryLeaks(sut, file: file, line: line)

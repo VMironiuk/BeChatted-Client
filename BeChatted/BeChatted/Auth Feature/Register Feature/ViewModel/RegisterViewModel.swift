@@ -15,8 +15,6 @@ public final class RegisterViewModel: ObservableObject {
         case failure(AuthError)
     }
     
-    public typealias RegisterCompletion = (Result<Void, AuthError>) -> Void
-    
     private let emailValidator: EmailValidatorProtocol
     private let passwordValidator: PasswordValidatorProtocol
     private let authService: AuthServiceProtocol

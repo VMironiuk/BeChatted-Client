@@ -15,8 +15,7 @@ public struct LoginViewComposer {
         with viewModel: LoginViewModel,
         onTapped: @escaping () -> Void,
         onLoginButtonTapped: @escaping () -> Void,
-        onRegisterButtonTapped: @escaping () -> Void,
-        onLoginSuccessAction: @escaping (String) -> Void
+        onRegisterButtonTapped: @escaping () -> Void
     ) -> some View {
         let footerView = AuthFooterView(
             text: "Don’t have an account?",
@@ -29,7 +28,6 @@ public struct LoginViewComposer {
         
         loginView.onTapped = onTapped
         loginView.onLoginButtonTapped = onLoginButtonTapped
-        loginView.onLoginSuccessAction = onLoginSuccessAction
         
         return loginView.addKeyboardVisibilityToEnvironment()
     }
