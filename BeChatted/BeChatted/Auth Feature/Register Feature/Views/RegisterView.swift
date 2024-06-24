@@ -14,11 +14,19 @@ struct RegisterView: View {
     private let footerView: AuthFooterView
     
     @Environment(\.isKeyboardShown) var isKeyboardShown
-    @State private var isRegistrationSucceeded = false
-    @State private var authButtonState: PrimaryButtonStyle.State = .normal
+    
+    private var authButtonState: PrimaryButtonStyle.State {
+        switch viewModel.state {
+        case .idle, .success: .normal
+        case .inProgress: .loading
+        case .failure: .failed
+        }
+    }
     
     private var isRegisterButtonDisabled: Bool {
-        !viewModel.isUserInputValid || authButtonState == .loading || authButtonState == .failed
+        if case .failure = viewModel.state { return true }
+        if case .inProgress = viewModel.state { return true }
+        return !viewModel.isUserInputValid
     }
     
     var onTapped: (() -> Void)?
@@ -51,16 +59,14 @@ struct RegisterView: View {
                 }
             }
             
-            if isRegistrationSucceeded {
+            if viewModel.state == .success {
                 RegisterSuccessView {
                     onRegisterSuccessAction?()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        isRegistrationSucceeded = false
-                    }
                 }
             }
         }
         .navigationBarBackButtonHidden()
+        .animation(.easeInOut(duration: 0.3), value: viewModel.state)
     }
 }
 
@@ -81,26 +87,60 @@ private extension RegisterView {
     private var registerButton: some View {
         Button(registerButtonTitle) {
             onRegisterButtonTapped?()
-            authButtonState = .loading
-            viewModel.register { result in
-                switch result {
-                case .success:
-                    authButtonState = .normal
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        isRegistrationSucceeded = true
-                    }
-                case .failure:
-                    authButtonState = .failed
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        authButtonState = .normal
-                    }
-                }
-            }
+            viewModel.register()
         }
         .buttonStyle(PrimaryButtonStyle(state: authButtonState, isEnabled: viewModel.isUserInputValid))
         .disabled(isRegisterButtonDisabled)
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
-        .animation(.easeIn(duration: 0.2), value: authButtonState)
     }
+}
+
+private struct FakeEmailValidator: EmailValidatorProtocol {
+    func isValid(email: String) -> Bool {
+        true
+    }
+}
+
+private struct FakePasswordValidator: PasswordValidatorProtocol {
+    func isValid(password: String) -> Bool {
+        true
+    }
+}
+
+private struct FakeAuthService: AuthServiceProtocol {
+    func login(
+        _ payload: LoginPayload,
+        completion: @escaping (Result<LoginInfo, AuthError>) -> Void
+    ) {
+    }
+    
+    func createAccount(
+        _ payload: CreateAccountPayload, 
+        completion: @escaping (Result<Void, AuthError>) -> Void
+    ) {
+    }
+    
+    func addUser(
+        _ payload: AddUserPayload,
+        authToken: String,
+        completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void
+    ) {
+    }
+}
+
+#Preview {
+    RegisterView(
+        viewModel: RegisterViewModel(
+            emailValidator: FakeEmailValidator(),
+            passwordValidator: FakePasswordValidator(),
+            authService: FakeAuthService()),
+        headerView: RegisterHeaderView(
+            onBackButtonTapped: {}
+        ), footerView: AuthFooterView(
+            text: "",
+            buttonText: "",
+            onButtonTapped: {}
+        )
+    )
 }
