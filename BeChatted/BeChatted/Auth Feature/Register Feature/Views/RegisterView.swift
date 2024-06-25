@@ -127,6 +127,12 @@ private struct FakeAuthService: AuthServiceProtocol {
     completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void
   ) {
   }
+  
+  func logout(
+    authToken: String,
+    completion: @escaping (Result<Void, any Error>) -> Void
+  ) {
+  }
 }
 
 #Preview {

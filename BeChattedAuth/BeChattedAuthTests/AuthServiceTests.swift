@@ -223,7 +223,7 @@ final class AuthServiceTests: XCTestCase {
     // given
     
     // when
-    sut.logout { _ in }
+    sut.logout(authToken: "") { _ in }
     
     // then
     XCTAssertTrue(newAccountService.messages.isEmpty)
@@ -237,7 +237,7 @@ final class AuthServiceTests: XCTestCase {
     let exp = expectation(description: "Wait for user logout request completion")
     
     // when
-    sut.logout { result in
+    sut.logout(authToken: "") { result in
       // then
       switch result {
       case .success:
@@ -258,7 +258,7 @@ final class AuthServiceTests: XCTestCase {
     let exp = expectation(description: "Wait for user logout request completion")
     
     // when
-    sut.logout { result in
+    sut.logout(authToken: "") { result in
       // then
       switch result {
       case .failure:
@@ -269,7 +269,7 @@ final class AuthServiceTests: XCTestCase {
       exp.fulfill()
     }
     
-    userLogoutService.complete(with: .failure(.connectivity))
+    userLogoutService.complete(with: .failure(anyNSError()))
     
     wait(for: [exp], timeout: 1)
   }
@@ -352,14 +352,14 @@ final class AuthServiceTests: XCTestCase {
     private(set) var messages = [Message]()
     
     struct Message {
-      let completion: (Result<Void, UserLogoutServiceError>) -> Void
+      let completion: (Result<Void, Error>) -> Void
     }
     
-    func logout(completion: @escaping (Result<Void, UserLogoutServiceError>) -> Void) {
+    func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void) {
       messages.append(Message(completion: completion))
     }
     
-    func complete(with result: Result<Void, UserLogoutServiceError>, at index: Int = 0) {
+    func complete(with result: Result<Void, Error>, at index: Int = 0) {
       messages[index].completion(result)
     }
   }

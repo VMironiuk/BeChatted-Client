@@ -74,8 +74,8 @@ public struct AuthService {
     }
   }
   
-  public func logout(completion: @escaping (Result<Void, AuthServiceError>) -> Void) {
-    userLogoutService.logout { result in
+  public func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    userLogoutService.logout(authToken: authToken) { result in
       completion(LogoutResultMapper.result(for: result))
     }
   }

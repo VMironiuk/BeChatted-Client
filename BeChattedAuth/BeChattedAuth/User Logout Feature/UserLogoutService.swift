@@ -17,15 +17,15 @@ struct UserLogoutService: UserLogoutServiceProtocol {
     self.client = client
   }
   
-  func logout(completion: @escaping (Result<Void, UserLogoutServiceError>) -> Void) {
+  func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void) {
     let request = URLRequest(url: url)
     
     client.perform(request: request) { result in
       switch result {
       case .success:
         completion(.success(()))
-      case .failure:
-        completion(.failure(.connectivity))
+      case .failure(let error):
+        completion(.failure(error))
       }
     }
   }

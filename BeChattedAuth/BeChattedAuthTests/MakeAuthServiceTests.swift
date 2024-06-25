@@ -40,7 +40,7 @@ final class MakeAuthServiceTests: XCTestCase {
   
   func test_makeAuthService_setsCorrectUserLogoutURL() {
     expect(userLogoutURL(), when: {
-      authService().logout() { _ in }
+      authService().logout(authToken: "") { _ in }
     })
   }
   

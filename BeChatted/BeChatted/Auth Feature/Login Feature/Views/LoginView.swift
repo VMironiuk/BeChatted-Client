@@ -108,4 +108,7 @@ private struct AuthService: AuthServiceProtocol {
   
   func addUser(_ payload: AddUserPayload, authToken: String, completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void) {
   }
+  
+  func logout(authToken: String, completion: @escaping (Result<Void, any Error>) -> Void) {
+  }
 }

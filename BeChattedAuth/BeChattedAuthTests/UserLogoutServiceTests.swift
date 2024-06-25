@@ -28,7 +28,7 @@ final class UserLogoutServiceTests: XCTestCase {
     let (sut, client) = makeSUT(url: url)
     
     // when
-    sut.logout() { _ in }
+    sut.logout(authToken: "") { _ in }
     
     // then
     XCTAssertEqual(client.requestedURLs, [url])
@@ -40,8 +40,8 @@ final class UserLogoutServiceTests: XCTestCase {
     let (sut, client) = makeSUT(url: url)
     
     // when
-    sut.logout() { _ in }
-    sut.logout() { _ in }
+    sut.logout(authToken: "") { _ in }
+    sut.logout(authToken: "") { _ in }
     
     // then
     XCTAssertEqual(client.requestedURLs, [url, url])
@@ -51,9 +51,9 @@ final class UserLogoutServiceTests: XCTestCase {
     // given
     let (sut, client) = makeSUT()
     
-    var receivedError: UserLogoutServiceError?
+    var receivedError: Error?
     let exp = expectation(description: "Wait for completion")
-    sut.logout() { result in
+    sut.logout(authToken: "") { result in
       switch result {
       case let .failure(error):
         receivedError = error
@@ -71,15 +71,15 @@ final class UserLogoutServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1.0)
     
     // then
-    XCTAssertEqual(receivedError, .connectivity)
+    XCTAssertNotNil(receivedError)
   }
   
   func test_logout_deliversSuccessfulResultOnAnyResponse() {
     // given
     let (sut, client) = makeSUT()
     
-    var receivedResult: Result<Void, UserLogoutServiceError>?
-    sut.logout() { result in
+    var receivedResult: Result<Void, Error>?
+    sut.logout(authToken: "") { result in
       receivedResult = result
     }
     

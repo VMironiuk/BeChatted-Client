@@ -43,7 +43,7 @@ final class AuthServiceStub: AuthServiceProtocol {
     loginCompletion = completion
   }
   
-  func logout(completion: @escaping (Result<Void, AuthError>) -> Void) {
+  func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void) {
     logoutCallCount += 1
   }
   

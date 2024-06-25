@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum UserLogoutServiceError: Error {
-  case connectivity
-}
-
 protocol UserLogoutServiceProtocol {
-  func logout(completion: @escaping (Result<Void, UserLogoutServiceError>) -> Void)
+  func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void)
 }
