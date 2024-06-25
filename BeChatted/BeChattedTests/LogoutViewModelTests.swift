@@ -38,6 +38,15 @@ final class LogoutViewModelTests: XCTestCase {
     XCTAssertEqual(service.logoutCallCount, 1)
   }
   
+  func test_logout_sendsLogoutRequestTwice() {
+    let (sut, service) = makeSUT()
+    
+    sut.logout()
+    sut.logout()
+    
+    XCTAssertEqual(service.logoutCallCount, 2)
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
