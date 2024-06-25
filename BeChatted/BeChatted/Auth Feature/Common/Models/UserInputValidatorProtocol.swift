@@ -8,9 +8,9 @@
 import Foundation
 
 public protocol EmailValidatorProtocol {
-    func isValid(email: String) -> Bool
+  func isValid(email: String) -> Bool
 }
 
 public protocol PasswordValidatorProtocol {
-    func isValid(password: String) -> Bool
+  func isValid(password: String) -> Bool
 }

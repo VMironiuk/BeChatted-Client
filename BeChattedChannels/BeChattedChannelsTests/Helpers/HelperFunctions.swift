@@ -8,13 +8,13 @@
 import Foundation
 
 func anyURL() -> URL {
-    URL(string: "http://any-url.com")!
+  URL(string: "http://any-url.com")!
 }
 
 func anyAuthToken() -> String {
-    "any token"
+  "any token"
 }
 
 func httpResponse(with statusCode: Int) -> HTTPURLResponse {
-    HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+  HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
 }

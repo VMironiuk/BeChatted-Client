@@ -11,22 +11,22 @@ import BeChatted
 import BeChattediOS
 
 struct ContentView: View {
-    @EnvironmentObject private var mainNavigationController: MainNavigationController
-    @EnvironmentObject private var appData: AppData
-    
-    var body: some View {
-        NavigationStack(path: $mainNavigationController.path) {
-            if appData.isUserLoggedIn {
-                ChannelsView(appData: appData)
-            } else {
-                AuthView()
-            }
-        }
+  @EnvironmentObject private var mainNavigationController: MainNavigationController
+  @EnvironmentObject private var appData: AppData
+  
+  var body: some View {
+    NavigationStack(path: $mainNavigationController.path) {
+      if appData.isUserLoggedIn {
+        ChannelsView(appData: appData)
+      } else {
+        AuthView()
+      }
     }
+  }
 }
 
 #Preview {
-    ContentView()
-        .environmentObject(MainNavigationController())
-        .environmentObject(AppData())
+  ContentView()
+    .environmentObject(MainNavigationController())
+    .environmentObject(AppData())
 }

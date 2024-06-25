@@ -8,37 +8,37 @@
 import SwiftUI
 
 struct TextInputView: View {
-    private let title: String
-    @Binding private var text: String
-    
-    init(title: String = "", text: Binding<String>) {
-        self.title = title
-        self._text = text
-    }
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(ColorProvider.authUserInputBorderColor, lineWidth: 1)
-            
-            if !title.isEmpty {
-                GeometryReader { geometry in
-                    Text(title)
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundStyle(ColorProvider.authUserInputTitleColor)
-                        .padding(.horizontal, 8)
-                        .background(Color.white)
-                        .offset(x: 4, y: -8)
-                }
-            }
-            
-            TextField("", text: $text)
-                .padding(.horizontal, 20)
+  private let title: String
+  @Binding private var text: String
+  
+  init(title: String = "", text: Binding<String>) {
+    self.title = title
+    self._text = text
+  }
+  
+  var body: some View {
+    ZStack {
+      RoundedRectangle(cornerRadius: 12)
+        .stroke(ColorProvider.authUserInputBorderColor, lineWidth: 1)
+      
+      if !title.isEmpty {
+        GeometryReader { geometry in
+          Text(title)
+            .font(.system(size: 12, weight: .medium))
+            .foregroundStyle(ColorProvider.authUserInputTitleColor)
+            .padding(.horizontal, 8)
+            .background(Color.white)
+            .offset(x: 4, y: -8)
         }
+      }
+      
+      TextField("", text: $text)
+        .padding(.horizontal, 20)
     }
+  }
 }
 
 #Preview {
-    TextInputView(title: "Email", text: .constant("mail@example.com"))
-        .frame(height: 60)
+  TextInputView(title: "Email", text: .constant("mail@example.com"))
+    .frame(height: 60)
 }

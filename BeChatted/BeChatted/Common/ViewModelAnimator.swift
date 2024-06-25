@@ -8,17 +8,17 @@
 import SwiftUI
 
 public struct ViewModelAnimator: AnimatorProtocol {
-    public init() {}
-    
-    public func perform(action: () -> Void, completion: @escaping () -> Void) {
-        withAnimation {
-            action()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            withAnimation {
-                completion()
-            }
-        }
+  public init() {}
+  
+  public func perform(action: () -> Void, completion: @escaping () -> Void) {
+    withAnimation {
+      action()
     }
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+      withAnimation {
+        completion()
+      }
+    }
+  }
 }

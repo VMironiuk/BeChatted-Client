@@ -9,111 +9,111 @@ import SwiftUI
 import BeChatted
 
 struct ChannelsView<Content: View>: View {
-    @ObservedObject private var viewModel: ChannelsViewModel
-    private let createChannelContent: Content
-    
-    @State private var isCreateChannelContentPresented = false
-    
-    init(viewModel: ChannelsViewModel, createChannelContent: Content) {
-        self.viewModel = viewModel
-        self.createChannelContent = createChannelContent
-    }
-    
-    var body: some View {
-        ScrollView {
-            LazyVStack(pinnedViews: [.sectionHeaders]) {
-                Section {
-                    contentView()
-                } header: {
-                    ZStack {
-                        Rectangle()
-                            .frame(height: 82)
-                            .foregroundStyle(Color.white)
-                        VStack {
-                            Button("Create Channel") {
-                                isCreateChannelContentPresented = true
-                            }
-                            .buttonStyle(SecondaryButtonStyle())
-                            .padding(.horizontal, 16)
-                            .padding(.top, 16)
-                            Spacer()
-                            Divider()
-                                .padding(.horizontal, 16)
-                        }
-                    }
-                }
+  @ObservedObject private var viewModel: ChannelsViewModel
+  private let createChannelContent: Content
+  
+  @State private var isCreateChannelContentPresented = false
+  
+  init(viewModel: ChannelsViewModel, createChannelContent: Content) {
+    self.viewModel = viewModel
+    self.createChannelContent = createChannelContent
+  }
+  
+  var body: some View {
+    ScrollView {
+      LazyVStack(pinnedViews: [.sectionHeaders]) {
+        Section {
+          contentView()
+        } header: {
+          ZStack {
+            Rectangle()
+              .frame(height: 82)
+              .foregroundStyle(Color.white)
+            VStack {
+              Button("Create Channel") {
+                isCreateChannelContentPresented = true
+              }
+              .buttonStyle(SecondaryButtonStyle())
+              .padding(.horizontal, 16)
+              .padding(.top, 16)
+              Spacer()
+              Divider()
+                .padding(.horizontal, 16)
             }
+          }
         }
-        .navigationTitle("Channels")
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                } label: {
-                    ImageProvider.avatarPrototype
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
-            }
-        }
-        .onAppear {
-            viewModel.loadChannels()
-        }
-        .refreshable {
-            viewModel.loadChannels()
-        }
-        .sheet(isPresented: $isCreateChannelContentPresented) {
-            createChannelContent
-        }
+      }
     }
-    
-    @ViewBuilder
-    private func contentView() -> some View {
-        switch viewModel.loadChannelsResult {
-        case .success(let channels):
-            contentView(for: channels)
-        case .failure(let error):
-            contentView(for: error)
+    .navigationTitle("Channels")
+    .toolbar {
+      ToolbarItem(placement: .topBarTrailing) {
+        Button {
+        } label: {
+          ImageProvider.avatarPrototype
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
+      }
     }
-    
-    @ViewBuilder
-    private func contentView(for channels: [ChannelItem]) -> some View {
-        if channels.isEmpty {
-            ChannelsLoadingIssueContentView(issue: .empty)
-        } else {
-            channelsListContentView(for: channels)
-        }
+    .onAppear {
+      viewModel.loadChannels()
     }
-    
-    private func contentView(for error: ChannelsLoadingServiceError) -> some View {
-        switch error {
-        case .unknown, .invalidData: ChannelsLoadingIssueContentView(issue: .unknown)
-        case .connectivity: ChannelsLoadingIssueContentView(issue: .connectivity)
-        }
+    .refreshable {
+      viewModel.loadChannels()
     }
-    
-    @ViewBuilder
-    private func channelsListContentView(for channels: [ChannelItem]) -> some View {
-        ChannelTitleView()
-        ForEach(channels) { channelItemView(for: $0) }
+    .sheet(isPresented: $isCreateChannelContentPresented) {
+      createChannelContent
     }
-        
-    private func channelItemView(for channelItem: ChannelItem) -> some View {
-        ChannelItemView(channelName: channelItem.name, isUnread: false)
+  }
+  
+  @ViewBuilder
+  private func contentView() -> some View {
+    switch viewModel.loadChannelsResult {
+    case .success(let channels):
+      contentView(for: channels)
+    case .failure(let error):
+      contentView(for: error)
     }
+  }
+  
+  @ViewBuilder
+  private func contentView(for channels: [ChannelItem]) -> some View {
+    if channels.isEmpty {
+      ChannelsLoadingIssueContentView(issue: .empty)
+    } else {
+      channelsListContentView(for: channels)
+    }
+  }
+  
+  private func contentView(for error: ChannelsLoadingServiceError) -> some View {
+    switch error {
+    case .unknown, .invalidData: ChannelsLoadingIssueContentView(issue: .unknown)
+    case .connectivity: ChannelsLoadingIssueContentView(issue: .connectivity)
+    }
+  }
+  
+  @ViewBuilder
+  private func channelsListContentView(for channels: [ChannelItem]) -> some View {
+    ChannelTitleView()
+    ForEach(channels) { channelItemView(for: $0) }
+  }
+  
+  private func channelItemView(for channelItem: ChannelItem) -> some View {
+    ChannelItemView(channelName: channelItem.name, isUnread: false)
+  }
 }
 
 #Preview {
-    NavigationStack {
-        ChannelsView(
-            viewModel: ChannelsViewModel(
-                channelsLoadingService: FakeChannelsLoadingService()
-            ),
-            createChannelContent: Text("Hello")
-        )
-    }
+  NavigationStack {
+    ChannelsView(
+      viewModel: ChannelsViewModel(
+        channelsLoadingService: FakeChannelsLoadingService()
+      ),
+      createChannelContent: Text("Hello")
+    )
+  }
 }
 
 private class FakeChannelsLoadingService: ChannelsLoadingServiceProtocol {
-    func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
-    }
+  func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
+  }
 }

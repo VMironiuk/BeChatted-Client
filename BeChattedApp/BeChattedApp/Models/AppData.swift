@@ -8,6 +8,6 @@
 import Foundation
 
 final class AppData: ObservableObject {
-    @Published var isUserLoggedIn: Bool = false
-    @Published var authToken: String?
+  @Published var isUserLoggedIn: Bool = false
+  @Published var authToken: String?
 }

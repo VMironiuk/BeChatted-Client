@@ -9,9 +9,9 @@ import Foundation
 import BeChatted
 
 struct EmailValidatorStub: EmailValidatorProtocol {
-    let isValidStubbed: Bool
-    
-    func isValid(email: String) -> Bool {
-        isValidStubbed
-    }
+  let isValidStubbed: Bool
+  
+  func isValid(email: String) -> Bool {
+    isValidStubbed
+  }
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol AnimatorProtocol {
-    func perform(action: () -> Void, completion: @escaping () -> Void)
+  func perform(action: () -> Void, completion: @escaping () -> Void)
 }

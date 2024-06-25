@@ -9,9 +9,9 @@ import Foundation
 import BeChatted
 
 struct PasswordValidatorStub: PasswordValidatorProtocol {
-    let isValidStubbed: Bool
-    
-    func isValid(password: String) -> Bool {
-        isValidStubbed
-    }
+  let isValidStubbed: Bool
+  
+  func isValid(password: String) -> Bool {
+    isValidStubbed
+  }
 }

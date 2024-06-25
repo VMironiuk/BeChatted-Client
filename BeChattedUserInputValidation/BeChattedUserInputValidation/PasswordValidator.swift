@@ -8,9 +8,9 @@
 import Foundation
 
 public struct PasswordValidator {
-    public init() {}
-    
-    public func isValid(password: String) -> Bool {
-        !password.contains(" ") && password.count >= 8
-    }
+  public init() {}
+  
+  public func isValid(password: String) -> Bool {
+    !password.contains(" ") && password.count >= 8
+  }
 }
