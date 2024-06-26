@@ -65,6 +65,19 @@ final class LogoutViewModelTests: XCTestCase {
     XCTAssertEqual(onLogoutActionCallCount, 0)
   }
   
+  func test_logout_callsOnLogoutActionWhenLogoutRequestCompletedSuccessfully() {
+    var onLogoutActionCallCount = 0
+    let (sut, service) = makeSUT(onLogoutAction: {
+      onLogoutActionCallCount += 1
+    })
+    
+    sut.logout()
+    service.completeLogoutSuccessfully()
+    
+    XCTAssertEqual(onLogoutActionCallCount, 1)
+  }
+
+
   // MARK: - Helpers
   
   private func makeSUT(

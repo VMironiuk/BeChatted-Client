@@ -17,6 +17,7 @@ final class AuthServiceStub: AuthServiceProtocol {
   private var createAccountCompletion: ((Result<Void, AuthError>) -> Void)?
   private var loginCompletion: ((Result<LoginInfo, AuthError>) -> Void)?
   private var addUserCompletion: ((Result<AddedUserInfo, AuthError>) -> Void)?
+  private var logoutCompletion: ((Result<Void, Error>) -> Void)?
   
   func createAccount(
     _ payload: CreateAccountPayload,
@@ -45,6 +46,7 @@ final class AuthServiceStub: AuthServiceProtocol {
   
   func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void) {
     logoutCallCount += 1
+    logoutCompletion = completion
   }
   
   func completeCreateAccountWithError(_ error: AuthError) {
@@ -85,5 +87,13 @@ final class AuthServiceStub: AuthServiceProtocol {
         """.data(using: .utf8)
     let dummyNewUserInfo = try! JSONDecoder().decode(AddedUserInfo.self, from: dummyNewUserInfoData!)
     addUserCompletion?(.success(dummyNewUserInfo))
+  }
+  
+  func completeLogoutSuccessfully() {
+    logoutCompletion?(.success(()))
+  }
+  
+  func completeLogoutWithError(_ error: Error) {
+    logoutCompletion?(.failure(error))
   }
 }
