@@ -1,5 +1,5 @@
 //
-//  LogoutViewModel.swift
+//  ProfileViewModel.swift
 //  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 26.06.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class LogoutViewModel: ObservableObject {
+public final class ProfileViewModel: ObservableObject {
   public enum State: Equatable {
     case idle
     case inProgress
@@ -43,8 +43,8 @@ public final class LogoutViewModel: ObservableObject {
   }
 }
 
-public extension LogoutViewModel.State {
-  static func == (lhs: LogoutViewModel.State, rhs: LogoutViewModel.State) -> Bool {
+public extension ProfileViewModel.State {
+  static func == (lhs: ProfileViewModel.State, rhs: ProfileViewModel.State) -> Bool {
     switch (lhs, rhs) {
     case (.idle, .idle): true
     case (.inProgress, .inProgress): true

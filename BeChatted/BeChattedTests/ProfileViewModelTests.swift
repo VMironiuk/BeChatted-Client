@@ -1,5 +1,5 @@
 //
-//  LogoutViewModelTests.swift
+//  ProfileViewModelTests.swift
 //  BeChattedTests
 //
 //  Created by Volodymyr Myroniuk on 25.06.2024.
@@ -8,7 +8,7 @@
 import XCTest
 import BeChatted
 
-final class LogoutViewModelTests: XCTestCase {
+final class ProfileViewModelTests: XCTestCase {
   func test_init_doesNotSendLogoutRequest() {
     let (_, service) = makeSUT()
     
@@ -102,9 +102,9 @@ final class LogoutViewModelTests: XCTestCase {
     onLogoutAction: @escaping () -> Void = {},
     file: StaticString = #filePath,
     line: UInt = #line
-  ) -> (LogoutViewModel, AuthServiceStub) {
+  ) -> (ProfileViewModel, AuthServiceStub) {
     let service = AuthServiceStub()
-    let sut = LogoutViewModel(service: service, authToken: authToken, onLogoutAction: onLogoutAction)
+    let sut = ProfileViewModel(service: service, authToken: authToken, onLogoutAction: onLogoutAction)
     
     trackForMemoryLeaks(sut, file: file, line: line)
     
