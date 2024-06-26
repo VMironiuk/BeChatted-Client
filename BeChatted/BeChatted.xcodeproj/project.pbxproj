@@ -244,12 +244,12 @@
 			path = ResponseInfos;
 			sourceTree = "<group>";
 		};
-		2E84E2FE2C2BDFC200580BEA /* Logout Feature */ = {
+		2E84E2FE2C2BDFC200580BEA /* Profile Feature */ = {
 			isa = PBXGroup;
 			children = (
 				2E84E2FF2C2BDFE000580BEA /* ProfileViewModel.swift */,
 			);
-			path = "Logout Feature";
+			path = "Profile Feature";
 			sourceTree = "<group>";
 		};
 		2E9553A02BE3C6D3002E23B2 /* Auth Feature */ = {
@@ -258,7 +258,6 @@
 				2EE9246A2BE5131100DFC286 /* Common */,
 				2EB37CA32B873E36003990B0 /* Register Feature */,
 				2EC3EE892B85C515007B6D10 /* Login Feature */,
-				2E84E2FE2C2BDFC200580BEA /* Logout Feature */,
 			);
 			path = "Auth Feature";
 			sourceTree = "<group>";
@@ -487,6 +486,7 @@
 				2E9553A02BE3C6D3002E23B2 /* Auth Feature */,
 				2E5EFF662BA823CE00EA65E8 /* Channels Feature */,
 				2EBF513D2BFF005A001EA238 /* Create Channel Feature */,
+				2E84E2FE2C2BDFC200580BEA /* Profile Feature */,
 				2E82F23A2B889FE500802ED5 /* Assets.xcassets */,
 			);
 			path = BeChatted;
