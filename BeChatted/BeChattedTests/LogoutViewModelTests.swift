@@ -76,7 +76,18 @@ final class LogoutViewModelTests: XCTestCase {
     
     XCTAssertEqual(onLogoutActionCallCount, 1)
   }
-
+  
+  func test_logout_callsOnLogoutActionWhenLogoutRequestFails() {
+    var onLogoutActionCallCount = 0
+    let (sut, service) = makeSUT(onLogoutAction: {
+      onLogoutActionCallCount += 1
+    })
+    
+    sut.logout()
+    service.completeLogoutWithError(anyNSError())
+    
+    XCTAssertEqual(onLogoutActionCallCount, 1)
+  }
 
   // MARK: - Helpers
   
@@ -92,5 +103,9 @@ final class LogoutViewModelTests: XCTestCase {
     trackForMemoryLeaks(sut, file: file, line: line)
     
     return (sut, service)
+  }
+  
+  private func anyNSError() -> NSError {
+    NSError(domain: "any error", code: 1)
   }
 }
