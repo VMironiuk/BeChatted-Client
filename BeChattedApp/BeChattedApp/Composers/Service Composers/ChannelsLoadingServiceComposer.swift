@@ -12,10 +12,7 @@ import BeChattedNetwork
 struct ChannelsLoadingServiceComposer {
   private init() {}
   
-  private static let httpProtocol = "http"
-  private static let host = "localhost"
-  private static let port = "3005"
-  private static let baseURLString = "\(httpProtocol)://\(host):\(port)"
+  private static let baseURLString = URLProvider.baseURLString
   
   private static let endpoint = "/v1/channel"
   
