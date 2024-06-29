@@ -6,8 +6,15 @@
 //
 
 import SwiftUI
+import BeChatted
 
 struct ProfileView: View {
+  @ObservedObject private var viewModel: ProfileViewModel
+  
+  init(viewModel: ProfileViewModel) {
+    self.viewModel = viewModel
+  }
+  
   var body: some View {
     VStack {
       header
@@ -76,6 +83,39 @@ extension ProfileView {
   }
 }
 
+private struct FakeAuthService: AuthServiceProtocol {
+  func login(
+    _ payload: LoginPayload,
+    completion: @escaping (Result<LoginInfo, AuthError>) -> Void
+  ) {
+  }
+  
+  func createAccount(
+    _ payload: CreateAccountPayload,
+    completion: @escaping (Result<Void, AuthError>) -> Void
+  ) {
+  }
+  
+  func addUser(
+    _ payload: AddUserPayload,
+    authToken: String,
+    completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void
+  ) {
+  }
+  
+  func logout(
+    authToken: String,
+    completion: @escaping (Result<Void, any Error>) -> Void
+  ) {
+  }
+}
+
 #Preview {
-  ProfileView()
+  ProfileView(
+    viewModel: ProfileViewModel(
+      service: FakeAuthService(),
+      authToken: "any token",
+      onLogoutAction: {}
+    )
+  )
 }

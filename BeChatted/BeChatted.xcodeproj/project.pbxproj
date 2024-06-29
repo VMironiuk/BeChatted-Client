@@ -33,6 +33,7 @@
 		2E82F2772B88CA4900802ED5 /* LoginViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2762B88CA4900802ED5 /* LoginViewComposer.swift */; };
 		2E84E3002C2BDFE000580BEA /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E84E2FF2C2BDFE000580BEA /* ProfileViewModel.swift */; };
 		2E84E3022C2BE15700580BEA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E84E3012C2BE15700580BEA /* ProfileView.swift */; };
+		2E854AAC2C2E865F00277AAD /* ProfileViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E854AAA2C2E865F00277AAD /* ProfileViewComposer.swift */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
 		2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */; };
 		2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -131,6 +132,7 @@
 		2E82F2762B88CA4900802ED5 /* LoginViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewComposer.swift; sourceTree = "<group>"; };
 		2E84E2FF2C2BDFE000580BEA /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		2E84E3012C2BE15700580BEA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		2E854AAA2C2E865F00277AAD /* ProfileViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewComposer.swift; sourceTree = "<group>"; };
 		2EB37C922B873791003990B0 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				2E84E3012C2BE15700580BEA /* ProfileView.swift */,
+				2E854AAA2C2E865F00277AAD /* ProfileViewComposer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */,
 				2E82F23F2B88A63F00802ED5 /* ColorProvider.swift in Sources */,
 				2E82F2772B88CA4900802ED5 /* LoginViewComposer.swift in Sources */,
+				2E854AAC2C2E865F00277AAD /* ProfileViewComposer.swift in Sources */,
 				2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */,
 				2EBE98122B89F413009EB16C /* AuthFooterView.swift in Sources */,
 				2E82F24B2B88AB9E00802ED5 /* View+KeyboardVisibility.swift in Sources */,

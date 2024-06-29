@@ -35,6 +35,12 @@ struct ChannelsView: View {
           AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
           channelsViewModel.loadChannels()
         }
+      ),
+      userProfileContent: ProfileView(
+        appData: appData,
+        onLogoutAction: {
+          print(#function)
+        }
       )
     )
   }

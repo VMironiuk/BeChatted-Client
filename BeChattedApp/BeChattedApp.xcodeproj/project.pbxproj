@@ -27,6 +27,7 @@
 		2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */; };
 		2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */; };
 		2E854AA72C2E80D600277AAD /* URLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E854AA62C2E80D600277AAD /* URLProvider.swift */; };
+		2E854AA92C2E853B00277AAD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E854AA82C2E853B00277AAD /* ProfileView.swift */; };
 		2E9553972BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */; };
 		2E9553992BE3BBDF002E23B2 /* BeChattedNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */; };
 		2E95539A2BE3BBDF002E23B2 /* BeChattedNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -83,6 +84,7 @@
 		2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceComposer.swift; sourceTree = "<group>"; };
 		2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+HideKeyboard.swift"; sourceTree = "<group>"; };
 		2E854AA62C2E80D600277AAD /* URLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProvider.swift; sourceTree = "<group>"; };
+		2E854AA82C2E853B00277AAD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift"; sourceTree = "<group>"; };
 		2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				2EF578372C1D6277003F6493 /* AuthView.swift */,
 				2EF578332C1D5F47003F6493 /* LoginView.swift */,
 				2EF578352C1D6128003F6493 /* RegisterView.swift */,
+				2E854AA82C2E853B00277AAD /* ProfileView.swift */,
 				2EF578392C1D63F8003F6493 /* ChannelsView.swift */,
 				2EF5783B2C1D643B003F6493 /* CreateChannelView.swift */,
 			);
@@ -316,6 +319,7 @@
 				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */,
+				2E854AA92C2E853B00277AAD /* ProfileView.swift in Sources */,
 				2E95539C2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift in Sources */,
 				2EF578382C1D6277003F6493 /* AuthView.swift in Sources */,
 				2EF578362C1D6128003F6493 /* RegisterView.swift in Sources */,

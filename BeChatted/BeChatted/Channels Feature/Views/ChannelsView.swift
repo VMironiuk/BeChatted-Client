@@ -8,15 +8,22 @@
 import SwiftUI
 import BeChatted
 
-struct ChannelsView<Content: View>: View {
+struct ChannelsView<CreateChannelContent: View, UserProfileContent: View>: View {
   @ObservedObject private var viewModel: ChannelsViewModel
-  private let createChannelContent: Content
+  private let createChannelContent: CreateChannelContent
+  private let userProfileContent: UserProfileContent
   
   @State private var isCreateChannelContentPresented = false
+  @State private var isUserProfileContentPresented = false
   
-  init(viewModel: ChannelsViewModel, createChannelContent: Content) {
+  init(
+    viewModel: ChannelsViewModel,
+    createChannelContent: CreateChannelContent,
+    userProfileContent: UserProfileContent
+  ) {
     self.viewModel = viewModel
     self.createChannelContent = createChannelContent
+    self.userProfileContent = userProfileContent
   }
   
   var body: some View {
@@ -48,6 +55,7 @@ struct ChannelsView<Content: View>: View {
     .toolbar {
       ToolbarItem(placement: .topBarTrailing) {
         Button {
+          isUserProfileContentPresented.toggle()
         } label: {
           ImageProvider.avatarPrototype
             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -62,6 +70,9 @@ struct ChannelsView<Content: View>: View {
     }
     .sheet(isPresented: $isCreateChannelContentPresented) {
       createChannelContent
+    }
+    .sheet(isPresented: $isUserProfileContentPresented) {
+      userProfileContent
     }
   }
   
@@ -108,7 +119,8 @@ struct ChannelsView<Content: View>: View {
       viewModel: ChannelsViewModel(
         channelsLoadingService: FakeChannelsLoadingService()
       ),
-      createChannelContent: Text("Hello")
+      createChannelContent: Text("Hello"),
+      userProfileContent: Text("Profile")
     )
   }
 }

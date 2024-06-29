@@ -11,7 +11,15 @@ import BeChatted
 public struct ChannelsViewComposer {
   private init() {}
   
-  public static func composedChannelsView(with viewModel: ChannelsViewModel, createChannelContent: some View) -> some View {
-    ChannelsView(viewModel: viewModel, createChannelContent: createChannelContent)
+  public static func composedChannelsView<CreateChannelContent: View, UserProfileContent: View>(
+    with viewModel: ChannelsViewModel,
+    createChannelContent: CreateChannelContent,
+    userProfileContent: UserProfileContent
+  ) -> some View {
+    ChannelsView(
+      viewModel: viewModel,
+      createChannelContent: createChannelContent,
+      userProfileContent: userProfileContent
+    )
   }
 }
