@@ -25,6 +25,7 @@ struct UserProfileView: View {
       List {
         userInfo
         logoutButton
+          .listRowSeparator(.hidden)
       }
       .listStyle(.plain)
       .padding(.top, -8)
