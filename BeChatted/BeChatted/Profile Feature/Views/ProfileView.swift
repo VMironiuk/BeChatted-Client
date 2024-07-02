@@ -10,6 +10,7 @@ import BeChatted
 
 struct ProfileView: View {
   @ObservedObject private var viewModel: ProfileViewModel
+  @Environment(\.dismiss) var dismiss
   
   init(viewModel: ProfileViewModel) {
     self.viewModel = viewModel
@@ -41,6 +42,7 @@ extension ProfileView {
         
         HStack {
           Button {
+            dismiss()
           } label: {
             Image(systemName: "xmark")
               .foregroundStyle(.black)
