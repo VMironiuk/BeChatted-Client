@@ -34,11 +34,13 @@ public final class ProfileViewModel: ObservableObject {
   public func logout() {
     state = .inProgress
     service.logout(authToken: authToken) { [weak self] result in
-      switch result {
-      case .success: self?.state = .success
-      case .failure(let error): self?.state = .failure(error)
+      DispatchQueue.main.async {
+        switch result {
+        case .success: self?.state = .success
+        case .failure(let error): self?.state = .failure(error)
+        }
+        self?.onLogoutAction()
       }
-      self?.onLogoutAction()
     }
   }
 }

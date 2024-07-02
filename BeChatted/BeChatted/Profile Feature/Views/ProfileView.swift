@@ -80,6 +80,7 @@ extension ProfileView {
 extension ProfileView {
   private var logoutButton: some View {
     Button("Logout") {
+      viewModel.logout()
     }
     .buttonStyle(SecondaryButtonStyle())
   }
