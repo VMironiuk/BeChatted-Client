@@ -84,6 +84,7 @@ extension UserProfileView {
       viewModel.logout()
     }
     .buttonStyle(SecondaryButtonStyle())
+    .disabled(viewModel.state == .inProgress)
   }
 }
 
