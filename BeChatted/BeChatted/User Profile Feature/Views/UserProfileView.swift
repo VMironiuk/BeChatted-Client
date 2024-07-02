@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  UserProfileView.swift
 //  BeChattediOS
 //
 //  Created by Volodymyr Myroniuk on 26.06.2024.
@@ -8,11 +8,11 @@
 import SwiftUI
 import BeChatted
 
-struct ProfileView: View {
-  @ObservedObject private var viewModel: ProfileViewModel
+struct UserProfileView: View {
+  @ObservedObject private var viewModel: UserProfileViewModel
   @Environment(\.dismiss) var dismiss
   
-  init(viewModel: ProfileViewModel) {
+  init(viewModel: UserProfileViewModel) {
     self.viewModel = viewModel
   }
   
@@ -32,7 +32,7 @@ struct ProfileView: View {
   }
 }
 
-extension ProfileView {
+extension UserProfileView {
   private var header: some View {
     VStack {
       ZStack {
@@ -57,7 +57,7 @@ extension ProfileView {
   }
 }
 
-extension ProfileView {
+extension UserProfileView {
   private var userInfo: some View {
     HStack {
       ImageProvider.avatarPrototype
@@ -77,7 +77,7 @@ extension ProfileView {
   }
 }
 
-extension ProfileView {
+extension UserProfileView {
   private var logoutButton: some View {
     Button("Logout") {
       viewModel.logout()
@@ -114,8 +114,8 @@ private struct FakeAuthService: AuthServiceProtocol {
 }
 
 #Preview {
-  ProfileView(
-    viewModel: ProfileViewModel(
+  UserProfileView(
+    viewModel: UserProfileViewModel(
       service: FakeAuthService(),
       authToken: "any token",
       onLogoutAction: {}

@@ -36,7 +36,7 @@ struct ChannelsView: View {
           channelsViewModel.loadChannels()
         }
       ),
-      userProfileContent: ProfileView(
+      userProfileContent: UserProfileView(
         appData: appData,
         onLogoutAction: {
           appData.authToken = nil

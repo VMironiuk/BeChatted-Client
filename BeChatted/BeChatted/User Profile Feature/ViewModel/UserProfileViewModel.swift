@@ -1,5 +1,5 @@
 //
-//  ProfileViewModel.swift
+//  UserProfileViewModel.swift
 //  BeChatted
 //
 //  Created by Volodymyr Myroniuk on 26.06.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class ProfileViewModel: ObservableObject {
+public final class UserProfileViewModel: ObservableObject {
   public enum State: Equatable {
     case idle
     case inProgress
@@ -45,8 +45,8 @@ public final class ProfileViewModel: ObservableObject {
   }
 }
 
-public extension ProfileViewModel.State {
-  static func == (lhs: ProfileViewModel.State, rhs: ProfileViewModel.State) -> Bool {
+public extension UserProfileViewModel.State {
+  static func == (lhs: UserProfileViewModel.State, rhs: UserProfileViewModel.State) -> Bool {
     switch (lhs, rhs) {
     case (.idle, .idle): true
     case (.inProgress, .inProgress): true

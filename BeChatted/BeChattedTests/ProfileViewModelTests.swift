@@ -102,9 +102,9 @@ final class ProfileViewModelTests: XCTestCase {
     onLogoutAction: @escaping () -> Void = {},
     file: StaticString = #filePath,
     line: UInt = #line
-  ) -> (ProfileViewModel, AuthServiceStub) {
+  ) -> (UserProfileViewModel, AuthServiceStub) {
     let service = AuthServiceStub()
-    let sut = ProfileViewModel(service: service, authToken: authToken, onLogoutAction: onLogoutAction)
+    let sut = UserProfileViewModel(service: service, authToken: authToken, onLogoutAction: onLogoutAction)
     
     trackForMemoryLeaks(sut, file: file, line: line)
     

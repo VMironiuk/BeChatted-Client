@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  UserProfileView.swift
 //  BeChattedApp
 //
 //  Created by Volodymyr Myroniuk on 28.06.2024.
@@ -9,18 +9,18 @@ import SwiftUI
 import BeChatted
 import BeChattediOS
 
-struct ProfileView: View {
+struct UserProfileView: View {
   @ObservedObject private var appData: AppData
   private let onLogoutAction: () -> Void
   
-  @StateObject private var viewModel: ProfileViewModel
+  @StateObject private var viewModel: UserProfileViewModel
   
   init(appData: AppData, onLogoutAction: @escaping () -> Void) {
     self.appData = appData
     self.onLogoutAction = onLogoutAction
     
     _viewModel = StateObject(
-      wrappedValue: ProfileViewModel(
+      wrappedValue: UserProfileViewModel(
         service: AuthServiceComposer.authService,
         authToken: appData.authToken ?? "",
         onLogoutAction: onLogoutAction)
@@ -28,10 +28,10 @@ struct ProfileView: View {
   }
   
   var body: some View {
-    ProfileViewComposer.composedProfileView(viewModel: viewModel)
+    UserProfileViewComposer.composedProfileView(viewModel: viewModel)
   }
 }
 
 #Preview {
-  ProfileView(appData: AppData(), onLogoutAction: {})
+  UserProfileView(appData: AppData(), onLogoutAction: {})
 }
