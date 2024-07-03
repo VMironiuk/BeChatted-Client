@@ -18,7 +18,8 @@ struct UserLogoutService: UserLogoutServiceProtocol {
   }
   
   func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void) {
-    let request = URLRequest(url: url)
+    var request = URLRequest(url: url)
+    request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
     
     client.perform(request: request) { result in
       switch result {
