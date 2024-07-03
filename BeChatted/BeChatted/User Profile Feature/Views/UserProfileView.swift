@@ -17,18 +17,25 @@ struct UserProfileView: View {
   }
   
   var body: some View {
-    VStack {
-      header
-      
-      Divider()
-            
-      List {
-        userInfo
-        logoutButton
-          .listRowSeparator(.hidden)
+    ZStack {
+      VStack {
+        header
+        
+        Divider()
+        
+        List {
+          userInfo
+          logoutButton
+            .listRowSeparator(.hidden)
+        }
+        .listStyle(.plain)
+        .padding(.top, -8)
       }
-      .listStyle(.plain)
-      .padding(.top, -8)
+      
+      if viewModel.state == .inProgress {
+        ProgressView()
+          .controlSize(.large)
+      }
     }
   }
 }
