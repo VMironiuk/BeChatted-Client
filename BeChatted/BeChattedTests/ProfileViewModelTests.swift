@@ -48,9 +48,18 @@ final class ProfileViewModelTests: XCTestCase {
     let (sut, service) = makeSUT(onLogoutAction: {
       onLogoutActionCallCount += 1
     })
+    let exp = expectation(description: "Wait for logout completion")
+    let sub = sut.$state.sink { result in
+      if result == .success {
+        exp.fulfill()
+      }
+    }
     
     sut.logout()
     service.completeLogoutSuccessfully()
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
     
     XCTAssertEqual(onLogoutActionCallCount, 1)
   }
@@ -60,9 +69,18 @@ final class ProfileViewModelTests: XCTestCase {
     let (sut, service) = makeSUT(onLogoutAction: {
       onLogoutActionCallCount += 1
     })
+    let exp = expectation(description: "Wait for logout completion")
+    let sub = sut.$state.sink { result in
+      if case .failure(_) = result {
+        exp.fulfill()
+      }
+    }
     
     sut.logout()
     service.completeLogoutWithError(anyNSError())
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
     
     XCTAssertEqual(onLogoutActionCallCount, 1)
   }
@@ -71,10 +89,21 @@ final class ProfileViewModelTests: XCTestCase {
     let (sut, service) = makeSUT()
     XCTAssertEqual(sut.state, .idle)
     
+    let exp = expectation(description: "Wait for logout completion")
+    let sub = sut.$state.sink { result in
+      if result == .success {
+        exp.fulfill()
+      }
+    }
+    
     sut.logout()
     XCTAssertEqual(sut.state, .inProgress)
-    
+        
     service.completeLogoutSuccessfully()
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+
     XCTAssertEqual(sut.state, .success)
   }
   
@@ -82,11 +111,22 @@ final class ProfileViewModelTests: XCTestCase {
     let (sut, service) = makeSUT()
     XCTAssertEqual(sut.state, .idle)
     
+    let exp = expectation(description: "Wait for logout completion")
+    let sub = sut.$state.sink { result in
+      if case .failure(_) = result {
+        exp.fulfill()
+      }
+    }
+    
     sut.logout()
     XCTAssertEqual(sut.state, .inProgress)
     
     let error = NSError(domain: "any domain", code: 42)
     service.completeLogoutWithError(error)
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+
     if case let .failure(gotError) = sut.state {
       XCTAssertEqual(error.domain, (gotError as NSError).domain)
       XCTAssertEqual(error.code, (gotError as NSError).code)
