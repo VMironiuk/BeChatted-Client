@@ -11,35 +11,42 @@ import BeChatted
 import BeChattediOS
 
 struct ChannelsView: View {
-    @ObservedObject private var appData: AppData
-    @StateObject private var channelsViewModel: ChannelsViewModel
+  @ObservedObject private var appData: AppData
+  @StateObject private var channelsViewModel: ChannelsViewModel
+  
+  init(appData: AppData) {
+    self.appData = appData
     
-    init(appData: AppData) {
-        self.appData = appData
-        
-        _channelsViewModel = StateObject(
-            wrappedValue: ChannelsViewModel(
-                channelsLoadingService: ChannelsLoadingServiceComposer.channelsService(
-                    with: appData.authToken ?? ""
-                )
-            )
+    _channelsViewModel = StateObject(
+      wrappedValue: ChannelsViewModel(
+        channelsLoadingService: ChannelsLoadingServiceComposer.channelsService(
+          with: appData.authToken ?? ""
         )
-    }
-    
-    var body: some View {
-        ChannelsViewComposer.composedChannelsView(
-            with: channelsViewModel,
-            createChannelContent: CreateChannelView(
-                appData: appData, 
-                onSuccess: {
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    channelsViewModel.loadChannels()
-                }
-            )
-        )
-    }
+      )
+    )
+  }
+  
+  var body: some View {
+    ChannelsViewComposer.composedChannelsView(
+      with: channelsViewModel,
+      createChannelContent: CreateChannelView(
+        appData: appData, 
+        onSuccess: {
+          AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+          channelsViewModel.loadChannels()
+        }
+      ),
+      userProfileContent: UserProfileView(
+        appData: appData,
+        onLogoutAction: {
+          appData.authToken = nil
+          appData.isUserLoggedIn = false
+        }
+      )
+    )
+  }
 }
 
 #Preview {
-    ChannelsView(appData: AppData())
+  ChannelsView(appData: AppData())
 }

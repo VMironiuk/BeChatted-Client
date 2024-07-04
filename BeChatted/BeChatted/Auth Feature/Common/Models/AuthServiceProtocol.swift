@@ -8,7 +8,8 @@
 import Foundation
 
 public protocol AuthServiceProtocol {
-    func login(_ payload: LoginPayload, completion: @escaping (Result<LoginInfo, AuthError>) -> Void)
-    func createAccount(_ payload: CreateAccountPayload, completion: @escaping (Result<Void, AuthError>) -> Void)
-    func addUser(_ payload: AddUserPayload, authToken: String, completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void)
+  func login(_ payload: LoginPayload, completion: @escaping (Result<LoginInfo, AuthError>) -> Void)
+  func createAccount(_ payload: CreateAccountPayload, completion: @escaping (Result<Void, AuthError>) -> Void)
+  func addUser(_ payload: AddUserPayload, authToken: String, completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void)
+  func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void)
 }

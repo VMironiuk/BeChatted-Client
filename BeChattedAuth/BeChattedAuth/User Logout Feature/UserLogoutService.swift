@@ -8,25 +8,26 @@
 import Foundation
 
 struct UserLogoutService: UserLogoutServiceProtocol {
+  
+  private let url: URL
+  private let client: HTTPClientProtocol
+  
+  init(url: URL, client: HTTPClientProtocol) {
+    self.url = url
+    self.client = client
+  }
+  
+  func logout(authToken: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    var request = URLRequest(url: url)
+    request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
     
-    private let url: URL
-    private let client: HTTPClientProtocol
-    
-    init(url: URL, client: HTTPClientProtocol) {
-        self.url = url
-        self.client = client
+    client.perform(request: request) { result in
+      switch result {
+      case .success:
+        completion(.success(()))
+      case .failure(let error):
+        completion(.failure(error))
+      }
     }
-    
-    func logout(completion: @escaping (Result<Void, UserLogoutServiceError>) -> Void) {
-        let request = URLRequest(url: url)
-        
-        client.perform(request: request) { result in
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure:
-                completion(.failure(.connectivity))
-            }
-        }
-    }
+  }
 }

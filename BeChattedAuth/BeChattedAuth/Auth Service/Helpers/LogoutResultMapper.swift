@@ -8,19 +8,12 @@
 import Foundation
 
 enum LogoutResultMapper {
-    static func result(for result: Result<Void, UserLogoutServiceError>) -> Result<Void, AuthServiceError> {
-        switch result {
-        case .success:
-            return .success(())
-        case .failure(let error):
-            return .failure(map(error: error))
-        }
+  static func result(for result: Result<Void, Error>) -> Result<Void, Error> {
+    switch result {
+    case .success:
+      return .success(())
+    case .failure(let error):
+      return .failure(error)
     }
-    
-    static private func map(error: UserLogoutServiceError) -> AuthServiceError {
-        switch error {
-        case .connectivity:
-            return .connectivity
-        }
-    }
+  }
 }

@@ -8,22 +8,22 @@
 import Foundation
 
 public struct NewAccountPayload: Encodable, Equatable {
-    private let email: String
-    private let password: String
-    
-    public init(email: String, password: String) {
-        self.email = email
-        self.password = password
-    }
+  private let email: String
+  private let password: String
+  
+  public init(email: String, password: String) {
+    self.email = email
+    self.password = password
+  }
 }
 
 enum NewAccountServiceError: Error {
-    case connectivity
-    case email
-    case server
-    case unknown
+  case connectivity
+  case email
+  case server
+  case unknown
 }
 
 protocol NewAccountServiceProtocol {
-    func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, NewAccountServiceError>) -> Void)
+  func send(newAccountPayload: NewAccountPayload, completion: @escaping (Result<Void, NewAccountServiceError>) -> Void)
 }

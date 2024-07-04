@@ -8,17 +8,17 @@
 import BeChattedChannels
 
 extension CreateChanelPayload: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case description
-    }
+  private enum CodingKeys: String, CodingKey {
+    case name
+    case description
+  }
+  
+  public init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    let name = try container.decode(String.self, forKey: .name)
+    let description = try container.decode(String.self, forKey: .description)
     
-    public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let name = try container.decode(String.self, forKey: .name)
-        let description = try container.decode(String.self, forKey: .description)
-        
-        self.init(name: name, description: description)
-    }
+    self.init(name: name, description: description)
+  }
 }
 

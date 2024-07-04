@@ -8,19 +8,19 @@
 import Foundation
 
 public final class ChannelsViewModel: ObservableObject {
-    private let channelsLoadingService: ChannelsLoadingServiceProtocol
-    
-    @Published public var loadChannelsResult: Result<[ChannelItem], ChannelsLoadingServiceError> = .success([])
-    
-    public init(channelsLoadingService: ChannelsLoadingServiceProtocol) {
-        self.channelsLoadingService = channelsLoadingService
+  private let channelsLoadingService: ChannelsLoadingServiceProtocol
+  
+  @Published public var loadChannelsResult: Result<[ChannelItem], ChannelsLoadingServiceError> = .success([])
+  
+  public init(channelsLoadingService: ChannelsLoadingServiceProtocol) {
+    self.channelsLoadingService = channelsLoadingService
+  }
+  
+  public func loadChannels() {
+    channelsLoadingService.loadChannels { [weak self] result in
+      DispatchQueue.main.async {
+        self?.loadChannelsResult = ChannelsViewModelResultMapper.map(from: result)
+      }
     }
-    
-    public func loadChannels() {
-        channelsLoadingService.loadChannels { [weak self] result in
-            DispatchQueue.main.async {
-                self?.loadChannelsResult = ChannelsViewModelResultMapper.map(from: result)
-            }
-        }
-    }
+  }
 }

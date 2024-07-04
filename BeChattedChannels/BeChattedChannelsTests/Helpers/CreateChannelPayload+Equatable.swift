@@ -8,7 +8,7 @@
 import BeChattedChannels
 
 extension CreateChanelPayload: Equatable {
-    public static func == (lhs: CreateChanelPayload, rhs: CreateChanelPayload) -> Bool {
-        lhs.name == rhs.name && lhs.description == rhs.description
-    }
+  public static func == (lhs: CreateChanelPayload, rhs: CreateChanelPayload) -> Bool {
+    lhs.name == rhs.name && lhs.description == rhs.description
+  }
 }

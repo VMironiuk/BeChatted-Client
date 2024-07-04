@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct LoginHeaderView: View {
-    @Environment(\.isKeyboardShown) var isKeyboardShown
-    
-    var body: some View {
-        VStack {
-            if !isKeyboardShown {
-                AuthHeaderView(
-                    title: "Sign in to your\nAccount",
-                    subtitle: "Sign in to your Account"
-                )
-                .frame(height: 180)
-                .transition(.offset(y: -260))
-            }
-        }
+  @Environment(\.isKeyboardShown) var isKeyboardShown
+  
+  var body: some View {
+    VStack {
+      if !isKeyboardShown {
+        AuthHeaderView(
+          title: "Sign in to your\nAccount",
+          subtitle: "Sign in to your Account"
+        )
+        .frame(height: 180)
+        .transition(.offset(y: -260))
+      }
     }
+  }
 }
 
 #Preview {
-    LoginHeaderView()
+  LoginHeaderView()
 }

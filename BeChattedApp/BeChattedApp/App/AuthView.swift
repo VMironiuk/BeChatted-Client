@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct AuthView: View {
-    @EnvironmentObject private var navigationController: MainNavigationController
-    @EnvironmentObject private var appData: AppData
-
-    var body: some View {
-        LoginView(navigationController: navigationController, appData: appData)
-            .navigationDestination(for: MainNavigationController.Destination.self) { _ in
-                RegisterView()
-            }
-    }
+  @EnvironmentObject private var navigationController: MainNavigationController
+  @EnvironmentObject private var appData: AppData
+  
+  var body: some View {
+    LoginView(navigationController: navigationController, appData: appData)
+      .navigationDestination(for: MainNavigationController.Destination.self) { _ in
+        RegisterView()
+      }
+  }
 }
 
 #Preview {
-    AuthView()
+  AuthView()
 }

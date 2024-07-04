@@ -8,11 +8,11 @@
 import Foundation
 
 extension Bundle {
-    var displayName: String? {
-        object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
-    }
-    
-    var displayNameOrEmpty: String {
-        displayName ?? ""
-    }
+  var displayName: String? {
+    object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+  }
+  
+  var displayNameOrEmpty: String {
+    displayName ?? ""
+  }
 }
