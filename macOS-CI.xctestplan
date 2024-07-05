@@ -51,6 +51,14 @@
         "identifier" : "2E8A72552AF4002E0075FF43",
         "name" : "BeChattedUserInputValidationTests"
       }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChattedUser\/BeChattedUser.xcodeproj",
+        "identifier" : "2E5C1A0B2C37AB1D0069FC1A",
+        "name" : "BeChattedUserTests"
+      }
     }
   ],
   "version" : 1
