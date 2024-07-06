@@ -14,7 +14,7 @@ public protocol HTTPClientProtocol {
   )
 }
 
-public struct UserData {
+public struct UserData: Codable {
   public let id: String
   public let name: String
   public let email: String
@@ -24,11 +24,18 @@ public struct UserData {
     case name
     case email
   }
+  
+  public init(id: String, name: String, email: String) {
+    self.id = id
+    self.name = name
+    self.email = email
+  }
 }
 
 public enum UserServiceError: Error {
   case server
   case connectivity
+  case invalidData
 }
 
 public struct UserService {
@@ -43,11 +50,27 @@ public struct UserService {
   public func user(
     by email: String,
     authToken: String,
-    completion: (Result<UserData, UserServiceError>) -> Void
+    completion: @escaping (Result<UserData, UserServiceError>) -> Void
   ) {
     let request = URLRequest(url: url)
     
-    client.perform(request: request) { _ in }
+    client.perform(request: request) { result in
+      switch result {
+      case let .success((data, response)):
+        guard response?.statusCode == 200 else {
+          completion(.failure(.server))
+          return
+        }
+        guard let data = data, let user = try? JSONDecoder().decode(UserData.self, from: data) else {
+          completion(.failure(.invalidData))
+          return
+        }
+        completion(.success(user))
+        
+      case let .failure(error):
+        completion(.failure(.connectivity))
+      }
+    }
   }
 }
 
@@ -64,6 +87,26 @@ final class UserServiceTests: XCTestCase {
     sut.user(by: "mail@example.com", authToken: "token") { _ in }
     
     XCTAssertEqual(client.userByEmailCallCount, 1)
+  }
+  
+  func test_userByEmail_receiveUserDataOnSuccessfulCompletion() {
+    let (sut, client) = makeSUT()
+    let expectedUserData = UserData(id: "user-id", name: "user-name", email: "user@example.com")
+    let exp = expectation(description: "Wait for receiving user data completion")
+    
+    sut.user(
+      by: expectedUserData.email,
+      authToken: "any-token") { result in
+        if case let .success(receivedUserData) = result {
+          XCTAssertEqual(expectedUserData, receivedUserData)
+        } else {
+          XCTFail("Expected \(expectedUserData), got \(result) instead")
+        }
+        exp.fulfill()
+      }
+    
+    client.complete(with: try? JSONEncoder().encode(expectedUserData))
+    wait(for: [exp], timeout: 1)
   }
   
   // MARK: - Helpers
@@ -97,6 +140,7 @@ final class UserServiceTests: XCTestCase {
   }
   
   private class HTTPClientSpy: HTTPClientProtocol {
+    private var completions = [(Result<(Data?, HTTPURLResponse?), any Error>) -> Void]()
     private(set) var userByEmailCallCount = 0
     
     func perform(
@@ -104,6 +148,15 @@ final class UserServiceTests: XCTestCase {
       completion: @escaping (Result<(Data?, HTTPURLResponse?), any Error>) -> Void
     ) {
       userByEmailCallCount += 1
+      completions.append(completion)
+    }
+    
+    func complete(with data: Data?, at index: Int = 0) {
+      let url = URL(string: "http://any-url.com")!
+      let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+      completions[index](.success((data, response)))
     }
   }
 }
+
+extension UserData: Equatable {}
