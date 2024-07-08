@@ -66,7 +66,7 @@ public struct UserService {
         }
         completion(.success(user))
         
-      case let .failure(error):
+      case .failure:
         completion(.failure(.connectivity))
       }
     }
@@ -128,7 +128,24 @@ final class UserServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1)
   }
 
-  // invalid data
+  func test_userByEmail_receivesInvalidDataErrorOnInvalidDataInResponse() {
+    let (sut, client) = makeSUT()
+    let exp = expectation(description: "Wait for receiving user data completion")
+    
+    sut.user(
+      by: "user@example.com",
+      authToken: "any-token") { result in
+        if case let .failure(receivedError) = result {
+          XCTAssertEqual(receivedError, .invalidData)
+        } else {
+          XCTFail("Expected connectivity error, got \(result) instead")
+        }
+        exp.fulfill()
+      }
+    
+    client.complete(with: "invalid data".data(using: .utf8))
+    wait(for: [exp], timeout: 1)
+  }
   
   // MARK: - Helpers
   
