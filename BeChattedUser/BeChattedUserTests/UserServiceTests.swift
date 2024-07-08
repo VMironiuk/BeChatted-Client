@@ -33,7 +33,6 @@ public struct UserData: Codable {
 }
 
 public enum UserServiceError: Error {
-  case server
   case connectivity
   case invalidData
 }
@@ -58,7 +57,7 @@ public struct UserService {
       switch result {
       case let .success((data, response)):
         guard response?.statusCode == 200 else {
-          completion(.failure(.server))
+          completion(.failure(.connectivity))
           return
         }
         guard let data = data, let user = try? JSONDecoder().decode(UserData.self, from: data) else {
@@ -89,7 +88,7 @@ final class UserServiceTests: XCTestCase {
     XCTAssertEqual(client.userByEmailCallCount, 1)
   }
   
-  func test_userByEmail_receiveUserDataOnSuccessfulCompletion() {
+  func test_userByEmail_receivesUserDataOnSuccessfulCompletion() {
     let (sut, client) = makeSUT()
     let expectedUserData = UserData(id: "user-id", name: "user-name", email: "user@example.com")
     let exp = expectation(description: "Wait for receiving user data completion")
@@ -108,6 +107,28 @@ final class UserServiceTests: XCTestCase {
     client.complete(with: try? JSONEncoder().encode(expectedUserData))
     wait(for: [exp], timeout: 1)
   }
+  
+  func test_userByEmail_receivesConnectivityErrorOnNon200HTTPResponse() {
+    let (sut, client) = makeSUT()
+    let anyUserData = UserData(id: "user-id", name: "user-name", email: "user@example.com")
+    let exp = expectation(description: "Wait for receiving user data completion")
+    
+    sut.user(
+      by: anyUserData.email,
+      authToken: "any-token") { result in
+        if case let .failure(receivedError) = result {
+          XCTAssertEqual(receivedError, .connectivity)
+        } else {
+          XCTFail("Expected connectivity error, got \(result) instead")
+        }
+        exp.fulfill()
+      }
+    
+    client.complete(with: try? JSONEncoder().encode(anyUserData), statusCode: 500)
+    wait(for: [exp], timeout: 1)
+  }
+
+  // invalid data
   
   // MARK: - Helpers
   
@@ -151,9 +172,14 @@ final class UserServiceTests: XCTestCase {
       completions.append(completion)
     }
     
-    func complete(with data: Data?, at index: Int = 0) {
+    func complete(with data: Data?, statusCode: Int = 200, at index: Int = 0) {
       let url = URL(string: "http://any-url.com")!
-      let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+      let response = HTTPURLResponse(
+        url: url,
+        statusCode: statusCode,
+        httpVersion: nil,
+        headerFields: nil
+      )
       completions[index](.success((data, response)))
     }
   }
