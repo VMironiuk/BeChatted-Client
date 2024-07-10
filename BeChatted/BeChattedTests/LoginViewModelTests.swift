@@ -64,6 +64,24 @@ final class LoginViewModelTests: XCTestCase {
     XCTAssertEqual(authService.logoutCallCount, 0)
   }
   
+  func test_login_doesNotSendUserByEmailMessageWhenLoginFails() {
+    let (sut, authService, userService) = makeSUT()
+    let exp = expectation(description: "Wait for login request completion")
+    let sub = sut.$state.sink { result in
+      if result == .failure(AuthError.unknown) {
+        exp.fulfill()
+      }
+    }
+    
+    sut.login()
+    authService.completeLoginWithError(.unknown)
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+    
+    XCTAssertEqual(userService.userByEmailCallCount, 0)
+  }
+  
   func test_login_failsIfAuthServiceLoginRequestFails() {
     let (sut, authService, _) = makeSUT()
     let exp = expectation(description: "Wait for login request completion")
