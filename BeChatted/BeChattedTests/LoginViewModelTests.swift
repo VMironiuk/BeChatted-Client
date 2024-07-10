@@ -82,6 +82,24 @@ final class LoginViewModelTests: XCTestCase {
     XCTAssertEqual(userService.userByEmailCallCount, 0)
   }
   
+  func test_login_sendsUserByEmailMessageWhenLoginSucceeds() {
+    let (sut, authService, userService) = makeSUT()
+    let exp = expectation(description: "Wait for login request completion")
+    let sub = sut.$state.sink { result in
+      if result == .fetchingUser {
+        exp.fulfill()
+      }
+    }
+    
+    sut.login()
+    authService.completeLoginSuccessfully()
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+    
+    XCTAssertEqual(userService.userByEmailCallCount, 1)
+  }
+  
   func test_login_failsIfAuthServiceLoginRequestFails() {
     let (sut, authService, _) = makeSUT()
     let exp = expectation(description: "Wait for login request completion")
@@ -102,7 +120,7 @@ final class LoginViewModelTests: XCTestCase {
     let (sut, authService, _) = makeSUT()
     let exp = expectation(description: "Wait for login request completion")
     let sub = sut.$state.sink { result in
-      if result != .inProgress {
+      if result != .loggingIn {
         exp.fulfill()
       }
     }

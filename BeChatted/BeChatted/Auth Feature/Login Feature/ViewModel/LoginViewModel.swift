@@ -10,7 +10,8 @@ import Foundation
 public final class LoginViewModel: ObservableObject {
   public enum State: Equatable {
     case idle
-    case inProgress
+    case loggingIn
+    case fetchingUser
     case success
     case failure(AuthError)
   }
@@ -52,11 +53,12 @@ public final class LoginViewModel: ObservableObject {
   }
   
   public func login() {
-    state = .inProgress
+    state = .loggingIn
     authService.login(LoginPayload(email: email, password: password)) { [weak self] result in
       DispatchQueue.main.async {
         switch result {
         case .success(let loginInfo):
+          self?.state = .fetchingUser
           self?.fetchUserInfo(authToken: loginInfo.token)
         case .failure(let error):
           self?.state = .failure(error)
