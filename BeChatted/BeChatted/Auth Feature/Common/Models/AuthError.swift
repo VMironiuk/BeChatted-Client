@@ -12,6 +12,7 @@ public enum AuthError: Error {
   case connectivity
   case email
   case credentials
+  case fetchUser
   case unknown
 }
 
@@ -26,6 +27,8 @@ extension AuthError {
       return "Email Already in Use"
     case .credentials:
       return "Login Failed"
+    case .fetchUser:
+      return "Cannot Fetch User Info"
     case .unknown:
       return "Oops! Something Went Wrong"
     }
@@ -44,6 +47,8 @@ extension AuthError {
     case .credentials:
       return "The credentials you entered do not match our records. "
       + "Please double-check your details and try again"
+    case .fetchUser:
+      return "Cannot fetch user info."
     case .unknown:
       return "An unexpected error occurred. Please try again. "
       + "If the problem persists, contact our support team for assistance"

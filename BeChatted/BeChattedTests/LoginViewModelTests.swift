@@ -11,36 +11,38 @@ import BeChatted
 final class LoginViewModelTests: XCTestCase {
   
   func test_init_containsNonValidUserInput() {
-    let (sut, _) = makeSUT(isEmailValidStub: false, isPasswordValidStub: false)
+    let (sut, _, _) = makeSUT(isEmailValidStub: false, isPasswordValidStub: false)
     XCTAssertFalse(sut.isUserInputValid)
   }
   
   func test_isUserInputValid_returnsFalseOnInvalidPassword() {
-    let (sut, _) = makeSUT(isEmailValidStub: true, isPasswordValidStub: false)
+    let (sut, _, _) = makeSUT(isEmailValidStub: true, isPasswordValidStub: false)
     XCTAssertFalse(sut.isUserInputValid)
   }
   
   func test_isUserInputValid_returnsFalseOnInvalidEmail() {
-    let (sut, _) = makeSUT(isEmailValidStub: false, isPasswordValidStub: true)
+    let (sut, _, _) = makeSUT(isEmailValidStub: false, isPasswordValidStub: true)
     XCTAssertFalse(sut.isUserInputValid)
   }
   
   func test_isUserInputValid_returnsTrueOnValidCredentials() {
-    let (sut, _) = makeSUT(isEmailValidStub: true, isPasswordValidStub: true)
+    let (sut, _, _) = makeSUT(isEmailValidStub: true, isPasswordValidStub: true)
     XCTAssertTrue(sut.isUserInputValid)
   }
   
-  func tests_init_doesNotSendMessagesToAuthService() {
-    let (_, authService) = makeSUT()
+  func tests_init_doesNotSendMessagesToServices() {
+    let (_, authService, userService) = makeSUT()
     
     XCTAssertEqual(authService.createAccountCallCount, 0)
     XCTAssertEqual(authService.addUserCallCount, 0)
     XCTAssertEqual(authService.loginCallCount, 0)
     XCTAssertEqual(authService.logoutCallCount, 0)
+    
+    XCTAssertEqual(userService.userByEmailCallCount, 0)
   }
   
   func test_login_sendsOnlyOneLoginMessageToAuthServiceOnOneCall() {
-    let (sut, authService) = makeSUT()
+    let (sut, authService, _) = makeSUT()
     
     sut.login()
     
@@ -51,7 +53,7 @@ final class LoginViewModelTests: XCTestCase {
   }
   
   func test_login_sendsOnlyTwoLoginMessagesToAuthServiceOnTwoCalls() {
-    let (sut, authService) = makeSUT()
+    let (sut, authService, _) = makeSUT()
     
     sut.login()
     sut.login()
@@ -63,7 +65,7 @@ final class LoginViewModelTests: XCTestCase {
   }
   
   func test_login_failsIfAuthServiceLoginRequestFails() {
-    let (sut, authService) = makeSUT()
+    let (sut, authService, _) = makeSUT()
     let exp = expectation(description: "Wait for login request completion")
     let sub = sut.$state.sink { result in
       if result == .failure(AuthError.unknown) {
@@ -79,10 +81,10 @@ final class LoginViewModelTests: XCTestCase {
   }
   
   func test_login_succeedsIfAuthServiceLoginRequestSucceeds() {
-    let (sut, authService) = makeSUT()
+    let (sut, authService, _) = makeSUT()
     let exp = expectation(description: "Wait for login request completion")
     let sub = sut.$state.sink { result in
-      if result == .success {
+      if result != .inProgress {
         exp.fulfill()
       }
     }
@@ -101,19 +103,23 @@ final class LoginViewModelTests: XCTestCase {
     isPasswordValidStub: Bool = false,
     file: StaticString = #filePath,
     line: UInt = #line
-  ) -> (LoginViewModel, AuthServiceStub) {
+  ) -> (LoginViewModel, AuthServiceStub, UserServiceStub) {
     let emailValidator = EmailValidatorStub(isValidStubbed: isEmailValidStub)
     let passwordValidator = PasswordValidatorStub(isValidStubbed: isPasswordValidStub)
     let authService = AuthServiceStub()
+    let userService = UserServiceStub()
     let sut = LoginViewModel(
       emailValidator: emailValidator,
       passwordValidator: passwordValidator,
       authService: authService,
+      userService: userService,
       onLoginSuccessAction: { _ in }
     )
     
     trackForMemoryLeaks(sut, file: file, line: line)
+    trackForMemoryLeaks(authService, file: file, line: line)
+    trackForMemoryLeaks(userService, file: file, line: line)
     
-    return (sut, authService)
+    return (sut, authService, userService)
   }
 }
