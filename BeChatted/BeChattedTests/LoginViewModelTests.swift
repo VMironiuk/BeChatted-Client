@@ -116,6 +116,30 @@ final class LoginViewModelTests: XCTestCase {
     sub.cancel()
   }
   
+  func test_login_failsIfUserByEmailRequestFails() {
+    let (sut, authService, userService) = makeSUT()
+    let expLogin = expectation(description: "Wait for login request completion")
+    let expFetchUser = expectation(description: "Wait for fetch user request completion")
+    let sub = sut.$state.sink { result in
+      if result == .fetchingUser {
+        expLogin.fulfill()
+      }
+      if result == .failure(.fetchUser) {
+        expFetchUser.fulfill()
+      }
+    }
+    
+    sut.login()
+    authService.completeLoginSuccessfully()
+    
+    wait(for: [expLogin], timeout: 1)
+    
+    userService.complete(with: .connectivity)
+    
+    wait(for: [expFetchUser], timeout: 1)
+    sub.cancel()
+  }
+  
   func test_login_succeedsIfAuthServiceLoginRequestSucceeds() {
     let (sut, authService, _) = makeSUT()
     let exp = expectation(description: "Wait for login request completion")
