@@ -26,4 +26,8 @@ final class UserServiceStub: UserServiceProtocol {
   func complete(with error: UserServiceError, at index: Int = 0) {
     completions[index](.failure(error))
   }
+  
+  func complete(with userInfo: UserInfo, at index: Int = 0) {
+    completions[index](.success(userInfo))
+  }
 }
