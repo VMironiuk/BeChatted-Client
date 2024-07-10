@@ -21,7 +21,7 @@ public final class LoginViewModel: ObservableObject {
   private let authService: AuthServiceProtocol
   private let userService: UserServiceProtocol
   
-  private let onLoginSuccessAction: (String) -> Void
+  private let onLoginSuccessAction: (String, UserInfo) -> Void
   
   @Published public var state = State.idle
   @Published public var email: String = ""
@@ -43,7 +43,7 @@ public final class LoginViewModel: ObservableObject {
     passwordValidator: PasswordValidatorProtocol,
     authService: AuthServiceProtocol,
     userService: UserServiceProtocol,
-    onLoginSuccessAction: @escaping (String) -> Void
+    onLoginSuccessAction: @escaping (String, UserInfo) -> Void
   ) {
     self.emailValidator = emailValidator
     self.passwordValidator = passwordValidator
@@ -76,7 +76,7 @@ public final class LoginViewModel: ObservableObject {
         switch result {
         case .success(let userInfo):
           self?.state = .success
-          self?.onLoginSuccessAction(authToken)
+          self?.onLoginSuccessAction(authToken, userInfo)
         case .failure:
           self?.state = .failure(.fetchUser)
           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

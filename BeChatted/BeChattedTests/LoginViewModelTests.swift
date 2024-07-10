@@ -165,9 +165,37 @@ final class LoginViewModelTests: XCTestCase {
     sub.cancel()
   }
   
+  func test_login_receivesUserInfoOnSuccess() {
+    let expectedUserInfo = UserInfo(id: "id", name: "name", email: "email")
+    let (sut, authService, userService) = makeSUT { _, receivedUserInfo in
+      XCTAssertEqual(expectedUserInfo, receivedUserInfo)
+    }
+    let expLogin = expectation(description: "Wait for login request completion")
+    let expFetchUser = expectation(description: "Wait for fetch user request completion")
+    let sub = sut.$state.sink { result in
+      if result == .fetchingUser {
+        expLogin.fulfill()
+      }
+      if result == .success {
+        expFetchUser.fulfill()
+      }
+    }
+    
+    sut.login()
+    authService.completeLoginSuccessfully()
+    
+    wait(for: [expLogin], timeout: 1)
+    
+    userService.complete(with: expectedUserInfo)
+    
+    wait(for: [expFetchUser], timeout: 1)
+    sub.cancel()
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
+    onLoginSuccessAction: @escaping (String, UserInfo) -> Void = { _, _ in },
     isEmailValidStub: Bool = false,
     isPasswordValidStub: Bool = false,
     file: StaticString = #filePath,
@@ -182,7 +210,7 @@ final class LoginViewModelTests: XCTestCase {
       passwordValidator: passwordValidator,
       authService: authService,
       userService: userService,
-      onLoginSuccessAction: { _ in }
+      onLoginSuccessAction: onLoginSuccessAction
     )
     
     trackForMemoryLeaks(sut, file: file, line: line)
@@ -190,5 +218,11 @@ final class LoginViewModelTests: XCTestCase {
     trackForMemoryLeaks(userService, file: file, line: line)
     
     return (sut, authService, userService)
+  }
+}
+
+extension UserInfo: Equatable {
+  public static func == (lhs: UserInfo, rhs: UserInfo) -> Bool {
+    lhs.id == rhs.id && lhs.name == rhs.name && lhs.email == rhs.email
   }
 }
