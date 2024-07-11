@@ -28,9 +28,10 @@ struct LoginView: View {
         emailValidator: EmailValidator(),
         passwordValidator: PasswordValidator(),
         authService: AuthServiceComposer.authService,
-        onLoginSuccessAction: { authToken in
+        userService: UserServiceComposer.userService,
+        onLoginSuccessAction: { authToken, userInfo in
+          appData.currentUser = User(from: userInfo)
           appData.authToken = authToken
-          appData.isUserLoggedIn = true
         }
       )
     )

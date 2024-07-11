@@ -21,6 +21,7 @@ struct UserProfileView: View {
     
     _viewModel = StateObject(
       wrappedValue: UserProfileViewModel(
+        info: UserProfileInfo(from: appData.currentUser),
         service: AuthServiceComposer.authService,
         authToken: appData.authToken ?? "",
         onLogoutAction: onLogoutAction)

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2E0792A12BAC161A004D7FD2 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */; };
 		2E302CD32BD793B500135D83 /* ChannelsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */; };
+		2E4B3B1C2C3CFD08007F203E /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B3B1B2C3CFD08007F203E /* UserServiceProtocol.swift */; };
+		2E4B3B1E2C3CFD64007F203E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B3B1D2C3CFD64007F203E /* UserInfo.swift */; };
+		2E4B3B202C3CFF3A007F203E /* UserServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B3B1F2C3CFF3A007F203E /* UserServiceStub.swift */; };
 		2E4F6C042BDA510500BBBCC5 /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */; };
 		2E4FC5842BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */; };
 		2E4FC5862BE2717400061DE6 /* ChannelTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */; };
@@ -34,6 +37,7 @@
 		2E84E3002C2BDFE000580BEA /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E84E2FF2C2BDFE000580BEA /* UserProfileViewModel.swift */; };
 		2E84E3022C2BE15700580BEA /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E84E3012C2BE15700580BEA /* UserProfileView.swift */; };
 		2E854AAC2C2E865F00277AAD /* UserProfileViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E854AAA2C2E865F00277AAD /* UserProfileViewComposer.swift */; };
+		2E9071D42C3FA80100E776E7 /* UserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9071D32C3FA80100E776E7 /* UserProfileInfo.swift */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
 		2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */; };
 		2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -109,6 +113,9 @@
 /* Begin PBXFileReference section */
 		2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModelTests.swift; sourceTree = "<group>"; };
+		2E4B3B1B2C3CFD08007F203E /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
+		2E4B3B1D2C3CFD64007F203E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		2E4B3B1F2C3CFF3A007F203E /* UserServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceStub.swift; sourceTree = "<group>"; };
 		2E4F6C032BDA510500BBBCC5 /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
 		2E4FC5832BE26ECF00061DE6 /* ChannelsLoadingIssueContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingIssueContentView.swift; sourceTree = "<group>"; };
 		2E4FC5852BE2717400061DE6 /* ChannelTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTitleView.swift; sourceTree = "<group>"; };
@@ -133,6 +140,7 @@
 		2E84E2FF2C2BDFE000580BEA /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		2E84E3012C2BE15700580BEA /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		2E854AAA2C2E865F00277AAD /* UserProfileViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewComposer.swift; sourceTree = "<group>"; };
+		2E9071D32C3FA80100E776E7 /* UserProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfo.swift; sourceTree = "<group>"; };
 		2EB37C922B873791003990B0 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 			children = (
 				2E82F2302B8897A300802ED5 /* LoginInfo.swift */,
 				2E82F2362B8897FA00802ED5 /* AddedUserInfo.swift */,
+				2E4B3B1D2C3CFD64007F203E /* UserInfo.swift */,
 			);
 			path = ResponseInfos;
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 		2E84E2FE2C2BDFC200580BEA /* User Profile Feature */ = {
 			isa = PBXGroup;
 			children = (
+				2E9071D22C3FA7EE00E776E7 /* Models */,
 				2E84E3042C2BE17100580BEA /* ViewModel */,
 				2E84E3032C2BE16A00580BEA /* Views */,
 			);
@@ -272,6 +282,14 @@
 				2E84E2FF2C2BDFE000580BEA /* UserProfileViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2E9071D22C3FA7EE00E776E7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E9071D32C3FA80100E776E7 /* UserProfileInfo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2E9553A02BE3C6D3002E23B2 /* Auth Feature */ = {
@@ -302,6 +320,7 @@
 			children = (
 				2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */,
 				2EB37C9F2B8737E0003990B0 /* AuthServiceStub.swift */,
+				2E4B3B1F2C3CFF3A007F203E /* UserServiceStub.swift */,
 				2EB37CBB2B874240003990B0 /* EmailValidatorStub.swift */,
 				2EB37CBD2B87427B003990B0 /* PasswordValidatorStub.swift */,
 				2ED1A2192BFB16CE00973571 /* ChannelItem+Equatable.swift */,
@@ -464,6 +483,7 @@
 				2EC3EE982B85C520007B6D10 /* AuthError.swift */,
 				2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */,
 				2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */,
+				2E4B3B1B2C3CFD08007F203E /* UserServiceProtocol.swift */,
 				2E82F2382B88989100802ED5 /* RequestPayloads */,
 				2E82F2392B8898E000802ED5 /* ResponseInfos */,
 			);
@@ -667,6 +687,7 @@
 				2EB37CBC2B874240003990B0 /* EmailValidatorStub.swift in Sources */,
 				2EBF51452BFF0109001EA238 /* CreateChannelViewModelTests.swift in Sources */,
 				2EB37CA22B8737E0003990B0 /* AuthServiceStub.swift in Sources */,
+				2E4B3B202C3CFF3A007F203E /* UserServiceStub.swift in Sources */,
 				2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2ED1A21A2BFB16CE00973571 /* ChannelItem+Equatable.swift in Sources */,
 				2EB37CBA2B874119003990B0 /* RegisterViewModelTests.swift in Sources */,
@@ -691,12 +712,15 @@
 				2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */,
 				2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */,
 				2EBF51482BFF0144001EA238 /* CreateChannelServiceProtocol.swift in Sources */,
+				2E9071D42C3FA80100E776E7 /* UserProfileInfo.swift in Sources */,
 				2E4FC5902BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */,
+				2E4B3B1C2C3CFD08007F203E /* UserServiceProtocol.swift in Sources */,
 				2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */,
 				2ECCE3FF2C099C480064A4DC /* AnimatorProtocol.swift in Sources */,
 				2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */,
 				2ECCE4022C099C920064A4DC /* ViewModelAnimator.swift in Sources */,
 				2E82F2352B8897DE00802ED5 /* AddUserPayload.swift in Sources */,
+				2E4B3B1E2C3CFD64007F203E /* UserInfo.swift in Sources */,
 				2E82F2312B8897A300802ED5 /* LoginInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

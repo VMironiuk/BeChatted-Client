@@ -15,15 +15,16 @@ struct LoginView: View {
   private var authButtonState: PrimaryButtonStyle.State {
     switch viewModel.state {
     case .idle, .success: .normal
-    case .inProgress: .loading
+    case .loggingIn, .fetchingUser: .loading
     case .failure: .failed
     }
   }
   
   private var isLoginButtonDisabled: Bool {
-    if case .failure = viewModel.state { return true }
-    if case .inProgress = viewModel.state { return true }
-    return !viewModel.isUserInputValid
+    switch viewModel.state {
+    case .failure, .loggingIn, .fetchingUser: true
+    default: !viewModel.isUserInputValid
+    }
   }
   
   var onTapped: (() -> Void)?
@@ -86,8 +87,9 @@ private extension LoginView {
     viewModel: LoginViewModel(
       emailValidator: EmailValidator(),
       passwordValidator: PasswordValidator(),
-      authService: AuthService(), 
-      onLoginSuccessAction: { _ in }),
+      authService: AuthService(),
+      userService: UserService(),
+      onLoginSuccessAction: { _, _ in }),
     footerView: AuthFooterView(text: "Don't have an account?", buttonText: "Register") {})
 }
 
@@ -110,5 +112,14 @@ private struct AuthService: AuthServiceProtocol {
   }
   
   func logout(authToken: String, completion: @escaping (Result<Void, any Error>) -> Void) {
+  }
+}
+
+private struct UserService: UserServiceProtocol {
+  func user(
+    by email: String,
+    authToken: String,
+    completion: @escaping (Result<BeChatted.UserInfo, BeChatted.UserServiceError>) -> Void
+  ) {
   }
 }

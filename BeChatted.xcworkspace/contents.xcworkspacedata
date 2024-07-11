@@ -14,6 +14,9 @@
       location = "group:BeChattedChannels/BeChattedChannels.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:BeChattedUser/BeChattedUser.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:BeChattedNetwork/BeChattedNetwork.xcodeproj">
    </FileRef>
    <FileRef
