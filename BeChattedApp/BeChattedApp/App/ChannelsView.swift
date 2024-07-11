@@ -39,8 +39,8 @@ struct ChannelsView: View {
       userProfileContent: UserProfileView(
         appData: appData,
         onLogoutAction: {
+          appData.currentUser = nil
           appData.authToken = nil
-          appData.isUserLoggedIn = false
         }
       )
     )

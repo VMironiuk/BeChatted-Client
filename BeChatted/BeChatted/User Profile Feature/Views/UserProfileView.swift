@@ -74,9 +74,9 @@ extension UserProfileView {
         .clipShape(RoundedRectangle(cornerRadius: 10))
       
       VStack(alignment: .leading) {
-        Text("Luka Rask")
+        Text(viewModel.userName)
           .font(.system(size: 28, weight: .bold))
-        Text(verbatim: "luka.rusk@example.com")
+        Text(verbatim: viewModel.userEmail)
           .font(.system(size: 16, weight: .thin))
       }
       .padding(.horizontal)
@@ -125,6 +125,7 @@ private struct FakeAuthService: AuthServiceProtocol {
 #Preview {
   UserProfileView(
     viewModel: UserProfileViewModel(
+      info: UserProfileInfo(name: "Luka Rask", email: "rask.luka@example.com"),
       service: FakeAuthService(),
       authToken: "any token",
       onLogoutAction: {}

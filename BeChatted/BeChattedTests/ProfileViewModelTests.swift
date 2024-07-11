@@ -144,7 +144,12 @@ final class ProfileViewModelTests: XCTestCase {
     line: UInt = #line
   ) -> (UserProfileViewModel, AuthServiceStub) {
     let service = AuthServiceStub()
-    let sut = UserProfileViewModel(service: service, authToken: authToken, onLogoutAction: onLogoutAction)
+    let sut = UserProfileViewModel(
+      info: UserProfileInfo(name: "a name", email: "mail@example.com"),
+      service: service,
+      authToken: authToken,
+      onLogoutAction: onLogoutAction
+    )
     
     trackForMemoryLeaks(sut, file: file, line: line)
     

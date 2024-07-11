@@ -37,6 +37,7 @@
 		2E84E3002C2BDFE000580BEA /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E84E2FF2C2BDFE000580BEA /* UserProfileViewModel.swift */; };
 		2E84E3022C2BE15700580BEA /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E84E3012C2BE15700580BEA /* UserProfileView.swift */; };
 		2E854AAC2C2E865F00277AAD /* UserProfileViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E854AAA2C2E865F00277AAD /* UserProfileViewComposer.swift */; };
+		2E9071D42C3FA80100E776E7 /* UserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9071D32C3FA80100E776E7 /* UserProfileInfo.swift */; };
 		2EB37C962B873791003990B0 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
 		2EB37CA02B8737E0003990B0 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */; };
 		2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -139,6 +140,7 @@
 		2E84E2FF2C2BDFE000580BEA /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		2E84E3012C2BE15700580BEA /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		2E854AAA2C2E865F00277AAD /* UserProfileViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewComposer.swift; sourceTree = "<group>"; };
+		2E9071D32C3FA80100E776E7 /* UserProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfo.swift; sourceTree = "<group>"; };
 		2EB37C922B873791003990B0 /* BeChattedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB37C9C2B8737E0003990B0 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		2EB37C9E2B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		2E84E2FE2C2BDFC200580BEA /* User Profile Feature */ = {
 			isa = PBXGroup;
 			children = (
+				2E9071D22C3FA7EE00E776E7 /* Models */,
 				2E84E3042C2BE17100580BEA /* ViewModel */,
 				2E84E3032C2BE16A00580BEA /* Views */,
 			);
@@ -279,6 +282,14 @@
 				2E84E2FF2C2BDFE000580BEA /* UserProfileViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2E9071D22C3FA7EE00E776E7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E9071D32C3FA80100E776E7 /* UserProfileInfo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2E9553A02BE3C6D3002E23B2 /* Auth Feature */ = {
@@ -701,6 +712,7 @@
 				2E82F2372B8897FA00802ED5 /* AddedUserInfo.swift in Sources */,
 				2EC3EE912B85C515007B6D10 /* LoginViewModel.swift in Sources */,
 				2EBF51482BFF0144001EA238 /* CreateChannelServiceProtocol.swift in Sources */,
+				2E9071D42C3FA80100E776E7 /* UserProfileInfo.swift in Sources */,
 				2E4FC5902BE2751100061DE6 /* ChannelsViewModelResultMapper.swift in Sources */,
 				2E4B3B1C2C3CFD08007F203E /* UserServiceProtocol.swift in Sources */,
 				2EC3EE9B2B85C520007B6D10 /* AuthError.swift in Sources */,

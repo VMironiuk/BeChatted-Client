@@ -15,17 +15,22 @@ public final class UserProfileViewModel: ObservableObject {
     case failure(Error)
   }
   
+  private let info: UserProfileInfo
   private let service: AuthServiceProtocol
   private let authToken: String
   private let onLogoutAction: () -> Void
   
   @Published public var state = State.idle
+  public var userName: String { info.name }
+  public var userEmail: String { info.email }
   
   public init(
+    info: UserProfileInfo,
     service: AuthServiceProtocol,
     authToken: String,
     onLogoutAction: @escaping () -> Void
   ) {
+    self.info = info
     self.service = service
     self.authToken = authToken
     self.onLogoutAction = onLogoutAction
