@@ -11,6 +11,7 @@ import BeChatted
 import BeChattediOS
 
 struct ChannelsView: View {
+  @EnvironmentObject private var mainNavigationController: MainNavigationController
   @ObservedObject private var appData: AppData
   @StateObject private var channelsViewModel: ChannelsViewModel
   
@@ -42,8 +43,17 @@ struct ChannelsView: View {
           appData.currentUser = nil
           appData.authToken = nil
         }
-      )
+      ),
+      onChannelTap: { channelItem in
+        mainNavigationController.goToChannel(channelItem)
+      }
     )
+    .navigationDestination(
+      for: MainNavigationController.Destination.self) { destination in
+        if case let .channel(channelItem) = destination {
+          ChannelViewComposer.composedChannelView(with: channelItem)
+        }
+    }
   }
 }
 

@@ -14,12 +14,14 @@ public struct ChannelsViewComposer {
   public static func composedChannelsView<CreateChannelContent: View, UserProfileContent: View>(
     with viewModel: ChannelsViewModel,
     createChannelContent: CreateChannelContent,
-    userProfileContent: UserProfileContent
+    userProfileContent: UserProfileContent,
+    onChannelTap: @escaping (ChannelItem) -> Void
   ) -> some View {
     ChannelsView(
       viewModel: viewModel,
       createChannelContent: createChannelContent,
-      userProfileContent: userProfileContent
+      userProfileContent: userProfileContent,
+      onChannelTap: onChannelTap
     )
   }
 }

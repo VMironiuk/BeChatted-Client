@@ -12,6 +12,7 @@ struct ChannelsView<CreateChannelContent: View, UserProfileContent: View>: View 
   @ObservedObject private var viewModel: ChannelsViewModel
   private let createChannelContent: CreateChannelContent
   private let userProfileContent: UserProfileContent
+  private let onChannelTap: (ChannelItem) -> Void
   
   @State private var isCreateChannelContentPresented = false
   @State private var isUserProfileContentPresented = false
@@ -19,11 +20,13 @@ struct ChannelsView<CreateChannelContent: View, UserProfileContent: View>: View 
   init(
     viewModel: ChannelsViewModel,
     createChannelContent: CreateChannelContent,
-    userProfileContent: UserProfileContent
+    userProfileContent: UserProfileContent,
+    onChannelTap: @escaping (ChannelItem) -> Void
   ) {
     self.viewModel = viewModel
     self.createChannelContent = createChannelContent
     self.userProfileContent = userProfileContent
+    self.onChannelTap = onChannelTap
   }
   
   var body: some View {
@@ -110,6 +113,9 @@ struct ChannelsView<CreateChannelContent: View, UserProfileContent: View>: View 
   
   private func channelItemView(for channelItem: ChannelItem) -> some View {
     ChannelItemView(channelName: channelItem.name, isUnread: false)
+      .onTapGesture {
+        onChannelTap(channelItem)
+      }
   }
 }
 
@@ -120,12 +126,15 @@ struct ChannelsView<CreateChannelContent: View, UserProfileContent: View>: View 
         channelsLoadingService: FakeChannelsLoadingService()
       ),
       createChannelContent: Text("Hello"),
-      userProfileContent: Text("Profile")
+      userProfileContent: Text("Profile"),
+      onChannelTap: { _ in }
     )
   }
 }
 
 private class FakeChannelsLoadingService: ChannelsLoadingServiceProtocol {
-  func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
+  func loadChannels(
+    completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void
+  ) {
   }
 }

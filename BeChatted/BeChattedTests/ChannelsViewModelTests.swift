@@ -43,7 +43,10 @@ final class ChannelsViewModelTests: XCTestCase {
       makeChannel(withId: "id=a", name: "A", description: "AAA"),
       makeChannel(withId: "id=b", name: "B", description: "BBB")
     ]
-    let expectedChannelItems = [makeChannelItem(withId: "id=a", name: "A"), makeChannelItem(withId: "id=b", name: "B")]
+    let expectedChannelItems = [
+      makeChannelItem(withId: "id=a", name: "A", description: "desc-A"),
+      makeChannelItem(withId: "id=b", name: "B", description: "desc-B")
+    ]
     let (sut, service) = makeSUT()
     
     let exp = expectation(description: "Wait for channels loading completion")
@@ -162,8 +165,8 @@ final class ChannelsViewModelTests: XCTestCase {
     .init(id: id, name: name, description: description)
   }
   
-  private func makeChannelItem(withId id: String, name: String) -> ChannelItem {
-    .init(id: id, name: name)
+  private func makeChannelItem(withId id: String, name: String, description: String) -> ChannelItem {
+    .init(id: id, name: name, description: description)
   }
   
   private final class ChannelsLoadingServiceStub: ChannelsLoadingServiceProtocol {
