@@ -11,6 +11,8 @@ import SwiftUI
 struct ChannelView: View {
   let channelItem: ChannelItem
   
+  @State private var messageText = ""
+  
   var body: some View {
     VStack {
       List {
@@ -30,6 +32,22 @@ struct ChannelView: View {
         .listRowSeparator(.hidden)
       }
       .listStyle(.plain)
+      
+      HStack(alignment: .bottom) {
+        TextField("Message", text: $messageText, axis: .vertical)
+          .textFieldStyle(.roundedBorder)
+          .lineLimit(10)
+        
+        Spacer(minLength: 16)
+        
+        Button {
+        } label: {
+          Image(systemName: "paperplane.circle.fill")
+            .resizable()
+            .frame(width: 30, height: 30)
+        }
+      }
+      .padding()
     }
     .toolbarRole(.editor)
     .navigationBarTitleDisplayMode(.inline)
