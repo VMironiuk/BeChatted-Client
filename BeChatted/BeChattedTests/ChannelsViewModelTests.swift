@@ -40,8 +40,8 @@ final class ChannelsViewModelTests: XCTestCase {
   func test_loadChannels_returnsChannelsIfThereAreChannels() {
     // given
     let loadedChannels = [
-      makeChannel(withId: "id=a", name: "A", description: "AAA"),
-      makeChannel(withId: "id=b", name: "B", description: "BBB")
+      makeChannel(withId: "id=a", name: "A", description: "desc-A"),
+      makeChannel(withId: "id=b", name: "B", description: "desc-B")
     ]
     let expectedChannelItems = [
       makeChannelItem(withId: "id=a", name: "A", description: "desc-A"),
