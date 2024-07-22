@@ -15,24 +15,38 @@ struct ChannelView: View {
   
   var body: some View {
     VStack {
-      List {
-        Group {
-          Text("# \(channelItem.name)")
-            .font(.system(size: 24, weight: .semibold))
-          
-          Text(channelItem.description)
-            .font(.system(size: 16, weight: .regular))
-            .opacity(0.6)
-            .padding(.bottom, 32)
-          
-          ForEach(0..<10) { _ in
-            MessageView()
-          }
+      contentView
+      bottomView
+    }
+    .toolbarRole(.editor)
+    .navigationBarTitleDisplayMode(.inline)
+    .navigationTitle("# \(channelItem.name)")
+  }
+}
+
+extension ChannelView {
+  private var contentView: some View {
+    List {
+      Group {
+        Text("# \(channelItem.name)")
+          .font(.system(size: 24, weight: .semibold))
+        
+        Text(channelItem.description)
+          .font(.system(size: 16, weight: .regular))
+          .opacity(0.6)
+          .padding(.bottom, 32)
+        
+        ForEach(0..<10) { _ in
+          MessageView()
         }
-        .listRowSeparator(.hidden)
       }
-      .listStyle(.plain)
-      
+      .listRowSeparator(.hidden)
+    }
+    .listStyle(.plain)
+  }
+  
+  private var bottomView: some View {
+    VStack(alignment: .leading) {
       HStack(alignment: .bottom) {
         TextField("Message", text: $messageText, axis: .vertical)
           .textFieldStyle(.roundedBorder)
@@ -47,11 +61,14 @@ struct ChannelView: View {
             .frame(width: 30, height: 30)
         }
       }
-      .padding()
+      
+      Text("Username is typing ...")
+        .font(.caption)
+        .opacity(0.6)
+        .padding(.horizontal, 8)
+        .hidden()
     }
-    .toolbarRole(.editor)
-    .navigationBarTitleDisplayMode(.inline)
-    .navigationTitle("# \(channelItem.name)")
+    .padding()
   }
 }
 
