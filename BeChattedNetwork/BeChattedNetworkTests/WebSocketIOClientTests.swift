@@ -20,6 +20,15 @@ final class WebSocketIOClientTests: XCTestCase {
     XCTAssertEqual((socketManager.defaultSocket as? SocketIOClientSpy)?.connectCallCount, 1)
   }
   
+  func test_disconnect_callsSocketIOClient_disconnect() {
+    let socketManager = SocketManagerStub(socketURL: URL(string: "http://any-url.com")!)
+    let sut = WebSocketIOClient(socketManager: socketManager)
+    
+    sut.disconnect()
+    
+    XCTAssertEqual((socketManager.defaultSocket as? SocketIOClientSpy)?.disconnectCallCount, 1)
+  }
+  
   // MARK: - Helpers
   
   private final class SocketManagerStub: SocketManager {
@@ -33,9 +42,14 @@ final class WebSocketIOClientTests: XCTestCase {
   
   private final class SocketIOClientSpy: SocketIOClient {
     private(set) var connectCallCount = 0
+    private(set) var disconnectCallCount = 0
     
     override func connect(withPayload payload: [String : Any]? = nil) {
       connectCallCount += 1
+    }
+    
+    override func disconnect() {
+      disconnectCallCount += 1
     }
   }
 }
