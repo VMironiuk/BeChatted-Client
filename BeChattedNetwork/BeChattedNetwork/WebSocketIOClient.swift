@@ -29,8 +29,8 @@ public struct WebSocketIOClient {
     socket.disconnect()
   }
   
-  public func emit() {
-    #warning("Add implementation")
+  public func emit(_ event: String, _ items: Any...) {
+    socket.emit(event, items)
   }
   
   public func on() {

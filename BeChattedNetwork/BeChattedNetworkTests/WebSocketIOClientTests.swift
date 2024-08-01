@@ -29,6 +29,20 @@ final class WebSocketIOClientTests: XCTestCase {
     XCTAssertEqual((socketManager.defaultSocket as? SocketIOClientSpy)?.disconnectCallCount, 1)
   }
   
+  func test_emit_sendsEmitMessage() {
+    let expectedEvent = "addUserEvent"
+    let expectedUsernameItem = "username item"
+    let expectedPasswordItem = "password item"
+    let socketManager = SocketManagerStub(socketURL: URL(string: "http://any-url.com")!)
+    let sut = WebSocketIOClient(socketManager: socketManager)
+    
+    sut.emit(expectedEvent, expectedUsernameItem, expectedPasswordItem)
+    
+    let emitMessage = (socketManager.defaultSocket as! SocketIOClientSpy).emitMessages[0]
+    XCTAssertEqual(emitMessage.event, expectedEvent)
+    XCTAssertEqual(emitMessage.items[0] as! [String], [expectedUsernameItem, expectedPasswordItem])
+  }
+  
   // MARK: - Helpers
   
   private final class SocketManagerStub: SocketManager {
@@ -43,6 +57,7 @@ final class WebSocketIOClientTests: XCTestCase {
   private final class SocketIOClientSpy: SocketIOClient {
     private(set) var connectCallCount = 0
     private(set) var disconnectCallCount = 0
+    private(set) var emitMessages = [(event: String, items: [SocketData])]()
     
     override func connect(withPayload payload: [String : Any]? = nil) {
       connectCallCount += 1
@@ -50,6 +65,10 @@ final class WebSocketIOClientTests: XCTestCase {
     
     override func disconnect() {
       disconnectCallCount += 1
+    }
+    
+    override func emit(_ event: String, _ items: any SocketData..., completion: (() -> ())? = nil) {
+      emitMessages.append((event, items))
     }
   }
 }
