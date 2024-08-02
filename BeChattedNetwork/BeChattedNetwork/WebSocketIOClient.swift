@@ -33,7 +33,9 @@ public struct WebSocketIOClient {
     socket.emit(event, items)
   }
   
-  public func on() {
-    #warning("Add implementation")
+  public func on(_ event: String, completion: @escaping ([Any]) -> Void) {
+    socket.on(event) { items, _ in
+      completion(items)
+    }
   }
 }

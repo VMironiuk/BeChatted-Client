@@ -43,6 +43,22 @@ final class WebSocketIOClientTests: XCTestCase {
     XCTAssertEqual(emitMessage.items[0] as! [String], [expectedUsernameItem, expectedPasswordItem])
   }
   
+  func test_on_sendsOnMessage() {
+    let event = "onNewMessage"
+    let expectedItems = ["Charlie", "How are you?"]
+    let exp = expectation(description: "Wait for new event")
+    let socketManager = SocketManagerStub(socketURL: URL(string: "http://any-url.com")!)
+    let sut = WebSocketIOClient(socketManager: socketManager)
+
+    sut.on(event) { items in
+      XCTAssertEqual(expectedItems, items as! [String])
+      exp.fulfill()
+    }
+    (socketManager.defaultSocket as? SocketIOClientSpy)?.completeOnMessage(with: event, items: expectedItems)
+    
+    wait(for: [exp], timeout: 1)
+  }
+  
   // MARK: - Helpers
   
   private final class SocketManagerStub: SocketManager {
@@ -58,6 +74,7 @@ final class WebSocketIOClientTests: XCTestCase {
     private(set) var connectCallCount = 0
     private(set) var disconnectCallCount = 0
     private(set) var emitMessages = [(event: String, items: [SocketData])]()
+    private var onMessages = [String: NormalCallback]()
     
     override func connect(withPayload payload: [String : Any]? = nil) {
       connectCallCount += 1
@@ -69,6 +86,16 @@ final class WebSocketIOClientTests: XCTestCase {
     
     override func emit(_ event: String, _ items: any SocketData..., completion: (() -> ())? = nil) {
       emitMessages.append((event, items))
+    }
+    
+    @discardableResult
+    override func on(_ event: String, callback: @escaping NormalCallback) -> UUID {
+      onMessages[event] = callback
+      return UUID()
+    }
+    
+    func completeOnMessage(with event: String, items: [Any]) {
+      onMessages[event]?(items, SocketAckEmitter(socket: self, ackNum: 1))
     }
   }
 }
