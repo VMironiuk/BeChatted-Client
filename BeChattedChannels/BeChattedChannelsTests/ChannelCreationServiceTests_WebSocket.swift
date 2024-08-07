@@ -8,20 +8,6 @@
 import XCTest
 import BeChattedChannels
 
-struct ChannelCreationService_WebSocket {
-  private let webSocketClient: WebSocketClientProtocol
-  
-  init(webSocketClient: WebSocketClientProtocol) {
-    self.webSocketClient = webSocketClient
-    
-    webSocketClient.connect()
-  }
-  
-  func addChannel(_ channel: CreateChanelPayload) {
-    webSocketClient.emit("newChannel", channel)
-  }
-}
-
 final class ChannelCreationServiceTests_WebSocket: XCTestCase {
   func test_init_sendsConnectMessage() {
     // given
