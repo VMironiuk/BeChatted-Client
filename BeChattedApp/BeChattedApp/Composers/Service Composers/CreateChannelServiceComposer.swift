@@ -1,5 +1,5 @@
 //
-//  CreateChannelServiceComposer_WebSocket.swift
+//  CreateChannelServiceComposer.swift
 //  BeChattedApp
 //
 //  Created by Volodymyr Myroniuk on 10.08.2024.
@@ -9,9 +9,9 @@ import BeChatted
 import BeChattedChannels
 import BeChattedNetwork
 
-enum CreateChannelServiceComposer_WebSocket {
-  static func makeChannelCreationService() -> ChannelCreationService_WebSocket {
-    ChannelCreationService_WebSocket(
+enum CreateChannelServiceComposer {
+  static func makeChannelCreationService() -> ChannelCreationService {
+    ChannelCreationService(
       webSocketClient: WebSocketIOClient(
         url: URL(string: URLProvider.baseURLString)!
       )
@@ -19,7 +19,7 @@ enum CreateChannelServiceComposer_WebSocket {
   }
 }
 
-extension ChannelCreationService_WebSocket: CreateChannelServiceProtocol_WebSocket {
+extension ChannelCreationService: CreateChannelServiceProtocol {
   public func addChannel(withName name: String, description: String) {
     addChannel(CreateChanelPayload(name: name, description: description))
   }

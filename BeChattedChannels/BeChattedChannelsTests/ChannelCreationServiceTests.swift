@@ -1,5 +1,5 @@
 //
-//  ChannelCreationServiceTests_WebSocket.swift
+//  ChannelCreationServiceTests.swift
 //  BeChattedChannelsTests
 //
 //  Created by Volodymyr Myroniuk on 03.08.2024.
@@ -8,14 +8,14 @@
 import XCTest
 import BeChattedChannels
 
-final class ChannelCreationServiceTests_WebSocket: XCTestCase {
+final class ChannelCreationServiceTests: XCTestCase {
   func test_init_sendsConnectMessage() {
     // given
     
     // when
     let url = URL(string: "http://any-url.com")!
     let socket = WebSocketClientSpy(url: url)
-    _ = ChannelCreationService_WebSocket(webSocketClient: socket)
+    _ = ChannelCreationService(webSocketClient: socket)
     
     // then
     XCTAssertEqual(socket.connectCallCount, 1)
@@ -28,7 +28,7 @@ final class ChannelCreationServiceTests_WebSocket: XCTestCase {
     // given
     let url = URL(string: "http://any-url.com")!
     let socket = WebSocketClientSpy(url: url)
-    let sut = ChannelCreationService_WebSocket(webSocketClient: socket)
+    let sut = ChannelCreationService(webSocketClient: socket)
     let channel = CreateChanelPayload(name: "channel name", description: "channel description")
     
     // when

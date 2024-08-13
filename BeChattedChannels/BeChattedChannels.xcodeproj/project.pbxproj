@@ -17,8 +17,8 @@
 		2EA048492BBE7CC4000525C9 /* BeChattedChannels.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EA0483D2BBE7CC4000525C9 /* BeChattedChannels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EA048532BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA048522BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift */; };
 		2EB30D722C5DF5B300B7AC3B /* WebSocketClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB30D712C5DF5B300B7AC3B /* WebSocketClientProtocol.swift */; };
-		2EB30D742C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift */; };
-		2EC6BB502C6346600045BECD /* ChannelCreationService_WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6BB4F2C6346600045BECD /* ChannelCreationService_WebSocket.swift */; };
+		2EB30D742C5DF98000B7AC3B /* ChannelCreationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests.swift */; };
+		2EC6BB502C6346600045BECD /* ChannelCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6BB4F2C6346600045BECD /* ChannelCreationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +43,8 @@
 		2EA048422BBE7CC4000525C9 /* BeChattedChannelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedChannelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA048522BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingServiceTests.swift; sourceTree = "<group>"; };
 		2EB30D712C5DF5B300B7AC3B /* WebSocketClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClientProtocol.swift; sourceTree = "<group>"; };
-		2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationServiceTests_WebSocket.swift; sourceTree = "<group>"; };
-		2EC6BB4F2C6346600045BECD /* ChannelCreationService_WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationService_WebSocket.swift; sourceTree = "<group>"; };
+		2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationServiceTests.swift; sourceTree = "<group>"; };
+		2EC6BB4F2C6346600045BECD /* ChannelCreationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +78,7 @@
 		2E5B3D3A2BFDB17F00C5CCF0 /* Channel Creation Service */ = {
 			isa = PBXGroup;
 			children = (
-				2EC6BB4F2C6346600045BECD /* ChannelCreationService_WebSocket.swift */,
+				2EC6BB4F2C6346600045BECD /* ChannelCreationService.swift */,
 			);
 			path = "Channel Creation Service";
 			sourceTree = "<group>";
@@ -136,7 +136,7 @@
 			children = (
 				2E82772C2BBFD575007E1EC5 /* Helpers */,
 				2EA048522BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift */,
-				2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift */,
+				2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests.swift */,
 			);
 			path = BeChattedChannelsTests;
 			sourceTree = "<group>";
@@ -251,7 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EC6BB502C6346600045BECD /* ChannelCreationService_WebSocket.swift in Sources */,
+				2EC6BB502C6346600045BECD /* ChannelCreationService.swift in Sources */,
 				2E5B3D3F2BFDB22200C5CCF0 /* HTTPClientProtocol.swift in Sources */,
 				2E172DC62BC521230014A13B /* ChannelsLoadingResultMapper.swift in Sources */,
 				2EB30D722C5DF5B300B7AC3B /* WebSocketClientProtocol.swift in Sources */,
@@ -267,7 +267,7 @@
 				2E5B3D432BFDB62A00C5CCF0 /* HTTPClientSpy.swift in Sources */,
 				2EA048532BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift in Sources */,
 				2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
-				2EB30D742C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift in Sources */,
+				2EB30D742C5DF98000B7AC3B /* ChannelCreationServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,8 +48,8 @@ final class CreateChannelViewModelTests: XCTestCase {
   private func makeSUT(
     file: StaticString = #filePath,
     line: UInt = #line
-  ) -> (CreateChannelViewModel, CreateChannelServiceWebSocketSpy) {
-    let service = CreateChannelServiceWebSocketSpy()
+  ) -> (CreateChannelViewModel, CreateChannelServiceSpy) {
+    let service = CreateChannelServiceSpy()
     let sut = CreateChannelViewModel(service: service)
     
     trackForMemoryLeaks(service, file: file, line: line)
@@ -58,7 +58,7 @@ final class CreateChannelViewModelTests: XCTestCase {
     return (sut, service)
   }
   
-  private final class CreateChannelServiceWebSocketSpy: CreateChannelServiceProtocol_WebSocket {
+  private final class CreateChannelServiceSpy: CreateChannelServiceProtocol {
     struct Message {
       let name: String
       let description: String

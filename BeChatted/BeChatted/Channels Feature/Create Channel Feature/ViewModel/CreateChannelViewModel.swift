@@ -10,12 +10,11 @@ import Foundation
 public enum CreateChannelViewModelState: Equatable {
   case ready
   case inProgress
-  case failure(CreateChannelServiceError)
   case success
 }
 
 public final class CreateChannelViewModel: ObservableObject {
-  private let service: CreateChannelServiceProtocol_WebSocket
+  private let service: CreateChannelServiceProtocol
   private let animator: AnimatorProtocol
   private let onSuccess: () -> Void
   
@@ -27,7 +26,7 @@ public final class CreateChannelViewModel: ObservableObject {
   }
   
   public init(
-    service: CreateChannelServiceProtocol_WebSocket,
+    service: CreateChannelServiceProtocol,
     animator: AnimatorProtocol = ViewModelAnimator(),
     onSuccess: @escaping () -> Void = {}
   ) {

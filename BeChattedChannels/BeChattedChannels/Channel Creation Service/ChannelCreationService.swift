@@ -1,5 +1,5 @@
 //
-//  ChannelCreationService_WebSocket.swift
+//  ChannelCreationService.swift
 //  BeChattedChannels
 //
 //  Created by Volodymyr Myroniuk on 07.08.2024.
@@ -17,7 +17,7 @@ public struct CreateChanelPayload {
   }
 }
 
-public struct ChannelCreationService_WebSocket {
+public struct ChannelCreationService {
   private let webSocketClient: WebSocketClientProtocol
   
   public init(webSocketClient: WebSocketClientProtocol) {
