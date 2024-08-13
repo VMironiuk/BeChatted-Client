@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E172DC22BC51E460014A13B /* ChannelsLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC12BC51E460014A13B /* ChannelsLoadingService.swift */; };
 		2E172DC62BC521230014A13B /* ChannelsLoadingResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E172DC52BC521230014A13B /* ChannelsLoadingResultMapper.swift */; };
-		2E5B3D3C2BFDB1C100C5CCF0 /* ChannelCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B3D3B2BFDB1C100C5CCF0 /* ChannelCreationService.swift */; };
 		2E5B3D3F2BFDB22200C5CCF0 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B3D3E2BFDB22200C5CCF0 /* HTTPClientProtocol.swift */; };
-		2E5B3D412BFDB3B200C5CCF0 /* ChannelCreationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B3D402BFDB3B200C5CCF0 /* ChannelCreationServiceTests.swift */; };
 		2E5B3D432BFDB62A00C5CCF0 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B3D422BFDB62A00C5CCF0 /* HTTPClientSpy.swift */; };
 		2E5B3D452BFDB6C900C5CCF0 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B3D442BFDB6C900C5CCF0 /* HelperFunctions.swift */; };
 		2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -21,9 +19,6 @@
 		2EB30D722C5DF5B300B7AC3B /* WebSocketClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB30D712C5DF5B300B7AC3B /* WebSocketClientProtocol.swift */; };
 		2EB30D742C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift */; };
 		2EC6BB502C6346600045BECD /* ChannelCreationService_WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6BB4F2C6346600045BECD /* ChannelCreationService_WebSocket.swift */; };
-		2ECEDDFA2BF5CD2700923681 /* CreateChannelPayload+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */; };
-		2ECEDDFC2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */; };
-		2ECEDDFE2BF5D66500923681 /* ChannelCreatingResultMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECEDDFD2BF5D66500923681 /* ChannelCreatingResultMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,9 +34,7 @@
 /* Begin PBXFileReference section */
 		2E172DC12BC51E460014A13B /* ChannelsLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingService.swift; sourceTree = "<group>"; };
 		2E172DC52BC521230014A13B /* ChannelsLoadingResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingResultMapper.swift; sourceTree = "<group>"; };
-		2E5B3D3B2BFDB1C100C5CCF0 /* ChannelCreationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationService.swift; sourceTree = "<group>"; };
 		2E5B3D3E2BFDB22200C5CCF0 /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
-		2E5B3D402BFDB3B200C5CCF0 /* ChannelCreationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationServiceTests.swift; sourceTree = "<group>"; };
 		2E5B3D422BFDB62A00C5CCF0 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		2E5B3D442BFDB6C900C5CCF0 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -52,9 +45,6 @@
 		2EB30D712C5DF5B300B7AC3B /* WebSocketClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClientProtocol.swift; sourceTree = "<group>"; };
 		2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationServiceTests_WebSocket.swift; sourceTree = "<group>"; };
 		2EC6BB4F2C6346600045BECD /* ChannelCreationService_WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationService_WebSocket.swift; sourceTree = "<group>"; };
-		2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChannelPayload+Decodable.swift"; sourceTree = "<group>"; };
-		2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateChannelPayload+Equatable.swift"; sourceTree = "<group>"; };
-		2ECEDDFD2BF5D66500923681 /* ChannelCreatingResultMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreatingResultMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +78,6 @@
 		2E5B3D3A2BFDB17F00C5CCF0 /* Channel Creation Service */ = {
 			isa = PBXGroup;
 			children = (
-				2E5B3D3B2BFDB1C100C5CCF0 /* ChannelCreationService.swift */,
-				2ECEDDFD2BF5D66500923681 /* ChannelCreatingResultMapper.swift */,
 				2EC6BB4F2C6346600045BECD /* ChannelCreationService_WebSocket.swift */,
 			);
 			path = "Channel Creation Service";
@@ -108,8 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				2E82772A2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift */,
-				2ECEDDF92BF5CD2700923681 /* CreateChannelPayload+Decodable.swift */,
-				2ECEDDFB2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift */,
 				2E5B3D422BFDB62A00C5CCF0 /* HTTPClientSpy.swift */,
 				2E5B3D442BFDB6C900C5CCF0 /* HelperFunctions.swift */,
 			);
@@ -150,7 +136,6 @@
 			children = (
 				2E82772C2BBFD575007E1EC5 /* Helpers */,
 				2EA048522BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift */,
-				2E5B3D402BFDB3B200C5CCF0 /* ChannelCreationServiceTests.swift */,
 				2EB30D732C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift */,
 			);
 			path = BeChattedChannelsTests;
@@ -270,8 +255,6 @@
 				2E5B3D3F2BFDB22200C5CCF0 /* HTTPClientProtocol.swift in Sources */,
 				2E172DC62BC521230014A13B /* ChannelsLoadingResultMapper.swift in Sources */,
 				2EB30D722C5DF5B300B7AC3B /* WebSocketClientProtocol.swift in Sources */,
-				2ECEDDFE2BF5D66500923681 /* ChannelCreatingResultMapper.swift in Sources */,
-				2E5B3D3C2BFDB1C100C5CCF0 /* ChannelCreationService.swift in Sources */,
 				2E172DC22BC51E460014A13B /* ChannelsLoadingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,13 +264,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E5B3D452BFDB6C900C5CCF0 /* HelperFunctions.swift in Sources */,
-				2E5B3D412BFDB3B200C5CCF0 /* ChannelCreationServiceTests.swift in Sources */,
 				2E5B3D432BFDB62A00C5CCF0 /* HTTPClientSpy.swift in Sources */,
 				2EA048532BBE7D10000525C9 /* ChannelsLoadingServiceTests.swift in Sources */,
 				2E82772B2BBFD559007E1EC5 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
-				2ECEDDFA2BF5CD2700923681 /* CreateChannelPayload+Decodable.swift in Sources */,
 				2EB30D742C5DF98000B7AC3B /* ChannelCreationServiceTests_WebSocket.swift in Sources */,
-				2ECEDDFC2BF5CE5900923681 /* CreateChannelPayload+Equatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

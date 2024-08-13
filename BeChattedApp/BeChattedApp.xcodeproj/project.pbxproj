@@ -51,7 +51,6 @@
 		2EF578382C1D6277003F6493 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF578372C1D6277003F6493 /* AuthView.swift */; };
 		2EF5783A2C1D63F8003F6493 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF578392C1D63F8003F6493 /* ChannelsView.swift */; };
 		2EF5783C2C1D643B003F6493 /* CreateChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF5783B2C1D643B003F6493 /* CreateChannelView.swift */; };
-		2EF8CDF52C01A593000404D0 /* CreateChanelServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -119,7 +118,6 @@
 		2EF578372C1D6277003F6493 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		2EF578392C1D63F8003F6493 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
 		2EF5783B2C1D643B003F6493 /* CreateChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelView.swift; sourceTree = "<group>"; };
-		2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChanelServiceComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +222,6 @@
 			children = (
 				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
 				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */,
-				2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */,
 				2E40A4302C67329000A82750 /* CreateChannelServiceComposer_WebSocket.swift */,
 				2E6E93CA2C3E563900EDAD7C /* UserServiceComposer.swift */,
 			);
@@ -362,7 +359,6 @@
 				2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */,
 				2EF5783A2C1D63F8003F6493 /* ChannelsView.swift in Sources */,
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
-				2EF8CDF52C01A593000404D0 /* CreateChanelServiceComposer.swift in Sources */,
 				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
 				2E6E93D22C3E58F400EDAD7C /* URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift in Sources */,
 				2E9071D12C3FA72C00E776E7 /* User+UserInfo.swift in Sources */,
