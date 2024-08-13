@@ -105,11 +105,17 @@ private struct FakeCreateChannelService: CreateChannelServiceProtocol {
     }
   }
 }
+
+private struct FakeCreateChannelService_WebSocket: CreateChannelServiceProtocol_WebSocket {
+  func addChannel(withName name: String, description: String) {
+  }
+}
+
 #Preview {
   CreateChannelView(
     viewModel: CreateChannelViewModel(
-      service: FakeCreateChannelService()
-    ), 
+      service: FakeCreateChannelService_WebSocket()
+    ),
     onCreateChannelButtonTapped: {}
   )
 }

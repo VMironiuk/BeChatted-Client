@@ -40,7 +40,8 @@ final class WebSocketIOClientTests: XCTestCase {
     
     let emitMessage = (socketManager.defaultSocket as! SocketIOClientSpy).emitMessages[0]
     XCTAssertEqual(emitMessage.event, expectedEvent)
-    XCTAssertEqual(emitMessage.items[0] as! [String], [expectedUsernameItem, expectedPasswordItem])
+    XCTAssertEqual(emitMessage.items[0] as! String, expectedUsernameItem)
+    XCTAssertEqual(emitMessage.items[1] as! String, expectedPasswordItem)
   }
   
   func test_on_sendsOnMessage() {

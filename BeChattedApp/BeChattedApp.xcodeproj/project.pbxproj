@@ -12,6 +12,8 @@
 		2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */; };
 		2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */; };
 		2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */; };
+		2E40A4312C67329000A82750 /* CreateChannelServiceComposer_WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E40A4302C67329000A82750 /* CreateChannelServiceComposer_WebSocket.swift */; };
+		2E40A4332C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E40A4322C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift */; };
 		2E4F6C082BDA608800BBBCC5 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; };
 		2E4F6C092BDA608800BBBCC5 /* BeChattedChannels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */; };
@@ -78,6 +80,8 @@
 		2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailValidator+EmailValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordValidator+PasswordValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthService+AuthServiceProtocol.swift"; sourceTree = "<group>"; };
+		2E40A4302C67329000A82750 /* CreateChannelServiceComposer_WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelServiceComposer_WebSocket.swift; sourceTree = "<group>"; };
+		2E40A4322C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebSocketIOClient+WebSocketClientProtocol.swift"; sourceTree = "<group>"; };
 		2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingServiceComposer.swift; sourceTree = "<group>"; };
 		2E6E93CA2C3E563900EDAD7C /* UserServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceComposer.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 				2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */,
 				2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */,
 				2E6E93D12C3E58F400EDAD7C /* URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift */,
+				2E40A4322C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift */,
 				2E9071D02C3FA72C00E776E7 /* User+UserInfo.swift */,
 				2E9071D52C3FA9C600E776E7 /* UserProfileInfo+User.swift */,
 			);
@@ -220,6 +225,7 @@
 				2E82F2782B88CE2900802ED5 /* AuthServiceComposer.swift */,
 				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */,
 				2EF8CDF42C01A593000404D0 /* CreateChanelServiceComposer.swift */,
+				2E40A4302C67329000A82750 /* CreateChannelServiceComposer_WebSocket.swift */,
 				2E6E93CA2C3E563900EDAD7C /* UserServiceComposer.swift */,
 			);
 			path = "Service Composers";
@@ -344,6 +350,7 @@
 				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */,
+				2E40A4332C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift in Sources */,
 				2E854AA92C2E853B00277AAD /* UserProfileView.swift in Sources */,
 				2E9071D62C3FA9C600E776E7 /* UserProfileInfo+User.swift in Sources */,
 				2E95539C2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift in Sources */,
@@ -363,6 +370,7 @@
 				2EF578342C1D5F47003F6493 /* LoginView.swift in Sources */,
 				2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */,
 				2EF5783C2C1D643B003F6493 /* CreateChannelView.swift in Sources */,
+				2E40A4312C67329000A82750 /* CreateChannelServiceComposer_WebSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,11 @@ public struct WebSocketIOClient {
   }
   
   public init(url: URL) {
-    self.init(socketManager: SocketManager(socketURL: url, config: [.log(true), .compress]))
+    self.init(
+      socketManager: SocketManager(
+        socketURL: url,
+        config: [.log(true), .compress, .forceWebsockets(true)])
+    )
   }
   
   public func connect() {
@@ -29,8 +33,8 @@ public struct WebSocketIOClient {
     socket.disconnect()
   }
   
-  public func emit(_ event: String, _ items: Any...) {
-    socket.emit(event, items)
+  public func emit(_ event: String, _ item1: String, _ item2: String) {
+    socket.emit(event, item1, item2)
   }
   
   public func on(_ event: String, completion: @escaping ([Any]) -> Void) {

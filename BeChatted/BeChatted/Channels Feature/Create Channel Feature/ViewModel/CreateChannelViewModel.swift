@@ -15,7 +15,7 @@ public enum CreateChannelViewModelState: Equatable {
 }
 
 public final class CreateChannelViewModel: ObservableObject {
-  private let service: CreateChannelServiceProtocol
+  private let service: CreateChannelServiceProtocol_WebSocket
   private let animator: AnimatorProtocol
   private let onSuccess: () -> Void
   
@@ -27,7 +27,7 @@ public final class CreateChannelViewModel: ObservableObject {
   }
   
   public init(
-    service: CreateChannelServiceProtocol,
+    service: CreateChannelServiceProtocol_WebSocket,
     animator: AnimatorProtocol = ViewModelAnimator(),
     onSuccess: @escaping () -> Void = {}
   ) {
@@ -44,20 +44,11 @@ public final class CreateChannelViewModel: ObservableObject {
       .lowercased()
       .replacingOccurrences(of: " ", with: "-")
     
-    service.createChannel(withName: channelNameValidated, description: channelDescription) { [weak self] result in
-      DispatchQueue.main.async {
-        guard let self else { return }
-        switch result {
-        case .success:
-          self.updateStateWithAnimation(to: .success)
-          self.channelName = ""
-          self.channelDescription = ""
-          self.onSuccess()
-        case .failure(let error):
-          self.updateStateWithAnimation(to: .failure(error))
-        }
-      }
-    }
+    service.addChannel(withName: channelNameValidated, description: channelDescription)
+    updateStateWithAnimation(to: .success)
+    channelName = ""
+    channelDescription = ""
+    onSuccess()
   }
   
   private func updateStateWithAnimation(to newState: CreateChannelViewModelState) {

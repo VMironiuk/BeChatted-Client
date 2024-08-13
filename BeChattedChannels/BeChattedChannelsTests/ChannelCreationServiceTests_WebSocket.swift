@@ -41,7 +41,8 @@ final class ChannelCreationServiceTests_WebSocket: XCTestCase {
     XCTAssertEqual(socket.onCallCount, 0)
     
     XCTAssertEqual(socket.emitMessages[0].event, "newChannel")
-    XCTAssertEqual(socket.emitMessages[0].items[0] as! CreateChanelPayload, channel)
+    XCTAssertEqual(socket.emitMessages[0].items[0], channel.name)
+    XCTAssertEqual(socket.emitMessages[0].items[1], channel.description)
   }
   
   // MARK: - Helpers
@@ -49,7 +50,7 @@ final class ChannelCreationServiceTests_WebSocket: XCTestCase {
   private final class WebSocketClientSpy: WebSocketClientProtocol {
     struct EmitMessage {
       let event: String
-      let items: [Any]
+      let items: [String]
     }
     
     private(set) var connectCallCount = 0
@@ -69,8 +70,8 @@ final class ChannelCreationServiceTests_WebSocket: XCTestCase {
       disconnectCallCount += 1
     }
     
-    func emit(_ event: String, _ items: Any...) {
-      emitMessages.append(EmitMessage(event: event, items: items))
+    func emit(_ event: String, _ item1: String, _ item2: String) {
+      emitMessages.append(EmitMessage(event: event, items: [item1, item2]))
     }
     
     func on(_ event: String, completion: @escaping ([Any]) -> Void) {

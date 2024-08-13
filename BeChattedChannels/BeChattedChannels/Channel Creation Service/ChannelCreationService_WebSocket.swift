@@ -16,6 +16,6 @@ public struct ChannelCreationService_WebSocket {
   }
   
   public func addChannel(_ channel: CreateChanelPayload) {
-    webSocketClient.emit("newChannel", channel)
+    webSocketClient.emit("newChannel", channel.name, channel.description)
   }
 }

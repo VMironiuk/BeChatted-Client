@@ -21,7 +21,7 @@ struct CreateChannelView: View {
     
     _createChannelViewModel = StateObject(
       wrappedValue: CreateChannelViewModel(
-        service: CreateChanelServiceComposer.createChannelService(with: appData.authToken ?? ""),
+        service: CreateChannelServiceComposer_WebSocket.makeChannelCreationService(),
         onSuccess: onSuccess
       )
     )
