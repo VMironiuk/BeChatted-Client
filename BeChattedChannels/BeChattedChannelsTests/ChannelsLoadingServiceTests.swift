@@ -14,7 +14,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
     // given
     
     // when
-    let (_, client) = makeSUT()
+    let (_, client, _) = makeSUT()
     
     // then
     XCTAssertEqual(client.requestedURLs, [])
@@ -26,7 +26,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   func test_loadChannels_sendsLoadChannelsRequestByURL() {
     // given
     let url = anyURL()
-    let (sut, client) = makeSUT(url: url)
+    let (sut, client, _) = makeSUT(url: url)
     
     // when
     sut.loadChannels { _ in }
@@ -38,7 +38,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   func test_loadChannels_sendsLoadChannelsRequestByURLTwice() {
     // given
     let url = anyURL()
-    let (sut, client) = makeSUT(url: url)
+    let (sut, client, _) = makeSUT(url: url)
     
     // when
     sut.loadChannels { _ in }
@@ -50,7 +50,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   
   func test_loadChannels_sendsLoadChannelsRequestAsGETMethod() {
     // given
-    let (sut, client) = makeSUT()
+    let (sut, client, _) = makeSUT()
     
     // when
     sut.loadChannels { _ in }
@@ -61,7 +61,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   
   func test_loadChannels_sendsLoadChannelsRequestAsApplicationJSONContentType() {
     // given
-    let (sut, client) = makeSUT()
+    let (sut, client, _) = makeSUT()
     
     // when
     sut.loadChannels { _ in }
@@ -73,7 +73,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   func test_loadChannels_sendsLoadChannelsRequestWithAuthToken() {
     // given
     let anyAuthToken = anyAuthToken()
-    let (sut, client) = makeSUT(authToken: anyAuthToken)
+    let (sut, client, _) = makeSUT(authToken: anyAuthToken)
     
     // when
     sut.loadChannels { _ in }
@@ -84,7 +84,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   
   func test_loadChannels_deliversChannelsOnValidAndNonEmptyChannelsData() {
     // given
-    let (sut, client) = makeSUT()
+    let (sut, client, _) = makeSUT()
     let expectedChannels = [ChannelInfo(id: "1", name: "a channel", description: "a description")]
     let channelsData = try! JSONEncoder().encode(expectedChannels)
     let exp = expectation(description: "Wait for channels loading completion")
@@ -107,7 +107,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   
   func test_loadChannels_deliversNoChannelsOnValidButEmptyChannelsData() {
     // given
-    let (sut, client) = makeSUT()
+    let (sut, client, _) = makeSUT()
     let expectedChannels = [ChannelInfo]()
     let channelsData = try! JSONEncoder().encode(expectedChannels)
     let exp = expectation(description: "Wait for channels loading completion")
@@ -130,7 +130,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   
   func test_loadChannels_deliversInvalidDataErrorOnInvalidChannelsData() {
     // given
-    let (sut, client) = makeSUT()
+    let (sut, client, _) = makeSUT()
     let channelsData = "{\"obj\": \"invalid\"}".data(using: .utf8)!
     let exp = expectation(description: "Wait for channels loading completion")
     
@@ -152,7 +152,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   
   func test_loadChannels_deliversServerErrorOnNon200HTTPResponse() {
     // given
-    let (sut, client) = makeSUT()
+    let (sut, client, _) = makeSUT()
     let exp = expectation(description: "Wait for channels loading completion")
     
     // when
@@ -178,16 +178,40 @@ final class ChannelsLoadingServiceTests: XCTestCase {
     authToken: String = "any token",
     file: StaticString = #filePath,
     line: UInt = #line
-  ) -> (ChannelsLoadingService, HTTPClientSpy) {
+  ) -> (ChannelsLoadingService, HTTPClientSpy, WebSocketClientSpy) {
     let client  = HTTPClientSpy()
-    let sut = ChannelsLoadingService(url: url, authToken: authToken, client: client)
+    let webSocketClient = WebSocketClientSpy(url: url)
+    let sut = ChannelsLoadingService(
+      url: url,
+      authToken: authToken,
+      client: client,
+      webSocketClient: webSocketClient
+    )
     
     trackForMemoryLeaks(client, file: file, line: line)
+    trackForMemoryLeaks(webSocketClient, file: file, line: line)
     
-    return (sut, client)
+    return (sut, client, webSocketClient)
   }
   
   private func anyNSError() -> Error {
     NSError(domain: "any domain", code: 1)
-  }    
+  }
+  
+  private final class WebSocketClientSpy: WebSocketClientProtocol {
+    init(url: URL) {
+    }
+    
+    func connect() {
+    }
+    
+    func disconnect() {
+    }
+    
+    func emit(_ event: String, _ item1: String, _ item2: String) {
+    }
+    
+    func on(_ event: String, completion: @escaping ([Any]) -> Void) {
+    }
+  }
 }

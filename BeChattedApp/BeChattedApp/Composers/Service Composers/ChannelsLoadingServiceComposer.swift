@@ -8,6 +8,7 @@
 import BeChatted
 import BeChattedChannels
 import BeChattedNetwork
+import Combine
 
 struct ChannelsLoadingServiceComposer {
   private init() {}
@@ -19,7 +20,11 @@ struct ChannelsLoadingServiceComposer {
   private static let url = URL(string: "\(baseURLString)\(endpoint)")!
   
   static func channelsService(with authToken: String) -> ChannelsLoadingService {
-    ChannelsLoadingService(url: url, authToken: authToken, client: URLSessionHTTPClient())
+    ChannelsLoadingService(
+      url: url,
+      authToken: authToken,
+      client: URLSessionHTTPClient(),
+      webSocketClient: WebSocketIOClient(url: URL(string: baseURLString)!))
   }
 }
 
