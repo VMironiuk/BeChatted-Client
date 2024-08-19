@@ -23,6 +23,17 @@ final class ChannelsLoadingServiceTests: XCTestCase {
     XCTAssertEqual(httpClient.authTokens, [])
   }
   
+  func test_init_callsWebSocketClient_connect() {
+    // given
+    
+    // when
+    let (_, _, webSocketClient) = makeSUT()
+    
+    // then
+    XCTAssertEqual(webSocketClient.connectCallCount, 1)
+    XCTAssertEqual(webSocketClient.onCallCount, 1)
+  }
+  
   func test_loadChannels_sendsLoadChannelsRequestByURL() {
     // given
     let url = anyURL()
@@ -199,10 +210,14 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   }
   
   private final class WebSocketClientSpy: WebSocketClientProtocol {
+    private(set) var connectCallCount = 0
+    private(set) var onCallCount = 0
+    
     init(url: URL) {
     }
     
     func connect() {
+      connectCallCount += 1
     }
     
     func disconnect() {
@@ -212,6 +227,7 @@ final class ChannelsLoadingServiceTests: XCTestCase {
     }
     
     func on(_ event: String, completion: @escaping ([Any]) -> Void) {
+      onCallCount += 1
     }
   }
 }
