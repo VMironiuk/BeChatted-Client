@@ -7,6 +7,7 @@
 
 import XCTest
 import BeChatted
+import Combine
 
 final class ChannelsViewModelTests: XCTestCase {
   
@@ -170,6 +171,8 @@ final class ChannelsViewModelTests: XCTestCase {
   }
   
   private final class ChannelsLoadingServiceStub: ChannelsLoadingServiceProtocol {
+    var newChannel = PassthroughSubject<ChannelData, Never>()
+    
     private var loadChannelsCompletions = [(Result<[Channel], ChannelsLoadingServiceError>) -> Void]()
     
     var loadChannelsCallCount: Int {
