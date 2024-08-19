@@ -38,7 +38,7 @@ public struct ChannelsLoadingService {
   
   private let url: URL
   private let authToken: String
-  private let client: HTTPClientProtocol
+  private let httpClient: HTTPClientProtocol
   private let webSocketClient: WebSocketClientProtocol
   
   public let newChannel = PassthroughSubject<ChannelData, Never>()
@@ -46,12 +46,12 @@ public struct ChannelsLoadingService {
   public init(
     url: URL,
     authToken: String,
-    client: HTTPClientProtocol,
+    httpClient: HTTPClientProtocol,
     webSocketClient: WebSocketClientProtocol
   ) {
     self.url = url
     self.authToken = authToken
-    self.client = client
+    self.httpClient = httpClient
     self.webSocketClient = webSocketClient
     
     webSocketClient.connect()
@@ -72,7 +72,7 @@ public struct ChannelsLoadingService {
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
     
-    client.perform(request: request) { result in
+    httpClient.perform(request: request) { result in
       switch result {
       case let .success((data, response)):
         completion(ChannelsLoadingResultMapper.result(for: data, response: response))

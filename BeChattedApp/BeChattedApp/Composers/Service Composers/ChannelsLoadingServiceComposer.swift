@@ -23,7 +23,7 @@ struct ChannelsLoadingServiceComposer {
     ChannelsLoadingService(
       url: url,
       authToken: authToken,
-      client: URLSessionHTTPClient(),
+      httpClient: URLSessionHTTPClient(),
       webSocketClient: WebSocketIOClient(url: URL(string: baseURLString)!))
   }
 }
