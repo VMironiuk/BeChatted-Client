@@ -182,6 +182,28 @@ final class ChannelsLoadingServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1)
   }
   
+  func test_webSocketClient_onMethodCompletion_publishesNewChannel() {
+    // given
+    let channelId = "CHANNEL_ID"
+    let channelName = "CHANNEL_NAME"
+    let channelDescription = "CHANNEL_DESCRIPTION"
+    let exp = expectation(description: "Waiting for a new channel")
+    let (sut, _, webSocketClient) = makeSUT()
+    
+    // when
+    let sub = sut.newChannel.sink { newChannelData in
+      // then
+      XCTAssertEqual(newChannelData.id, channelId)
+      XCTAssertEqual(newChannelData.name, channelName)
+      XCTAssertEqual(newChannelData.description, channelDescription)
+      exp.fulfill()
+    }
+    webSocketClient.completeOn(with: [channelName, channelDescription, channelId])
+        
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
@@ -210,8 +232,11 @@ final class ChannelsLoadingServiceTests: XCTestCase {
   }
   
   private final class WebSocketClientSpy: WebSocketClientProtocol {
+    private var onCompletions = [([Any]) -> Void]()
     private(set) var connectCallCount = 0
-    private(set) var onCallCount = 0
+    var onCallCount: Int {
+      onCompletions.count
+    }
     
     init(url: URL) {
     }
@@ -227,7 +252,11 @@ final class ChannelsLoadingServiceTests: XCTestCase {
     }
     
     func on(_ event: String, completion: @escaping ([Any]) -> Void) {
-      onCallCount += 1
+      onCompletions.append(completion)
+    }
+    
+    func completeOn(with channelData: [Any], at index: Int = 0) {
+      onCompletions[index](channelData)
     }
   }
 }
