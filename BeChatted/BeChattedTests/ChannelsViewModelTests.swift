@@ -157,21 +157,21 @@ final class ChannelsViewModelTests: XCTestCase {
     let (sut, service) = makeSUT()
     sut.loadChannelsResult = .success(channelItems)
     
-      let sub = sut.$loadChannelsResult
-          .dropFirst()
-          .sink { result in
-              // then
-              switch result {
-              case .success(let items):
-                  XCTAssertEqual(
-                    items,
-                    [channelItems[0], ChannelItem(id: "CHANNEL_ID", name: "CHANNEL_NAME", description: "CHANNEL_DESCRIPTION")]
-                  )
-              default:
-                  XCTFail("Expected channel items, got \(result) instead")
-              }
-              exp.fulfill()
-          }
+    let sub = sut.$loadChannelsResult
+      .dropFirst()
+      .sink { result in
+        // then
+        switch result {
+        case .success(let items):
+          XCTAssertEqual(
+            items,
+            [channelItems[0], ChannelItem(id: "CHANNEL_ID", name: "CHANNEL_NAME", description: "CHANNEL_DESCRIPTION")]
+          )
+        default:
+          XCTFail("Expected channel items, got \(result) instead")
+        }
+        exp.fulfill()
+      }
     
     // when
     service.newChannel.send(("CHANNEL_ID", "CHANNEL_NAME", "CHANNEL_DESCRIPTION"))
