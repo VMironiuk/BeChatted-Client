@@ -21,7 +21,6 @@ struct CreateChannelView: View {
     switch viewModel.state {
     case .ready, .success: .normal
     case .inProgress: .loading
-    case .failure: .failed
     }
   }
   private var buttonTitle: String {
@@ -95,21 +94,15 @@ extension CreateChannelView {
 }
 
 private struct FakeCreateChannelService: CreateChannelServiceProtocol {
-  func createChannel(
-    withName name: String,
-    description: String,
-    completion: @escaping (Result<Void, BeChatted.CreateChannelServiceError>) -> Void
-  ) {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-      completion(.failure(.connectivity))
-    }
+  func addChannel(withName name: String, description: String) {
   }
 }
+
 #Preview {
   CreateChannelView(
     viewModel: CreateChannelViewModel(
       service: FakeCreateChannelService()
-    ), 
+    ),
     onCreateChannelButtonTapped: {}
   )
 }

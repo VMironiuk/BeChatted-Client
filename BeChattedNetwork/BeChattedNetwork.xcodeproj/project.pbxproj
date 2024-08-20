@@ -14,6 +14,9 @@
 		2E9553902BE3B9B8002E23B2 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E95538F2BE3B9B8002E23B2 /* URLProtocolStub.swift */; };
 		2E9553932BE3B9F4002E23B2 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9553922BE3B9F4002E23B2 /* HelperFunctions.swift */; };
 		2E9553952BE3BA38002E23B2 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9553942BE3BA38002E23B2 /* XCTestCase+MemoryLeakTracking.swift */; };
+		2EE3594D2C58AD770031014A /* WebSocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE3594C2C58AD770031014A /* WebSocketIOClient.swift */; };
+		2EEAC32C2C59FDE0008CF634 /* WebSocketIOClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEAC32B2C59FDE0008CF634 /* WebSocketIOClientTests.swift */; };
+		2EEB13522C58B4F30040DBBA /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2EEB13512C58B4F30040DBBA /* SocketIO */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,8 @@
 		2E95538F2BE3B9B8002E23B2 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		2E9553922BE3B9F4002E23B2 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		2E9553942BE3BA38002E23B2 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		2EE3594C2C58AD770031014A /* WebSocketIOClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketIOClient.swift; sourceTree = "<group>"; };
+		2EEAC32B2C59FDE0008CF634 /* WebSocketIOClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketIOClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EEB13522C58B4F30040DBBA /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +68,7 @@
 				2E9553752BE3B8D0002E23B2 /* BeChattedNetwork */,
 				2E95537F2BE3B8D0002E23B2 /* BeChattedNetworkTests */,
 				2E9553742BE3B8D0002E23B2 /* Products */,
+				2EEB13502C58B4F30040DBBA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +86,7 @@
 			children = (
 				2E9553762BE3B8D0002E23B2 /* BeChattedNetwork.h */,
 				2E95538B2BE3B916002E23B2 /* URLSessionHTTPClient.swift */,
+				2EE3594C2C58AD770031014A /* WebSocketIOClient.swift */,
 			);
 			path = BeChattedNetwork;
 			sourceTree = "<group>";
@@ -88,6 +96,7 @@
 			children = (
 				2E9553912BE3B9C4002E23B2 /* Helpers */,
 				2E95538D2BE3B94C002E23B2 /* URLSessionHTTPClientTests.swift */,
+				2EEAC32B2C59FDE0008CF634 /* WebSocketIOClientTests.swift */,
 			);
 			path = BeChattedNetworkTests;
 			sourceTree = "<group>";
@@ -100,6 +109,13 @@
 				2E9553922BE3B9F4002E23B2 /* HelperFunctions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2EEB13502C58B4F30040DBBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +146,9 @@
 			dependencies = (
 			);
 			name = BeChattedNetwork;
+			packageProductDependencies = (
+				2EEB13512C58B4F30040DBBA /* SocketIO */,
+			);
 			productName = BeChattedNetwork;
 			productReference = 2E9553732BE3B8D0002E23B2 /* BeChattedNetwork.framework */;
 			productType = "com.apple.product-type.framework";
@@ -180,6 +199,9 @@
 				Base,
 			);
 			mainGroup = 2E9553692BE3B8D0002E23B2;
+			packageReferences = (
+				2EE3594B2C58AD470031014A /* XCRemoteSwiftPackageReference "socket" */,
+			);
 			productRefGroup = 2E9553742BE3B8D0002E23B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -212,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE3594D2C58AD770031014A /* WebSocketIOClient.swift in Sources */,
 				2E95538C2BE3B916002E23B2 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +246,7 @@
 				2E95538E2BE3B94C002E23B2 /* URLSessionHTTPClientTests.swift in Sources */,
 				2E9553952BE3BA38002E23B2 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2E9553902BE3B9B8002E23B2 /* URLProtocolStub.swift in Sources */,
+				2EEAC32C2C59FDE0008CF634 /* WebSocketIOClientTests.swift in Sources */,
 				2E9553932BE3B9F4002E23B2 /* HelperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,7 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -405,7 +429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -518,6 +542,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2EE3594B2C58AD470031014A /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2EEB13512C58B4F30040DBBA /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EE3594B2C58AD470031014A /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2E95536A2BE3B8D0002E23B2 /* Project object */;
 }

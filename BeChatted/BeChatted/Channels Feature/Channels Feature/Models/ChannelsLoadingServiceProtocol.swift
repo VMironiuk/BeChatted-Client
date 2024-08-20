@@ -5,7 +5,7 @@
 //  Created by Volodymyr Myroniuk on 01.05.2024.
 //
 
-import Foundation
+import Combine
 
 public struct Channel {
   public let id: String
@@ -26,5 +26,7 @@ public enum ChannelsLoadingServiceError: Error {
 }
 
 public protocol ChannelsLoadingServiceProtocol {
+  typealias ChannelData = (id: String, name: String, description: String)
+  var newChannel: PassthroughSubject<ChannelData, Never> { get }
   func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void)
 }

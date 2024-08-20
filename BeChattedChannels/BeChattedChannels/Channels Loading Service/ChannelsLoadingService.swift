@@ -5,6 +5,7 @@
 //  Created by Volodymyr Myroniuk on 09.04.2024.
 //
 
+import Combine
 import Foundation
 
 public struct ChannelInfo: Codable, Equatable {
@@ -33,14 +34,37 @@ public enum ChannelsLoadingError: Error {
 }
 
 public struct ChannelsLoadingService {
+  public typealias ChannelData = (id: String, name: String, description: String)
+  
   private let url: URL
   private let authToken: String
-  private let client: HTTPClientProtocol
+  private let httpClient: HTTPClientProtocol
+  private let webSocketClient: WebSocketClientProtocol
   
-  public init(url: URL, authToken: String, client: HTTPClientProtocol) {
+  public let newChannel = PassthroughSubject<ChannelData, Never>()
+  
+  public init(
+    url: URL,
+    authToken: String,
+    httpClient: HTTPClientProtocol,
+    webSocketClient: WebSocketClientProtocol
+  ) {
     self.url = url
     self.authToken = authToken
-    self.client = client
+    self.httpClient = httpClient
+    self.webSocketClient = webSocketClient
+    
+    webSocketClient.connect()
+    webSocketClient.on("channelCreated") { [weak newChannel] channelData in
+      guard let channelFields = channelData as? [String], channelData.count == 3 else { return }
+      newChannel?.send(
+        (
+          id: channelFields[2],
+          name: channelFields[0],
+          description: channelFields[1]
+        )
+      )
+    }
   }
   
   public func loadChannels(completion: @escaping (Result<[ChannelInfo], ChannelsLoadingError>) -> Void) {
@@ -48,7 +72,7 @@ public struct ChannelsLoadingService {
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
     
-    client.perform(request: request) { result in
+    httpClient.perform(request: request) { result in
       switch result {
       case let .success((data, response)):
         completion(ChannelsLoadingResultMapper.result(for: data, response: response))
@@ -56,5 +80,5 @@ public struct ChannelsLoadingService {
         completion(.failure(.server))
       }
     }
-  }    
+  }
 }

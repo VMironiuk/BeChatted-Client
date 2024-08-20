@@ -2,157 +2,80 @@
 //  ChannelCreationServiceTests.swift
 //  BeChattedChannelsTests
 //
-//  Created by Volodymyr Myroniuk on 22.05.2024.
+//  Created by Volodymyr Myroniuk on 03.08.2024.
 //
 
 import XCTest
 import BeChattedChannels
 
 final class ChannelCreationServiceTests: XCTestCase {
-  
-  func test_init_doesNotSendRequests() {
+  func test_init_sendsConnectMessage() {
     // given
     
     // when
-    let (_, client) = makeSUT()
+    let url = URL(string: "http://any-url.com")!
+    let socket = WebSocketClientSpy(url: url)
+    _ = ChannelCreationService(webSocketClient: socket)
     
     // then
-    XCTAssertEqual(client.requestedURLs, [])
-    XCTAssertEqual(client.httpMethods, [])
-    XCTAssertEqual(client.contentTypes, [])
-    XCTAssertEqual(client.authTokens, [])
+    XCTAssertEqual(socket.connectCallCount, 1)
+    XCTAssertEqual(socket.disconnectCallCount, 0)
+    XCTAssertEqual(socket.emitCallCount, 0)
+    XCTAssertEqual(socket.onCallCount, 0)
   }
   
-  func test_createChannel_sendsCreateChannelRequestByURL() {
+  func test_addChannel_sendsEmitMessageWithNewChannelPayloadWithCorrectEvent() {
     // given
-    let url = anyURL()
-    let (sut, client) = makeSUT(url: url)
+    let url = URL(string: "http://any-url.com")!
+    let socket = WebSocketClientSpy(url: url)
+    let sut = ChannelCreationService(webSocketClient: socket)
+    let channel = CreateChanelPayload(name: "channel name", description: "channel description")
     
     // when
-    sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
+    sut.addChannel(channel)
     
     // then
-    XCTAssertEqual(client.requestedURLs, [url])
-  }
-  
-  func test_createChannel_sendsCreateChannelRequestByURLTwice() {
-    // given
-    let url = anyURL()
-    let (sut, client) = makeSUT(url: url)
+    XCTAssertEqual(socket.connectCallCount, 1)
+    XCTAssertEqual(socket.disconnectCallCount, 0)
+    XCTAssertEqual(socket.emitCallCount, 1)
+    XCTAssertEqual(socket.onCallCount, 0)
     
-    // when
-    sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-    sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-    
-    // then
-    XCTAssertEqual(client.requestedURLs, [url, url])
-  }
-  
-  func test_createChannel_sendsCreateChannelRequestAsPOSTMethod() {
-    // given
-    let (sut, client) = makeSUT()
-    
-    // when
-    sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-    
-    // then
-    XCTAssertEqual(client.httpMethods, ["POST"])
-  }
-  
-  func test_createChannel_sendsCreateChannelRequestAsApplicationJSONContentType() {
-    // given
-    let (sut, client) = makeSUT()
-    
-    // when
-    sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-    
-    // then
-    XCTAssertEqual(client.contentTypes, ["application/json"])
-  }
-  
-  func test_createChannel_sendsCreateChannelRequestWithAuthToken() {
-    // given
-    let anyAuthToken = anyAuthToken()
-    let (sut, client) = makeSUT(authToken: anyAuthToken)
-    
-    // when
-    sut.createChannel(payload: anyCreateChannelPayload()) { _ in }
-    
-    // then
-    XCTAssertEqual(client.authTokens, ["Bearer \(anyAuthToken)"])
-  }
-  
-  func test_createChannel_sendsCreateChannelPayload() {
-    // given
-    let (sut, client) = makeSUT()
-    let createChannelPayload = anyCreateChannelPayload()
-    
-    // when
-    sut.createChannel(payload: createChannelPayload) { _ in }
-    
-    // then
-    XCTAssertEqual(client.createChannelPayloads, [createChannelPayload])
-  }
-  
-  func test_createChannel_deliversSuccessfulResultOn200HTTPResponse() {
-    // given
-    let (sut, client) = makeSUT()
-    let exp = expectation(description: "Wait for create channel request completion")
-    
-    // when
-    sut.createChannel(payload: anyCreateChannelPayload()) { result in
-      // then
-      switch result {
-      case .success:
-        break
-      case .failure(let error):
-        XCTFail("Expected success, got \(error) instead")
-      }
-      exp.fulfill()
-    }
-    client.complete(with: httpResponse(with: 200))
-    wait(for: [exp], timeout: 1)
-  }
-  
-  func test_createChannel_deliversServerErrorOn500HTTPResponse() {
-    // given
-    let (sut, client) = makeSUT()
-    let exp = expectation(description: "Wait for create channel request completion")
-    
-    // when
-    sut.createChannel(payload: anyCreateChannelPayload()) { result in
-      // then
-      switch result {
-      case .success:
-        XCTFail("Expected failure, got \(result) instead")
-      case .failure(let error) where error == .server:
-        break
-      default:
-        XCTFail("Expected server error, got \(result) instead")
-      }
-      exp.fulfill()
-    }
-    client.complete(with: httpResponse(with: 500))
-    wait(for: [exp], timeout: 1)
+    XCTAssertEqual(socket.emitMessages[0].event, "newChannel")
+    XCTAssertEqual(socket.emitMessages[0].items[0], channel.name)
+    XCTAssertEqual(socket.emitMessages[0].items[1], channel.description)
   }
   
   // MARK: - Helpers
   
-  private func makeSUT(
-    url: URL = URL(string: "http://any-url.com")!,
-    authToken: String = "any token",
-    file: StaticString = #filePath,
-    line: UInt = #line
-  ) -> (ChannelCreationService, HTTPClientSpy) {
-    let client  = HTTPClientSpy()
-    let sut = ChannelCreationService(url: url, authToken: authToken, client: client)
+  private final class WebSocketClientSpy: WebSocketClientProtocol {
+    struct EmitMessage {
+      let event: String
+      let items: [String]
+    }
     
-    trackForMemoryLeaks(client, file: file, line: line)
+    private(set) var connectCallCount = 0
+    private(set) var disconnectCallCount = 0
+    var emitCallCount: Int { emitMessages.count }
+    private(set) var onCallCount = 0
+    private(set) var emitMessages = [EmitMessage]()
     
-    return (sut, client)
-  }
-  
-  private func anyCreateChannelPayload() -> CreateChanelPayload {
-    CreateChanelPayload(name: "any name", description: "any description")
+    init(url: URL) {
+    }
+    
+    func connect() {
+      connectCallCount += 1
+    }
+    
+    func disconnect() {
+      disconnectCallCount += 1
+    }
+    
+    func emit(_ event: String, _ item1: String, _ item2: String) {
+      emitMessages.append(EmitMessage(event: event, items: [item1, item2]))
+    }
+    
+    func on(_ event: String, completion: @escaping ([Any]) -> Void) {
+      onCallCount += 1
+    }
   }
 }

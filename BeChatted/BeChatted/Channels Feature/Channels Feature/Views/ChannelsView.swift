@@ -5,6 +5,7 @@
 //  Created by Volodymyr Myroniuk on 18.03.2024.
 //
 
+import Combine
 import SwiftUI
 import BeChatted
 
@@ -133,6 +134,8 @@ struct ChannelsView<CreateChannelContent: View, UserProfileContent: View>: View 
 }
 
 private class FakeChannelsLoadingService: ChannelsLoadingServiceProtocol {
+  let newChannel = PassthroughSubject<ChannelData, Never>()
+  
   func loadChannels(
     completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void
   ) {

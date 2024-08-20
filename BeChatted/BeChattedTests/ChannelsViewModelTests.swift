@@ -7,6 +7,7 @@
 
 import XCTest
 import BeChatted
+import Combine
 
 final class ChannelsViewModelTests: XCTestCase {
   
@@ -149,6 +150,36 @@ final class ChannelsViewModelTests: XCTestCase {
     sub.cancel()
   }
   
+  func test_newChannelReceiving_appendsNewChannelToExistingChannels() {
+    // given
+    let channelItems = [ChannelItem(id: "id", name: "name", description: "description")]
+    let exp = expectation(description: "Waiting for new channel")
+    let (sut, service) = makeSUT()
+    sut.loadChannelsResult = .success(channelItems)
+    
+    let sub = sut.$loadChannelsResult
+      .dropFirst()
+      .sink { result in
+        // then
+        switch result {
+        case .success(let items):
+          XCTAssertEqual(
+            items,
+            [channelItems[0], ChannelItem(id: "CHANNEL_ID", name: "CHANNEL_NAME", description: "CHANNEL_DESCRIPTION")]
+          )
+        default:
+          XCTFail("Expected channel items, got \(result) instead")
+        }
+        exp.fulfill()
+      }
+    
+    // when
+    service.newChannel.send(("CHANNEL_ID", "CHANNEL_NAME", "CHANNEL_DESCRIPTION"))
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (ChannelsViewModel, ChannelsLoadingServiceStub) {
@@ -170,6 +201,8 @@ final class ChannelsViewModelTests: XCTestCase {
   }
   
   private final class ChannelsLoadingServiceStub: ChannelsLoadingServiceProtocol {
+    var newChannel = PassthroughSubject<ChannelData, Never>()
+    
     private var loadChannelsCompletions = [(Result<[Channel], ChannelsLoadingServiceError>) -> Void]()
     
     var loadChannelsCallCount: Int {

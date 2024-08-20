@@ -2,18 +2,12 @@
 //  ChannelCreationService.swift
 //  BeChattedChannels
 //
-//  Created by Volodymyr Myroniuk on 22.05.2024.
+//  Created by Volodymyr Myroniuk on 07.08.2024.
 //
 
 import Foundation
 
-public enum ChannelCreatingError: Error {
-  case server
-  case connectivity
-  case unknown
-}
-
-public struct CreateChanelPayload: Encodable {
+public struct CreateChanelPayload {
   public let name: String
   public let description: String
   
@@ -24,30 +18,14 @@ public struct CreateChanelPayload: Encodable {
 }
 
 public struct ChannelCreationService {
-  private let url: URL
-  private let authToken: String
-  private let client: HTTPClientProtocol
+  private let webSocketClient: WebSocketClientProtocol
   
-  public init(url: URL, authToken: String, client: HTTPClientProtocol) {
-    self.url = url
-    self.authToken = authToken
-    self.client = client
+  public init(webSocketClient: WebSocketClientProtocol) {
+    self.webSocketClient = webSocketClient
+    webSocketClient.connect()
   }
   
-  public func createChannel(payload: CreateChanelPayload, completion: @escaping (Result<Void, ChannelCreatingError>) -> Void) {
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
-    request.httpBody = try? JSONEncoder().encode(payload)
-    
-    client.perform(request: request) { result in
-      switch result {
-      case let .success((_, response)):
-        completion(ChannelCreatingResultMapper.result(for: response))
-      case .failure:
-        completion(.failure(.connectivity))
-      }
-    }
+  public func addChannel(_ channel: CreateChanelPayload) {
+    webSocketClient.emit("newChannel", channel.name, channel.description)
   }
 }
