@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2EAF79C92C76FFE4001DB163 /* BeChattedMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EAF79C02C76FFE4001DB163 /* BeChattedMessaging.framework */; };
-		2EAF79CE2C76FFE4001DB163 /* BeChattedMessagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF79CD2C76FFE4001DB163 /* BeChattedMessagingTests.swift */; };
 		2EAF79CF2C76FFE4001DB163 /* BeChattedMessaging.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EAF79C32C76FFE4001DB163 /* BeChattedMessaging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2EAF79D92C770073001DB163 /* MessagingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF79D82C770073001DB163 /* MessagingServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,7 +26,7 @@
 		2EAF79C02C76FFE4001DB163 /* BeChattedMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeChattedMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EAF79C32C76FFE4001DB163 /* BeChattedMessaging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeChattedMessaging.h; sourceTree = "<group>"; };
 		2EAF79C82C76FFE4001DB163 /* BeChattedMessagingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeChattedMessagingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2EAF79CD2C76FFE4001DB163 /* BeChattedMessagingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedMessagingTests.swift; sourceTree = "<group>"; };
+		2EAF79D82C770073001DB163 /* MessagingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,7 @@
 		2EAF79CC2C76FFE4001DB163 /* BeChattedMessagingTests */ = {
 			isa = PBXGroup;
 			children = (
-				2EAF79CD2C76FFE4001DB163 /* BeChattedMessagingTests.swift */,
+				2EAF79D82C770073001DB163 /* MessagingServiceTests.swift */,
 			);
 			path = BeChattedMessagingTests;
 			sourceTree = "<group>";
@@ -198,7 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EAF79CE2C76FFE4001DB163 /* BeChattedMessagingTests.swift in Sources */,
+				2EAF79D92C770073001DB163 /* MessagingServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
