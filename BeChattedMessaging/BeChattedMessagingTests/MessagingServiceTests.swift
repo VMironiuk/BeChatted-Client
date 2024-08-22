@@ -20,6 +20,7 @@ struct MessagingService {
     
     webSocketClient.connect()
     webSocketClient.on("messageCreated") { _ in }
+    webSocketClient.on("userTypingUpdate") { _ in }
   }
 }
 
@@ -30,6 +31,7 @@ final class MessagingServiceTests: XCTestCase {
     
     XCTAssertEqual(webSocketClient.connectCallCount, 1)
     XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains("messageCreated"))
+    XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains("userTypingUpdate"))
   }
   
   // MARK: - Helpers
