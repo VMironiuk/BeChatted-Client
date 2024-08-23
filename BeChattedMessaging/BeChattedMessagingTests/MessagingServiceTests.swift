@@ -56,8 +56,7 @@ struct MessagingService {
 
 final class MessagingServiceTests: XCTestCase {
   func test_init_setsUpWebSocketClient() {
-    let webSocketClient = WebSocketClientSpy()
-    _ = MessagingService(webSocketClient: webSocketClient)
+    let (_, webSocketClient) = makeSUT()
     
     XCTAssertEqual(webSocketClient.connectCallCount, 1)
     XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains("messageCreated"))
@@ -73,9 +72,8 @@ final class MessagingServiceTests: XCTestCase {
       userAvatar: "user avatar",
       userAvatarColor: "user avatar color"
     )
-    let webSocketClient = WebSocketClientSpy()
-    let sut = MessagingService(webSocketClient: webSocketClient)
-    
+    let (sut, webSocketClient) = makeSUT()
+
     sut.sendMessage(message)
     
     XCTAssertEqual(webSocketClient.emitCallCount, 1)
@@ -89,6 +87,18 @@ final class MessagingServiceTests: XCTestCase {
   }
   
   // MARK: - Helpers
+  
+  private func makeSUT(
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) -> (MessagingService, WebSocketClientSpy) {
+    let webSocketClient = WebSocketClientSpy()
+    let sut = MessagingService(webSocketClient: webSocketClient)
+    
+    trackForMemoryLeaks(webSocketClient, file: file, line: line)
+    
+    return (sut, webSocketClient)
+  }
   
   private final class WebSocketClientSpy: WebSocketClientProtocol {
     struct OnMessage {
