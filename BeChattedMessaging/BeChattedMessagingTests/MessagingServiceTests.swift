@@ -31,19 +31,25 @@ struct MessagingService {
     let userAvatarColor: String
   }
   
+  enum Event: String {
+    case messageCreated
+    case userTypingUpdate
+    case newMessage
+  }
+  
   private let webSocketClient: WebSocketClientProtocol
   
   init(webSocketClient: WebSocketClientProtocol) {
     self.webSocketClient = webSocketClient
     
     webSocketClient.connect()
-    webSocketClient.on("messageCreated") { _ in }
-    webSocketClient.on("userTypingUpdate") { _ in }
+    webSocketClient.on(Event.messageCreated.rawValue) { _ in }
+    webSocketClient.on(Event.userTypingUpdate.rawValue) { _ in }
   }
   
   func sendMessage(_ message: Message) {
     webSocketClient.emit(
-      "newMessage",
+      Event.newMessage.rawValue,
       message.body,
       message.userID,
       message.channelID,
@@ -59,8 +65,8 @@ final class MessagingServiceTests: XCTestCase {
     let (_, webSocketClient) = makeSUT()
     
     XCTAssertEqual(webSocketClient.connectCallCount, 1)
-    XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains("messageCreated"))
-    XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains("userTypingUpdate"))
+    XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains(MessagingService.Event.messageCreated.rawValue))
+    XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains(MessagingService.Event.userTypingUpdate.rawValue))
   }
   
   func test_sendMessage_emitsNewMessage() {
@@ -77,7 +83,7 @@ final class MessagingServiceTests: XCTestCase {
     sut.sendMessage(message)
     
     XCTAssertEqual(webSocketClient.emitCallCount, 1)
-    XCTAssertEqual(webSocketClient.emitMessages[0].event, "newMessage")
+    XCTAssertEqual(webSocketClient.emitMessages[0].event, MessagingService.Event.newMessage.rawValue)
     XCTAssertEqual(webSocketClient.emitMessages[0].item1, message.body)
     XCTAssertEqual(webSocketClient.emitMessages[0].item2, message.userID)
     XCTAssertEqual(webSocketClient.emitMessages[0].item3, message.channelID)
