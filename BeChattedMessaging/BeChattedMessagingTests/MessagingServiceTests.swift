@@ -7,6 +7,8 @@
 
 import XCTest
 
+import Combine
+
 protocol WebSocketClientProtocol {
   func connect()
   func on(_ event: String, completion: @escaping ([Any]) -> Void)
@@ -22,6 +24,17 @@ protocol WebSocketClientProtocol {
 }
 
 struct MessagingService {
+  typealias MessageData = (
+    body: String,
+    userID: String,
+    channelID: String,
+    userName: String,
+    userAvatar: String,
+    userAvatarColor: String,
+    id: String,
+    timeStamp: String
+  )
+  
   struct Message {
     let body: String
     let userID: String
@@ -39,11 +52,30 @@ struct MessagingService {
   
   private let webSocketClient: WebSocketClientProtocol
   
+  let newMessage = PassthroughSubject<MessageData, Never>()
+  
   init(webSocketClient: WebSocketClientProtocol) {
     self.webSocketClient = webSocketClient
     
     webSocketClient.connect()
-    webSocketClient.on(Event.messageCreated.rawValue) { _ in }
+    webSocketClient.on(Event.messageCreated.rawValue) { [weak newMessage] messageData in
+      guard let messageFields = messageData as? [String], messageFields.count == 8 else {
+        return
+      }
+      newMessage?.send(
+        (
+          body: messageFields[0],
+          userID: messageFields[1],
+          channelID: messageFields[2],
+          userName: messageFields[3],
+          userAvatar: messageFields[4],
+          userAvatarColor: messageFields[5],
+          id: messageFields[6],
+          timeStamp: messageFields[7]
+        )
+      )
+    }
+    
     webSocketClient.on(Event.userTypingUpdate.rawValue) { _ in }
   }
   
@@ -90,6 +122,37 @@ final class MessagingServiceTests: XCTestCase {
     XCTAssertEqual(webSocketClient.emitMessages[0].item4, message.userName)
     XCTAssertEqual(webSocketClient.emitMessages[0].item5, message.userAvatar)
     XCTAssertEqual(webSocketClient.emitMessages[0].item6, message.userAvatarColor)
+  }
+  
+  func test_webSocketClient_onMethodCompletion_publishesNewMessage() {
+    let body = "MESSAGE_BODY"
+    let userID = "USER_ID"
+    let channelID = "CHANNEL_ID"
+    let userName = "USER_NAME"
+    let userAvatar = "USER_AVATAR"
+    let userAvatarColor = "USER_AVATAR_COLOR"
+    let id = "ID"
+    let timeStamp = "TIMESTAMP"
+    let exp = expectation(description: "Waiting for a new message")
+    let (sut, webSocketClient) = makeSUT()
+    
+    let sub = sut.newMessage.sink { newMessageData in
+      XCTAssertEqual(newMessageData.body, body)
+      XCTAssertEqual(newMessageData.userID, userID)
+      XCTAssertEqual(newMessageData.channelID, channelID)
+      XCTAssertEqual(newMessageData.userName, userName)
+      XCTAssertEqual(newMessageData.userAvatar, userAvatar)
+      XCTAssertEqual(newMessageData.userAvatarColor, userAvatarColor)
+      XCTAssertEqual(newMessageData.id, id)
+      XCTAssertEqual(newMessageData.timeStamp, timeStamp)
+
+      exp.fulfill()
+    }
+    webSocketClient.completeOn(with: [body, userID, channelID, userName, userAvatar, userAvatarColor, id, timeStamp])
+        
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+
   }
   
   // MARK: - Helpers
@@ -157,6 +220,10 @@ final class MessagingServiceTests: XCTestCase {
           item6: item6
         )
       )
+    }
+    
+    func completeOn(with newMessageData: [String], at index: Int = 0) {
+      onMessages[index].completion(newMessageData)
     }
   }
 }
