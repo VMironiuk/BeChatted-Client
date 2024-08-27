@@ -75,8 +75,6 @@ struct MessagingService {
         )
       )
     }
-    
-    webSocketClient.on(Event.userTypingUpdate.rawValue) { _ in }
   }
   
   func sendMessage(_ message: Message) {
@@ -98,7 +96,6 @@ final class MessagingServiceTests: XCTestCase {
     
     XCTAssertEqual(webSocketClient.connectCallCount, 1)
     XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains(MessagingService.Event.messageCreated.rawValue))
-    XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains(MessagingService.Event.userTypingUpdate.rawValue))
   }
   
   func test_sendMessage_emitsNewMessage() {
