@@ -9,6 +9,12 @@ import XCTest
 
 import Combine
 
+protocol HTTPClientProtocol {
+  func perform(
+    request: URLRequest,
+    completion: @escaping (Result<(Data?, HTTPURLResponse?), Error>) -> Void)
+}
+
 protocol WebSocketClientProtocol {
   func connect()
   func on(_ event: String, completion: @escaping ([Any]) -> Void)
@@ -50,11 +56,13 @@ struct MessagingService {
     case newMessage
   }
   
+  private let httpClient: HTTPClientProtocol
   private let webSocketClient: WebSocketClientProtocol
   
   let newMessage = PassthroughSubject<MessageData, Never>()
   
-  init(webSocketClient: WebSocketClientProtocol) {
+  init(httpClient: HTTPClientProtocol, webSocketClient: WebSocketClientProtocol) {
+    self.httpClient = httpClient
     self.webSocketClient = webSocketClient
     
     webSocketClient.connect()
@@ -92,7 +100,7 @@ struct MessagingService {
 
 final class MessagingServiceTests: XCTestCase {
   func test_init_setsUpWebSocketClient() {
-    let (_, webSocketClient) = makeSUT()
+    let (_, _, webSocketClient) = makeSUT()
     
     XCTAssertEqual(webSocketClient.connectCallCount, 1)
     XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains(MessagingService.Event.messageCreated.rawValue))
@@ -107,7 +115,7 @@ final class MessagingServiceTests: XCTestCase {
       userAvatar: "user avatar",
       userAvatarColor: "user avatar color"
     )
-    let (sut, webSocketClient) = makeSUT()
+    let (sut, _,webSocketClient) = makeSUT()
 
     sut.sendMessage(message)
     
@@ -131,7 +139,7 @@ final class MessagingServiceTests: XCTestCase {
     let id = "ID"
     let timeStamp = "TIMESTAMP"
     let exp = expectation(description: "Waiting for a new message")
-    let (sut, webSocketClient) = makeSUT()
+    let (sut, _, webSocketClient) = makeSUT()
     
     let sub = sut.newMessage.sink { newMessageData in
       XCTAssertEqual(newMessageData.body, body)
@@ -157,13 +165,23 @@ final class MessagingServiceTests: XCTestCase {
   private func makeSUT(
     file: StaticString = #filePath,
     line: UInt = #line
-  ) -> (MessagingService, WebSocketClientSpy) {
+  ) -> (MessagingService, HTTPClientSpy, WebSocketClientSpy) {
+    let httpClient = HTTPClientSpy()
     let webSocketClient = WebSocketClientSpy()
-    let sut = MessagingService(webSocketClient: webSocketClient)
+    let sut = MessagingService(httpClient: httpClient, webSocketClient: webSocketClient)
     
     trackForMemoryLeaks(webSocketClient, file: file, line: line)
+    trackForMemoryLeaks(httpClient, file: file, line: line)
     
-    return (sut, webSocketClient)
+    return (sut, httpClient, webSocketClient)
+  }
+  
+  private final class HTTPClientSpy: HTTPClientProtocol {
+    func perform(
+      request: URLRequest,
+      completion: @escaping (Result<(Data?, HTTPURLResponse?), any Error>) -> Void
+    ) {
+    }
   }
   
   private final class WebSocketClientSpy: WebSocketClientProtocol {
