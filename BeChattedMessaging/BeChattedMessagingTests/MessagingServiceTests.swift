@@ -41,7 +41,7 @@ struct MessagingService {
     timeStamp: String
   )
   
-  struct Message {
+  struct MessagePayload {
     let body: String
     let userID: String
     let channelID: String
@@ -50,18 +50,48 @@ struct MessagingService {
     let userAvatarColor: String
   }
   
+  struct MessageInfo: Codable {
+    let id: String
+    let messageBody: String
+    let userId: String
+    let channelId: String
+    let userName: String
+    let userAvatar: String
+    let userAvatarColor: String
+    let timeStamp: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case messageBody
+        case userId
+        case channelId
+        case userName
+        case userAvatar
+        case userAvatarColor
+        case timeStamp
+    }
+  }
+  
   enum Event: String {
     case messageCreated
     case userTypingUpdate
     case newMessage
   }
   
+  enum LoadMessagesError: Error {}
+  
+  private let url: URL
   private let httpClient: HTTPClientProtocol
   private let webSocketClient: WebSocketClientProtocol
   
   let newMessage = PassthroughSubject<MessageData, Never>()
   
-  init(httpClient: HTTPClientProtocol, webSocketClient: WebSocketClientProtocol) {
+  init(
+    url: URL,
+    httpClient: HTTPClientProtocol,
+    webSocketClient: WebSocketClientProtocol
+  ) {
+    self.url = url
     self.httpClient = httpClient
     self.webSocketClient = webSocketClient
     
@@ -85,7 +115,7 @@ struct MessagingService {
     }
   }
   
-  func sendMessage(_ message: Message) {
+  func sendMessage(_ message: MessagePayload) {
     webSocketClient.emit(
       Event.newMessage.rawValue,
       message.body,
@@ -95,6 +125,15 @@ struct MessagingService {
       message.userAvatar,
       message.userAvatarColor
     )
+  }
+  
+  func loadMessages(
+    by channelID: String,
+    completion: @escaping (Result<[MessageInfo], LoadMessagesError>) -> Void
+  ) {
+    let request = URLRequest(url: url)
+    
+    httpClient.perform(request: request) { _ in }
   }
 }
 
@@ -107,7 +146,7 @@ final class MessagingServiceTests: XCTestCase {
   }
   
   func test_sendMessage_emitsNewMessage() {
-    let message = MessagingService.Message(
+    let message = MessagingService.MessagePayload(
       body: "message body",
       userID: "007",
       channelID: "777",
@@ -157,7 +196,15 @@ final class MessagingServiceTests: XCTestCase {
         
     wait(for: [exp], timeout: 1)
     sub.cancel()
-
+  }
+  
+  func test_loadMessages_callsHTTPClientPerform() {
+    let channelID = "CHANNEL_ID"
+    let (sut, httpClient, _) = makeSUT()
+    
+    sut.loadMessages(by: channelID) { _ in }
+    
+    XCTAssertEqual(httpClient.performCallCount, 1)
   }
   
   // MARK: - Helpers
@@ -166,9 +213,10 @@ final class MessagingServiceTests: XCTestCase {
     file: StaticString = #filePath,
     line: UInt = #line
   ) -> (MessagingService, HTTPClientSpy, WebSocketClientSpy) {
+    let url = URL(string: "http://any-url.com")!
     let httpClient = HTTPClientSpy()
     let webSocketClient = WebSocketClientSpy()
-    let sut = MessagingService(httpClient: httpClient, webSocketClient: webSocketClient)
+    let sut = MessagingService(url: url, httpClient: httpClient, webSocketClient: webSocketClient)
     
     trackForMemoryLeaks(webSocketClient, file: file, line: line)
     trackForMemoryLeaks(httpClient, file: file, line: line)
@@ -177,10 +225,13 @@ final class MessagingServiceTests: XCTestCase {
   }
   
   private final class HTTPClientSpy: HTTPClientProtocol {
+    private(set) var performCallCount = 0
+    
     func perform(
       request: URLRequest,
       completion: @escaping (Result<(Data?, HTTPURLResponse?), any Error>) -> Void
     ) {
+      performCallCount += 1
     }
   }
   
