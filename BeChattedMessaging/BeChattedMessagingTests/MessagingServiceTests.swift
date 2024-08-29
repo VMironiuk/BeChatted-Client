@@ -78,7 +78,9 @@ struct MessagingService {
     case newMessage
   }
   
-  enum LoadMessagesError: Error {}
+  enum LoadMessagesError: Error {
+      case server
+  }
   
   private let url: URL
   private let httpClient: HTTPClientProtocol
@@ -133,7 +135,16 @@ struct MessagingService {
   ) {
     let request = URLRequest(url: url)
     
-    httpClient.perform(request: request) { _ in }
+    httpClient.perform(request: request) { result in
+      switch result {
+      case let .success((data, response)):
+        if response?.statusCode == 500 {
+          completion(.failure(.server))
+        }
+      case .failure(let error):
+        break
+      }
+    }
   }
 }
 
@@ -207,6 +218,25 @@ final class MessagingServiceTests: XCTestCase {
     XCTAssertEqual(httpClient.performCallCount, 1)
   }
   
+  func test_loadMessages_deliversServerErrorOn500HTTPResponse() {
+    let channelID = "CHANNEL_ID"
+    let exp = expectation(description: "Wait for messages loading")
+    let (sut, httpClient, _) = makeSUT()
+    
+    sut.loadMessages(by: channelID) { result in
+      switch result {
+      case .failure(let error):
+        XCTAssertEqual(error, MessagingService.LoadMessagesError.server)
+      default:
+        XCTFail("Expected server error, got \(result) instead")
+      }
+      exp.fulfill()
+    }
+    
+    httpClient.completeMessagesLoading(with: 500)
+    wait(for: [exp], timeout: 1)
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
@@ -225,13 +255,28 @@ final class MessagingServiceTests: XCTestCase {
   }
   
   private final class HTTPClientSpy: HTTPClientProtocol {
-    private(set) var performCallCount = 0
+    private var completions = [(Result<(Data?, HTTPURLResponse?), Error>) -> Void]()
+    
+    var performCallCount: Int {
+      completions.count
+    }
     
     func perform(
       request: URLRequest,
       completion: @escaping (Result<(Data?, HTTPURLResponse?), any Error>) -> Void
     ) {
-      performCallCount += 1
+      completions.append(completion)
+    }
+    
+    
+    func completeMessagesLoading(with statusCode: Int, at index: Int = 0) {
+      let response = HTTPURLResponse(
+        url: URL(string: "http://any-url.com")!,
+        statusCode: statusCode,
+        httpVersion: nil,
+        headerFields: nil
+      )
+      completions[index](.success((nil, response)))
     }
   }
   
