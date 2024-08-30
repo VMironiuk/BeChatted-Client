@@ -79,7 +79,8 @@ struct MessagingService {
   }
   
   enum LoadMessagesError: Error {
-      case server
+    case server
+    case invalidData
   }
   
   private let url: URL
@@ -138,8 +139,16 @@ struct MessagingService {
     httpClient.perform(request: request) { result in
       switch result {
       case let .success((data, response)):
-        if response?.statusCode == 500 {
+        guard response?.statusCode != 500 else {
           completion(.failure(.server))
+          return
+        }
+        
+        if response?.statusCode == 200 {
+          if let data, let messages = try? JSONDecoder().decode([MessageInfo].self, from: data) {
+          } else {
+            completion(.failure(.invalidData))
+          }
         }
       case .failure(let error):
         break
@@ -237,6 +246,25 @@ final class MessagingServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1)
   }
   
+  func test_loadMessages_deliversInvalidDataErrorOn200HTTPResponseButInvalidData() {
+    let channelID = "CHANNEL_ID"
+    let exp = expectation(description: "Wait for messages loading")
+    let (sut, httpClient, _) = makeSUT()
+    
+    sut.loadMessages(by: channelID) { result in
+      switch result {
+      case .failure(let error):
+        XCTAssertEqual(error, MessagingService.LoadMessagesError.invalidData)
+      default:
+        XCTFail("Expected server error, got \(result) instead")
+      }
+      exp.fulfill()
+    }
+    
+    httpClient.completeMessagesLoading(with: "invalid data".data(using: .utf8))
+    wait(for: [exp], timeout: 1)
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
@@ -277,6 +305,16 @@ final class MessagingServiceTests: XCTestCase {
         headerFields: nil
       )
       completions[index](.success((nil, response)))
+    }
+    
+    func completeMessagesLoading(with data: Data?, at index: Int = 0) {
+      let response = HTTPURLResponse(
+        url: URL(string: "http://any-url.com")!,
+        statusCode: 200,
+        httpVersion: nil,
+        headerFields: nil
+      )
+      completions[index](.success((data, response)))
     }
   }
   
