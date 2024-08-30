@@ -81,6 +81,7 @@ struct MessagingService {
   enum LoadMessagesError: Error {
     case server
     case invalidData
+    case invalidResponse
   }
   
   private let url: URL
@@ -149,6 +150,8 @@ struct MessagingService {
           } else {
             completion(.failure(.invalidData))
           }
+        } else {
+          completion(.failure(.invalidResponse))
         }
       case .failure(let error):
         break
@@ -262,6 +265,25 @@ final class MessagingServiceTests: XCTestCase {
     }
     
     httpClient.completeMessagesLoading(with: "invalid data".data(using: .utf8))
+    wait(for: [exp], timeout: 1)
+  }
+  
+  func test_loadMessages_deliversInvalidResponseErrorOnNon200And500HTTPResponse() {
+    let channelID = "CHANNEL_ID"
+    let exp = expectation(description: "Wait for messages loading")
+    let (sut, httpClient, _) = makeSUT()
+    
+    sut.loadMessages(by: channelID) { result in
+      switch result {
+      case .failure(let error):
+        XCTAssertEqual(error, MessagingService.LoadMessagesError.invalidResponse)
+      default:
+        XCTFail("Expected server error, got \(result) instead")
+      }
+      exp.fulfill()
+    }
+    
+    httpClient.completeMessagesLoading(with: 404)
     wait(for: [exp], timeout: 1)
   }
   
