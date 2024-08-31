@@ -82,6 +82,7 @@ struct MessagingService {
     case server
     case invalidData
     case invalidResponse
+    case unknown(Error)
   }
   
   private let url: URL
@@ -154,7 +155,7 @@ struct MessagingService {
           completion(.failure(.invalidResponse))
         }
       case .failure(let error):
-        break
+        completion(.failure(.unknown(error)))
       }
     }
   }
@@ -287,6 +288,31 @@ final class MessagingServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1)
   }
   
+  func test_loadMessages_deliversUnknownErrorOnFailedRequestPerforming() {
+    let channelID = "CHANNEL_ID"
+    let underlyingError = NSError(domain: "some domain", code: 42)
+    let exp = expectation(description: "Wait for messages loading")
+    let (sut, httpClient, _) = makeSUT()
+    
+    sut.loadMessages(by: channelID) { result in
+      switch result {
+      case .failure(let error):
+        if case let .unknown(gotError) = error {
+          XCTAssertEqual((gotError as NSError).code, underlyingError.code)
+          XCTAssertEqual((gotError as NSError).domain, underlyingError.domain)
+        } else {
+          XCTFail("Expected wrong error type")
+        }
+      default:
+        XCTFail("Expected server error, got \(result) instead")
+      }
+      exp.fulfill()
+    }
+    
+    httpClient.completeMessagesLoading(with: underlyingError)
+    wait(for: [exp], timeout: 1)
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
@@ -337,6 +363,10 @@ final class MessagingServiceTests: XCTestCase {
         headerFields: nil
       )
       completions[index](.success((data, response)))
+    }
+    
+    func completeMessagesLoading(with error: NSError, at index: Int = 0) {
+      completions[index](.failure(error))
     }
   }
   
@@ -395,6 +425,21 @@ final class MessagingServiceTests: XCTestCase {
     
     func completeOn(with newMessageData: [String], at index: Int = 0) {
       onMessages[index].completion(newMessageData)
+    }
+  }
+}
+
+extension MessagingService.LoadMessagesError: Equatable {
+  static func == (
+    lhs: MessagingService.LoadMessagesError,
+    rhs: MessagingService.LoadMessagesError
+  ) -> Bool {
+    switch (lhs, rhs) {
+    case (.server, .server): true
+    case (.invalidData, .invalidData): true
+    case (.invalidResponse, .invalidResponse): true
+    case (.unknown, .unknown): true
+    default: false
     }
   }
 }
