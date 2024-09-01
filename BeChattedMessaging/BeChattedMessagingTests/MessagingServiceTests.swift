@@ -148,6 +148,7 @@ struct MessagingService {
         
         if response?.statusCode == 200 {
           if let data, let messages = try? JSONDecoder().decode([MessageInfo].self, from: data) {
+            completion(.success(messages))
           } else {
             completion(.failure(.invalidData))
           }
@@ -313,6 +314,47 @@ final class MessagingServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1)
   }
   
+  func test_loadMessages_deliversMessages() {
+    let channelID = "CHANNEL_ID"
+    let expectedMessages: [MessagingService.MessageInfo] = [
+      .init(
+        id: "1",
+        messageBody: "body 1",
+        userId: "user 1",
+        channelId: "channel 1",
+        userName: "A",
+        userAvatar: "avatar 1",
+        userAvatarColor: "avatar color 1",
+        timeStamp: "now 1"
+      ),
+      .init(
+        id: "2",
+        messageBody: "body 2",
+        userId: "user 2",
+        channelId: "channel 2",
+        userName: "B",
+        userAvatar: "avatar 2",
+        userAvatarColor: "avatar color 2",
+        timeStamp: "now 2"
+      )
+    ]
+    let exp = expectation(description: "Wait for messages loading")
+    let (sut, httpClient, _) = makeSUT()
+    
+    sut.loadMessages(by: channelID) { result in
+      switch result {
+      case .success(let receivedMessages):
+        XCTAssertEqual(receivedMessages, expectedMessages)
+      default:
+        XCTFail("Expected messages to be loaded, got \(result) instead")
+      }
+      exp.fulfill()
+    }
+    
+    httpClient.completeMessagesLoading(with: try? JSONEncoder().encode(expectedMessages))
+    wait(for: [exp], timeout: 1)
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
@@ -443,3 +485,5 @@ extension MessagingService.LoadMessagesError: Equatable {
     }
   }
 }
+
+extension MessagingService.MessageInfo: Equatable {}
