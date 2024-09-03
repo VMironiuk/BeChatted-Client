@@ -107,7 +107,7 @@ final class MessagingServiceTests: XCTestCase {
       case .failure(let error):
         XCTAssertEqual(error, MessagingService.LoadMessagesError.invalidData)
       default:
-        XCTFail("Expected server error, got \(result) instead")
+        XCTFail("Expected invalid data error, got \(result) instead")
       }
       exp.fulfill()
     }
@@ -126,7 +126,7 @@ final class MessagingServiceTests: XCTestCase {
       case .failure(let error):
         XCTAssertEqual(error, MessagingService.LoadMessagesError.invalidResponse)
       default:
-        XCTFail("Expected server error, got \(result) instead")
+        XCTFail("Expected invalid response error, got \(result) instead")
       }
       exp.fulfill()
     }
@@ -148,10 +148,10 @@ final class MessagingServiceTests: XCTestCase {
           XCTAssertEqual((gotError as NSError).code, underlyingError.code)
           XCTAssertEqual((gotError as NSError).domain, underlyingError.domain)
         } else {
-          XCTFail("Expected wrong error type")
+          XCTFail("Got wrong underlying error")
         }
       default:
-        XCTFail("Expected server error, got \(result) instead")
+        XCTFail("Expected unknown error with underlying error, got \(result) instead")
       }
       exp.fulfill()
     }
