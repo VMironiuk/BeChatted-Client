@@ -84,20 +84,7 @@ public struct MessagingService {
     httpClient.perform(request: request) { result in
       switch result {
       case let .success((data, response)):
-        guard response?.statusCode != 500 else {
-          completion(.failure(.server))
-          return
-        }
-        
-        if response?.statusCode == 200 {
-          if let data, let messages = try? JSONDecoder().decode([MessageInfo].self, from: data) {
-            completion(.success(messages))
-          } else {
-            completion(.failure(.invalidData))
-          }
-        } else {
-          completion(.failure(.invalidResponse))
-        }
+        completion(MessagingServiceResultMapper.result(for: data, response: response))
       case .failure(let error):
         completion(.failure(.unknown(error)))
       }
