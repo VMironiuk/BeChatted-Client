@@ -17,14 +17,7 @@ final class MessagingServiceTests: XCTestCase {
   }
   
   func test_sendMessage_emitsNewMessage() {
-    let message = MessagingService.MessagePayload(
-      body: "message body",
-      userID: "007",
-      channelID: "777",
-      userName: "James",
-      userAvatar: "user avatar",
-      userAvatarColor: "user avatar color"
-    )
+    let message = anyMessagePayload()
     let (sut, _,webSocketClient) = makeSUT()
 
     sut.sendMessage(message)
@@ -40,30 +33,34 @@ final class MessagingServiceTests: XCTestCase {
   }
   
   func test_webSocketClient_onMethodCompletion_publishesNewMessage() {
-    let body = "MESSAGE_BODY"
-    let userID = "USER_ID"
-    let channelID = "CHANNEL_ID"
-    let userName = "USER_NAME"
-    let userAvatar = "USER_AVATAR"
-    let userAvatarColor = "USER_AVATAR_COLOR"
-    let id = "ID"
-    let timeStamp = "TIMESTAMP"
+    let messageData = anyMessageData()
     let exp = expectation(description: "Waiting for a new message")
     let (sut, _, webSocketClient) = makeSUT()
     
     let sub = sut.newMessage.sink { newMessageData in
-      XCTAssertEqual(newMessageData.body, body)
-      XCTAssertEqual(newMessageData.userID, userID)
-      XCTAssertEqual(newMessageData.channelID, channelID)
-      XCTAssertEqual(newMessageData.userName, userName)
-      XCTAssertEqual(newMessageData.userAvatar, userAvatar)
-      XCTAssertEqual(newMessageData.userAvatarColor, userAvatarColor)
-      XCTAssertEqual(newMessageData.id, id)
-      XCTAssertEqual(newMessageData.timeStamp, timeStamp)
+      XCTAssertEqual(newMessageData.body, messageData.body)
+      XCTAssertEqual(newMessageData.userID, messageData.userID)
+      XCTAssertEqual(newMessageData.channelID, messageData.channelID)
+      XCTAssertEqual(newMessageData.userName, messageData.userName)
+      XCTAssertEqual(newMessageData.userAvatar, messageData.userAvatar)
+      XCTAssertEqual(newMessageData.userAvatarColor, messageData.userAvatarColor)
+      XCTAssertEqual(newMessageData.id, messageData.id)
+      XCTAssertEqual(newMessageData.timeStamp, messageData.timeStamp)
 
       exp.fulfill()
     }
-    webSocketClient.completeOn(with: [body, userID, channelID, userName, userAvatar, userAvatarColor, id, timeStamp])
+    webSocketClient.completeOn(
+      with: [
+        messageData.body,
+        messageData.userID,
+        messageData.channelID,
+        messageData.userName,
+        messageData.userAvatar,
+        messageData.userAvatarColor,
+        messageData.id,
+        messageData.timeStamp
+      ]
+    )
         
     wait(for: [exp], timeout: 1)
     sub.cancel()
@@ -109,28 +106,7 @@ final class MessagingServiceTests: XCTestCase {
   
   func test_loadMessages_deliversMessages() {
     let channelID = "CHANNEL_ID"
-    let expectedMessages: [MessagingService.MessageInfo] = [
-      .init(
-        id: "1",
-        messageBody: "body 1",
-        userId: "user 1",
-        channelId: "channel 1",
-        userName: "A",
-        userAvatar: "avatar 1",
-        userAvatarColor: "avatar color 1",
-        timeStamp: "now 1"
-      ),
-      .init(
-        id: "2",
-        messageBody: "body 2",
-        userId: "user 2",
-        channelId: "channel 2",
-        userName: "B",
-        userAvatar: "avatar 2",
-        userAvatarColor: "avatar color 2",
-        timeStamp: "now 2"
-      )
-    ]
+    let expectedMessages = anyMessageInfos()
     let exp = expectation(description: "Wait for messages loading")
     let (sut, httpClient, _) = makeSUT()
     
@@ -198,6 +174,64 @@ final class MessagingServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1)
   }
   
+  private func anyMessagePayload() -> MessagingService.MessagePayload {
+    MessagingService.MessagePayload(
+      body: "message body",
+      userID: "007",
+      channelID: "777",
+      userName: "James",
+      userAvatar: "user avatar",
+      userAvatarColor: "user avatar color"
+    )
+  }
+  
+  private func anyMessageInfos() -> [MessagingService.MessageInfo] {
+    [
+      .init(
+        id: "1",
+        messageBody: "body 1",
+        userId: "user 1",
+        channelId: "channel 1",
+        userName: "A",
+        userAvatar: "avatar 1",
+        userAvatarColor: "avatar color 1",
+        timeStamp: "now 1"
+      ),
+      .init(
+        id: "2",
+        messageBody: "body 2",
+        userId: "user 2",
+        channelId: "channel 2",
+        userName: "B",
+        userAvatar: "avatar 2",
+        userAvatarColor: "avatar color 2",
+        timeStamp: "now 2"
+      )
+    ]
+  }
+  
+  private func anyMessageData(
+  ) -> (
+    body: String,
+    userID: String,
+    channelID: String,
+    userName: String,
+    userAvatar: String,
+    userAvatarColor: String,
+    id: String,
+    timeStamp: String
+  ) {
+    (
+      "MESSAGE_BODY",
+      "USER_ID",
+      "CHANNEL_ID",
+      "USER_NAME",
+      "USER_AVATAR",
+      "USER_AVATAR_COLOR",
+      "ID",
+      "TIMESTAMP"
+    )
+  }
   private final class HTTPClientSpy: HTTPClientProtocol {
     private var completions = [(Result<(Data?, HTTPURLResponse?), Error>) -> Void]()
     
