@@ -79,85 +79,32 @@ final class MessagingServiceTests: XCTestCase {
   }
   
   func test_loadMessages_deliversServerErrorOn500HTTPResponse() {
-    let channelID = "CHANNEL_ID"
-    let exp = expectation(description: "Wait for messages loading")
     let (sut, httpClient, _) = makeSUT()
-    
-    sut.loadMessages(by: channelID) { result in
-      switch result {
-      case .failure(let error):
-        XCTAssertEqual(error, MessagingService.LoadMessagesError.server)
-      default:
-        XCTFail("Expected server error, got \(result) instead")
-      }
-      exp.fulfill()
-    }
-    
-    httpClient.completeMessagesLoading(with: 500)
-    wait(for: [exp], timeout: 1)
+    expect(sut, toCompleteWithError: .server, when: {
+      httpClient.completeMessagesLoading(with: 500)
+    })
   }
   
   func test_loadMessages_deliversInvalidDataErrorOn200HTTPResponseButInvalidData() {
-    let channelID = "CHANNEL_ID"
-    let exp = expectation(description: "Wait for messages loading")
     let (sut, httpClient, _) = makeSUT()
-    
-    sut.loadMessages(by: channelID) { result in
-      switch result {
-      case .failure(let error):
-        XCTAssertEqual(error, MessagingService.LoadMessagesError.invalidData)
-      default:
-        XCTFail("Expected invalid data error, got \(result) instead")
-      }
-      exp.fulfill()
-    }
-    
-    httpClient.completeMessagesLoading(with: "invalid data".data(using: .utf8))
-    wait(for: [exp], timeout: 1)
+    expect(sut, toCompleteWithError: .invalidData, when: {
+      httpClient.completeMessagesLoading(with: "invalid data".data(using: .utf8))
+    })
   }
   
   func test_loadMessages_deliversInvalidResponseErrorOnNon200And500HTTPResponse() {
-    let channelID = "CHANNEL_ID"
-    let exp = expectation(description: "Wait for messages loading")
     let (sut, httpClient, _) = makeSUT()
-    
-    sut.loadMessages(by: channelID) { result in
-      switch result {
-      case .failure(let error):
-        XCTAssertEqual(error, MessagingService.LoadMessagesError.invalidResponse)
-      default:
-        XCTFail("Expected invalid response error, got \(result) instead")
-      }
-      exp.fulfill()
-    }
-    
-    httpClient.completeMessagesLoading(with: 404)
-    wait(for: [exp], timeout: 1)
+    expect(sut, toCompleteWithError: .invalidResponse, when: {
+      httpClient.completeMessagesLoading(with: 404)
+    })
   }
   
   func test_loadMessages_deliversUnknownErrorOnFailedRequestPerforming() {
-    let channelID = "CHANNEL_ID"
-    let underlyingError = NSError(domain: "some domain", code: 42)
-    let exp = expectation(description: "Wait for messages loading")
     let (sut, httpClient, _) = makeSUT()
-    
-    sut.loadMessages(by: channelID) { result in
-      switch result {
-      case .failure(let error):
-        if case let .unknown(gotError) = error {
-          XCTAssertEqual((gotError as NSError).code, underlyingError.code)
-          XCTAssertEqual((gotError as NSError).domain, underlyingError.domain)
-        } else {
-          XCTFail("Got wrong underlying error")
-        }
-      default:
-        XCTFail("Expected unknown error with underlying error, got \(result) instead")
-      }
-      exp.fulfill()
-    }
-    
-    httpClient.completeMessagesLoading(with: underlyingError)
-    wait(for: [exp], timeout: 1)
+    let underlyingError = NSError(domain: "some domain", code: 42)
+    expect(sut, toCompleteWithError: .unknown(underlyingError), when: {
+      httpClient.completeMessagesLoading(with: underlyingError)
+    })
   }
   
   func test_loadMessages_deliversMessages() {
@@ -216,6 +163,39 @@ final class MessagingServiceTests: XCTestCase {
     trackForMemoryLeaks(httpClient, file: file, line: line)
     
     return (sut, httpClient, webSocketClient)
+  }
+  
+  private func expect(
+    _ sut: MessagingService,
+    toCompleteWithError expectedError: MessagingService.LoadMessagesError,
+    when action: () -> Void,
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) {
+    let channelID = "CHANNEL_ID"
+    let exp = expectation(description: "Wait for messages loading")
+    
+    sut.loadMessages(by: channelID) { result in
+      switch result {
+      case .failure(let gotError):
+        switch (expectedError, gotError) {
+        case (.server, .server): break
+        case (.invalidData, .invalidData): break
+        case (.invalidResponse, .invalidResponse): break
+        case (.unknown(let expectedUnderlyingError as NSError), .unknown(let gotUnderlyingError as NSError)):
+          XCTAssertEqual(expectedUnderlyingError.code, gotUnderlyingError.code, file: file, line: line)
+          XCTAssertEqual(expectedUnderlyingError.domain, gotUnderlyingError.domain, file: file, line: line)
+        default:
+          XCTFail("Expected \(expectedError), got \(gotError) instead", file: file, line: line)
+        }
+      default:
+        XCTFail("Expected \(expectedError) error, got \(result) instead", file: file, line: line)
+      }
+      exp.fulfill()
+    }
+    
+    action()
+    wait(for: [exp], timeout: 1)
   }
   
   private final class HTTPClientSpy: HTTPClientProtocol {
