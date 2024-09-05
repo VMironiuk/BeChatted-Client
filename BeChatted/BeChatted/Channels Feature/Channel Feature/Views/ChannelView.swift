@@ -9,7 +9,7 @@ import BeChatted
 import SwiftUI
 
 struct ChannelView: View {
-  let channelItem: ChannelItem
+  @ObservedObject var viewModel: ChannelViewModel
   
   @State private var messageText = ""
   
@@ -20,7 +20,7 @@ struct ChannelView: View {
     }
     .toolbarRole(.editor)
     .navigationBarTitleDisplayMode(.inline)
-    .navigationTitle("# \(channelItem.name)")
+    .navigationTitle("# \(viewModel.channelItem.name)")
   }
 }
 
@@ -28,10 +28,10 @@ extension ChannelView {
   private var contentView: some View {
     List {
       Group {
-        Text("# \(channelItem.name)")
+        Text("# \(viewModel.channelItem.name)")
           .font(.system(size: 24, weight: .semibold))
         
-        Text(channelItem.description)
+        Text(viewModel.channelItem.description)
           .font(.system(size: 16, weight: .regular))
           .opacity(0.6)
           .padding(.bottom, 32)
@@ -75,10 +75,12 @@ extension ChannelView {
 #Preview {
   NavigationStack {
     ChannelView(
-      channelItem: ChannelItem(
-        id: "id",
-        name: "channel-name",
-        description: "Channel description"
+      viewModel: ChannelViewModel(
+        channelItem: ChannelItem(
+          id: "id",
+          name: "channel-name",
+          description: "Channel description"
+        )
       )
     )
   }

@@ -10,6 +10,6 @@ import SwiftUI
 
 public enum ChannelViewComposer {
   public static func composedChannelView(with channelItem: ChannelItem) -> some View {
-    ChannelView(channelItem: channelItem)
+    ChannelView(viewModel: ChannelViewModel(channelItem: channelItem))
   }
 }

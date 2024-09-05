@@ -7,4 +7,10 @@
 
 import Foundation
 
-final class ChannelViewModel: ObservableObject {}
+public final class ChannelViewModel: ObservableObject {
+  public let channelItem: ChannelItem
+  
+  public init(channelItem: ChannelItem) {
+    self.channelItem = channelItem
+  }
+}
