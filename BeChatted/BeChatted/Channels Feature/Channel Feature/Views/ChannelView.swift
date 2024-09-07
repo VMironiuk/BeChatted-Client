@@ -72,6 +72,14 @@ extension ChannelView {
   }
 }
 
+private struct FakeMessagingService: MessagingServiceProtocol {
+  func loadMessages(
+    by channelID: String,
+    completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void
+  ) {
+  }
+}
+
 #Preview {
   NavigationStack {
     ChannelView(
@@ -80,7 +88,8 @@ extension ChannelView {
           id: "id",
           name: "channel-name",
           description: "Channel description"
-        )
+        ), 
+        messagingService: FakeMessagingService()
       )
     )
   }

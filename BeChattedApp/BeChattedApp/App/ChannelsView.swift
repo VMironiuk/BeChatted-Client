@@ -51,7 +51,10 @@ struct ChannelsView: View {
     .navigationDestination(
       for: MainNavigationController.Destination.self) { destination in
         if case let .channel(channelItem) = destination {
-          ChannelViewComposer.composedChannelView(with: channelItem)
+          ChannelViewComposer.composedChannelView(
+            with: channelItem,
+            messagingService: MessagingServiceComposer.service
+          )
         }
     }
   }
