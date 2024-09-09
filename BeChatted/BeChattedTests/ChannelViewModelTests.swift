@@ -15,6 +15,15 @@ final class ChannelViewModelTests: XCTestCase {
     XCTAssertEqual(service.loadMessagesCallCount, 0)
   }
   
+  func test_loadMessages_sendsLoadMessagesRequest() {
+    let channelID = "CHANNEL_ID"
+    let (sut, service) = makeSUT()
+    
+    sut.loadMessages(by: channelID)
+    
+    XCTAssertEqual(service.loadMessagesCallCount, 1)
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(

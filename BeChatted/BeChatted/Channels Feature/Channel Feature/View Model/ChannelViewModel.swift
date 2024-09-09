@@ -60,4 +60,9 @@ public final class ChannelViewModel: ObservableObject {
     self.channelItem = channelItem
     self.messagingService = messagingService
   }
+  
+  public func loadMessages(by channelID: String) {
+    messagingService.loadMessages(by: channelID) { _ in
+    }
+  }
 }
