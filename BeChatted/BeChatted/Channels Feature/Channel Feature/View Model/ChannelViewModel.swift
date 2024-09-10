@@ -56,13 +56,21 @@ public final class ChannelViewModel: ObservableObject {
   public let channelItem: ChannelItem
   public let messagingService: MessagingServiceProtocol
   
+  @Published public private(set) var status: Result<[MessageInfo], MessagingServiceError> = .success([])
+  
   public init(channelItem: ChannelItem, messagingService: MessagingServiceProtocol) {
     self.channelItem = channelItem
     self.messagingService = messagingService
   }
   
   public func loadMessages(by channelID: String) {
-    messagingService.loadMessages(by: channelID) { _ in
+    messagingService.loadMessages(by: channelID) { [weak self] result in
+      switch result {
+      case .success(let messages): 
+        self?.status = .success(messages)
+      case .failure(let error):
+        self?.status = .failure(error)
+      }
     }
   }
 }
