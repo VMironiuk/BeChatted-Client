@@ -38,6 +38,13 @@ final class ChannelViewModelTests: XCTestCase {
     })
   }
   
+  func test_loadMessages_deliversInvalidResponseErrorOnMessagingServiceInvalidResponseError() {
+    let (sut, service) = makeSUT()
+    expect(sut, toCompleteWithError: .invalidResponse, when: {
+      service.complete(with: .invalidResponse)
+    })
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
