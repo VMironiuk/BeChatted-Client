@@ -45,6 +45,14 @@ final class ChannelViewModelTests: XCTestCase {
     })
   }
   
+  func test_loadMessages_deliversUnknownErrorOnMessagingServiceUnknownError() {
+    let underlyingError = NSError(domain: "any domain", code: 42)
+    let (sut, service) = makeSUT()
+    expect(sut, toCompleteWithError: .unknown(underlyingError), when: {
+      service.complete(with: .unknown(underlyingError))
+    })
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
