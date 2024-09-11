@@ -81,28 +81,7 @@ final class ChannelViewModelTests: XCTestCase {
   func test_loadMessages_deliversMessagesOnMessagingServiceReturnedMessages() {
     let channelID = "CHANNEL_ID"
     let exp = expectation(description: "Wait for messages loading completion")
-    let expectedMessages = [
-      MessageInfo(
-        id: "1",
-        messageBody: "msg body",
-        userId: "11",
-        channelId: "111",
-        userName: "user name",
-        userAvatar: "avatar",
-        userAvatarColor: "avatar color",
-        timeStamp: "now"
-      ),
-      MessageInfo(
-        id: "2",
-        messageBody: "msg body",
-        userId: "22",
-        channelId: "222",
-        userName: "user name",
-        userAvatar: "avatar",
-        userAvatarColor: "avatar color",
-        timeStamp: "now"
-      )
-    ]
+    let expectedMessages = anyMessages()
     let (sut, service) = makeSUT()
     
     let sub = sut.$status
@@ -171,6 +150,31 @@ final class ChannelViewModelTests: XCTestCase {
     
     wait(for: [exp], timeout: 1)
     sub.cancel()
+  }
+  
+  private func anyMessages() -> [MessageInfo] {
+    [
+      MessageInfo(
+        id: "1",
+        messageBody: "msg body",
+        userId: "11",
+        channelId: "111",
+        userName: "user name",
+        userAvatar: "avatar",
+        userAvatarColor: "avatar color",
+        timeStamp: "now"
+      ),
+      MessageInfo(
+        id: "2",
+        messageBody: "msg body",
+        userId: "22",
+        channelId: "222",
+        userName: "user name",
+        userAvatar: "avatar",
+        userAvatarColor: "avatar color",
+        timeStamp: "now"
+      )
+    ]
   }
   
   private final class MessagingService: MessagingServiceProtocol {
