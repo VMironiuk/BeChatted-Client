@@ -78,6 +78,52 @@ final class ChannelViewModelTests: XCTestCase {
     sub.cancel()
   }
   
+  func test_loadMessages_deliversMessagesOnMessagingServiceReturnedMessages() {
+    let channelID = "CHANNEL_ID"
+    let exp = expectation(description: "Wait for messages loading completion")
+    let expectedMessages = [
+      MessageInfo(
+        id: "1",
+        messageBody: "msg body",
+        userId: "11",
+        channelId: "111",
+        userName: "user name",
+        userAvatar: "avatar",
+        userAvatarColor: "avatar color",
+        timeStamp: "now"
+      ),
+      MessageInfo(
+        id: "2",
+        messageBody: "msg body",
+        userId: "22",
+        channelId: "222",
+        userName: "user name",
+        userAvatar: "avatar",
+        userAvatarColor: "avatar color",
+        timeStamp: "now"
+      )
+    ]
+    let (sut, service) = makeSUT()
+    
+    let sub = sut.$status
+      .dropFirst()
+      .sink { value in
+        switch value {
+        case .success(let receivedMessages):
+          XCTAssertEqual(expectedMessages, receivedMessages)
+        default:
+          XCTFail("Expected to get messages, got \(value) instead")
+        }
+        exp.fulfill()
+      }
+    
+    sut.loadMessages(by: channelID)
+    service.complete(with: expectedMessages)
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
