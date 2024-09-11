@@ -25,53 +25,17 @@ final class ChannelViewModelTests: XCTestCase {
   }
   
   func test_loadMessages_deliversServerErrorOnMessagingServiceServerError() {
-    let channelID = "CHANNEL_ID"
-    let expectedError = MessagingServiceError.server
-    let exp = expectation(description: "Wait for messages loading completion")
     let (sut, service) = makeSUT()
-    
-    let sub = sut.$status
-      .dropFirst()
-      .sink { value in
-        switch value {
-        case .failure(let receivedError):
-          XCTAssertEqual(expectedError, receivedError)
-        default:
-          XCTFail("Expected \(expectedError), got \(value) instead")
-        }
-        exp.fulfill()
-      }
-    
-    sut.loadMessages(by: channelID)
-    service.complete(with: expectedError)
-    
-    wait(for: [exp], timeout: 1)
-    sub.cancel()
+    expect(sut, toCompleteWithError: .server, when: {
+      service.complete(with: .server)
+    })
   }
   
   func test_loadMessages_deliversInvalidDataErrorOnMessagingServiceInvalidDataError() {
-    let channelID = "CHANNEL_ID"
-    let expectedError = MessagingServiceError.invalidData
-    let exp = expectation(description: "Wait for messages loading completion")
     let (sut, service) = makeSUT()
-    
-    let sub = sut.$status
-      .dropFirst()
-      .sink { value in
-        switch value {
-        case .failure(let receivedError):
-          XCTAssertEqual(expectedError, receivedError)
-        default:
-          XCTFail("Expected \(expectedError), got \(value) instead")
-        }
-        exp.fulfill()
-      }
-    
-    sut.loadMessages(by: channelID)
-    service.complete(with: expectedError)
-    
-    wait(for: [exp], timeout: 1)
-    sub.cancel()
+    expect(sut, toCompleteWithError: .invalidData, when: {
+      service.complete(with: .invalidData)
+    })
   }
   
   // MARK: - Helpers
@@ -91,6 +55,36 @@ final class ChannelViewModelTests: XCTestCase {
     trackForMemoryLeaks(sut, file: file, line: line)
     
     return (sut, service)
+  }
+  
+  private func expect(
+    _ sut: ChannelViewModel,
+    toCompleteWithError expectedError: MessagingServiceError,
+    when action: () -> Void,
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) {
+    let channelID = "CHANNEL_ID"
+    let exp = expectation(description: "Wait for messages loading completion")
+    
+    let sub = sut.$status
+      .dropFirst()
+      .sink { value in
+        switch value {
+        case .failure(let receivedError):
+          XCTAssertEqual(expectedError, receivedError)
+        default:
+          XCTFail("Expected \(expectedError), got \(value) instead")
+        }
+        exp.fulfill()
+      }
+    
+    sut.loadMessages(by: channelID)
+    
+    action()
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
   }
   
   private final class MessagingService: MessagingServiceProtocol {
