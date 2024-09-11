@@ -49,6 +49,31 @@ final class ChannelViewModelTests: XCTestCase {
     sub.cancel()
   }
   
+  func test_loadMessages_deliversInvalidDataErrorOnMessagingServiceInvalidDataError() {
+    let channelID = "CHANNEL_ID"
+    let expectedError = MessagingServiceError.invalidData
+    let exp = expectation(description: "Wait for messages loading completion")
+    let (sut, service) = makeSUT()
+    
+    let sub = sut.$status
+      .dropFirst()
+      .sink { value in
+        switch value {
+        case .failure(let receivedError):
+          XCTAssertEqual(expectedError, receivedError)
+        default:
+          XCTFail("Expected \(expectedError), got \(value) instead")
+        }
+        exp.fulfill()
+      }
+    
+    sut.loadMessages(by: channelID)
+    service.complete(with: expectedError)
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
