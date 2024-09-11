@@ -53,6 +53,31 @@ final class ChannelViewModelTests: XCTestCase {
     })
   }
   
+  func test_loadMessages_deliversEmptyMessagesOnMessagingServiceEmptyMessages() {
+    let channelID = "CHANNEL_ID"
+    let exp = expectation(description: "Wait for messages loading completion")
+    let expectedMessages = [MessageInfo]()
+    let (sut, service) = makeSUT()
+    
+    let sub = sut.$status
+      .dropFirst()
+      .sink { value in
+        switch value {
+        case .success(let receivedMessages):
+          XCTAssertEqual(expectedMessages, receivedMessages)
+        default:
+          XCTFail("Expected to get messages, got \(value) instead")
+        }
+        exp.fulfill()
+      }
+    
+    sut.loadMessages(by: channelID)
+    service.complete(with: expectedMessages)
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
@@ -119,6 +144,10 @@ final class ChannelViewModelTests: XCTestCase {
     func complete(with error: MessagingServiceError, at index: Int = 0) {
       completions[index](.failure(error))
     }
+    
+    func complete(with messages: [MessageInfo], at index: Int = 0) {
+      completions[index](.success(messages))
+    }
   }
 }
 
@@ -132,5 +161,18 @@ extension MessagingServiceError: Equatable {
       lhsError.code == rhsError.code && lhsError.domain == rhsError.domain
     default: false
     }
+  }
+}
+
+extension MessageInfo: Equatable {
+  public static func == (lhs: MessageInfo, rhs: MessageInfo) -> Bool {
+    lhs.id == rhs.id
+    && lhs.channelId == rhs.channelId
+    && lhs.messageBody == rhs.messageBody
+    && lhs.timeStamp == rhs.timeStamp
+    && lhs.userAvatar == rhs.userAvatar
+    && lhs.userAvatarColor == rhs.userAvatarColor
+    && lhs.userId == rhs.userId
+    && lhs.userName == rhs.userName
   }
 }
