@@ -22,6 +22,10 @@ extension MessagingService: MessagingServiceProtocol {
       }
     }
   }
+  
+  public func sendMessage(_ message: BeChatted.MessagePayload) {
+    sendMessage(.init(message))
+  }
 }
 
 private extension BeChatted.MessageInfo {
@@ -35,6 +39,19 @@ private extension BeChatted.MessageInfo {
       userAvatar: messagingServiceMessageInfo.userAvatar,
       userAvatarColor: messagingServiceMessageInfo.userAvatarColor,
       timeStamp: messagingServiceMessageInfo.timeStamp
+    )
+  }
+}
+
+private extension MessagingService.MessagePayload {
+  init(_ messagingServiceMessagePayload: BeChatted.MessagePayload) {
+    self.init(
+      body: messagingServiceMessagePayload.body,
+      userID: messagingServiceMessagePayload.userID,
+      channelID: messagingServiceMessagePayload.channelID,
+      userName: messagingServiceMessagePayload.userName,
+      userAvatar: messagingServiceMessagePayload.userAvatar,
+      userAvatarColor: messagingServiceMessagePayload.userAvatarColor
     )
   }
 }

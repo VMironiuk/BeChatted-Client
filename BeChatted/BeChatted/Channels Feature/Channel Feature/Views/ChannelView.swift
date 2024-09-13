@@ -78,6 +78,9 @@ private struct FakeMessagingService: MessagingServiceProtocol {
     completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void
   ) {
   }
+  
+  func sendMessage(_ message: MessagePayload) {
+  }
 }
 
 #Preview {

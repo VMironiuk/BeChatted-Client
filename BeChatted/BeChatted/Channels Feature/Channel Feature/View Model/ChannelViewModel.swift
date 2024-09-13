@@ -45,11 +45,37 @@ public struct MessageInfo {
   }
 }
 
+public struct MessagePayload {
+  public let body: String
+  public let userID: String
+  public let channelID: String
+  public let userName: String
+  public let userAvatar: String
+  public let userAvatarColor: String
+  
+  public init(
+    body: String,
+    userID: String,
+    channelID: String,
+    userName: String,
+    userAvatar: String,
+    userAvatarColor: String
+  ) {
+    self.body = body
+    self.userID = userID
+    self.channelID = channelID
+    self.userName = userName
+    self.userAvatar = userAvatar
+    self.userAvatarColor = userAvatarColor
+  }
+}
+
 public protocol MessagingServiceProtocol {
   func loadMessages(
     by channelID: String,
     completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void
   )
+  func sendMessage(_ message: MessagePayload)
 }
 
 public final class ChannelViewModel: ObservableObject {
@@ -72,5 +98,9 @@ public final class ChannelViewModel: ObservableObject {
         self?.status = .failure(error)
       }
     }
+  }
+  
+  public func sendMessage(_ message: MessagePayload) {
+    messagingService.sendMessage(message)
   }
 }

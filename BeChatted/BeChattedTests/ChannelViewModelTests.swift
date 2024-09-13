@@ -69,6 +69,15 @@ final class ChannelViewModelTests: XCTestCase {
     })
   }
   
+  func test_sendMessage_deliversMessagePayloadToMessagingService() {
+    let messagePayload = anyMessagePayload()
+    let (sut, service) = makeSUT()
+    
+    sut.sendMessage(messagePayload)
+    
+    XCTAssertEqual(service.messagePayloads[0], messagePayload)
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
@@ -173,8 +182,20 @@ final class ChannelViewModelTests: XCTestCase {
     ]
   }
   
+  private func anyMessagePayload() -> MessagePayload {
+    MessagePayload(
+      body: "message body",
+      userID: "user ID",
+      channelID: "channel ID",
+      userName: "user name",
+      userAvatar: "avatar",
+      userAvatarColor: "avatar color"
+    )
+  }
+  
   private final class MessagingService: MessagingServiceProtocol {
     private var completions = [(Result<[MessageInfo], MessagingServiceError>) -> Void]()
+    private(set) var messagePayloads = [MessagePayload]()
     
     var loadMessagesCallCount: Int {
       completions.count
@@ -185,6 +206,10 @@ final class ChannelViewModelTests: XCTestCase {
       completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void
     ) {
       completions.append(completion)
+    }
+    
+    func sendMessage(_ message: MessagePayload) {
+      messagePayloads.append(message)
     }
     
     func complete(with error: MessagingServiceError, at index: Int = 0) {
@@ -219,6 +244,17 @@ extension MessageInfo: Equatable {
     && lhs.userAvatar == rhs.userAvatar
     && lhs.userAvatarColor == rhs.userAvatarColor
     && lhs.userId == rhs.userId
+    && lhs.userName == rhs.userName
+  }
+}
+
+extension MessagePayload: Equatable {
+  public static func == (lhs: MessagePayload, rhs: MessagePayload) -> Bool {
+    lhs.body == rhs.body
+    && lhs.channelID == rhs.channelID
+    && lhs.userAvatar == rhs.userAvatar
+    && lhs.userAvatarColor == rhs.userAvatarColor
+    && lhs.userID == rhs.userID
     && lhs.userName == rhs.userName
   }
 }
