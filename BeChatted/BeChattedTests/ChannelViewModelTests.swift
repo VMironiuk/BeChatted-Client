@@ -108,6 +108,40 @@ final class ChannelViewModelTests: XCTestCase {
     sub.cancel()
   }
   
+  func test_sut_addsNewMessageToExistingMessages() {
+    let newMessage = anyNewMessage()
+    let messages = anyMessages()
+    let exp = expectation(description: "Wait for new message")
+    let (sut, service) = makeSUT()
+    service.newMessage.send(messages[0].tuple)
+    service.newMessage.send(messages[1].tuple)
+    let sub = sut.$status
+      .dropFirst()
+      .sink { result in
+        switch result {
+        case .success(let receivedMessages):
+          XCTAssertEqual(receivedMessages[0], messages[0])
+          XCTAssertEqual(receivedMessages[1], messages[1])
+          XCTAssertEqual(receivedMessages[2].channelId, newMessage.channelID)
+          XCTAssertEqual(receivedMessages[2].id, newMessage.id)
+          XCTAssertEqual(receivedMessages[2].messageBody, newMessage.body)
+          XCTAssertEqual(receivedMessages[2].timeStamp, newMessage.timeStamp)
+          XCTAssertEqual(receivedMessages[2].userAvatar, newMessage.userAvatar)
+          XCTAssertEqual(receivedMessages[2].userAvatarColor, newMessage.userAvatarColor)
+          XCTAssertEqual(receivedMessages[2].userId, newMessage.userID)
+          XCTAssertEqual(receivedMessages[2].userName, newMessage.userName)
+        case .failure:
+          XCTFail("Expected updated messages, got \(result) instead")
+        }
+        exp.fulfill()
+      }
+    
+    service.newMessage.send(newMessage)
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
@@ -299,6 +333,28 @@ extension MessageInfo: Equatable {
     && lhs.userAvatarColor == rhs.userAvatarColor
     && lhs.userId == rhs.userId
     && lhs.userName == rhs.userName
+  }
+  
+  var tuple: (
+    body: String,
+    userID: String,
+    channelID: String,
+    userName: String,
+    userAvatar: String,
+    userAvatarColor: String,
+    id: String,
+    timeStamp: String
+  ) {
+    (
+      body: messageBody,
+      userID: userId,
+      channelID: channelId,
+      userName: userName,
+      userAvatar: userAvatar,
+      userAvatarColor: userAvatarColor,
+      id: id,
+      timeStamp: timeStamp
+    )
   }
 }
 
