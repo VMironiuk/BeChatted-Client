@@ -5,6 +5,7 @@
 //  Created by Volodymyr Myroniuk on 05.09.2024.
 //
 
+import Combine
 import Foundation
 
 public enum MessagingServiceError: Error {
@@ -43,6 +44,30 @@ public struct MessageInfo {
     self.userAvatarColor = userAvatarColor
     self.timeStamp = timeStamp
   }
+  
+  init(
+    from messageData: (
+      body: String,
+      userID: String,
+      channelID: String,
+      userName: String,
+      userAvatar: String,
+      userAvatarColor: String,
+      id: String,
+      timeStamp: String
+    )
+  ) {
+    self.init(
+      id: messageData.id,
+      messageBody: messageData.body,
+      userId: messageData.userID,
+      channelId: messageData.channelID,
+      userName: messageData.userName,
+      userAvatar: messageData.userAvatar,
+      userAvatarColor: messageData.userAvatarColor,
+      timeStamp: messageData.timeStamp
+    )
+  }
 }
 
 public struct MessagePayload {
@@ -71,6 +96,18 @@ public struct MessagePayload {
 }
 
 public protocol MessagingServiceProtocol {
+  typealias MessageData = (
+    body: String,
+    userID: String,
+    channelID: String,
+    userName: String,
+    userAvatar: String,
+    userAvatarColor: String,
+    id: String,
+    timeStamp: String
+  )
+
+  var newMessage: PassthroughSubject<MessageData, Never> { get }
   func loadMessages(
     by channelID: String,
     completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void
@@ -79,6 +116,7 @@ public protocol MessagingServiceProtocol {
 }
 
 public final class ChannelViewModel: ObservableObject {
+  private var newMessageSubscription: AnyCancellable?
   public let channelItem: ChannelItem
   public let messagingService: MessagingServiceProtocol
   
@@ -87,6 +125,12 @@ public final class ChannelViewModel: ObservableObject {
   public init(channelItem: ChannelItem, messagingService: MessagingServiceProtocol) {
     self.channelItem = channelItem
     self.messagingService = messagingService
+    
+    newMessageSubscription = messagingService.newMessage.sink { [weak self] value in
+      guard var messages = try? self?.status.get() else { return }
+      messages.append(MessageInfo(from: value))
+      self?.status = .success(messages)
+    }
   }
   
   public func loadMessages(by channelID: String) {

@@ -6,6 +6,7 @@
 //
 
 import BeChatted
+import Combine
 import XCTest
 
 final class ChannelViewModelTests: XCTestCase {
@@ -76,6 +77,35 @@ final class ChannelViewModelTests: XCTestCase {
     sut.sendMessage(messagePayload)
     
     XCTAssertEqual(service.messagePayloads[0], messagePayload)
+  }
+  
+  func test_sut_observesNewMessage() {
+    let newMessage = anyNewMessage()
+    let exp = expectation(description: "Wait for new message")
+    let (sut, service) = makeSUT()
+    let sub = sut.$status
+      .dropFirst()
+      .sink { result in
+        switch result {
+        case .success(let messages):
+          XCTAssertEqual(messages[0].channelId, newMessage.channelID)
+          XCTAssertEqual(messages[0].id, newMessage.id)
+          XCTAssertEqual(messages[0].messageBody, newMessage.body)
+          XCTAssertEqual(messages[0].timeStamp, newMessage.timeStamp)
+          XCTAssertEqual(messages[0].userAvatar, newMessage.userAvatar)
+          XCTAssertEqual(messages[0].userAvatarColor, newMessage.userAvatarColor)
+          XCTAssertEqual(messages[0].userId, newMessage.userID)
+          XCTAssertEqual(messages[0].userName, newMessage.userName)
+        case .failure:
+          XCTFail("Expected updated messages, got \(result) instead")
+        }
+        exp.fulfill()
+      }
+    
+    service.newMessage.send(newMessage)
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
   }
   
   // MARK: - Helpers
@@ -193,6 +223,28 @@ final class ChannelViewModelTests: XCTestCase {
     )
   }
   
+  private func anyNewMessage() -> (
+    body: String,
+    userID: String,
+    channelID: String,
+    userName: String,
+    userAvatar: String,
+    userAvatarColor: String,
+    id: String,
+    timeStamp: String
+  ) {
+    (
+      body: "message body",
+      userID: "user ID",
+      channelID: "chanel ID",
+      userName: "a name",
+      userAvatar: "avatar",
+      userAvatarColor: "avatar color",
+      id: "ID",
+      timeStamp: "today"
+    )
+  }
+  
   private final class MessagingService: MessagingServiceProtocol {
     private var completions = [(Result<[MessageInfo], MessagingServiceError>) -> Void]()
     private(set) var messagePayloads = [MessagePayload]()
@@ -200,6 +252,8 @@ final class ChannelViewModelTests: XCTestCase {
     var loadMessagesCallCount: Int {
       completions.count
     }
+    
+    let newMessage = PassthroughSubject<MessageData, Never>()
     
     func loadMessages(
       by channelID: String,
