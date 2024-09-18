@@ -16,6 +16,15 @@ final class MessagingServiceTests: XCTestCase {
     XCTAssertTrue(webSocketClient.onMessages.map { $0.event }.contains(MessagingService.Event.messageCreated.rawValue))
   }
   
+  func test_init_doesNotSendRequests() {
+    let (_, httpClient, _) = makeSUT()
+    
+    XCTAssertEqual(httpClient.requestedURLs, [])
+    XCTAssertEqual(httpClient.httpMethods, [])
+    XCTAssertEqual(httpClient.contentTypes, [])
+    XCTAssertEqual(httpClient.authTokens, [])
+  }
+  
   func test_sendMessage_emitsNewMessage() {
     let message = anyMessagePayload()
     let (sut, _,webSocketClient) = makeSUT()
@@ -233,17 +242,33 @@ final class MessagingServiceTests: XCTestCase {
     )
   }
   private final class HTTPClientSpy: HTTPClientProtocol {
-    private var completions = [(Result<(Data?, HTTPURLResponse?), Error>) -> Void]()
+    private var messages = [(request: URLRequest, completion: (Result<(Data?, HTTPURLResponse?), Error>) -> Void)]()
     
     var performCallCount: Int {
-      completions.count
+      messages.count
+    }
+    
+    var requestedURLs: [URL] {
+      messages.compactMap { $0.request.url }
+    }
+    
+    var httpMethods: [String] {
+      messages.compactMap { $0.request.httpMethod }
+    }
+    
+    var contentTypes: [String] {
+      messages.compactMap { $0.request.value(forHTTPHeaderField: "Content-Type") }
+    }
+    
+    var authTokens: [String] {
+      messages.compactMap { $0.request.value(forHTTPHeaderField: "Authorization") }
     }
     
     func perform(
       request: URLRequest,
       completion: @escaping (Result<(Data?, HTTPURLResponse?), any Error>) -> Void
     ) {
-      completions.append(completion)
+      messages.append((request, completion))
     }
     
     
@@ -254,7 +279,7 @@ final class MessagingServiceTests: XCTestCase {
         httpVersion: nil,
         headerFields: nil
       )
-      completions[index](.success((nil, response)))
+      messages[index].completion(.success((nil, response)))
     }
     
     func completeMessagesLoading(with data: Data?, at index: Int = 0) {
@@ -264,11 +289,11 @@ final class MessagingServiceTests: XCTestCase {
         httpVersion: nil,
         headerFields: nil
       )
-      completions[index](.success((data, response)))
+      messages[index].completion(.success((data, response)))
     }
     
     func completeMessagesLoading(with error: NSError, at index: Int = 0) {
-      completions[index](.failure(error))
+      messages[index].completion(.failure(error))
     }
   }
   
