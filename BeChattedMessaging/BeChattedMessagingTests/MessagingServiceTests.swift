@@ -133,13 +133,22 @@ final class MessagingServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1)
   }
   
+  func test_loadMessages_sendsLoadMessagesRequestByURL() {
+    let url = anyURL()
+    let (sut, httpClient, _) = makeSUT(url: url)
+    
+    sut.loadMessages(by: "CHANNEL_ID") { _ in }
+    
+    XCTAssertEqual(httpClient.requestedURLs, [url])
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
+    url: URL = URL(string: "http://any-url.com")!,
     file: StaticString = #filePath,
     line: UInt = #line
   ) -> (MessagingService, HTTPClientSpy, WebSocketClientSpy) {
-    let url = URL(string: "http://any-url.com")!
     let httpClient = HTTPClientSpy()
     let webSocketClient = WebSocketClientSpy()
     let sut = MessagingService(url: url, httpClient: httpClient, webSocketClient: webSocketClient)
@@ -241,6 +250,11 @@ final class MessagingServiceTests: XCTestCase {
       "TIMESTAMP"
     )
   }
+  
+  func anyURL() -> URL {
+    URL(string: "http://any-url.com")!
+  }
+
   private final class HTTPClientSpy: HTTPClientProtocol {
     private var messages = [(request: URLRequest, completion: (Result<(Data?, HTTPURLResponse?), Error>) -> Void)]()
     
