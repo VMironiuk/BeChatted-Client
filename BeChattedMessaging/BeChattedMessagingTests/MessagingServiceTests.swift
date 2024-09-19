@@ -167,17 +167,32 @@ final class MessagingServiceTests: XCTestCase {
     
     XCTAssertEqual(httpClient.contentTypes, ["application/json"])
   }
+  
+  func test_loadMessages_sendsLoadMessagesRequestWithAuthToken() {
+    let anyAuthToken = anyAuthToken()
+    let (sut, httpClient, _) = makeSUT(authToken: anyAuthToken)
+    
+    sut.loadMessages(by: "CHANNEL_ID") { _ in }
+    
+    XCTAssertEqual(httpClient.authTokens, ["Bearer \(anyAuthToken)"])
+  }
 
   // MARK: - Helpers
   
   private func makeSUT(
     url: URL = URL(string: "http://any-url.com")!,
+    authToken: String = "any auth token",
     file: StaticString = #filePath,
     line: UInt = #line
   ) -> (MessagingService, HTTPClientSpy, WebSocketClientSpy) {
     let httpClient = HTTPClientSpy()
     let webSocketClient = WebSocketClientSpy()
-    let sut = MessagingService(url: url, httpClient: httpClient, webSocketClient: webSocketClient)
+    let sut = MessagingService(
+      url: url,
+      authToken: authToken,
+      httpClient: httpClient,
+      webSocketClient: webSocketClient
+    )
     
     trackForMemoryLeaks(webSocketClient, file: file, line: line)
     trackForMemoryLeaks(httpClient, file: file, line: line)
@@ -279,6 +294,10 @@ final class MessagingServiceTests: XCTestCase {
   
   func anyURL() -> URL {
     URL(string: "http://any-url.com")!
+  }
+  
+  func anyAuthToken() -> String {
+    "any token"
   }
 
   private final class HTTPClientSpy: HTTPClientProtocol {

@@ -29,6 +29,7 @@ public protocol WebSocketClientProtocol {
 
 public struct MessagingService {
   private let url: URL
+  private let authToken: String
   private let httpClient: HTTPClientProtocol
   private let webSocketClient: WebSocketClientProtocol
   
@@ -36,10 +37,12 @@ public struct MessagingService {
   
   public init(
     url: URL,
+    authToken: String,
     httpClient: HTTPClientProtocol,
     webSocketClient: WebSocketClientProtocol
   ) {
     self.url = url
+    self.authToken = authToken
     self.httpClient = httpClient
     self.webSocketClient = webSocketClient
     
@@ -81,6 +84,7 @@ public struct MessagingService {
   ) {
     var request = URLRequest(url: url)
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
     
     httpClient.perform(request: request) { result in
       switch result {
