@@ -133,23 +133,25 @@ final class MessagingServiceTests: XCTestCase {
     wait(for: [exp], timeout: 1)
   }
   
-  func test_loadMessages_sendsLoadMessagesRequestByURL() {
-    let url = anyURL()
-    let (sut, httpClient, _) = makeSUT(url: url)
+  func test_loadMessages_sendsLoadMessagesRequestOnURLWithChannelID() {
+    let channelID = "expected channel id"
+    let (sut, httpClient, _) = makeSUT()
     
-    sut.loadMessages(by: "CHANNEL_ID") { _ in }
+    sut.loadMessages(by: channelID) { _ in }
     
-    XCTAssertEqual(httpClient.requestedURLs, [url])
+    XCTAssertEqual(httpClient.requestedURLs[0].lastPathComponent, channelID)
   }
-  
+
   func test_loadMessages_sendsLoadMessagesRequestByURLTwice() {
-    let url = anyURL()
-    let (sut, httpClient, _) = makeSUT(url: url)
+    let channelID = "CHANNEL_ID"
+    let baseURL = anyURL()
+    let expectedURL = anyURL(with: channelID)
+    let (sut, httpClient, _) = makeSUT(url: baseURL)
     
-    sut.loadMessages(by: "CHANNEL_ID") { _ in }
-    sut.loadMessages(by: "CHANNEL_ID") { _ in }
+    sut.loadMessages(by: channelID) { _ in }
+    sut.loadMessages(by: channelID) { _ in }
     
-    XCTAssertEqual(httpClient.requestedURLs, [url, url])
+    XCTAssertEqual(httpClient.requestedURLs, [expectedURL, expectedURL])
   }
   
   func test_loadMessages_sendsLoadMessagesRequestAsGETMethod() {
@@ -292,8 +294,12 @@ final class MessagingServiceTests: XCTestCase {
     )
   }
   
-  func anyURL() -> URL {
-    URL(string: "http://any-url.com")!
+  func anyURL(with channelID: String? = nil) -> URL {
+    if let channelID {
+      URL(string: "http://any-url.com/\(channelID)")!
+    } else {
+      URL(string: "http://any-url.com")!
+    }
   }
   
   func anyAuthToken() -> String {

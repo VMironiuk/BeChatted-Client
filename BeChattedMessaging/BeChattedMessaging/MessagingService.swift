@@ -33,6 +33,10 @@ public struct MessagingService {
   private let httpClient: HTTPClientProtocol
   private let webSocketClient: WebSocketClientProtocol
   
+  private var urlString: String {
+    url.absoluteString
+  }
+  
   public let newMessage = PassthroughSubject<MessageData, Never>()
   
   public init(
@@ -82,6 +86,11 @@ public struct MessagingService {
     by channelID: String,
     completion: @escaping (Result<[MessageInfo], LoadMessagesError>) -> Void
   ) {
+    guard let url = URL(string: "\(urlString)/\(channelID)") else {
+      completion(.failure(.invalidData))
+      return
+    }
+    
     var request = URLRequest(url: url)
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
