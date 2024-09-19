@@ -152,6 +152,14 @@ final class MessagingServiceTests: XCTestCase {
     XCTAssertEqual(httpClient.requestedURLs, [url, url])
   }
   
+  func test_loadMessages_sendsLoadMessagesRequestAsGETMethod() {
+    let (sut, httpClient, _) = makeSUT()
+    
+    sut.loadMessages(by: "CHANNEL_ID") { _ in }
+    
+    XCTAssertEqual(httpClient.httpMethods, ["GET"])
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
