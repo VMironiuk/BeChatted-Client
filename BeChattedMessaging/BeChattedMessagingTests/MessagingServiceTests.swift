@@ -160,6 +160,14 @@ final class MessagingServiceTests: XCTestCase {
     XCTAssertEqual(httpClient.httpMethods, ["GET"])
   }
   
+  func test_loadMessages_sendsLoadMessagesRequestAsApplicationJSONContentType() {
+    let (sut, httpClient, _) = makeSUT()
+    
+    sut.loadMessages(by: "CHANNEL_ID") { _ in }
+    
+    XCTAssertEqual(httpClient.contentTypes, ["application/json"])
+  }
+
   // MARK: - Helpers
   
   private func makeSUT(

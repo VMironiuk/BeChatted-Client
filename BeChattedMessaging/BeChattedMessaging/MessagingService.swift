@@ -79,7 +79,8 @@ public struct MessagingService {
     by channelID: String,
     completion: @escaping (Result<[MessageInfo], LoadMessagesError>) -> Void
   ) {
-    let request = URLRequest(url: url)
+    var request = URLRequest(url: url)
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
     httpClient.perform(request: request) { result in
       switch result {
