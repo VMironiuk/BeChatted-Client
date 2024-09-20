@@ -268,10 +268,10 @@
 			children = (
 				2EF211632B934BC5008BB1CA /* Info.plist */,
 				2E32BE842B8DF38800EEF27E /* App */,
-				2E32BE852B8DF3AA00EEF27E /* NavigationControllers */,
 				2E32BE832B8DF34900EEF27E /* Composers */,
 				2E32BE822B8DF32100EEF27E /* Extensions */,
 				2E1F9D2A2B8F2E2F00657F39 /* Models */,
+				2E32BE852B8DF3AA00EEF27E /* NavigationControllers */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
 				2EEADC912B8327C1009EE7CE /* Preview Content */,
 			);
