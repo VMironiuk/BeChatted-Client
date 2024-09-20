@@ -6,6 +6,7 @@
 //
 
 import BeChatted
+import Combine
 import SwiftUI
 
 struct ChannelView: View {
@@ -73,6 +74,10 @@ extension ChannelView {
 }
 
 private struct FakeMessagingService: MessagingServiceProtocol {
+  var newMessage: PassthroughSubject<MessageData, Never> {
+    PassthroughSubject()
+  }
+  
   func loadMessages(
     by channelID: String,
     completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void

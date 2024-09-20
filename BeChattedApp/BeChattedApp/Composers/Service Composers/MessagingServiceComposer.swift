@@ -13,9 +13,12 @@ enum MessagingServiceComposer {
   private static let endpoint = "/v1/message/byChannel"
   private static let url = URL(string: "\(baseURLString)\(endpoint)")!
   
-  static let service = MessagingService(
-    url: url,
-    httpClient: URLSessionHTTPClient(),
-    webSocketClient: WebSocketIOClient(url: URL(string: baseURLString)!)
-  )
+  static func messagingService(with authToken: String) -> MessagingService { 
+    MessagingService(
+      url: url,
+      authToken: authToken,
+      httpClient: URLSessionHTTPClient(),
+      webSocketClient: WebSocketIOClient(url: URL(string: baseURLString)!)
+    )
+  }
 }

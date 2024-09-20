@@ -53,7 +53,8 @@ struct ChannelsView: View {
         if case let .channel(channelItem) = destination {
           ChannelViewComposer.composedChannelView(
             with: channelItem,
-            messagingService: MessagingServiceComposer.service
+            messagingService: MessagingServiceComposer
+              .messagingService(with: appData.authToken ?? "")
           )
         }
     }
