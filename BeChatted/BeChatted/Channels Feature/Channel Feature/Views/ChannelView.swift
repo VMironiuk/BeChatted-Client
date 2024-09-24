@@ -73,6 +73,7 @@ extension ChannelView {
               userAvatarColor: ""
             )
           )
+          messageText = ""
         } label: {
           Image(systemName: "paperplane.circle.fill")
             .resizable()
