@@ -16,7 +16,7 @@ struct MessageView: View {
       ImageProvider.avatarPrototype
         .clipShape(RoundedRectangle(cornerRadius: 12))
       
-      VStack {
+      VStack(alignment: .leading) {
         HStack {
           Text(message.userName)
             .font(.system(size: 20, weight: .bold))
