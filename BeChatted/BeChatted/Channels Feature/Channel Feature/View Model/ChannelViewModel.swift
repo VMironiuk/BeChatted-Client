@@ -145,8 +145,8 @@ public final class ChannelViewModel: ObservableObject {
     }
   }
   
-  public func loadMessages(by channelID: String) {
-    messagingService.loadMessages(by: channelID) { [weak self] result in
+  public func loadMessages() {
+    messagingService.loadMessages(by: channelItem.id) { [weak self] result in
       switch result {
       case .success(let messages): 
         self?.status = .success(messages)

@@ -27,7 +27,7 @@ struct ChannelView: View {
     .navigationBarTitleDisplayMode(.inline)
     .navigationTitle("# \(viewModel.channelItem.name)")
     .onAppear {
-      viewModel.loadMessages(by: viewModel.channelItem.id)
+      viewModel.loadMessages()
     }
   }
 }

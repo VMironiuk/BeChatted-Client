@@ -17,10 +17,9 @@ final class ChannelViewModelTests: XCTestCase {
   }
   
   func test_loadMessages_sendsLoadMessagesRequest() {
-    let channelID = "CHANNEL_ID"
     let (sut, service) = makeSUT()
     
-    sut.loadMessages(by: channelID)
+    sut.loadMessages()
     
     XCTAssertEqual(service.loadMessagesCallCount, 1)
   }
@@ -169,7 +168,6 @@ final class ChannelViewModelTests: XCTestCase {
     file: StaticString = #filePath,
     line: UInt = #line
   ) {
-    let channelID = "CHANNEL_ID"
     let exp = expectation(description: "Wait for messages loading completion")
     
     let sub = sut.$status
@@ -184,7 +182,7 @@ final class ChannelViewModelTests: XCTestCase {
         exp.fulfill()
       }
     
-    sut.loadMessages(by: channelID)
+    sut.loadMessages()
     
     action()
     
@@ -199,7 +197,6 @@ final class ChannelViewModelTests: XCTestCase {
     file: StaticString = #filePath,
     line: UInt = #line
   ) {
-    let channelID = "CHANNEL_ID"
     let exp = expectation(description: "Wait for messages loading completion")
     
     let sub = sut.$status
@@ -214,7 +211,7 @@ final class ChannelViewModelTests: XCTestCase {
         exp.fulfill()
       }
     
-    sut.loadMessages(by: channelID)
+    sut.loadMessages()
     
     action()
     
