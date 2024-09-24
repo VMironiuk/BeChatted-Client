@@ -14,6 +14,10 @@ struct ChannelView: View {
   
   @State private var messageText = ""
   
+  private var messages: [MessageInfo] {
+    (try? viewModel.status.get()) ?? []
+  }
+  
   var body: some View {
     VStack {
       contentView
@@ -22,6 +26,9 @@ struct ChannelView: View {
     .toolbarRole(.editor)
     .navigationBarTitleDisplayMode(.inline)
     .navigationTitle("# \(viewModel.channelItem.name)")
+    .onAppear {
+      viewModel.loadMessages(by: viewModel.channelItem.id)
+    }
   }
 }
 
@@ -37,8 +44,8 @@ extension ChannelView {
           .opacity(0.6)
           .padding(.bottom, 32)
         
-        ForEach(0..<10) { _ in
-          MessageView()
+        ForEach(messages) { message in
+          MessageView(message: message)
         }
       }
       .listRowSeparator(.hidden)
@@ -56,6 +63,16 @@ extension ChannelView {
         Spacer(minLength: 16)
         
         Button {
+          viewModel.sendMessage(
+            MessagePayload(
+              body: messageText,
+              userID: viewModel.currentUser.id,
+              channelID: viewModel.channelItem.id,
+              userName: viewModel.currentUser.name,
+              userAvatar: "",
+              userAvatarColor: ""
+            )
+          )
         } label: {
           Image(systemName: "paperplane.circle.fill")
             .resizable()
@@ -92,11 +109,12 @@ private struct FakeMessagingService: MessagingServiceProtocol {
   NavigationStack {
     ChannelView(
       viewModel: ChannelViewModel(
+        currentUser: User(id: "ID", name: "NAME"),
         channelItem: ChannelItem(
           id: "id",
           name: "channel-name",
           description: "Channel description"
-        ), 
+        ),
         messagingService: FakeMessagingService()
       )
     )

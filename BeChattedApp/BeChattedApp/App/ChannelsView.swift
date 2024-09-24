@@ -52,7 +52,11 @@ struct ChannelsView: View {
       for: MainNavigationController.Destination.self) { destination in
         if case let .channel(channelItem) = destination {
           ChannelViewComposer.composedChannelView(
-            with: channelItem,
+            with: BeChatted.User(
+              id: appData.currentUser!.id,
+              name: appData.currentUser!.name
+            ),
+            channelItem: channelItem,
             messagingService: MessagingServiceComposer
               .messagingService(with: appData.authToken ?? "")
           )

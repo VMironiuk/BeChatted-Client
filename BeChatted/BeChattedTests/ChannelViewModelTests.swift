@@ -151,6 +151,7 @@ final class ChannelViewModelTests: XCTestCase {
   ) -> (ChannelViewModel, MessagingService) {
     let service = MessagingService()
     let sut = ChannelViewModel(
+      currentUser: User(id: "USER_ID", name: "USER_NAME"),
       channelItem: channelItem,
       messagingService: service
     )

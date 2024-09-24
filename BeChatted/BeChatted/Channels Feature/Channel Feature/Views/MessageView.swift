@@ -5,9 +5,12 @@
 //  Created by Volodymyr Myroniuk on 17.07.2024.
 //
 
+import BeChatted
 import SwiftUI
 
 struct MessageView: View {
+  let message: MessageInfo
+  
   var body: some View {
     HStack(alignment: .top) {
       ImageProvider.avatarPrototype
@@ -15,10 +18,10 @@ struct MessageView: View {
       
       VStack {
         HStack {
-          Text("User Name")
+          Text(message.userName)
             .font(.system(size: 20, weight: .bold))
           
-          Text("08:47 AM")
+          Text(message.timeStamp)
             .font(.system(size: 14))
             .opacity(0.5)
           
@@ -26,12 +29,23 @@ struct MessageView: View {
         }
         .padding(.bottom, 2)
         
-        Text("User messages will be displayed here. I should be multiline text label.")
+        Text(message.messageBody)
       }
     }
   }
 }
 
 #Preview {
-    MessageView()
+  MessageView(
+    message: MessageInfo(
+      id: "ID",
+      messageBody: "Message body goes her",
+      userId: "user ID",
+      channelId: "channel ID",
+      userName: "John Doe",
+      userAvatar: "avatar",
+      userAvatarColor: "avatar color",
+      timeStamp: "08:33 AM"
+    )
+  )
 }

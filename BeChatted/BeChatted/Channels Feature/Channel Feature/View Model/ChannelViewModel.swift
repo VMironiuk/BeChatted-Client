@@ -15,7 +15,7 @@ public enum MessagingServiceError: Error {
   case unknown(Error)
 }
 
-public struct MessageInfo {
+public struct MessageInfo: Identifiable {
   public let id: String
   public let messageBody: String
   public let userId: String
@@ -95,6 +95,16 @@ public struct MessagePayload {
   }
 }
 
+public struct User {
+  public let id: String
+  public let name: String
+  
+  public init(id: String, name: String) {
+    self.id = id
+    self.name = name
+  }
+}
+
 public protocol MessagingServiceProtocol {
   typealias MessageData = (
     body: String,
@@ -117,12 +127,14 @@ public protocol MessagingServiceProtocol {
 
 public final class ChannelViewModel: ObservableObject {
   private var newMessageSubscription: AnyCancellable?
+  public let currentUser: User
   public let channelItem: ChannelItem
   public let messagingService: MessagingServiceProtocol
   
   @Published public private(set) var status: Result<[MessageInfo], MessagingServiceError> = .success([])
   
-  public init(channelItem: ChannelItem, messagingService: MessagingServiceProtocol) {
+  public init(currentUser: User, channelItem: ChannelItem, messagingService: MessagingServiceProtocol) {
+    self.currentUser = currentUser
     self.channelItem = channelItem
     self.messagingService = messagingService
     

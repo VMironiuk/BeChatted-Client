@@ -10,11 +10,13 @@ import SwiftUI
 
 public enum ChannelViewComposer {
   public static func composedChannelView(
-    with channelItem: ChannelItem,
+    with currentUser: User,
+    channelItem: ChannelItem,
     messagingService: MessagingServiceProtocol
   ) -> some View {
     ChannelView(
       viewModel: ChannelViewModel(
+        currentUser: currentUser,
         channelItem: channelItem,
         messagingService: messagingService
       )
