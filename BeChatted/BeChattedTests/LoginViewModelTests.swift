@@ -221,7 +221,7 @@ final class LoginViewModelTests: XCTestCase {
   }
 }
 
-extension UserInfo: Equatable {
+extension UserInfo: @retroactive Equatable {
   public static func == (lhs: UserInfo, rhs: UserInfo) -> Bool {
     lhs.id == rhs.id && lhs.name == rhs.name && lhs.email == rhs.email
   }

@@ -9,4 +9,4 @@ import Foundation
 import BeChatted
 import BeChattedUserInputValidation
 
-extension PasswordValidator: PasswordValidatorProtocol {}
+extension PasswordValidator: @retroactive PasswordValidatorProtocol {}

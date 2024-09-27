@@ -8,4 +8,4 @@
 import BeChattedAuth
 import BeChattedNetwork
 
-extension URLSessionHTTPClient: HTTPClientProtocol {}
+extension URLSessionHTTPClient: @retroactive HTTPClientProtocol {}

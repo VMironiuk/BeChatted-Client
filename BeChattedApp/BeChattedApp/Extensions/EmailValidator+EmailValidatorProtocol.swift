@@ -9,4 +9,4 @@ import Foundation
 import BeChatted
 import BeChattedUserInputValidation
 
-extension EmailValidator: EmailValidatorProtocol {}
+extension EmailValidator: @retroactive EmailValidatorProtocol {}

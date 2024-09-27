@@ -9,7 +9,7 @@ import Foundation
 import BeChatted
 import BeChattedAuth
 
-extension AuthService: AuthServiceProtocol {
+extension AuthService: @retroactive AuthServiceProtocol {
   public func createAccount(
     _ payload: CreateAccountPayload,
     completion: @escaping (Result<Void, AuthError>) -> Void

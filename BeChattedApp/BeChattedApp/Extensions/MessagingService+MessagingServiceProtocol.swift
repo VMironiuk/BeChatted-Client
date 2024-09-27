@@ -8,7 +8,7 @@
 import BeChatted
 import BeChattedMessaging
 
-extension MessagingService: MessagingServiceProtocol {
+extension MessagingService: @retroactive MessagingServiceProtocol {
   public func loadMessages(
     by channelID: String,
     completion: @escaping (Result<[BeChatted.MessageInfo], BeChatted.MessagingServiceError>) -> Void
