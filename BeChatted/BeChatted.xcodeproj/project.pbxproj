@@ -21,6 +21,8 @@
 		2E5EFF692BA824FD00EA65E8 /* ChannelsViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */; };
 		2E5EFF6A2BA8250500EA65E8 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */; };
 		2E682E322C4246650030D85B /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E682E312C4246650030D85B /* ChannelView.swift */; };
+		2E7980162C8982FB000EAABF /* ChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7980152C8982FB000EAABF /* ChannelViewModel.swift */; };
+		2E7980192C898444000EAABF /* ChannelViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7980182C898444000EAABF /* ChannelViewModelTests.swift */; };
 		2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */; };
 		2E82F22D2B88970E00802ED5 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */; };
 		2E82F22F2B88978100802ED5 /* LoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F22E2B88978100802ED5 /* LoginPayload.swift */; };
@@ -127,6 +129,8 @@
 		2E5EFF642BA823BD00EA65E8 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
 		2E5EFF672BA824E500EA65E8 /* ChannelsViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewComposer.swift; sourceTree = "<group>"; };
 		2E682E312C4246650030D85B /* ChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
+		2E7980152C8982FB000EAABF /* ChannelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewModel.swift; sourceTree = "<group>"; };
+		2E7980182C898444000EAABF /* ChannelViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewModelTests.swift; sourceTree = "<group>"; };
 		2E82F22A2B8896D100802ED5 /* UserInputValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputValidatorProtocol.swift; sourceTree = "<group>"; };
 		2E82F22C2B88970E00802ED5 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
 		2E82F22E2B88978100802ED5 /* LoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPayload.swift; sourceTree = "<group>"; };
@@ -244,9 +248,18 @@
 		2E682E302C4246390030D85B /* Channel Feature */ = {
 			isa = PBXGroup;
 			children = (
+				2E7980172C89830C000EAABF /* View Model */,
 				2E841FE92C478C29000F77C8 /* Views */,
 			);
 			path = "Channel Feature";
+			sourceTree = "<group>";
+		};
+		2E7980172C89830C000EAABF /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E7980152C8982FB000EAABF /* ChannelViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		2E82F2382B88989100802ED5 /* RequestPayloads */ = {
@@ -272,9 +285,9 @@
 		2E841FE92C478C29000F77C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2E841FEA2C478C47000F77C8 /* ChannelViewComposer.swift */,
 				2E682E312C4246650030D85B /* ChannelView.swift */,
 				2E841FE72C478AAC000F77C8 /* MessageView.swift */,
-				2E841FEA2C478C47000F77C8 /* ChannelViewComposer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -360,6 +373,7 @@
 				2E302CD22BD793B500135D83 /* ChannelsViewModelTests.swift */,
 				2EBF51442BFF0109001EA238 /* CreateChannelViewModelTests.swift */,
 				2ED23E972C2A857700C4B200 /* ProfileViewModelTests.swift */,
+				2E7980182C898444000EAABF /* ChannelViewModelTests.swift */,
 			);
 			path = BeChattedTests;
 			sourceTree = "<group>";
@@ -734,6 +748,7 @@
 				2EBF51452BFF0109001EA238 /* CreateChannelViewModelTests.swift in Sources */,
 				2EB37CA22B8737E0003990B0 /* AuthServiceStub.swift in Sources */,
 				2E4B3B202C3CFF3A007F203E /* UserServiceStub.swift in Sources */,
+				2E7980192C898444000EAABF /* ChannelViewModelTests.swift in Sources */,
 				2EB37CA12B8737E0003990B0 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2EB37CBA2B874119003990B0 /* RegisterViewModelTests.swift in Sources */,
 				2EB37CBE2B87427B003990B0 /* PasswordValidatorStub.swift in Sources */,
@@ -750,6 +765,7 @@
 				2EB37CC02B87433D003990B0 /* Bundle+DisplayName.swift in Sources */,
 				2E841FED2C478F2C000F77C8 /* ChannelItem.swift in Sources */,
 				2E82F22B2B8896D100802ED5 /* UserInputValidatorProtocol.swift in Sources */,
+				2E7980162C8982FB000EAABF /* ChannelViewModel.swift in Sources */,
 				2E84E3002C2BDFE000580BEA /* UserProfileViewModel.swift in Sources */,
 				2E4F6C042BDA510500BBBCC5 /* ChannelsViewModel.swift in Sources */,
 				2E82F2332B8897C200802ED5 /* CreateAccountPayload.swift in Sources */,

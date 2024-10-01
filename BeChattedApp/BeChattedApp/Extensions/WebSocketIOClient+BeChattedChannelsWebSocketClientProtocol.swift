@@ -1,5 +1,5 @@
 //
-//  WebSocketIOClient+WebSocketClientProtocol.swift
+//  WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift
 //  BeChattedApp
 //
 //  Created by Volodymyr Myroniuk on 10.08.2024.

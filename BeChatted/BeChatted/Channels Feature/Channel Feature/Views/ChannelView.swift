@@ -6,12 +6,17 @@
 //
 
 import BeChatted
+import Combine
 import SwiftUI
 
 struct ChannelView: View {
-  let channelItem: ChannelItem
+  @ObservedObject var viewModel: ChannelViewModel
   
   @State private var messageText = ""
+  
+  private var messages: [MessageInfo] {
+    (try? viewModel.status.get()) ?? []
+  }
   
   var body: some View {
     VStack {
@@ -20,29 +25,41 @@ struct ChannelView: View {
     }
     .toolbarRole(.editor)
     .navigationBarTitleDisplayMode(.inline)
-    .navigationTitle("# \(channelItem.name)")
+    .navigationTitle("# \(viewModel.channelItem.name)")
+    .onAppear {
+      viewModel.loadMessages()
+    }
   }
 }
 
 extension ChannelView {
   private var contentView: some View {
-    List {
+    ScrollView(.vertical) {
       Group {
-        Text("# \(channelItem.name)")
+        Text("# \(viewModel.channelItem.name)")
           .font(.system(size: 24, weight: .semibold))
+          .padding(.bottom, 16)
+          .frame(maxWidth: .infinity, alignment: .leading)
         
-        Text(channelItem.description)
+        Text(viewModel.channelItem.description)
           .font(.system(size: 16, weight: .regular))
           .opacity(0.6)
           .padding(.bottom, 32)
+          .frame(maxWidth: .infinity, alignment: .leading)
         
-        ForEach(0..<10) { _ in
-          MessageView()
+        ScrollViewReader { scrollReader in
+          ForEach(messages) { message in
+            MessageView(message: message)
+              .padding(.bottom, 16)
+          }
+          .onChange(of: messages.count) {
+            guard let lastMessage = messages.last else { return }
+            scrollReader.scrollTo(lastMessage.id, anchor: .bottomTrailing)
+          }
         }
       }
-      .listRowSeparator(.hidden)
+      .padding(.horizontal)
     }
-    .listStyle(.plain)
   }
   
   private var bottomView: some View {
@@ -55,6 +72,17 @@ extension ChannelView {
         Spacer(minLength: 16)
         
         Button {
+          viewModel.sendMessage(
+            MessagePayload(
+              body: messageText,
+              userID: viewModel.currentUser.id,
+              channelID: viewModel.channelItem.id,
+              userName: viewModel.currentUser.name,
+              userAvatar: "",
+              userAvatarColor: ""
+            )
+          )
+          messageText = ""
         } label: {
           Image(systemName: "paperplane.circle.fill")
             .resizable()
@@ -72,13 +100,32 @@ extension ChannelView {
   }
 }
 
+private struct FakeMessagingService: MessagingServiceProtocol {
+  var newMessage: PassthroughSubject<MessageData, Never> {
+    PassthroughSubject()
+  }
+  
+  func loadMessages(
+    by channelID: String,
+    completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void
+  ) {
+  }
+  
+  func sendMessage(_ message: MessagePayload) {
+  }
+}
+
 #Preview {
   NavigationStack {
     ChannelView(
-      channelItem: ChannelItem(
-        id: "id",
-        name: "channel-name",
-        description: "Channel description"
+      viewModel: ChannelViewModel(
+        currentUser: User(id: "ID", name: "NAME"),
+        channelItem: ChannelItem(
+          id: "id",
+          name: "channel-name",
+          description: "Channel description"
+        ),
+        messagingService: FakeMessagingService()
       )
     )
   }

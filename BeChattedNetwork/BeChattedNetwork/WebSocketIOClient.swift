@@ -37,6 +37,18 @@ public struct WebSocketIOClient {
     socket.emit(event, item1, item2)
   }
   
+  public func emit(
+    _ event: String,
+    _ item1: String,
+    _ item2: String,
+    _ item3: String,
+    _ item4: String,
+    _ item5: String,
+    _ item6: String
+  ) {
+    socket.emit(event, item1, item2, item3, item4, item5, item6)
+  }
+  
   public func on(_ event: String, completion: @escaping ([Any]) -> Void) {
     socket.on(event) { items, _ in
       completion(items)

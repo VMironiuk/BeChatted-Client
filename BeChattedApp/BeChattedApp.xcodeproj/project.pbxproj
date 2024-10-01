@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		2E1F9D292B8F2E1700657F39 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1F9D282B8F2E1700657F39 /* AppData.swift */; };
+		2E285F642C8ACA45005E7F20 /* MessagingServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E285F632C8ACA45005E7F20 /* MessagingServiceComposer.swift */; };
+		2E285F662C8ACC33005E7F20 /* BeChattedMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E285F652C8ACC33005E7F20 /* BeChattedMessaging.framework */; };
+		2E285F672C8ACC33005E7F20 /* BeChattedMessaging.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E285F652C8ACC33005E7F20 /* BeChattedMessaging.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E285F692C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E285F682C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift */; };
+		2E285F6B2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E285F6A2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift */; };
+		2E285F6D2C8ACE4C005E7F20 /* MessagingService+MessagingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E285F6C2C8ACE4C005E7F20 /* MessagingService+MessagingServiceProtocol.swift */; };
 		2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */; };
 		2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */; };
 		2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */; };
 		2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */; };
 		2E40A4312C67329000A82750 /* CreateChannelServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E40A4302C67329000A82750 /* CreateChannelServiceComposer.swift */; };
-		2E40A4332C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E40A4322C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift */; };
+		2E40A4332C67346B00A82750 /* WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E40A4322C67346B00A82750 /* WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift */; };
 		2E4F6C082BDA608800BBBCC5 /* BeChattedChannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; };
 		2E4F6C092BDA608800BBBCC5 /* BeChattedChannels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */; };
@@ -62,6 +68,7 @@
 			files = (
 				2E82F2672B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Embed Frameworks */,
 				2E82F2742B88BE4C00802ED5 /* BeChattediOS.framework in Embed Frameworks */,
+				2E285F672C8ACC33005E7F20 /* BeChattedMessaging.framework in Embed Frameworks */,
 				2E6E93D02C3E588800EDAD7C /* BeChattedUser.framework in Embed Frameworks */,
 				2E95539A2BE3BBDF002E23B2 /* BeChattedNetwork.framework in Embed Frameworks */,
 				2E4F6C092BDA608800BBBCC5 /* BeChattedChannels.framework in Embed Frameworks */,
@@ -75,12 +82,17 @@
 
 /* Begin PBXFileReference section */
 		2E1F9D282B8F2E1700657F39 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		2E285F632C8ACA45005E7F20 /* MessagingServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingServiceComposer.swift; sourceTree = "<group>"; };
+		2E285F652C8ACC33005E7F20 /* BeChattedMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E285F682C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift"; sourceTree = "<group>"; };
+		2E285F6A2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift"; sourceTree = "<group>"; };
+		2E285F6C2C8ACE4C005E7F20 /* MessagingService+MessagingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagingService+MessagingServiceProtocol.swift"; sourceTree = "<group>"; };
 		2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailValidator+EmailValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordValidator+PasswordValidatorProtocol.swift"; sourceTree = "<group>"; };
 		2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthService+AuthServiceProtocol.swift"; sourceTree = "<group>"; };
 		2E40A4302C67329000A82750 /* CreateChannelServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelServiceComposer.swift; sourceTree = "<group>"; };
-		2E40A4322C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebSocketIOClient+WebSocketClientProtocol.swift"; sourceTree = "<group>"; };
+		2E40A4322C67346B00A82750 /* WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift"; sourceTree = "<group>"; };
 		2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedChannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingServiceComposer.swift; sourceTree = "<group>"; };
 		2E6E93CA2C3E563900EDAD7C /* UserServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceComposer.swift; sourceTree = "<group>"; };
@@ -127,6 +139,7 @@
 			files = (
 				2E82F2662B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Frameworks */,
 				2E82F2732B88BE4C00802ED5 /* BeChattediOS.framework in Frameworks */,
+				2E285F662C8ACC33005E7F20 /* BeChattedMessaging.framework in Frameworks */,
 				2E6E93CF2C3E588800EDAD7C /* BeChattedUser.framework in Frameworks */,
 				2E9553992BE3BBDF002E23B2 /* BeChattedNetwork.framework in Frameworks */,
 				2E4F6C082BDA608800BBBCC5 /* BeChattedChannels.framework in Frameworks */,
@@ -153,6 +166,7 @@
 			children = (
 				2E32BE8A2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift */,
 				2E6E93D32C3E5F3400EDAD7C /* UserService+UserServiceProtocol.swift */,
+				2E285F6C2C8ACE4C005E7F20 /* MessagingService+MessagingServiceProtocol.swift */,
 				2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */,
 				2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */,
 				2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */,
@@ -160,7 +174,9 @@
 				2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */,
 				2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */,
 				2E6E93D12C3E58F400EDAD7C /* URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift */,
-				2E40A4322C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift */,
+				2E285F682C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift */,
+				2E40A4322C67346B00A82750 /* WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift */,
+				2E285F6A2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift */,
 				2E9071D02C3FA72C00E776E7 /* User+UserInfo.swift */,
 				2E9071D52C3FA9C600E776E7 /* UserProfileInfo+User.swift */,
 			);
@@ -201,6 +217,7 @@
 		2E82F2572B88BC8100802ED5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E285F652C8ACC33005E7F20 /* BeChattedMessaging.framework */,
 				2E6E93CE2C3E588800EDAD7C /* BeChattedUser.framework */,
 				2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */,
 				2E4F6C072BDA608800BBBCC5 /* BeChattedChannels.framework */,
@@ -224,6 +241,7 @@
 				2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */,
 				2E40A4302C67329000A82750 /* CreateChannelServiceComposer.swift */,
 				2E6E93CA2C3E563900EDAD7C /* UserServiceComposer.swift */,
+				2E285F632C8ACA45005E7F20 /* MessagingServiceComposer.swift */,
 			);
 			path = "Service Composers";
 			sourceTree = "<group>";
@@ -250,10 +268,10 @@
 			children = (
 				2EF211632B934BC5008BB1CA /* Info.plist */,
 				2E32BE842B8DF38800EEF27E /* App */,
-				2E32BE852B8DF3AA00EEF27E /* NavigationControllers */,
 				2E32BE832B8DF34900EEF27E /* Composers */,
 				2E32BE822B8DF32100EEF27E /* Extensions */,
 				2E1F9D2A2B8F2E2F00657F39 /* Models */,
+				2E32BE852B8DF3AA00EEF27E /* NavigationControllers */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
 				2EEADC912B8327C1009EE7CE /* Preview Content */,
 			);
@@ -342,12 +360,14 @@
 				2E9553972BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift in Sources */,
 				2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */,
 				2E854AA72C2E80D600277AAD /* URLProvider.swift in Sources */,
+				2E285F642C8ACA45005E7F20 /* MessagingServiceComposer.swift in Sources */,
 				2E9071CF2C3FA66E00E776E7 /* User.swift in Sources */,
+				2E285F6D2C8ACE4C005E7F20 /* MessagingService+MessagingServiceProtocol.swift in Sources */,
 				2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */,
 				2E4F6C0D2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift in Sources */,
 				2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */,
 				2E32BE8B2B8DF4D100EEF27E /* AuthService+AuthServiceProtocol.swift in Sources */,
-				2E40A4332C67346B00A82750 /* WebSocketIOClient+WebSocketClientProtocol.swift in Sources */,
+				2E40A4332C67346B00A82750 /* WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift in Sources */,
 				2E854AA92C2E853B00277AAD /* UserProfileView.swift in Sources */,
 				2E9071D62C3FA9C600E776E7 /* UserProfileInfo+User.swift in Sources */,
 				2E95539C2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift in Sources */,
@@ -357,6 +377,7 @@
 				2E1F9D292B8F2E1700657F39 /* AppData.swift in Sources */,
 				2E6E93D42C3E5F3400EDAD7C /* UserService+UserServiceProtocol.swift in Sources */,
 				2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */,
+				2E285F6B2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift in Sources */,
 				2EF5783A2C1D63F8003F6493 /* ChannelsView.swift in Sources */,
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
 				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
@@ -364,6 +385,7 @@
 				2E9071D12C3FA72C00E776E7 /* User+UserInfo.swift in Sources */,
 				2E79C3DF2C1C114900377063 /* ContentView.swift in Sources */,
 				2EF578342C1D5F47003F6493 /* LoginView.swift in Sources */,
+				2E285F692C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift in Sources */,
 				2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */,
 				2EF5783C2C1D643B003F6493 /* CreateChannelView.swift in Sources */,
 				2E40A4312C67329000A82750 /* CreateChannelServiceComposer.swift in Sources */,

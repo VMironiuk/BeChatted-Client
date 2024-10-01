@@ -9,7 +9,17 @@ import BeChatted
 import SwiftUI
 
 public enum ChannelViewComposer {
-  public static func composedChannelView(with channelItem: ChannelItem) -> some View {
-    ChannelView(channelItem: channelItem)
+  public static func composedChannelView(
+    with currentUser: User,
+    channelItem: ChannelItem,
+    messagingService: MessagingServiceProtocol
+  ) -> some View {
+    ChannelView(
+      viewModel: ChannelViewModel(
+        currentUser: currentUser,
+        channelItem: channelItem,
+        messagingService: messagingService
+      )
+    )
   }
 }

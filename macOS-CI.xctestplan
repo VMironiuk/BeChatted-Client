@@ -59,6 +59,14 @@
         "identifier" : "2E5C1A0B2C37AB1D0069FC1A",
         "name" : "BeChattedUserTests"
       }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BeChattedMessaging\/BeChattedMessaging.xcodeproj",
+        "identifier" : "2EAF79C72C76FFE4001DB163",
+        "name" : "BeChattedMessagingTests"
+      }
     }
   ],
   "version" : 1
