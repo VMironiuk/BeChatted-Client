@@ -34,23 +34,32 @@ struct ChannelView: View {
 
 extension ChannelView {
   private var contentView: some View {
-    List {
+    ScrollView(.vertical) {
       Group {
         Text("# \(viewModel.channelItem.name)")
           .font(.system(size: 24, weight: .semibold))
+          .padding(.bottom, 16)
+          .frame(maxWidth: .infinity, alignment: .leading)
         
         Text(viewModel.channelItem.description)
           .font(.system(size: 16, weight: .regular))
           .opacity(0.6)
           .padding(.bottom, 32)
+          .frame(maxWidth: .infinity, alignment: .leading)
         
-        ForEach(messages) { message in
-          MessageView(message: message)
+        ScrollViewReader { scrollReader in
+          ForEach(messages) { message in
+            MessageView(message: message)
+              .padding(.bottom, 16)
+          }
+          .onChange(of: messages.count) {
+            guard let lastMessage = messages.last else { return }
+            scrollReader.scrollTo(lastMessage.id, anchor: .bottomTrailing)
+          }
         }
       }
-      .listRowSeparator(.hidden)
+      .padding(.horizontal)
     }
-    .listStyle(.plain)
   }
   
   private var bottomView: some View {

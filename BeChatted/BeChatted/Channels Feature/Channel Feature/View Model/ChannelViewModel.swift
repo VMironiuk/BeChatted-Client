@@ -149,7 +149,7 @@ public final class ChannelViewModel: ObservableObject {
     messagingService.loadMessages(by: channelItem.id) { [weak self] result in
       DispatchQueue.main.async {
         switch result {
-        case .success(let messages): 
+        case .success(let messages):
           self?.status = .success(messages)
         case .failure(let error):
           self?.status = .failure(error)
