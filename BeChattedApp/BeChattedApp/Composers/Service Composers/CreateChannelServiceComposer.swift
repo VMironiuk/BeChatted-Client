@@ -19,7 +19,7 @@ enum CreateChannelServiceComposer {
   }
 }
 
-extension ChannelCreationService: @retroactive CreateChannelServiceProtocol {
+extension ChannelCreationService: CreateChannelServiceProtocol {
   public func addChannel(withName name: String, description: String) {
     addChannel(CreateChanelPayload(name: name, description: description))
   }

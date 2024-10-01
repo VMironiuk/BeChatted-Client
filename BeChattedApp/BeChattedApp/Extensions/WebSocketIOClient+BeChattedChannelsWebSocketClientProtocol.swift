@@ -8,4 +8,4 @@
 import BeChattedChannels
 import BeChattedNetwork
 
-extension WebSocketIOClient: @retroactive WebSocketClientProtocol {}
+extension WebSocketIOClient: WebSocketClientProtocol {}

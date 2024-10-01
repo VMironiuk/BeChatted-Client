@@ -8,7 +8,7 @@
 import BeChatted
 import BeChattedUser
 
-extension UserService: @retroactive UserServiceProtocol {
+extension UserService: UserServiceProtocol {
   public func user(
     by email: String,
     authToken: String,

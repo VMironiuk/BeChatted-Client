@@ -28,7 +28,7 @@ struct ChannelsLoadingServiceComposer {
   }
 }
 
-extension ChannelsLoadingService: @retroactive ChannelsLoadingServiceProtocol {
+extension ChannelsLoadingService: ChannelsLoadingServiceProtocol {
   public func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
     loadChannels { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
       switch result {

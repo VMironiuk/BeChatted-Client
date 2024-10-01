@@ -308,7 +308,7 @@ final class ChannelViewModelTests: XCTestCase {
   }
 }
 
-extension MessagingServiceError: @retroactive Equatable {
+extension MessagingServiceError: Equatable {
   public static func == (lhs: MessagingServiceError, rhs: MessagingServiceError) -> Bool {
     switch (lhs, rhs) {
     case (.server, .server): true
@@ -321,7 +321,7 @@ extension MessagingServiceError: @retroactive Equatable {
   }
 }
 
-extension MessageInfo: @retroactive Equatable {
+extension MessageInfo: Equatable {
   public static func == (lhs: MessageInfo, rhs: MessageInfo) -> Bool {
     lhs.id == rhs.id
     && lhs.channelId == rhs.channelId
@@ -356,7 +356,7 @@ extension MessageInfo: @retroactive Equatable {
   }
 }
 
-extension MessagePayload: @retroactive Equatable {
+extension MessagePayload: Equatable {
   public static func == (lhs: MessagePayload, rhs: MessagePayload) -> Bool {
     lhs.body == rhs.body
     && lhs.channelID == rhs.channelID
