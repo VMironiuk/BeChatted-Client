@@ -420,34 +420,3 @@ final class MessagingServiceTests: XCTestCase {
     }
   }
 }
-
-extension MessagingService.LoadMessagesError: Equatable {
-  public static func == (
-    lhs: MessagingService.LoadMessagesError,
-    rhs: MessagingService.LoadMessagesError
-  ) -> Bool {
-    switch (lhs, rhs) {
-    case (.server, .server): true
-    case (.invalidData, .invalidData): true
-    case (.invalidResponse, .invalidResponse): true
-    case (.unknown, .unknown): true
-    default: false
-    }
-  }
-}
-
-extension MessagingService.MessageInfo: Equatable {
-  public static func == (
-    lhs: MessagingService.MessageInfo,
-    rhs: MessagingService.MessageInfo
-  ) -> Bool {
-    lhs.id == rhs.id
-    || lhs.messageBody == rhs.messageBody
-    || lhs.userId == rhs.userId
-    || lhs.channelId == rhs.channelId
-    || lhs.userName == rhs.userName
-    || lhs.userAvatar == rhs.userAvatar
-    || lhs.userAvatarColor == rhs.userAvatarColor
-    || lhs.timeStamp == rhs.timeStamp
-  }
-}

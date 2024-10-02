@@ -220,9 +220,3 @@ final class LoginViewModelTests: XCTestCase {
     return (sut, authService, userService)
   }
 }
-
-extension UserInfo: Equatable {
-  public static func == (lhs: UserInfo, rhs: UserInfo) -> Bool {
-    lhs.id == rhs.id && lhs.name == rhs.name && lhs.email == rhs.email
-  }
-}

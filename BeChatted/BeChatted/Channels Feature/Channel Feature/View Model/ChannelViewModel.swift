@@ -15,6 +15,19 @@ public enum MessagingServiceError: Error {
   case unknown(Error)
 }
 
+extension MessagingServiceError: Equatable {
+  public static func == (lhs: MessagingServiceError, rhs: MessagingServiceError) -> Bool {
+    switch (lhs, rhs) {
+    case (.server, .server): true
+    case (.invalidData, .invalidData): true
+    case (.invalidResponse, .invalidResponse): true
+    case (.unknown(let lhsError as NSError), .unknown(let rhsError as NSError)):
+      lhsError.code == rhsError.code && lhsError.domain == rhsError.domain
+    default: false
+    }
+  }
+}
+
 public struct MessageInfo: Identifiable {
   public let id: String
   public let messageBody: String
@@ -70,6 +83,19 @@ public struct MessageInfo: Identifiable {
   }
 }
 
+extension MessageInfo: Equatable {
+  public static func == (lhs: MessageInfo, rhs: MessageInfo) -> Bool {
+    lhs.id == rhs.id
+    && lhs.channelId == rhs.channelId
+    && lhs.messageBody == rhs.messageBody
+    && lhs.timeStamp == rhs.timeStamp
+    && lhs.userAvatar == rhs.userAvatar
+    && lhs.userAvatarColor == rhs.userAvatarColor
+    && lhs.userId == rhs.userId
+    && lhs.userName == rhs.userName
+  }
+}
+
 public struct MessagePayload {
   public let body: String
   public let userID: String
@@ -92,6 +118,17 @@ public struct MessagePayload {
     self.userName = userName
     self.userAvatar = userAvatar
     self.userAvatarColor = userAvatarColor
+  }
+}
+
+extension MessagePayload: Equatable {
+  public static func == (lhs: MessagePayload, rhs: MessagePayload) -> Bool {
+    lhs.body == rhs.body
+    && lhs.channelID == rhs.channelID
+    && lhs.userAvatar == rhs.userAvatar
+    && lhs.userAvatarColor == rhs.userAvatarColor
+    && lhs.userID == rhs.userID
+    && lhs.userName == rhs.userName
   }
 }
 
