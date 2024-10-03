@@ -24,13 +24,15 @@ struct AuthServiceComposer {
   private static let userLoginURL = URL(string: "\(baseURLString)\(userLoginEndpoint)")!
   private static let userLogoutURL = URL(string: "\(baseURLString)\(userLogoutEndpoint)")!
   
-  static let authService = AuthService(
-    configuration: AuthServiceConfiguration(
-      newAccountURL: newAccountURL,
-      newUserURL: newUserURL,
-      userLoginURL: userLoginURL,
-      userLogoutURL: userLogoutURL,
-      httpClient: URLSessionHTTPClient()
+  static let authService = AuthServiceWrapper(
+    underlyingService: AuthService(
+      configuration: AuthServiceConfiguration(
+        newAccountURL: newAccountURL,
+        newUserURL: newUserURL,
+        userLoginURL: userLoginURL,
+        userLogoutURL: userLogoutURL,
+        httpClient: URLSessionHTTPClient()
+      )
     )
   )
 }
