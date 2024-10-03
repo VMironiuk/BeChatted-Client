@@ -10,17 +10,21 @@ import BeChattedChannels
 import BeChattedNetwork
 
 enum CreateChannelServiceComposer {
-  static func makeChannelCreationService() -> ChannelCreationService {
-    ChannelCreationService(
-      webSocketClient: WebSocketIOClient(
-        url: URL(string: URLProvider.baseURLString)!
+  static func makeChannelCreationService() -> ChannelCreationServiceWrapper {
+    ChannelCreationServiceWrapper(
+      underlyingService: ChannelCreationService(
+        webSocketClient: WebSocketIOClient(
+          url: URL(string: URLProvider.baseURLString)!
+        )
       )
     )
   }
 }
 
-extension ChannelCreationService: CreateChannelServiceProtocol {
-  public func addChannel(withName name: String, description: String) {
-    addChannel(CreateChanelPayload(name: name, description: description))
+struct ChannelCreationServiceWrapper: CreateChannelServiceProtocol {
+  let underlyingService: ChannelCreationService
+  
+  func addChannel(withName name: String, description: String) {
+    underlyingService.addChannel(CreateChanelPayload(name: name, description: description))
   }
 }
