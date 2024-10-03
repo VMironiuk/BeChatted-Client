@@ -19,18 +19,27 @@ struct ChannelsLoadingServiceComposer {
   
   private static let url = URL(string: "\(baseURLString)\(endpoint)")!
   
-  static func channelsService(with authToken: String) -> ChannelsLoadingService {
-    ChannelsLoadingService(
-      url: url,
-      authToken: authToken,
-      httpClient: URLSessionHTTPClient(),
-      webSocketClient: WebSocketIOClient(url: URL(string: baseURLString)!))
+  static func channelsService(with authToken: String) -> ChannelsLoadingServiceWrapper {
+    ChannelsLoadingServiceWrapper(
+      underlyingService: ChannelsLoadingService(
+        url: url,
+        authToken: authToken,
+        httpClient: URLSessionHTTPClient(),
+        webSocketClient: WebSocketIOClient(url: URL(string: baseURLString)!)
+      )
+    )
   }
 }
 
-extension ChannelsLoadingService: ChannelsLoadingServiceProtocol {
-  public func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
-    loadChannels { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
+struct ChannelsLoadingServiceWrapper: ChannelsLoadingServiceProtocol {
+  let underlyingService: ChannelsLoadingService
+  
+  var newChannel: PassthroughSubject<ChannelData, Never> {
+    underlyingService.newChannel
+  }
+  
+  func loadChannels(completion: @escaping (Result<[Channel], ChannelsLoadingServiceError>) -> Void) {
+    underlyingService.loadChannels { (result: Result<[ChannelInfo], ChannelsLoadingError>) in
       switch result {
       case .success(let channelInfos):
         completion(.success(channelInfos.map { Channel(id: $0.id, name: $0.name, description: $0.description) }))
