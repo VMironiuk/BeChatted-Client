@@ -18,5 +18,10 @@ struct UserServiceComposer {
   
   private static let userByEmailURL = URL(string: "\(baseURLString)\(userByEmailEndpoint)")!
   
-  static let userService = UserService(url: userByEmailURL, client: URLSessionHTTPClient())
+  static let userService = UserServiceWrapper(
+    underlyingService: UserService(
+      url: userByEmailURL,
+      client: URLSessionHTTPClient()
+    )
+  )
 }

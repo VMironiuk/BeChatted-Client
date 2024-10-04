@@ -8,13 +8,15 @@
 import BeChatted
 import BeChattedUser
 
-extension UserService: UserServiceProtocol {
-  public func user(
+struct UserServiceWrapper: UserServiceProtocol {
+  let underlyingService: UserService
+  
+  func user(
     by email: String,
     authToken: String,
     completion: @escaping (Result<UserInfo, BeChatted.UserServiceError>) -> Void
   ) {
-    user(by: email, authToken: authToken) { result in
+    underlyingService.user(by: email, authToken: authToken) { result in
       switch result {
       case .success(let userData):
         completion(.success(UserInfo(userData: userData)))
