@@ -7,13 +7,21 @@
 
 import BeChatted
 import BeChattedMessaging
+import Combine
 
-extension MessagingService: MessagingServiceProtocol {
-  public func loadMessages(
+struct MessagingServiceWrapper: MessagingServiceProtocol {
+  let underlyingService: MessagingService
+  
+  var newMessage: PassthroughSubject<MessageData, Never> {
+    underlyingService.newMessage
+  }
+  
+  func loadMessages(
     by channelID: String,
     completion: @escaping (Result<[BeChatted.MessageInfo], BeChatted.MessagingServiceError>) -> Void
   ) {
-    loadMessages(by: channelID) { (result: Result<[MessageInfo], LoadMessagesError>) in
+    underlyingService.loadMessages(by: channelID)
+    { (result: Result<[MessagingService.MessageInfo], MessagingService.LoadMessagesError>) in
       switch result {
       case .success(let messages):
         completion(.success(messages.map { BeChatted.MessageInfo($0) }))
@@ -23,8 +31,8 @@ extension MessagingService: MessagingServiceProtocol {
     }
   }
   
-  public func sendMessage(_ message: BeChatted.MessagePayload) {
-    sendMessage(.init(message))
+  func sendMessage(_ message: BeChatted.MessagePayload) {
+    underlyingService.sendMessage(.init(message))
   }
 }
 
