@@ -25,7 +25,7 @@ struct LoginView: View {
     
     _loginViewModel = StateObject(
       wrappedValue: LoginViewModel(
-        emailValidator: EmailValidator(),
+        emailValidator: EmailValidatorWrapper(emailValidator: EmailValidator()),
         passwordValidator: PasswordValidator(),
         authService: AuthServiceComposer.authService,
         userService: UserServiceComposer.userService,

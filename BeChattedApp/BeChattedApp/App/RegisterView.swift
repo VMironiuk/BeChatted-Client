@@ -14,7 +14,7 @@ struct RegisterView: View {
   @EnvironmentObject private var navigationController: MainNavigationController
   
   @StateObject private var registerViewModel = RegisterViewModel(
-    emailValidator: EmailValidator(),
+    emailValidator: EmailValidatorWrapper(emailValidator: EmailValidator()),
     passwordValidator: PasswordValidator(),
     authService: AuthServiceComposer.authService
   )

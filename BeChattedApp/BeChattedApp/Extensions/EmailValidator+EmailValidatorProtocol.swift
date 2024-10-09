@@ -9,4 +9,10 @@ import Foundation
 import BeChatted
 import BeChattedUserInputValidation
 
-extension EmailValidator: EmailValidatorProtocol {}
+struct EmailValidatorWrapper: EmailValidatorProtocol {
+  let emailValidator: EmailValidator
+  
+  func isValid(email: String) -> Bool {
+    emailValidator.isValid(email: email)
+  }
+}
