@@ -9,4 +9,10 @@ import Foundation
 import BeChatted
 import BeChattedUserInputValidation
 
-extension PasswordValidator: PasswordValidatorProtocol {}
+struct PasswordValidatorWrapper: PasswordValidatorProtocol {
+  let passwordValidator: PasswordValidator
+  
+  func isValid(password: String) -> Bool {
+    passwordValidator.isValid(password: password)
+  }
+}

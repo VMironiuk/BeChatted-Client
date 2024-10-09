@@ -15,7 +15,7 @@ struct RegisterView: View {
   
   @StateObject private var registerViewModel = RegisterViewModel(
     emailValidator: EmailValidatorWrapper(emailValidator: EmailValidator()),
-    passwordValidator: PasswordValidator(),
+    passwordValidator: PasswordValidatorWrapper(passwordValidator: PasswordValidator()),
     authService: AuthServiceComposer.authService
   )
   
