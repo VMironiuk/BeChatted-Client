@@ -21,7 +21,7 @@ struct UserServiceComposer {
   static let userService = UserServiceWrapper(
     underlyingService: UserService(
       url: userByEmailURL,
-      client: URLSessionHTTPClient()
+      client: URLSessionHTTPClientWrapper(underlyingHTTPClient: URLSessionHTTPClient())
     )
   )
 }

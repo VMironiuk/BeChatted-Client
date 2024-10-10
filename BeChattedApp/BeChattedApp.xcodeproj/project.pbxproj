@@ -11,7 +11,6 @@
 		2E285F642C8ACA45005E7F20 /* MessagingServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E285F632C8ACA45005E7F20 /* MessagingServiceComposer.swift */; };
 		2E285F662C8ACC33005E7F20 /* BeChattedMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E285F652C8ACC33005E7F20 /* BeChattedMessaging.framework */; };
 		2E285F672C8ACC33005E7F20 /* BeChattedMessaging.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E285F652C8ACC33005E7F20 /* BeChattedMessaging.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E285F692C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E285F682C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift */; };
 		2E285F6B2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E285F6A2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift */; };
 		2E285F6D2C8ACE4C005E7F20 /* MessagingService+MessagingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E285F6C2C8ACE4C005E7F20 /* MessagingService+MessagingServiceProtocol.swift */; };
 		2E2E78C62B8CC6C200B17A38 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */; };
@@ -26,7 +25,6 @@
 		2E6E93CB2C3E563900EDAD7C /* UserServiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E93CA2C3E563900EDAD7C /* UserServiceComposer.swift */; };
 		2E6E93CF2C3E588800EDAD7C /* BeChattedUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E93CE2C3E588800EDAD7C /* BeChattedUser.framework */; };
 		2E6E93D02C3E588800EDAD7C /* BeChattedUser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E93CE2C3E588800EDAD7C /* BeChattedUser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E6E93D22C3E58F400EDAD7C /* URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E93D12C3E58F400EDAD7C /* URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift */; };
 		2E6E93D42C3E5F3400EDAD7C /* UserService+UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E93D32C3E5F3400EDAD7C /* UserService+UserServiceProtocol.swift */; };
 		2E79C3DF2C1C114900377063 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E79C3DE2C1C114900377063 /* ContentView.swift */; };
 		2E82F2662B88BDCA00802ED5 /* BeChattedUserInputValidation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E82F2652B88BDCA00802ED5 /* BeChattedUserInputValidation.framework */; };
@@ -44,14 +42,13 @@
 		2E9071CF2C3FA66E00E776E7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9071CE2C3FA66E00E776E7 /* User.swift */; };
 		2E9071D12C3FA72C00E776E7 /* User+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9071D02C3FA72C00E776E7 /* User+UserInfo.swift */; };
 		2E9071D62C3FA9C600E776E7 /* UserProfileInfo+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9071D52C3FA9C600E776E7 /* UserProfileInfo+User.swift */; };
-		2E9553972BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */; };
 		2E9553992BE3BBDF002E23B2 /* BeChattedNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */; };
 		2E95539A2BE3BBDF002E23B2 /* BeChattedNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E95539C2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */; };
 		2EBE981A2B89FEBA009EB16C /* Bundle+DisplayName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */; };
 		2EEADC8C2B8327BF009EE7CE /* BeChattedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */; };
 		2EEADC902B8327C1009EE7CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */; };
 		2EEADC932B8327C1009EE7CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */; };
+		2EF0DE2D2CB8F11A006BCC54 /* URLSessionHTTPClientWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0DE2C2CB8F11A006BCC54 /* URLSessionHTTPClientWrapper.swift */; };
 		2EF578342C1D5F47003F6493 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF578332C1D5F47003F6493 /* LoginView.swift */; };
 		2EF578362C1D6128003F6493 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF578352C1D6128003F6493 /* RegisterView.swift */; };
 		2EF578382C1D6277003F6493 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF578372C1D6277003F6493 /* AuthView.swift */; };
@@ -84,7 +81,6 @@
 		2E1F9D282B8F2E1700657F39 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		2E285F632C8ACA45005E7F20 /* MessagingServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingServiceComposer.swift; sourceTree = "<group>"; };
 		2E285F652C8ACC33005E7F20 /* BeChattedMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E285F682C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift"; sourceTree = "<group>"; };
 		2E285F6A2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift"; sourceTree = "<group>"; };
 		2E285F6C2C8ACE4C005E7F20 /* MessagingService+MessagingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagingService+MessagingServiceProtocol.swift"; sourceTree = "<group>"; };
 		2E2E78C52B8CC6C200B17A38 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
@@ -97,7 +93,6 @@
 		2E4F6C0C2BDA62FD00BBBCC5 /* ChannelsLoadingServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsLoadingServiceComposer.swift; sourceTree = "<group>"; };
 		2E6E93CA2C3E563900EDAD7C /* UserServiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceComposer.swift; sourceTree = "<group>"; };
 		2E6E93CE2C3E588800EDAD7C /* BeChattedUser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedUser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E6E93D12C3E58F400EDAD7C /* URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift"; sourceTree = "<group>"; };
 		2E6E93D32C3E5F3400EDAD7C /* UserService+UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserService+UserServiceProtocol.swift"; sourceTree = "<group>"; };
 		2E79C3DE2C1C114900377063 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E82F2582B88BC8100802ED5 /* BeChatted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChatted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,14 +111,13 @@
 		2E9071CE2C3FA66E00E776E7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2E9071D02C3FA72C00E776E7 /* User+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+UserInfo.swift"; sourceTree = "<group>"; };
 		2E9071D52C3FA9C600E776E7 /* UserProfileInfo+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileInfo+User.swift"; sourceTree = "<group>"; };
-		2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift"; sourceTree = "<group>"; };
 		2E9553982BE3BBDF002E23B2 /* BeChattedNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BeChattedNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift"; sourceTree = "<group>"; };
 		2EBE98192B89FEBA009EB16C /* Bundle+DisplayName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+DisplayName.swift"; sourceTree = "<group>"; };
 		2EEADC882B8327BF009EE7CE /* BeChattedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeChattedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEADC8B2B8327BF009EE7CE /* BeChattedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeChattedApp.swift; sourceTree = "<group>"; };
 		2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2EF0DE2C2CB8F11A006BCC54 /* URLSessionHTTPClientWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientWrapper.swift; sourceTree = "<group>"; };
 		2EF211632B934BC5008BB1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2EF578332C1D5F47003F6493 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EF578352C1D6128003F6493 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -171,10 +165,6 @@
 				2E32BE862B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift */,
 				2E32BE882B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift */,
 				2E82F27C2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift */,
-				2E9553962BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift */,
-				2E95539B2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift */,
-				2E6E93D12C3E58F400EDAD7C /* URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift */,
-				2E285F682C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift */,
 				2E40A4322C67346B00A82750 /* WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift */,
 				2E285F6A2C8ACCD7005E7F20 /* WebSocketIOClient+BeChattedNessagingWebSocketClientProtocol.swift */,
 				2E9071D02C3FA72C00E776E7 /* User+UserInfo.swift */,
@@ -270,6 +260,7 @@
 				2E32BE842B8DF38800EEF27E /* App */,
 				2E32BE832B8DF34900EEF27E /* Composers */,
 				2E32BE822B8DF32100EEF27E /* Extensions */,
+				2EF0DE2B2CB8F0F2006BCC54 /* Misk */,
 				2E1F9D2A2B8F2E2F00657F39 /* Models */,
 				2E32BE852B8DF3AA00EEF27E /* NavigationControllers */,
 				2EEADC8F2B8327C1009EE7CE /* Assets.xcassets */,
@@ -284,6 +275,14 @@
 				2EEADC922B8327C1009EE7CE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2EF0DE2B2CB8F0F2006BCC54 /* Misk */ = {
+			isa = PBXGroup;
+			children = (
+				2EF0DE2C2CB8F11A006BCC54 /* URLSessionHTTPClientWrapper.swift */,
+			);
+			path = Misk;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,7 +356,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E9553972BE3BB83002E23B2 /* URLSessionHTTPClient+BeChattedAuthHTTPClientProtocol.swift in Sources */,
 				2E32BE892B8DF46C00EEF27E /* PasswordValidator+PasswordValidatorProtocol.swift in Sources */,
 				2E854AA72C2E80D600277AAD /* URLProvider.swift in Sources */,
 				2E285F642C8ACA45005E7F20 /* MessagingServiceComposer.swift in Sources */,
@@ -370,7 +368,6 @@
 				2E40A4332C67346B00A82750 /* WebSocketIOClient+BeChattedChannelsWebSocketClientProtocol.swift in Sources */,
 				2E854AA92C2E853B00277AAD /* UserProfileView.swift in Sources */,
 				2E9071D62C3FA9C600E776E7 /* UserProfileInfo+User.swift in Sources */,
-				2E95539C2BE3BC02002E23B2 /* URLSessionHTTPClient+BeChattedChannelsHTTPClientProtocol.swift in Sources */,
 				2EF578382C1D6277003F6493 /* AuthView.swift in Sources */,
 				2E6E93CB2C3E563900EDAD7C /* UserServiceComposer.swift in Sources */,
 				2EF578362C1D6128003F6493 /* RegisterView.swift in Sources */,
@@ -381,12 +378,11 @@
 				2EF5783A2C1D63F8003F6493 /* ChannelsView.swift in Sources */,
 				2E82F2792B88CE2900802ED5 /* AuthServiceComposer.swift in Sources */,
 				2E82F27D2B88CF7C00802ED5 /* UIApplication+HideKeyboard.swift in Sources */,
-				2E6E93D22C3E58F400EDAD7C /* URLSessionHTTPClient+BeChattedUserHTTPClientProtocol.swift in Sources */,
 				2E9071D12C3FA72C00E776E7 /* User+UserInfo.swift in Sources */,
 				2E79C3DF2C1C114900377063 /* ContentView.swift in Sources */,
 				2EF578342C1D5F47003F6493 /* LoginView.swift in Sources */,
-				2E285F692C8ACC72005E7F20 /* URLSessionHTTPClient+BeChattedMessagingHTTPClientProtocol.swift in Sources */,
 				2E32BE872B8DF41400EEF27E /* EmailValidator+EmailValidatorProtocol.swift in Sources */,
+				2EF0DE2D2CB8F11A006BCC54 /* URLSessionHTTPClientWrapper.swift in Sources */,
 				2EF5783C2C1D643B003F6493 /* CreateChannelView.swift in Sources */,
 				2E40A4312C67329000A82750 /* CreateChannelServiceComposer.swift in Sources */,
 			);

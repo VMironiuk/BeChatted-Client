@@ -18,7 +18,7 @@ enum MessagingServiceComposer {
       underlyingService: MessagingService(
         url: url,
         authToken: authToken,
-        httpClient: URLSessionHTTPClient(),
+        httpClient: URLSessionHTTPClientWrapper(underlyingHTTPClient: URLSessionHTTPClient()),
         webSocketClient: WebSocketIOClient(url: URL(string: baseURLString)!)
       )
     )
