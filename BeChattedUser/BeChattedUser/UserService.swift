@@ -14,7 +14,7 @@ public protocol HTTPClientProtocol {
   )
 }
 
-public struct UserData: Codable {
+public struct UserData: Codable, Equatable {
   public let id: String
   public let name: String
   public let email: String
