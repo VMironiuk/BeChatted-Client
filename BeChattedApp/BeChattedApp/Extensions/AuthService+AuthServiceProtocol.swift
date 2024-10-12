@@ -9,27 +9,33 @@ import Foundation
 import BeChatted
 import BeChattedAuth
 
-extension AuthService: AuthServiceProtocol {
-  public func createAccount(
+struct AuthServiceWrapper: AuthServiceProtocol {
+  let underlyingService: AuthService
+  
+  func createAccount(
     _ payload: CreateAccountPayload,
     completion: @escaping (Result<Void, AuthError>) -> Void
   ) {
-    createAccount(payload.mapped) { completion($0.mapped) }
+    underlyingService.createAccount(payload.mapped) { completion($0.mapped) }
   }
   
-  public func login(
+  func login(
     _ payload: LoginPayload,
     completion: @escaping (Result<LoginInfo, AuthError>) -> Void
   ) {
-    login(payload.mapped) { completion($0.mapped) }
+    underlyingService.login(payload.mapped) { completion($0.mapped) }
   }
   
-  public func addUser(
+  func logout(authToken: String, completion: @escaping (Result<Void, any Error>) -> Void) {
+    underlyingService.logout(authToken: authToken, completion: completion)
+  }
+  
+  func addUser(
     _ payload: AddUserPayload,
     authToken: String,
     completion: @escaping (Result<AddedUserInfo, AuthError>) -> Void
   ) {
-    addUser(payload.mapped, authToken: authToken) { completion($0.mapped) }
+    underlyingService.addUser(payload.mapped, authToken: authToken) { completion($0.mapped) }
   }
 }
 

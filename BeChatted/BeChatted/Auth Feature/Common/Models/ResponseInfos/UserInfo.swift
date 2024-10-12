@@ -18,3 +18,10 @@ public struct UserInfo {
     self.email = email
   }
 }
+
+extension UserInfo: Equatable {
+  public static func == (lhs: UserInfo, rhs: UserInfo) -> Bool {
+    lhs.id == rhs.id && lhs.name == rhs.name && lhs.email == rhs.email
+  }
+}
+

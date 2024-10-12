@@ -136,9 +136,3 @@ final class UserServiceTests: XCTestCase {
     }
   }
 }
-
-extension UserData: Equatable {
-  public static func == (lhs: UserData, rhs: UserData) -> Bool {
-    lhs.id == rhs.id && lhs.name == rhs.name && lhs.email == rhs.email
-  }
-}
