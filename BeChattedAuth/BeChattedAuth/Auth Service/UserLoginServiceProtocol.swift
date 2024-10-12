@@ -7,13 +7,26 @@
 
 import Foundation
 
-public struct UserLoginPayload: Encodable, Equatable {
+public struct UserLoginPayload: Codable, Equatable {
+  private enum CodingKeys: String, CodingKey {
+    case email
+    case password
+  }
+
   private let email: String
   private let password: String
   
   public init(email: String, password: String) {
     self.email = email
     self.password = password
+  }
+  
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    let email = try container.decode(String.self, forKey: .email)
+    let password = try container.decode(String.self, forKey: .password)
+    
+    self.init(email: email, password: password)
   }
 }
 

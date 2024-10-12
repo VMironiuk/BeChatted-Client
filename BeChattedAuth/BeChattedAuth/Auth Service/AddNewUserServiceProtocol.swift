@@ -7,7 +7,14 @@
 
 import Foundation
 
-public struct NewUserPayload: Encodable, Equatable {
+public struct NewUserPayload: Codable, Equatable {
+  private enum CodingKeys: String, CodingKey {
+    case name
+    case email
+    case avatarName
+    case avatarColor
+  }
+
   private let name: String
   private let email: String
   private let avatarName: String
@@ -18,6 +25,16 @@ public struct NewUserPayload: Encodable, Equatable {
     self.email = email
     self.avatarName = avatarName
     self.avatarColor = avatarColor
+  }
+  
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    let name = try container.decode(String.self, forKey: .name)
+    let email = try container.decode(String.self, forKey: .email)
+    let avatarName = try container.decode(String.self, forKey: .avatarName)
+    let avatarColor = try container.decode(String.self, forKey: .avatarColor)
+    
+    self.init(name: name, email: email, avatarName: avatarName, avatarColor: avatarColor)
   }
 }
 
