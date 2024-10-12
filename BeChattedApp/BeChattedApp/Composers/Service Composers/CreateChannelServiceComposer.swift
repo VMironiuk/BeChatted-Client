@@ -13,7 +13,7 @@ enum CreateChannelServiceComposer {
   static func makeChannelCreationService() -> ChannelCreationServiceWrapper {
     ChannelCreationServiceWrapper(
       underlyingService: ChannelCreationService(
-        webSocketClient: WebSocketIOClient(
+        webSocketClient: WebSocketIOClientWrapper(
           url: URL(string: URLProvider.baseURLString)!
         )
       )

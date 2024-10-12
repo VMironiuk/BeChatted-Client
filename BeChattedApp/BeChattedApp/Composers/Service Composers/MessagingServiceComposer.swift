@@ -19,7 +19,7 @@ enum MessagingServiceComposer {
         url: url,
         authToken: authToken,
         httpClient: URLSessionHTTPClientWrapper(underlyingHTTPClient: URLSessionHTTPClient()),
-        webSocketClient: WebSocketIOClient(url: URL(string: baseURLString)!)
+        webSocketClient: WebSocketIOClientWrapper(url: URL(string: baseURLString)!)
       )
     )
   }
