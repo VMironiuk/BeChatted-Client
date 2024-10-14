@@ -12,6 +12,7 @@ import SwiftUI
 struct ChannelView: View {
   @ObservedObject var viewModel: ChannelViewModel
   
+  @FocusState private var isMessageTextFieldFocused: Bool
   @State private var messageText = ""
   
   private var messages: [MessageInfo] {
@@ -60,6 +61,9 @@ extension ChannelView {
       }
       .padding(.horizontal)
     }
+    .onTapGesture {
+      isMessageTextFieldFocused = false
+    }
   }
   
   private var bottomView: some View {
@@ -68,6 +72,7 @@ extension ChannelView {
         TextField("Message", text: $messageText, axis: .vertical)
           .textFieldStyle(.roundedBorder)
           .lineLimit(10)
+          .focused($isMessageTextFieldFocused)
         
         Spacer(minLength: 16)
         
