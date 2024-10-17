@@ -141,16 +141,43 @@ final class ChannelViewModelTests: XCTestCase {
     sub.cancel()
   }
   
+  func test_updateIsUserTyping_callsMessagingService_sendUserStopTyping_whenFalse() {
+    let currentUser = User(id: "some-user-id", name: "some-user-name")
+    let (sut, service) = makeSUT(currentUser: currentUser)
+    
+    sut.updateIsUserTyping(false)
+    
+    XCTAssertEqual(
+      service.userStopTypingData,
+      [MessagingService.UserStopTypingData(userName: currentUser.name)]
+    )
+  }
+  
+  func test_updateIsUserTyping_callsMessagingService_sendUserStartTyping_whenTrue() {
+    let currentUser = User(id: "some-user-id", name: "some-user-name")
+    let channelItem = ChannelItem(id: "some-channel-id", name: "some-channel-name", description: "some-channel-description")
+    let (sut, service) = makeSUT(currentUser: currentUser, channelItem: channelItem)
+    
+    sut.updateIsUserTyping(true)
+    
+    XCTAssertEqual(
+      service.userStartTypingData,
+      [MessagingService.UserStartTypingData(userName: currentUser.name, channelID: channelItem.id)]
+    )
+
+  }
+  
   // MARK: - Helpers
   
   private func makeSUT(
+    currentUser: User = User(id: "USER_ID", name: "USER_NAME"),
     channelItem: ChannelItem = ChannelItem(id: "1", name: "name", description: "description"),
     file: StaticString = #filePath,
     line: UInt = #line
   ) -> (ChannelViewModel, MessagingService) {
     let service = MessagingService()
     let sut = ChannelViewModel(
-      currentUser: User(id: "USER_ID", name: "USER_NAME"),
+      currentUser: currentUser,
       channelItem: channelItem,
       messagingService: service
     )
@@ -278,8 +305,19 @@ final class ChannelViewModelTests: XCTestCase {
   }
   
   private final class MessagingService: MessagingServiceProtocol {
+    struct UserStartTypingData: Equatable {
+      let userName: String
+      let channelID: String
+    }
+    
+    struct UserStopTypingData: Equatable {
+      let userName: String
+    }
+    
     private var completions = [(Result<[MessageInfo], MessagingServiceError>) -> Void]()
     private(set) var messagePayloads = [MessagePayload]()
+    private(set) var userStopTypingData = [UserStopTypingData]()
+    private(set) var userStartTypingData = [UserStartTypingData]()
     
     var loadMessagesCallCount: Int {
       completions.count
@@ -296,6 +334,14 @@ final class ChannelViewModelTests: XCTestCase {
     
     func sendMessage(_ message: MessagePayload) {
       messagePayloads.append(message)
+    }
+    
+    func sendUserStartTyping(_ userName: String, channelID: String) {
+      userStartTypingData.append(.init(userName: userName, channelID: channelID))
+    }
+    
+    func sendUserStopTyping(_ userName: String) {
+      userStopTypingData.append(.init(userName: userName))
     }
     
     func complete(with error: MessagingServiceError, at index: Int = 0) {

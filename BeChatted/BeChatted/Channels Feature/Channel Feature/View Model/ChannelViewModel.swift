@@ -160,6 +160,8 @@ public protocol MessagingServiceProtocol {
     completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void
   )
   func sendMessage(_ message: MessagePayload)
+  func sendUserStartTyping(_ userName: String, channelID: String)
+  func sendUserStopTyping(_ userName: String)
 }
 
 public final class ChannelViewModel: ObservableObject {
@@ -197,5 +199,13 @@ public final class ChannelViewModel: ObservableObject {
   
   public func sendMessage(_ message: MessagePayload) {
     messagingService.sendMessage(message)
+  }
+  
+  public func updateIsUserTyping(_ isUserTyping: Bool) {
+    if isUserTyping {
+      messagingService.sendUserStartTyping(currentUser.name, channelID: channelItem.id)
+    } else {
+      messagingService.sendUserStopTyping(currentUser.name)
+    }
   }
 }

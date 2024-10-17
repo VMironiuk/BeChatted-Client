@@ -34,6 +34,14 @@ struct MessagingServiceWrapper: MessagingServiceProtocol {
   func sendMessage(_ message: BeChatted.MessagePayload) {
     underlyingService.sendMessage(.init(message))
   }
+  
+  func sendUserStartTyping(_ userName: String, channelID: String) {
+    underlyingService.sendUserStartTyping(userName, channelID: channelID)
+  }
+  
+  func sendUserStopTyping(_ userName: String) {
+    underlyingService.sendUserStopTyping(userName)
+  }
 }
 
 private extension BeChatted.MessageInfo {

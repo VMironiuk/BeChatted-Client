@@ -102,6 +102,9 @@ extension ChannelView {
         .hidden()
     }
     .padding()
+    .onChange(of: isMessageTextFieldFocused) {
+      viewModel.updateIsUserTyping(isMessageTextFieldFocused)
+    }
   }
 }
 
@@ -117,6 +120,12 @@ private struct FakeMessagingService: MessagingServiceProtocol {
   }
   
   func sendMessage(_ message: MessagePayload) {
+  }
+  
+  func sendUserStartTyping(_ userName: String, channelID: String) {
+  }
+  
+  func sendUserStopTyping(_ userName: String) {
   }
 }
 

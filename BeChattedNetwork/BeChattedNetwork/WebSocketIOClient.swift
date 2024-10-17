@@ -33,6 +33,10 @@ public struct WebSocketIOClient {
     socket.disconnect()
   }
   
+  public func emit(_ event: String, _ item1: String) {
+    socket.emit(event, item1)
+  }
+  
   public func emit(_ event: String, _ item1: String, _ item2: String) {
     socket.emit(event, item1, item2)
   }

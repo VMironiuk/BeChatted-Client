@@ -27,11 +27,11 @@ final class MessagingServiceTests: XCTestCase {
   
   func test_sendMessage_emitsNewMessage() {
     let message = anyMessagePayload()
-    let (sut, _,webSocketClient) = makeSUT()
+    let (sut, _, webSocketClient) = makeSUT()
 
     sut.sendMessage(message)
     
-    XCTAssertEqual(webSocketClient.emitCallCount, 1)
+    XCTAssertEqual(webSocketClient.emitMessageCallCount, 1)
     XCTAssertEqual(webSocketClient.emitMessages[0].event, MessagingService.Event.newMessage.rawValue)
     XCTAssertEqual(webSocketClient.emitMessages[0].item1, message.body)
     XCTAssertEqual(webSocketClient.emitMessages[0].item2, message.userID)
@@ -39,6 +39,30 @@ final class MessagingServiceTests: XCTestCase {
     XCTAssertEqual(webSocketClient.emitMessages[0].item4, message.userName)
     XCTAssertEqual(webSocketClient.emitMessages[0].item5, message.userAvatar)
     XCTAssertEqual(webSocketClient.emitMessages[0].item6, message.userAvatarColor)
+  }
+  
+  func test_sendUserStartTyping_emitsUserStartTyping() {
+    let userName = "some-username"
+    let channelID = "some-channel-id"
+    let (sut, _, webSocketClient) = makeSUT()
+    
+    sut.sendUserStartTyping(userName, channelID: channelID)
+    
+    XCTAssertEqual(webSocketClient.emitUserStartTypingCallCount, 1)
+    XCTAssertEqual(webSocketClient.emitUserStartTypingMessages[0].event, MessagingService.Event.startType.rawValue)
+    XCTAssertEqual(webSocketClient.emitUserStartTypingMessages[0].item1, userName)
+    XCTAssertEqual(webSocketClient.emitUserStartTypingMessages[0].item2, channelID)
+  }
+  
+  func test_sendUserStopTyping_emitsUserStopTyping() {
+    let userName = "some-username"
+    let (sut, _, webSocketClient) = makeSUT()
+    
+    sut.sendUserStopTyping(userName)
+    
+    XCTAssertEqual(webSocketClient.emitUserStopTypingCallCount, 1)
+    XCTAssertEqual(webSocketClient.emitUserStopTypingMessages[0].event, MessagingService.Event.stopType.rawValue)
+    XCTAssertEqual(webSocketClient.emitUserStopTypingMessages[0].item1, userName)
   }
   
   func test_webSocketClient_onMethodCompletion_publishesNewMessage() {
@@ -378,11 +402,30 @@ final class MessagingServiceTests: XCTestCase {
       let item6: String
     }
     
+    struct EmitUserStopTypingMessage {
+      let event: String
+      let item1: String
+    }
+    
+    struct EmitUserStartTypingMessage {
+      let event: String
+      let item1: String
+      let item2: String
+    }
+    
     private(set) var onMessages = [OnMessage]()
     private(set) var emitMessages = [EmitMessage]()
+    private(set) var emitUserStopTypingMessages = [EmitUserStopTypingMessage]()
+    private(set) var emitUserStartTypingMessages = [EmitUserStartTypingMessage]()
     private(set) var connectCallCount = 0
-    var emitCallCount: Int {
+    var emitMessageCallCount: Int {
       emitMessages.count
+    }
+    var emitUserStopTypingCallCount: Int {
+      emitUserStopTypingMessages.count
+    }
+    var emitUserStartTypingCallCount: Int {
+      emitUserStartTypingMessages.count
     }
     
     func connect() {
@@ -391,6 +434,25 @@ final class MessagingServiceTests: XCTestCase {
     
     func on(_ event: String, completion: @escaping ([Any]) -> Void) {
       onMessages.append(OnMessage(event: event, completion: completion))
+    }
+    
+    func emit(_ event: String, _ item1: String) {
+      emitUserStopTypingMessages.append(
+        EmitUserStopTypingMessage(
+          event: event,
+          item1: item1
+        )
+      )
+    }
+    
+    func emit(_ event: String, _ item1: String, _ item2: String) {
+      emitUserStartTypingMessages.append(
+        EmitUserStartTypingMessage(
+          event: event,
+          item1: item1,
+          item2: item2
+        )
+      )
     }
     
     func emit(
