@@ -36,6 +36,10 @@ extension WebSocketIOClientWrapper: BeChattedChannels.WebSocketClientProtocol {
 }
 
 extension WebSocketIOClientWrapper: BeChattedMessaging.WebSocketClientProtocol {
+  func emit(_ event: String, _ item1: String) {
+    underlyingWebSocketClient.emit(event, item1)
+  }
+  
   func emit(
     _ event: String,
     _ item1: String,

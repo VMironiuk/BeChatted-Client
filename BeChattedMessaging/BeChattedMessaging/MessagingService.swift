@@ -16,6 +16,8 @@ public protocol HTTPClientProtocol {
 public protocol WebSocketClientProtocol {
   func connect()
   func on(_ event: String, completion: @escaping ([Any]) -> Void)
+  func emit(_ event: String, _ item1: String)
+  func emit(_ event: String, _ item1: String, _ item2: String)
   func emit(
     _ event: String,
     _ item1: String,
@@ -38,6 +40,7 @@ public struct MessagingService {
   }
   
   public let newMessage = PassthroughSubject<MessageData, Never>()
+  public let usersTypingUpdate = PassthroughSubject<[Any], Never>()
   
   public init(
     url: URL,
@@ -67,6 +70,9 @@ public struct MessagingService {
           timeStamp: messageFields[7]
         )
       )
+    }
+    webSocketClient.on(Event.userTypingUpdate.rawValue) { [weak usersTypingUpdate] value in
+      usersTypingUpdate?.send(value)
     }
   }
   
@@ -104,6 +110,21 @@ public struct MessagingService {
       }
     }
   }
+  
+  public func sendUserStartTyping(_ userName: String, channelID: String) {
+    webSocketClient.emit(
+      Event.startType.rawValue,
+      userName,
+      channelID
+    )
+  }
+  
+  public func sendUserStopTyping(_ userName: String) {
+    webSocketClient.emit(
+      Event.stopType.rawValue,
+      userName
+    )
+  }
 }
 
 public extension MessagingService {
@@ -129,6 +150,8 @@ public extension MessagingService {
     case messageCreated
     case userTypingUpdate
     case newMessage
+    case startType
+    case stopType
   }
 
   struct MessagePayload {
