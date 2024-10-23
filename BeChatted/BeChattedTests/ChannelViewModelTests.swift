@@ -107,6 +107,25 @@ final class ChannelViewModelTests: XCTestCase {
     sub.cancel()
   }
   
+  func test_sut_observesUsersTypingUpdate() {
+    let usersTypingUpdate = anyUsersTypingUpdate()
+    let exp = expectation(description: "Wait for users typing update")
+    let (sut, service) = makeSUT()
+    let sub = sut.$usersTypingUpdate
+      .dropFirst()
+      .sink { receivedUsersTyping in
+        let users = (usersTypingUpdate.first as! [String: String]).keys.sorted()
+        let expectedUsersTyping = "\(users.joined(separator: ", ")) typing..."
+        XCTAssertEqual(receivedUsersTyping, expectedUsersTyping)
+        exp.fulfill()
+      }
+    
+    service.usersTypingUpdate.send(usersTypingUpdate)
+    
+    wait(for: [exp], timeout: 1)
+    sub.cancel()
+  }
+  
   func test_sut_addsNewMessageToExistingMessages() {
     let newMessage = anyNewMessage()
     let messages = anyMessages()
@@ -304,6 +323,13 @@ final class ChannelViewModelTests: XCTestCase {
     )
   }
   
+  private func anyUsersTypingUpdate() -> [Any] {
+    [
+      ["some-user-id": "some-channel-id"],
+      "some-channel-id"
+    ]
+  }
+  
   private final class MessagingService: MessagingServiceProtocol {
     struct UserStartTypingData: Equatable {
       let userName: String
@@ -324,6 +350,7 @@ final class ChannelViewModelTests: XCTestCase {
     }
     
     let newMessage = PassthroughSubject<MessageData, Never>()
+    let usersTypingUpdate = PassthroughSubject<[Any], Never>()
     
     func loadMessages(
       by channelID: String,

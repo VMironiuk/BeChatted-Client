@@ -155,6 +155,7 @@ public protocol MessagingServiceProtocol {
   )
 
   var newMessage: PassthroughSubject<MessageData, Never> { get }
+  var usersTypingUpdate: PassthroughSubject<[Any], Never> { get }
   func loadMessages(
     by channelID: String,
     completion: @escaping (Result<[MessageInfo], MessagingServiceError>) -> Void
@@ -166,11 +167,14 @@ public protocol MessagingServiceProtocol {
 
 public final class ChannelViewModel: ObservableObject {
   private var newMessageSubscription: AnyCancellable?
+  private var usersTypingUpdateSubscription: AnyCancellable?
+  
   public let currentUser: User
   public let channelItem: ChannelItem
   public let messagingService: MessagingServiceProtocol
   
   @Published public private(set) var status: Result<[MessageInfo], MessagingServiceError> = .success([])
+  @Published public private(set) var usersTypingUpdate = ""
   
   public init(currentUser: User, channelItem: ChannelItem, messagingService: MessagingServiceProtocol) {
     self.currentUser = currentUser
@@ -181,6 +185,16 @@ public final class ChannelViewModel: ObservableObject {
       guard var messages = try? self?.status.get() else { return }
       messages.append(MessageInfo(from: value))
       self?.status = .success(messages)
+    }
+    
+    usersTypingUpdateSubscription = messagingService.usersTypingUpdate.sink { [weak self] value in
+      guard let usersAndChannelIDs = value.first as? [String: String] else { return }
+      let users = usersAndChannelIDs.keys.filter { $0 != currentUser.name }
+      if !users.isEmpty {
+        self?.usersTypingUpdate = "\(users.joined(separator: ", ")) typing..."
+      } else {
+        self?.usersTypingUpdate = ""
+      }
     }
   }
   

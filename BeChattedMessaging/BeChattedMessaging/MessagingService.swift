@@ -40,6 +40,7 @@ public struct MessagingService {
   }
   
   public let newMessage = PassthroughSubject<MessageData, Never>()
+  public let usersTypingUpdate = PassthroughSubject<[Any], Never>()
   
   public init(
     url: URL,
@@ -69,6 +70,9 @@ public struct MessagingService {
           timeStamp: messageFields[7]
         )
       )
+    }
+    webSocketClient.on(Event.userTypingUpdate.rawValue) { [weak usersTypingUpdate] value in
+      usersTypingUpdate?.send(value)
     }
   }
   

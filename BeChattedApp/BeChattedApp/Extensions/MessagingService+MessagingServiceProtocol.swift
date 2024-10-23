@@ -16,6 +16,10 @@ struct MessagingServiceWrapper: MessagingServiceProtocol {
     underlyingService.newMessage
   }
   
+  var usersTypingUpdate: PassthroughSubject<[Any], Never> {
+    underlyingService.usersTypingUpdate
+  }
+  
   func loadMessages(
     by channelID: String,
     completion: @escaping (Result<[BeChatted.MessageInfo], BeChatted.MessagingServiceError>) -> Void

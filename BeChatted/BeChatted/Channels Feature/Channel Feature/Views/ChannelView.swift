@@ -95,11 +95,12 @@ extension ChannelView {
         }
       }
       
-      Text("Username is typing ...")
-        .font(.caption)
-        .opacity(0.6)
-        .padding(.horizontal, 8)
-        .hidden()
+      if !viewModel.usersTypingUpdate.isEmpty {
+        Text(viewModel.usersTypingUpdate)
+          .font(.caption)
+          .opacity(0.6)
+          .padding(.horizontal, 8)
+      }
     }
     .padding()
     .onChange(of: isMessageTextFieldFocused) {
@@ -110,6 +111,9 @@ extension ChannelView {
 
 private struct FakeMessagingService: MessagingServiceProtocol {
   var newMessage: PassthroughSubject<MessageData, Never> {
+    PassthroughSubject()
+  }
+  var usersTypingUpdate: PassthroughSubject<[Any], Never> {
     PassthroughSubject()
   }
   
