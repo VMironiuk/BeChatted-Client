@@ -71,7 +71,6 @@
 		2EC3EEA02B85C5BC007B6D10 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE8F2B85C515007B6D10 /* LoginInputView.swift */; };
 		2EC3EEA12B85C5C4007B6D10 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3EE902B85C515007B6D10 /* LoginHeaderView.swift */; };
 		2EC7E5132BF482C50047FCD9 /* BeChatted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; };
-		2EC7E5142BF482C50047FCD9 /* BeChatted.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEADCA32B83346B009EE7CE /* BeChatted.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ECCE3FF2C099C480064A4DC /* AnimatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCE3FE2C099C480064A4DC /* AnimatorProtocol.swift */; };
 		2ECCE4002C099C480064A4DC /* AnimatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCE3FE2C099C480064A4DC /* AnimatorProtocol.swift */; };
 		2ECCE4022C099C920064A4DC /* ViewModelAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCE4012C099C920064A4DC /* ViewModelAnimator.swift */; };
@@ -99,20 +98,6 @@
 			remoteInfo = BeChatted;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		2EC7E5172BF482C50047FCD9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2EC7E5142BF482C50047FCD9 /* BeChatted.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2E07929F2BAC1606004D7FD2 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
@@ -660,7 +645,6 @@
 				2EEADCF42B833BD1009EE7CE /* Sources */,
 				2EEADCF52B833BD1009EE7CE /* Frameworks */,
 				2EEADCF62B833BD1009EE7CE /* Resources */,
-				2EC7E5172BF482C50047FCD9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
